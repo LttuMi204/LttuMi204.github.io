@@ -47,19 +47,33 @@ Trang web CV/Portfolio cá nhân của **Lê Thị Tú Mi** - Sinh viên Kỹ th
 
 ## 📁 Cấu trúc thư mục
 lethitumi-ejsh.github.io/
+
 ├── index.html # Trang chính CV
+
 ├── cv.html # CV đơn giản (tùy chọn)
+
 ├── projects/
+
 │ ├── cvweb.html # CV chi tiết (bản in)
+
 │ ├── nhan-su.html # Trang chi tiết dự án HRMS
+
 │ ├── nha-khoa.html # Trang chi tiết dự án Nha khoa
+
 │ └── ban-hang.html # Trang chi tiết dự án Bán hàng
+
 ├── assets/
+
 │ └── images/ # Hình ảnh dự án, avatar
+
 ├── css/
+
 │ └── style.css # CSS (đã được tích hợp trong index.html)
+
 ├── js/
+
 │ └── main.js # JavaScript (đã được tích hợp)
+
 └── README.md
 
 ---
