@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>HRMS - Human Resource Management System | Lê Thị Tú Mi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --accent: #6C8EFF;
+      --accent-v: #A78BFA;
+      --accent-glow: rgba(108, 142, 255, 0.18);
+      --accent-glow2: rgba(167, 139, 250, 0.12);
+
+      --fs-display: clamp(2.8rem, 5vw, 3.8rem);
+      --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
+      --fs-h3: 1.15rem;
+      --fs-body: 1rem;
+      --fs-sm: 0.88rem;
+      --fs-xs: 0.75rem;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .nav-theme {
+      display: none !important;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0B0D12;
+      --bg-2: #13171F;
+      --bg-3: #1A1F2E;
+      --bg-4: #232A3D;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-h: rgba(255, 255, 255, 0.12);
+      --text: #EDEFF4;
+      --text-m: #A0A8C4;
+      --text-s: #5A6080;
+      --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg: #F2F4FA;
+      --bg-2: #FFFFFF;
+      --bg-3: #ECEEF6;
+      --bg-4: #E2E6F2;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-h: rgba(0, 0, 0, 0.12);
+      --text: #111827;
+      --text-m: #4B5577;
+      --text-s: #9AA0BC;
+      --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
+    }
+
+    /* ── FLOATING ACTIONS ────────────────────── */
+    .floating-actions {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-2);
+      color: var(--text-m);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      box-shadow: var(--card-sh);
+      backdrop-filter: blur(8px);
+    }
+
+    .fab:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.2);
+    }
+
+    .fab-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .fab-primary:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 0.85;
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.35);
+    }
+
+    /* ── CHATBOX ──────────────────────────────── */
+    .chatbox {
+      position: fixed;
+      right: 90px;
+      bottom: 30px;
+      width: 300px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9998;
+      display: none;
+    }
+
+    .chatbox.show {
+      display: block;
+      animation: fadeChat 0.3s ease;
+    }
+
+    @keyframes fadeChat {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header span {
+      cursor: pointer;
+      color: var(--text-m);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+
+    .chat-header span:hover {
+      color: var(--text);
+    }
+
+    .chat-body {
+      padding: 18px;
+    }
+
+    .chat-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-bottom: 12px;
+    }
+
+    .chat-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      font-size: var(--fs-sm);
+      transition: all var(--transition);
+      margin-bottom: 6px;
+    }
+
+    .chat-link:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* ── RESET ───────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ul {
+      list-style: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(242, 244, 250, 0.85)
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 120px;
+    }
+
+    .nav-brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .nav-center a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-m);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-center a:hover {
+      color: var(--text)
+    }
+
+    .nav-center a.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0
+    }
+
+    .nav-lang {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .nav-lang:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .nav-cta {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-width: 60px;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 1.3rem;
+      color: var(--text-m);
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-m)
+    }
+
+    .mobile-menu a.active {
+      color: var(--accent)
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── DROPDOWN CONTACT ────────────────────── */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      height: 38px;
+      min-width: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0;
+      box-shadow: var(--card-sh);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all var(--transition);
+      z-index: 300;
+      list-style: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+
+    .dropdown-item:hover i {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+        width: 100%;
+      }
+
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .nav-dropdown .dropdown-toggle::after {
+        content: ' ▾';
+        font-size: 0.7rem;
+      }
+
+      .nav-dropdown.open .dropdown-toggle::after {
+        content: ' ▴';
+      }
+
+      .dropdown-item {
+        padding: 0.4rem 0.75rem;
+        color: var(--text-m);
+      }
+
+      .dropdown-item i {
+        width: 20px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── SECTION BASE ─────────────────────────── */
+    .section {
+      padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
+    }
+
+    .eyebrow {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0
+    }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      min-height: 1.3em;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .section-sub {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 700px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem
+    }
+
+    /* ── PROJECT HEADER ───────────────────────── */
+    .project-header {
+      background: var(--bg-2);
+      padding: 100px max(2rem, calc((100% - 1200px)/2 + 2rem)) 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-header .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-header .project-tags .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+    }
+
+    .project-header h1 {
+      font-family: var(--font-display);
+      font-size: var(--fs-display);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-header .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-header .project-meta .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .project-header .project-meta .meta-item .label {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .project-header .project-meta .meta-item .value {
+      font-size: var(--fs-sm);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .project-header .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-header .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .project-header .project-links .btn-demo {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .project-header .project-links .btn-demo:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .project-header .project-links .btn-gh {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-gh:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-header .project-links .btn-doc {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-doc:hover {
+      border-color: var(--accent-v);
+      color: var(--accent-v);
+    }
+
+    /* ── PROJECT CONTENT ──────────────────────── */
+    .project-content {
+      background: var(--bg);
+      padding: 4rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+    }
+
+    .project-content .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-content .content-block {
+      margin-bottom: 3rem;
+    }
+
+    .project-content .content-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-content .content-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .project-content .content-block h3 .num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(108, 142, 255, 0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(108, 142, 255, 0.15);
+    }
+
+    .project-content .content-block p {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .project-content .content-block ul {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      list-style: disc;
+    }
+
+    .project-content .content-block ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .project-content .content-block .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .project-content .content-block .highlight-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .project-content .content-block .highlight-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-content .content-block .highlight-item .number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+
+    .project-content .content-block .highlight-item .desc {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-top: 0.25rem;
+    }
+
+    /* ── TABLE ────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .table-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+    }
+
+    .table-wrap table th {
+      background: var(--bg-3);
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table tr:hover {
+      background: var(--bg-3);
+    }
+
+    /* ── IMAGE GALLERY ────────────────────────── */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .image-gallery .gallery-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .image-gallery .gallery-item:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+    }
+
+    .image-gallery .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-gallery .gallery-item .caption {
+      padding: 0.75rem 1rem;
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media(max-width:1024px) {
+      .project-header h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 1.25rem
+      }
+
+      .nav-center {
+        display: none
+      }
+
+      .nav-hamburger {
+        display: flex
+      }
+
+      .nav-cta {
+        display: none
+      }
+
+      .dropdown-toggle {
+        display: none;
+      }
+
+      .section {
+        padding: 3rem 1.5rem
+      }
+
+      .project-header {
+        padding: 80px 1.5rem 2rem;
+      }
+
+      .project-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .project-header .project-meta {
+        gap: 1rem;
+      }
+
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-actions {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+      }
+
+      .fab {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+
+      .chatbox {
+        right: 16px;
+        bottom: 80px;
+        width: 280px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px
+    }
+
+    .foot-brand span {
+      color: var(--accent)
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .foot-links a {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      transition: color var(--transition);
+      white-space: nowrap
+    }
+
+    .foot-links a:hover {
+      color: var(--accent)
+    }
+
+    .foot-copy {
+      font-size: var(--fs-xs);
+      color: var(--text-s)
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand" id="navBrand">
+      <span class="nav-brand-dot"></span>
+      <a href="../index.html" id="brandName" data-en="Tu Mi" data-vi="Tú Mi">
+        Tú Mi
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="../index.html#about" data-en="About me" data-vi="Về tôi">About me</a>
+      <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+      <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-lang" id="langBtn" title="Switch language">
+        <span id="langFlag">🇺🇸</span><span id="langCode">EN</span>
+      </button>
+      <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
+      <a href="cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
+      <div class="nav-dropdown">
+        <button class="dropdown-toggle" data-en="Contact" data-vi="Liên hệ">
+          Contact
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="mailto:tusmile.joy@gmail.com" class="dropdown-item">
+              <i class="fas fa-envelope"></i>
+              <span>Email: tusmile.joy@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:0774945169" class="dropdown-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call: 0774.945.169</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/LttuMi204" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://zalo.me/0774945169" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fas fa-comment-dots" style="color:#0068FF;"></i>
+              <span>Zalo: Lê Thị Tú Mi</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html#about" data-en="About" data-vi="Về tôi">About</a>
+    <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+    <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+    <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    <a href="../index.html#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
+  </div>
+
+  <!-- PROJECT HEADER -->
+  <section class="project-header">
+    <div class="container">
+      <div class="project-tags">
+        <span class="tag" data-en="★ Featured Project" data-vi="★ Dự án nổi bật">★ Featured Project</span>
+        <span class="tag" data-en="Enterprise HRMS" data-vi="HRMS Doanh nghiệp">Enterprise HRMS</span>
+        <span class="tag" data-en="BA / SA" data-vi="BA / SA">BA / SA</span>
+        <span class="tag" data-en="ISO/IEC 29148" data-vi="ISO/IEC 29148">ISO/IEC 29148</span>
+      </div>
+      <h1><span data-en="Human Resource Management System" data-vi="Hệ thống Quản lý Nhân sự">Hệ thống Quản lý Nhân sự</span> <br><span style="color:var(--accent)"><span data-en="(HRMS)" data-vi="(HRMS)">(HRMS)</span></span></h1>
+      <p style="font-size:var(--fs-body);color:var(--text-m);max-width:700px;line-height:1.9;">
+        <span data-en="Comprehensive analysis and design of an enterprise Human Resource Management System, covering the full employee lifecycle from onboarding to offboarding."
+        data-vi="Phân tích và thiết kế hệ thống Quản lý Nhân sự toàn diện cho doanh nghiệp, bao phủ toàn bộ vòng đời nhân viên từ onboarding đến offboarding.">
+        Comprehensive analysis and design of an enterprise Human Resource Management System, covering the full employee lifecycle from onboarding to offboarding.
+      </span>
+      </p>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="label" data-en="Role" data-vi="Vai trò">Role</span>
+          <span class="value" data-en="Business Analyst · System Analyst" data-vi="Business Analyst · System Analyst">Business Analyst · System Analyst</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Duration" data-vi="Thời gian">Duration</span>
+          <span class="value" data-en="04/2026 – 05/2026 (8 weeks)" data-vi="04/2026 – 05/2026 (8 tuần)">04/2026 – 05/2026 (8 weeks)</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Company" data-vi="Công ty">Company</span>
+          <span class="value" data-en="PLPSoft · Phúc Lâm Phương" data-vi="PLPSoft · Phúc Lâm Phương">PLPSoft · Phúc Lâm Phương</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Documents" data-vi="Tài liệu">Documents</span>
+          <span class="value" data-en="12 documents · 450+ pages" data-vi="12 tài liệu · 450+ trang">12 documents · 450+ pages</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank" class="btn-demo">
+          <i class="fas fa-external-link-alt"></i> <span data-en="Demo" data-vi="Demo">Demo</span>
+        </a>
+        <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank" class="btn-gh">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://drive.google.com/drive/folders/1-n7oxZe7N0HTMWSF00fuxGrxPmFCKZqq" target="_blank" class="btn-doc">
+          <i class="fas fa-file-pdf"></i> <span data-en="PDF Report" data-vi="Báo cáo PDF">PDF Report</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CONTENT -->
+  <section class="project-content">
+    <div class="container">
+
+      <!-- 1. Tổng quan / Overview -->
+      <div class="content-block reveal">
+        <h3><span class="num">01</span> <span data-en="Project Overview" data-vi="Tổng quan dự án">Project Overview</span></h3>
+        <p data-en="The Human Resource Management System (HRMS) is a comprehensive software solution that manages all HR-related processes in an enterprise — including recruitment, onboarding, employee records, time management (leave, timesheet), performance evaluation, asset management, document management, and offboarding."
+        data-vi="Hệ thống Quản lý Nhân sự (HRMS) là phần mềm quản lý toàn bộ quy trình liên quan đến nhân sự trong doanh nghiệp, bao gồm: tuyển dụng, onboarding, quản lý hồ sơ, quản lý thời gian (nghỉ phép, timesheet), đánh giá hiệu suất, quản lý tài sản, tài liệu và offboarding.">
+        The Human Resource Management System (HRMS) is a comprehensive software solution that manages all HR-related processes in an enterprise — including recruitment, onboarding, employee records, time management (leave, timesheet), performance evaluation, asset management, document management, and offboarding.
+        </p>
+        <p data-en="The project was carried out as part of the graduation internship at <strong>Phúc Lâm Phương Software Technology Co., Ltd. (PLPSoft)</strong> under the supervision of <strong>Mr. Võ Văn Phúc</strong> — the company's Director."
+        data-vi="Dự án được thực hiện trong khuôn khổ thực tập tốt nghiệp tại <strong>Công ty TNHH Công Nghệ Phần Mềm Phúc Lam Phương (PLPSoft)</strong> dưới sự hướng dẫn của <strong>Ông Võ Văn Phúc</strong> - Giám đốc công ty.">
+        The project was carried out as part of the graduation internship at <strong>Phúc Lâm Phương Software Technology Co., Ltd. (PLPSoft)</strong> under the supervision of <strong>Mr. Võ Văn Phúc</strong> — the company's Director.
+        </p>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <span class="number">12</span>
+            <span class="desc" data-en="Deliverables" data-vi="Tài liệu bàn giao">Deliverables</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">450+</span>
+            <span class="desc" data-en="Document Pages" data-vi="Trang tài liệu">Document Pages</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">21</span>
+            <span class="desc" data-en="Functional Requirements (FR)" data-vi="Yêu cầu chức năng (FR)">Functional Requirements (FR)</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">6</span>
+            <span class="desc" data-en="Non-functional Requirements (NFR)" data-vi="Yêu cầu phi chức năng (NFR)">Non-functional Requirements (NFR)</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">66</span>
+            <span class="desc" data-en="API Endpoints" data-vi="API Endpoints">API Endpoints</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">29</span>
+            <span class="desc" data-en="Database Tables" data-vi="Bảng dữ liệu">Database Tables</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">51</span>
+            <span class="desc" data-en="Test Cases" data-vi="Test Cases">Test Cases</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">100%</span>
+            <span class="desc" data-en="Requirement Coverage" data-vi="Bao phủ yêu cầu">Requirement Coverage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Vấn đề & Mục tiêu / Problems & Goals -->
+      <div class="content-block reveal">
+        <h3><span class="num">02</span> <span data-en="Problems & Goals" data-vi="Vấn đề &amp; Mục tiêu">Problems &amp; Goals</span></h3>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;font-size:var(--fs-sm);" data-en="Real-world Problems at PLPSoft" data-vi="Vấn đề thực tế tại PLPSoft">Real-world Problems at PLPSoft</h4>
+        <ul>
+          <li data-en="<strong>Lack of data centralization:</strong> Employee records, contracts, evaluations, leave requests... were stored across Excel, Word, and paper — difficult to search and control."
+          data-vi="<strong>Thiếu tập trung dữ liệu:</strong> Hồ sơ nhân viên, hợp đồng, đánh giá, nghỉ phép... lưu trữ dưới nhiều dạng file Excel, Word, khó tra cứu và kiểm soát.">
+          <strong>Lack of data centralization:</strong> Employee records, contracts, evaluations, leave requests... were stored across Excel, Word, and paper — difficult to search and control.</li>
+          <li data-en="<strong>Non-standardized processes:</strong> No clear process for onboarding, offboarding, or leave approval — leading to errors and delays."
+          data-vi="<strong>Quy trình thiếu chuẩn hóa:</strong> Không có quy trình rõ ràng cho các hoạt động onboarding, offboarding, phê duyệt nghỉ phép dễ dẫn đến sai sót.">
+          <strong>Non-standardized processes:</strong> No clear process for onboarding, offboarding, or leave approval — leading to errors and delays.</li>
+          <li data-en="<strong>Legal compliance risks:</strong> Employment contracts and leave policies not aligned with Vietnam's Labor Law — potential disputes."
+          data-vi="<strong>Rủi ro pháp lý:</strong> Hợp đồng lao động, chế độ nghỉ phép không tuân thủ Luật Lao động Việt Nam có thể gây tranh chấp.">
+          <strong>Legal compliance risks:</strong> Employment contracts and leave policies not aligned with Vietnam's Labor Law — potential disputes.</li>
+          <li data-en="<strong>Performance evaluation challenges:</strong> Lack of tools for periodic reviews, skill tracking, and training management."
+          data-vi="<strong>Khó khăn trong đánh giá hiệu suất:</strong> Thiếu công cụ hỗ trợ đánh giá định kỳ, theo dõi kỹ năng và đào tạo.">
+          <strong>Performance evaluation challenges:</strong> Lack of tools for periodic reviews, skill tracking, and training management.</li>
+        </ul>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;margin-top:1.5rem;font-size:var(--fs-sm);" data-en="Project Goals" data-vi="Mục tiêu dự án">Project Goals</h4>
+        <ul>
+          <li data-en="<strong>Data centralization:</strong> 100% of HR data stored in a single, unified system."
+          data-vi="<strong>Tập trung hóa dữ liệu:</strong> 100% thông tin nhân sự được lưu trữ tập trung trong hệ thống duy nhất.">
+          <strong>Data centralization:</strong> 100% of HR data stored in a single, unified system.</li>
+          <li data-en="<strong>Process automation:</strong> Reduce leave request processing time from days to under 2 hours."
+          data-vi="<strong>Tự động hóa quy trình:</strong> Giảm thời gian xử lý đơn nghỉ phép từ vài ngày xuống dưới 2 giờ.">
+          <strong>Process automation:</strong> Reduce leave request processing time from days to under 2 hours.</li>
+          <li data-en="<strong>Enhanced security:</strong> Password encryption, RBAC, JWT token authentication."
+          data-vi="<strong>Tăng cường bảo mật:</strong> Mã hóa mật khẩu, phân quyền RBAC, xác thực JWT token.">
+          <strong>Enhanced security:</strong> Password encryption, RBAC, JWT token authentication.</li>
+          <li data-en="<strong>Performance assurance:</strong> Dashboard loads under 2 seconds, API responses under 500ms."
+          data-vi="<strong>Đảm bảo hiệu suất:</strong> Dashboard hiển thị dưới 2 giây, API phản hồi dưới 500ms.">
+          <strong>Performance assurance:</strong> Dashboard loads under 2 seconds, API responses under 500ms.</li>
+          <li data-en="<strong>Scalability:</strong> Support at least 100 concurrent users."
+          data-vi="<strong>Khả năng mở rộng:</strong> Hỗ trợ tối thiểu 100 người dùng đồng thời.">
+          <strong>Scalability:</strong> Support at least 100 concurrent users.</li>
+        </ul>
+      </div>
+
+      <!-- 3. Phạm vi chức năng / Functional Scope -->
+      <div class="content-block reveal">
+        <h3><span class="num">03</span> <span data-en="Functional Scope" data-vi="Phạm vi chức năng">Functional Scope</span></h3>
+        <p data-en="The system is designed with <strong>15 functional modules</strong>:"
+        data-vi="Hệ thống được thiết kế với <strong>15 module chức năng</strong> chính:">
+        The system is designed with <strong>15 functional modules</strong>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="No." data-vi="STT">#</th>
+                <th data-en="Module" data-vi="Phân hệ chức năng">Module</th>
+                <th data-en="Description" data-vi="Mô tả chi tiết">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td data-en="Employee Records Management" data-vi="Quản lý hồ sơ nhân viên">Employee Records Management</td><td data-en="Manage profiles, resumes, personal photo, and employment history" data-vi="Quản lý hồ sơ, lý lịch, ảnh chân dung và Resume">Manage profiles, resumes, personal photo, and employment history</td></tr>
+              <tr><td>2</td><td data-en="Department & Org Chart Management" data-vi="Quản lý phòng ban &amp; sơ đồ tổ chức">Department &amp; Org Chart Management</td><td data-en="Manage departments and organizational charts" data-vi="Quản lý phòng ban, sơ đồ tổ chức (Org Charts)">Manage departments and organizational charts</td></tr>
+              <tr><td>3</td><td data-en="Work Schedule & Shift Management" data-vi="Quản lý lịch làm việc &amp; phân ca">Work Schedule &amp; Shift Management</td><td data-en="Set up work shifts and locations (Office/Home/Remote)" data-vi="Thiết lập ca làm việc và địa điểm (Office/Home/Remote)">Set up work shifts and locations (Office/Home/Remote)</td></tr>
+              <tr><td>4</td><td data-en="Leave Management" data-vi="Quản lý nghỉ phép">Leave Management</td><td data-en="Manage annual leave balance, leave requests, and approvals" data-vi="Quản lý quỹ phép năm, đơn xin nghỉ và phê duyệt">Manage annual leave balance, leave requests, and approvals</td></tr>
+              <tr><td>5</td><td data-en="Timesheet Management" data-vi="Quản lý bảng chấm công">Timesheet Management</td><td data-en="Record work hours and daily work logs" data-vi="Ghi nhận giờ công và nhật ký làm việc hàng ngày">Record work hours and daily work logs</td></tr>
+              <tr><td>6</td><td data-en="Employment Contract Management" data-vi="Quản lý hợp đồng lao động">Employment Contract Management</td><td data-en="Track contract status (Active/Expired) with color indicators" data-vi="Theo dõi trạng thái hợp đồng (Active/Expired) qua màu sắc">Track contract status (Active/Expired) with color indicators</td></tr>
+              <tr><td>7</td><td data-en="Performance Evaluation Management" data-vi="Quản lý đánh giá hiệu suất">Performance Evaluation Management</td><td data-en="Request and store periodic performance evaluation results" data-vi="Yêu cầu và lưu trữ kết quả đánh giá hiệu suất định kỳ">Request and store periodic performance evaluation results</td></tr>
+              <tr><td>8</td><td data-en="Onboarding / Offboarding Process" data-vi="Quy trình Onboarding / Offboarding">Onboarding / Offboarding Process</td><td data-en="New hire onboarding plan and exit handover process" data-vi="Kế hoạch tiếp nhận nhân viên mới và bàn giao nghỉ việc">New hire onboarding plan and exit handover process</td></tr>
+              <tr><td>9</td><td data-en="Skills & Certifications Management" data-vi="Quản lý kỹ năng &amp; chứng chỉ">Skills &amp; Certifications Management</td><td data-en="Manage skill categories and proficiency levels (%)" data-vi="Quản lý danh mục kỹ năng và mức độ thành thạo (%)">Manage skill categories and proficiency levels (%)</td></tr>
+              <tr><td>10</td><td data-en="Asset & Equipment Management" data-vi="Quản lý tài sản &amp; thiết bị cấp phát">Asset &amp; Equipment Management</td><td data-en="Track IT equipment and assets assigned to employees" data-vi="Theo dõi thiết bị công nghệ và tài sản được cấp phát">Track IT equipment and assets assigned to employees</td></tr>
+              <tr><td>11</td><td data-en="Document & Digital Signature Management" data-vi="Quản lý tài liệu &amp; ký số">Document &amp; Digital Signature Management</td><td data-en="Store legal documents and manage digital signatures (NDA, etc.)" data-vi="Lưu trữ tài liệu pháp lý và quản lý chữ ký số (NDA, v.v.)">Store legal documents and manage digital signatures (NDA, etc.)</td></tr>
+              <tr><td>12</td><td data-en="Training & Course Management" data-vi="Quản lý khóa học đào tạo">Training &amp; Course Management</td><td data-en="Track progress of eLearning course participation" data-vi="Theo dõi tiến độ tham gia các khóa học eLearning">Track progress of eLearning course participation</td></tr>
+              <tr><td>13</td><td data-en="RBAC — Access Control" data-vi="Phân quyền truy cập (RBAC)">RBAC — Access Control</td><td data-en="Role-based access control (Admin, Manager, Employee)" data-vi="Phân quyền người dùng (Admin, Manager, Employee)">Role-based access control (Admin, Manager, Employee)</td></tr>
+              <tr><td>14</td><td data-en="Company Fleet Management" data-vi="Quản lý phương tiện công ty">Company Fleet Management</td><td data-en="Manage vehicle catalog, assignment/return, maintenance" data-vi="Quản lý danh mục xe, cấp phát/thu hồi, bảo trì">Manage vehicle catalog, assignment/return, maintenance</td></tr>
+              <tr><td>15</td><td data-en="Work Shift & Swap Management" data-vi="Quản lý ca làm việc &amp; đổi ca">Work Shift &amp; Swap Management</td><td data-en="Define shift roles, send swap requests, approval workflow" data-vi="Định nghĩa vai trò ca trực, gửi yêu cầu đổi ca, phê duyệt">Define shift roles, send swap requests, approval workflow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Kiến trúc hệ thống / System Architecture -->
+      <div class="content-block reveal">
+        <h3><span class="num">04</span> <span data-en="System Architecture" data-vi="Kiến trúc hệ thống">System Architecture</span></h3>
+        <p data-en="The system is designed using <strong>Microservices</strong> architecture with 7 independent modules:"
+        data-vi="Hệ thống được thiết kế theo kiến trúc <strong>Microservices</strong> với 7 module độc lập:">
+        The system is designed using <strong>Microservices</strong> architecture with 7 independent modules:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="Module" data-vi="Module">Module</th>
+                <th data-en="Core Function" data-vi="Chức năng chính">Core Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Auth_Service</strong></td><td data-en="JWT login, RBAC (3 roles)" data-vi="Đăng nhập JWT, phân quyền RBAC (3 vai trò)">JWT login, RBAC (3 roles)</td></tr>
+              <tr><td><strong>Employee_Service</strong></td><td data-en="Profile, timesheet, KPI, departments, org charts" data-vi="Quản lý hồ sơ, timesheet, KPI, phòng ban, sơ đồ tổ chức">Profile, timesheet, KPI, departments, org charts</td></tr>
+              <tr><td><strong>Contract&amp;TimeOff_Service</strong></td><td data-en="Employment contracts, leave, onboarding/offboarding" data-vi="Hợp đồng lao động, nghỉ phép, onboarding/offboarding">Employment contracts, leave, onboarding/offboarding</td></tr>
+              <tr><td><strong>Equipment&amp;Document_Service</strong></td><td data-en="Asset management, digital signature documents" data-vi="Quản lý thiết bị, tài liệu ký số">Asset management, digital signature documents</td></tr>
+              <tr><td><strong>Audit_Service</strong></td><td data-en="System logging, KPI Dashboard, report generation" data-vi="Ghi nhật ký hệ thống, Dashboard KPI, xuất báo cáo">System logging, KPI Dashboard, report generation</td></tr>
+              <tr><td><strong>Fleet_Service</strong></td><td data-en="Company vehicle management (assignment, maintenance, return)" data-vi="Quản lý xe công ty (cấp phát, bảo trì, thu hồi)">Company vehicle management (assignment, maintenance, return)</td></tr>
+              <tr><td><strong>Planning_Service</strong></td><td data-en="Work shift management (Homeworking), shift swaps" data-vi="Quản lý ca làm việc (Homeworking), đổi ca">Work shift management (Homeworking), shift swaps</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5. Kết quả đạt được / Key Results -->
+      <div class="content-block reveal">
+        <h3><span class="num">05</span> <span data-en="Key Results" data-vi="Kết quả đạt được">Key Results</span></h3>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <span class="number">90%</span>
+            <span class="desc" data-en="Reduction in leave processing time" data-vi="Giảm thời gian xử lý nghỉ phép">Reduction in leave processing time</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">95%</span>
+            <span class="desc" data-en="Reduction in document approval time" data-vi="Giảm thời gian ký duyệt tài liệu">Reduction in document approval time</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">50%</span>
+            <span class="desc" data-en="Cost savings in record management" data-vi="Tiết kiệm chi phí quản lý hồ sơ">Cost savings in record management</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">60%</span>
+            <span class="desc" data-en="Reduction in dev analysis time" data-vi="Giảm thời gian phân tích cho dev">Reduction in dev analysis time</span>
+          </div>
+        </div>
+        <p data-en="<strong>Business Value for PLPSoft:</strong> The SRS, SDD, DBD, and API Specification documents serve as a critical foundation for PLPSoft to implement the HRMS system in production. With this documentation, the company estimates a reduction of at least <strong>60%</strong> in analysis and design time for the official development phase."
+        data-vi="<strong>Giá trị thực tiễn cho PLPSoft:</strong> Bộ tài liệu SRS, SDD, DBD, API Spec là nền tảng quan trọng để PLPSoft có thể triển khai hệ thống HRMS thực tế trong thời gian tới. Với bộ tài liệu này, công ty ước tính giảm ít nhất <strong>60%</strong> thời gian phân tích và thiết kế cho giai đoạn phát triển chính thức.">
+        <strong>Business Value for PLPSoft:</strong> The SRS, SDD, DBD, and API Specification documents serve as a critical foundation for PLPSoft to implement the HRMS system in production. With this documentation, the company estimates a reduction of at least <strong>60%</strong> in analysis and design time for the official development phase.
+        </p>
+      </div>
+
+      <!-- 6. Hình ảnh giao diện / UI Gallery -->
+      <div class="content-block reveal">
+        <h3><span class="num">06</span> <span data-en="User Interface" data-vi="Giao diện người dùng">User Interface</span></h3>
+        <p data-en="Below are some key screens of the HRMS system:"
+        data-vi="Dưới đây là một số giao diện chính của hệ thống HRMS:">
+        Below are some key screens of the HRMS system:</p>
+        <div class="image-gallery">
+          <div class="gallery-item">
+            <img src="../assets/images/dashboard-mockup.png" alt="Dashboard HRMS" />
+            <div class="caption" data-en="Figure 6.1 - Dashboard Overview (HR Admin View)" data-vi="Hình 6.1 - Dashboard tổng quan (HR Admin View)">Figure 6.1 - Dashboard Overview (HR Admin View)</div>
+          </div>
+          <div class="gallery-item">
+            <img src="../assets/images/employee-profile-mockup.png" alt="Hồ sơ nhân viên" />
+            <div class="caption" data-en="Figure 6.2 - Employee Profile with Smart Buttons" data-vi="Hình 6.2 - Hồ sơ nhân viên với Smart Buttons">Figure 6.2 - Employee Profile with Smart Buttons</div>
+          </div>
+        </div>
+        <p style="font-size:var(--fs-sm);color:var(--text-s);margin-top:0.5rem;">
+          <em data-en="Note: Images are illustrative — designed as UI Mockups for the project."
+          data-vi="Lưu ý: Hình ảnh mang tính minh họa, được thiết kế dưới dạng UI Mockups cho dự án.">
+          Note: Images are illustrative — designed as UI Mockups for the project.</em>
+        </p>
+      </div>
+
+      <!-- 7. Tài liệu bàn giao / Deliverables -->
+      <div class="content-block reveal">
+        <h3><span class="num">07</span> <span data-en="Deliverables" data-vi="Tài liệu bàn giao">Deliverables</span></h3>
+        <p data-en="All documents are configuration-managed according to IEEE 828-2012 standard with the format: <code style="background:var(--bg-3);padding:0.1rem 0.4rem;border-radius:4px;font-size:var(--fs-xs);">HRMS_[Name]_vX.Y_YYYYMMDD</code>"
+        data-vi="Toàn bộ tài liệu được quản lý cấu hình theo tiêu chuẩn IEEE 828-2012 với định dạng: <code style="background:var(--bg-3);padding:0.1rem 0.4rem;border-radius:4px;font-size:var(--fs-xs);">HRMS_[Tên]_vX.Y_YYYYMMDD</code>">
+        All documents are configuration-managed according to IEEE 828-2012 standard with the format: <code style="background:var(--bg-3);padding:0.1rem 0.4rem;border-radius:4px;font-size:var(--fs-xs);">HRMS_[Name]_vX.Y_YYYYMMDD</code>
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th data-en="No." data-vi="STT">#</th><th data-en="Document" data-vi="Tài liệu">Document</th><th data-en="Pages" data-vi="Số trang">Pages</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Project Charter</td><td>~15</td></tr>
+              <tr><td>2</td><td>Project Plan</td><td>~20</td></tr>
+              <tr><td>3</td><td>CM Plan</td><td>~12</td></tr>
+              <tr><td>4</td><td>BRD</td><td>~35</td></tr>
+              <tr><td>5</td><td>SRS</td><td>~80</td></tr>
+              <tr><td>6</td><td>SDD</td><td>~90</td></tr>
+              <tr><td>7</td><td>DBD</td><td>~55</td></tr>
+              <tr><td>8</td><td>RTM</td><td>~25</td></tr>
+              <tr><td>9</td><td>API Specification</td><td>~40</td></tr>
+              <tr><td>10</td><td>UI Mockups</td><td>~50</td></tr>
+              <tr><td>11</td><td>Test Cases</td><td>~30</td></tr>
+              <tr><td>12</td><td>Final Report</td><td>~30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">Lê Thị <span id="footerName">Tú Mi</span></div>
+    <div class="foot-links">
+      <a href="mailto:tusmile.joy@gmail.com">Email</a>
+      <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank">LinkedIn</a>
+      <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">HRMS Case Study</a>
+      <a href="../index.html" data-en="Home" data-vi="Trang chủ">Home</a>
+    </div>
+    <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
+  </footer>
+
+  <!-- ── FLOATING ACTIONS ── -->
+  <div class="floating-actions">
+    <button class="fab fab-primary" id="chatToggle" title="Contact">
+      <i class="fas fa-comment"></i>
+    </button>
+    <button class="fab" id="themeBtnFloat" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="fab" id="backToTop" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- ── CHATBOX ── -->
+  <div class="chatbox" id="chatBox">
+    <div class="chat-header">
+      <span data-en="Contact" data-vi="Liên hệ">Contact</span>
+      <span id="closeChat">✕</span>
+    </div>
+    <div class="chat-body">
+      <p data-en="Connect with me via:" data-vi="Kết nối với tôi qua:">Connect with me via:</p>
+      <a href="mailto:tusmile.joy@gmail.com" class="chat-link">
+        <i class="fas fa-envelope"></i> tusmile.joy@gmail.com
+      </a>
+      <a href="tel:0774945169" class="chat-link">
+        <i class="fas fa-phone"></i> 0774.945.169
+      </a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" class="chat-link">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/LttuMi204" target="_blank" class="chat-link">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+
+  <script>
+    /* ── THEME ── */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const themeBtnFloat = document.getElementById('themeBtnFloat');
+    const themeIcon = document.getElementById('themeIcon');
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    updateThemeUI(saved);
+
+    function updateThemeUI(theme) {
+      const isDark = theme === 'dark';
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    function toggleTheme() {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      updateThemeUI(t);
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtnFloat.addEventListener('click', toggleTheme);
+
+    /* ── LANGUAGE ── */
+    let lang = localStorage.getItem('lang') || 'en';
+    const langBtn = document.getElementById('langBtn');
+    const langFlag = document.getElementById('langFlag');
+    const langCode = document.getElementById('langCode');
+
+    function removeAccents(str) {
+      const map = {
+        'á': 'a', 'à': 'a', 'ả': 'a', 'ã': 'a', 'ạ': 'a', 'â': 'a', 'ầ': 'a', 'ẩ': 'a', 'ẫ': 'a', 'ậ': 'a', 'ấ': 'a',
+        'ă': 'a', 'ằ': 'a', 'ẳ': 'a', 'ẵ': 'a', 'ặ': 'a', 'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e', 'ê': 'e',
+        'ề': 'e', 'ể': 'e', 'ễ': 'e', 'ệ': 'e', 'í': 'i', 'ì': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i', 'ó': 'o', 'ò': 'o',
+        'ỏ': 'o', 'õ': 'o', 'ọ': 'o', 'ô': 'o', 'ồ': 'o', 'ổ': 'o', 'ỗ': 'o', 'ộ': 'o', 'ơ': 'o', 'ờ': 'o', 'ở': 'o',
+        'ỡ': 'o', 'ợ': 'o', 'ú': 'u', 'ù': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u', 'ư': 'u', 'ừ': 'u', 'ử': 'u', 'ữ': 'u',
+        'ự': 'u', 'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y', 'đ': 'd', 'Á': 'A', 'À': 'A', 'Ả': 'A', 'Ã': 'A',
+        'Ạ': 'A', 'Â': 'A', 'Ầ': 'A', 'Ẩ': 'A', 'Ẫ': 'A', 'Ậ': 'A', 'Ă': 'A', 'Ằ': 'A', 'Ẳ': 'A', 'Ẵ': 'A', 'Ặ': 'A',
+        'É': 'E', 'È': 'E', 'Ẻ': 'E', 'Ẽ': 'E', 'Ẹ': 'E', 'Ê': 'E', 'Ề': 'E', 'Ể': 'E', 'Ễ': 'E', 'Ệ': 'E', 'Í': 'I',
+        'Ì': 'I', 'Ỉ': 'I', 'Ĩ': 'I', 'Ị': 'I', 'Ó': 'O', 'Ò': 'O', 'Ỏ': 'O', 'Õ': 'O', 'Ọ': 'O', 'Ô': 'O', 'Ồ': 'O',
+        'Ổ': 'O', 'Ỗ': 'O', 'Ộ': 'O', 'Ơ': 'O', 'Ờ': 'O', 'Ở': 'O', 'Ỡ': 'O', 'Ợ': 'O', 'Ú': 'U', 'Ù': 'U', 'Ủ': 'U',
+        'Ũ': 'U', 'Ụ': 'U', 'Ư': 'U', 'Ừ': 'U', 'Ử': 'U', 'Ữ': 'U', 'Ự': 'U', 'Ý': 'Y', 'Ỳ': 'Y', 'Ỷ': 'Y', 'Ỹ': 'Y',
+        'Ỵ': 'Y', 'Đ': 'D'
+      };
+      return str.split('').map(ch => map[ch] || ch).join('');
+    }
+
+    const fullName = 'Lê Thị Tú Mi';
+    const englishName = removeAccents(fullName);
+
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem('lang', l);
+      langFlag.textContent = l === 'en' ? '🇺🇸' : '🇻🇳';
+      langCode.textContent = l === 'en' ? 'EN' : 'VI';
+
+      if (l === 'en') {
+        document.getElementById('brandName').textContent = 'Tu Mi';
+        document.getElementById('footerName').textContent = englishName;
+      } else {
+        document.getElementById('brandName').textContent = 'Tú Mi';
+        document.getElementById('footerName').textContent = 'Tú Mi';
+      }
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+    }
+
+    applyLang(lang);
+    langBtn.addEventListener('click', () => applyLang(lang === 'en' ? 'vi' : 'en'));
+
+    /* ── HAMBURGER ── */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => mob.classList.toggle('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible');
+          ro.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => ro.observe(el));
+
+    /* ── BACK TO TOP ── */
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── CHATBOX ── */
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+
+    chatToggle.addEventListener('click', () => {
+      chatBox.classList.toggle('show');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.remove('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!chatBox.contains(e.target) && e.target !== chatToggle && !chatToggle.contains(e.target)) {
+        chatBox.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — E-Commerce Website Thái Sơn Mobile | Lê Thị Tú Mi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --accent: #E3182D;
+      --accent-v: #FF4D5A;
+      --accent-glow: rgba(227, 24, 45, 0.18);
+      --accent-glow2: rgba(227, 24, 45, 0.12);
+
+      --fs-display: clamp(2.8rem, 5vw, 3.8rem);
+      --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
+      --fs-h3: 1.15rem;
+      --fs-body: 1rem;
+      --fs-sm: 0.88rem;
+      --fs-xs: 0.75rem;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .nav-theme {
+      display: none !important;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0B0D12;
+      --bg-2: #13171F;
+      --bg-3: #1A1F2E;
+      --bg-4: #232A3D;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-h: rgba(255, 255, 255, 0.12);
+      --text: #EDEFF4;
+      --text-m: #A0A8C4;
+      --text-s: #5A6080;
+      --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg: #F2F4FA;
+      --bg-2: #FFFFFF;
+      --bg-3: #ECEEF6;
+      --bg-4: #E2E6F2;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-h: rgba(0, 0, 0, 0.12);
+      --text: #111827;
+      --text-m: #4B5577;
+      --text-s: #9AA0BC;
+      --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
+    }
+
+    /* ── FLOATING ACTIONS ────────────────────── */
+    .floating-actions {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-2);
+      color: var(--text-m);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      box-shadow: var(--card-sh);
+      backdrop-filter: blur(8px);
+    }
+
+    .fab:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(227, 24, 45, 0.2);
+    }
+
+    .fab-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .fab-primary:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 0.85;
+      box-shadow: 0 8px 24px rgba(227, 24, 45, 0.35);
+    }
+
+    /* ── CHATBOX ──────────────────────────────── */
+    .chatbox {
+      position: fixed;
+      right: 90px;
+      bottom: 30px;
+      width: 300px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9998;
+      display: none;
+    }
+
+    .chatbox.show {
+      display: block;
+      animation: fadeChat 0.3s ease;
+    }
+
+    @keyframes fadeChat {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header span {
+      cursor: pointer;
+      color: var(--text-m);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+
+    .chat-header span:hover {
+      color: var(--text);
+    }
+
+    .chat-body {
+      padding: 18px;
+    }
+
+    .chat-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-bottom: 12px;
+    }
+
+    .chat-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      font-size: var(--fs-sm);
+      transition: all var(--transition);
+      margin-bottom: 6px;
+    }
+
+    .chat-link:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* ── RESET ───────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ul {
+      list-style: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(242, 244, 250, 0.85)
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 120px;
+    }
+
+    .nav-brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .nav-center a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-m);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-center a:hover {
+      color: var(--text)
+    }
+
+    .nav-center a.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0
+    }
+
+    .nav-lang {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .nav-lang:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .nav-cta {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-width: 60px;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(227, 24, 45, 0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 1.3rem;
+      color: var(--text-m);
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-m)
+    }
+
+    .mobile-menu a.active {
+      color: var(--accent)
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── DROPDOWN CONTACT ────────────────────── */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      height: 38px;
+      min-width: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(227, 24, 45, 0.35);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0;
+      box-shadow: var(--card-sh);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all var(--transition);
+      z-index: 300;
+      list-style: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+
+    .dropdown-item:hover i {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+        width: 100%;
+      }
+
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .nav-dropdown .dropdown-toggle::after {
+        content: ' ▾';
+        font-size: 0.7rem;
+      }
+
+      .nav-dropdown.open .dropdown-toggle::after {
+        content: ' ▴';
+      }
+
+      .dropdown-item {
+        padding: 0.4rem 0.75rem;
+        color: var(--text-m);
+      }
+
+      .dropdown-item i {
+        width: 20px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── SECTION BASE ─────────────────────────── */
+    .section {
+      padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
+    }
+
+    .eyebrow {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0
+    }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      min-height: 1.3em;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .section-sub {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 700px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem
+    }
+
+    /* ── PROJECT HEADER ───────────────────────── */
+    .project-header {
+      background: var(--bg-2);
+      padding: 100px max(2rem, calc((100% - 1200px)/2 + 2rem)) 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-header .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-header .project-tags .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(227, 24, 45, 0.2);
+    }
+
+    .project-header h1 {
+      font-family: var(--font-display);
+      font-size: var(--fs-display);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-header .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-header .project-meta .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .project-header .project-meta .meta-item .label {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .project-header .project-meta .meta-item .value {
+      font-size: var(--fs-sm);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .project-header .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-header .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .project-header .project-links .btn-demo {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .project-header .project-links .btn-demo:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(227, 24, 45, 0.35);
+    }
+
+    .project-header .project-links .btn-gh {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-gh:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-header .project-links .btn-doc {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-doc:hover {
+      border-color: var(--accent-v);
+      color: var(--accent-v);
+    }
+
+    /* ── PROJECT CONTENT ──────────────────────── */
+    .project-content {
+      background: var(--bg);
+      padding: 4rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+    }
+
+    .project-content .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-content .content-block {
+      margin-bottom: 3rem;
+    }
+
+    .project-content .content-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-content .content-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .project-content .content-block h3 .num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(227, 24, 45, 0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(227, 24, 45, 0.15);
+    }
+
+    .project-content .content-block p {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .project-content .content-block ul {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      list-style: disc;
+    }
+
+    .project-content .content-block ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .project-content .content-block .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .project-content .content-block .highlight-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .project-content .content-block .highlight-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-content .content-block .highlight-item .number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+
+    .project-content .content-block .highlight-item .desc {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-top: 0.25rem;
+    }
+
+    /* ── TABLE ────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .table-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+    }
+
+    .table-wrap table th {
+      background: var(--bg-3);
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table tr:hover {
+      background: var(--bg-3);
+    }
+
+    /* ── FEATURE GRID ────────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all var(--transition);
+    }
+
+    .feature-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .feature-item i {
+      color: var(--accent);
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .feature-item span {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+    }
+
+    /* ── PLUGIN GRID ─────────────────────────── */
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .plugin-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all var(--transition);
+    }
+
+    .plugin-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .plugin-item i {
+      color: var(--accent);
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .plugin-item .plugin-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plugin-item .plugin-name {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .plugin-item .plugin-desc {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+    }
+
+    /* ── MEMBER GRID ─────────────────────────── */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .member-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .member-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .member-item .member-name {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .member-item .member-id {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+    }
+
+    /* ── KEYWORD GRID ────────────────────────── */
+    .keyword-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .keyword-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      transition: all var(--transition);
+    }
+
+    .keyword-item:hover {
+      border-color: var(--accent);
+    }
+
+    .keyword-item .keyword-label {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .keyword-item .keyword-tags {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-top: 0.2rem;
+    }
+
+    /* ── IMAGE GALLERY ────────────────────────── */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .image-gallery .gallery-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .image-gallery .gallery-item:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+    }
+
+    .image-gallery .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-gallery .gallery-item .caption {
+      padding: 0.75rem 1rem;
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media(max-width:1024px) {
+      .project-header h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 1.25rem
+      }
+
+      .nav-center {
+        display: none
+      }
+
+      .nav-hamburger {
+        display: flex
+      }
+
+      .nav-cta {
+        display: none
+      }
+
+      .dropdown-toggle {
+        display: none;
+      }
+
+      .section {
+        padding: 3rem 1.5rem
+      }
+
+      .project-header {
+        padding: 80px 1.5rem 2rem;
+      }
+
+      .project-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .project-header .project-meta {
+        gap: 1rem;
+      }
+
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-actions {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+      }
+
+      .fab {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+
+      .chatbox {
+        right: 16px;
+        bottom: 80px;
+        width: 280px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .plugin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .keyword-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px
+    }
+
+    .foot-brand span {
+      color: var(--accent)
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .foot-links a {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      transition: color var(--transition);
+      white-space: nowrap
+    }
+
+    .foot-links a:hover {
+      color: var(--accent)
+    }
+
+    .foot-copy {
+      font-size: var(--fs-xs);
+      color: var(--text-s)
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand" id="navBrand">
+      <span class="nav-brand-dot"></span>
+      <a href="../index.html" id="brandName" data-en="Tu Mi" data-vi="Tú Mi">
+        Tú Mi
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="../index.html#about" data-en="About me" data-vi="Về tôi">About me</a>
+      <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+      <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-lang" id="langBtn" title="Switch language">
+        <span id="langFlag">🇻🇳</span><span id="langCode">VI</span>
+      </button>
+      <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
+      <a href="cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
+      <div class="nav-dropdown">
+        <button class="dropdown-toggle" data-en="Contact" data-vi="Liên hệ">
+          Liên hệ
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="mailto:tusmile.joy@gmail.com" class="dropdown-item">
+              <i class="fas fa-envelope"></i>
+              <span>Email: tusmile.joy@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:0774945169" class="dropdown-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call: 0774.945.169</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/LttuMi204" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://zalo.me/0774945169" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fas fa-comment-dots" style="color:#0068FF;"></i>
+              <span>Zalo: Lê Thị Tú Mi</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html#about" data-en="About" data-vi="Về tôi">Về tôi</a>
+    <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Kỹ năng</a>
+    <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Dự án</a>
+    <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Kinh nghiệm</a>
+    <a href="../index.html#contact" data-en="Contact" data-vi="Liên hệ">Liên hệ</a>
+  </div>
+
+  <!-- PROJECT HEADER -->
+  <section class="project-header">
+    <div class="container">
+      <div class="project-tags">
+        <span class="tag" data-en="★ Featured Project" data-vi="★ Dự án nổi bật">★ Featured Project</span>
+        <span class="tag" data-en="E-Commerce" data-vi="Thương mại điện tử">E-Commerce</span>
+        <span class="tag" data-en="WordPress / WooCommerce" data-vi="WordPress / WooCommerce">WordPress / WooCommerce</span>
+        <span class="tag" data-en="SEO &amp; Marketing" data-vi="SEO &amp; Marketing">SEO &amp; Marketing</span>
+      </div>
+      <h1><span data-en="E-Commerce Website" data-vi="Website Bán hàng">Website Bán hàng</span> <br><span style="color:var(--accent)"><span data-en="Thái Sơn Mobile" data-vi="Thái Sơn Mobile">Thái Sơn Mobile</span></span></h1>
+      <p style="font-size:var(--fs-body);color:var(--text-m);max-width:700px;line-height:1.9;">
+        <span data-en="Building an e-commerce website on WordPress with WooCommerce, serving the sale of technology and electronic devices."
+        data-vi="Xây dựng website thương mại điện tử trên nền tảng WordPress với WooCommerce, phục vụ bán thiết bị công nghệ và điện tử.">
+        Building an e-commerce website on WordPress with WooCommerce, serving the sale of technology and electronic devices.
+      </span>
+      </p>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="label" data-en="Role" data-vi="Vai trò">Role</span>
+          <span class="value" data-en="WordPress Developer · SEO Specialist" data-vi="WordPress Developer · SEO Specialist">WordPress Developer · SEO Specialist</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Date" data-vi="Thời gian">Date</span>
+          <span class="value" data-en="October 31, 2025" data-vi="31/10/2025">October 31, 2025</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Platform" data-vi="Nền tảng">Platform</span>
+          <span class="value" data-en="WordPress · WooCommerce" data-vi="WordPress · WooCommerce">WordPress · WooCommerce</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Domain" data-vi="Domain">Domain</span>
+          <span class="value">thaisonmobile.id.vn</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://thaisonmobile.id.vn/" target="_blank" class="btn-demo">
+          <i class="fas fa-external-link-alt"></i> <span data-en="Live Demo" data-vi="Live Demo">Live Demo</span>
+        </a>
+        <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="btn-gh">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CONTENT -->
+  <section class="project-content">
+    <div class="container">
+
+      <!-- 1. Tổng quan / Overview -->
+      <div class="content-block reveal">
+        <h3><span class="num">01</span> <span data-en="Project Overview" data-vi="Tổng quan dự án">Project Overview</span></h3>
+        <p data-en="<strong>Thái Sơn Mobile E-Commerce Website</strong> is an e-commerce project built on <strong>WordPress</strong> with the <strong>WooCommerce</strong> plugin, developed for the E-Commerce course at <strong>Nam Can Tho University</strong>."
+        data-vi="<strong>Website bán hàng Thái Sơn Mobile</strong> là một dự án thương mại điện tử được xây dựng trên nền tảng <strong>WordPress</strong> với plugin <strong>WooCommerce</strong>, phục vụ cho môn học Thương mại điện tử tại <strong>Đại học Nam Cần Thơ</strong>.">
+        <strong>Thái Sơn Mobile E-Commerce Website</strong> is an e-commerce project built on <strong>WordPress</strong> with the <strong>WooCommerce</strong> plugin, developed for the E-Commerce course at <strong>Nam Can Tho University</strong>.
+        </p>
+        <p data-en="The website specializes in providing technology &amp; electronic products such as phones, laptops, tablets, and accessories. The project was carried out by a team of 3 students and deployed on a live hosting environment."
+        data-vi="Website chuyên cung cấp các sản phẩm công nghệ &amp; điện tử như điện thoại, laptop, máy tính bảng và phụ kiện. Dự án được thực hiện bởi nhóm 3 sinh viên và đã được triển khai trên hosting thực tế.">
+        The website specializes in providing technology &amp; electronic products such as phones, laptops, tablets, and accessories. The project was carried out by a team of 3 students and deployed on a live hosting environment.
+        </p>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <span class="number">1</span>
+            <span class="desc" data-en="Complete Website" data-vi="Website hoàn chỉnh">Complete Website</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">3</span>
+            <span class="desc" data-en="Team Members" data-vi="Thành viên">Team Members</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">50+</span>
+            <span class="desc" data-en="Products" data-vi="Sản phẩm">Products</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">10+</span>
+            <span class="desc" data-en="Plugins" data-vi="Plugins">Plugins</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">5</span>
+            <span class="desc" data-en="Main Pages" data-vi="Trang chính">Main Pages</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">3</span>
+            <span class="desc" data-en="Payment Methods" data-vi="Phương thức TT">Payment Methods</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Thành viên / Team Members -->
+      <div class="content-block reveal">
+        <h3><span class="num">02</span> <span data-en="Team Members" data-vi="Thành viên thực hiện">Team Members</span></h3>
+        <div class="member-grid">
+          <div class="member-item">
+            <div class="member-name">Lê Thị Tú Mi</div>
+            <div class="member-id">Student ID: 223145</div>
+          </div>
+          <div class="member-item">
+            <div class="member-name">Thái Thiên Kim</div>
+            <div class="member-id">Student ID: 222219</div>
+          </div>
+          <div class="member-item">
+            <div class="member-name">Lê Trung Kiên</div>
+            <div class="member-id">Student ID: 223576</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Thông tin dự án / Project Info -->
+      <div class="content-block reveal">
+        <h3><span class="num">03</span> <span data-en="Project Information" data-vi="Thông tin dự án">Project Information</span></h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="Info" data-vi="Thông tin">Info</th>
+                <th data-en="Details" data-vi="Chi tiết">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong data-en="Website Name" data-vi="Tên website">Website Name</strong></td><td>Thái Sơn Mobile</td></tr>
+              <tr><td><strong data-en="Domain" data-vi="Domain">Domain</strong></td><td><a href="https://thaisonmobile.id.vn/" target="_blank" style="color:var(--accent);">thaisonmobile.id.vn</a></td></tr>
+              <tr><td><strong data-en="Platform" data-vi="Nền tảng">Platform</strong></td><td data-en="WordPress + WooCommerce" data-vi="WordPress + WooCommerce">WordPress + WooCommerce</td></tr>
+              <tr><td><strong data-en="Industry" data-vi="Lĩnh vực">Industry</strong></td><td data-en="Technology & Electronic Devices" data-vi="Bán thiết bị công nghệ &amp; điện tử">Technology &amp; Electronic Devices</td></tr>
+              <tr><td><strong data-en="Instructor" data-vi="Giảng viên">Instructor</strong></td><td>Trần Văn Thiện</td></tr>
+              <tr><td><strong data-en="Major" data-vi="Ngành">Major</strong></td><td data-en="Software Engineering - DH22KPM01" data-vi="Kỹ thuật phần mềm - DH22KPM01">Software Engineering - DH22KPM01</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Tính năng chính / Key Features -->
+      <div class="content-block reveal">
+        <h3><span class="num">04</span> <span data-en="Key Features" data-vi="Tính năng chính">Key Features</span></h3>
+        <p data-en="The website is equipped with all essential e-commerce features:"
+        data-vi="Website được trang bị đầy đủ các tính năng của một trang thương mại điện tử:">
+        The website is equipped with all essential e-commerce features:</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <i class="fas fa-box"></i>
+            <span data-en="Product & Category Management" data-vi="Quản lý sản phẩm &amp; danh mục">Product &amp; Category Management</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span data-en="Shopping Cart & Checkout" data-vi="Giỏ hàng &amp; thanh toán">Shopping Cart &amp; Checkout</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-mobile-alt"></i>
+            <span data-en="Responsive Design" data-vi="Giao diện responsive">Responsive Design</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-search"></i>
+            <span data-en="SEO Optimization (Rank Math)" data-vi="Tối ưu SEO (Rank Math)">SEO Optimization (Rank Math)</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-user-plus"></i>
+            <span data-en="Registration / Login" data-vi="Đăng ký / Đăng nhập tài khoản">Registration / Login</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-credit-card"></i>
+            <span data-en="COD & VietQR Payment" data-vi="Thanh toán COD &amp; VietQR">COD &amp; VietQR Payment</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-envelope"></i>
+            <span data-en="Order Confirmation Email" data-vi="Email xác nhận đơn hàng">Order Confirmation Email</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <span data-en="SSL Security" data-vi="Bảo mật SSL">SSL Security</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-chart-line"></i>
+            <span data-en="Google Search Console" data-vi="Google Search Console">Google Search Console</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-database"></i>
+            <span data-en="Regular Backup" data-vi="Sao lưu định kỳ">Regular Backup</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Các trang chính / Main Pages -->
+      <div class="content-block reveal">
+        <h3><span class="num">05</span> <span data-en="Main Pages" data-vi="Các trang chính">Main Pages</span></h3>
+        <ul>
+          <li data-en="<strong>Homepage:</strong> Banner ads, featured products, brands"
+          data-vi="<strong>Trang chủ:</strong> Banner quảng cáo, sản phẩm nổi bật, thương hiệu">
+          <strong>Homepage:</strong> Banner ads, featured products, brands</li>
+          <li data-en="<strong>About Us:</strong> Store information, quality commitment, and reputation"
+          data-vi="<strong>Giới thiệu:</strong> Thông tin cửa hàng, cam kết chất lượng và uy tín">
+          <strong>About Us:</strong> Store information, quality commitment, and reputation</li>
+          <li data-en="<strong>Products:</strong> Product categories, detailed product pages"
+          data-vi="<strong>Sản phẩm:</strong> Danh mục sản phẩm, chi tiết từng sản phẩm">
+          <strong>Products:</strong> Product categories, detailed product pages</li>
+          <li data-en="<strong>News:</strong> Articles, technology knowledge"
+          data-vi="<strong>Tin tức:</strong> Bài viết, kiến thức công nghệ">
+          <strong>News:</strong> Articles, technology knowledge</li>
+          <li data-en="<strong>Contact:</strong> Contact information, store address"
+          data-vi="<strong>Liên hệ:</strong> Thông tin liên lạc, địa chỉ cửa hàng">
+          <strong>Contact:</strong> Contact information, store address</li>
+          <li data-en="<strong>Account:</strong> Login/Register, order management"
+          data-vi="<strong>Tài khoản:</strong> Đăng nhập/Đăng ký, quản lý đơn hàng">
+          <strong>Account:</strong> Login/Register, order management</li>
+          <li data-en="<strong>Checkout:</strong> Cart, payment information, COD, VietQR"
+          data-vi="<strong>Thanh toán:</strong> Giỏ hàng, thông tin thanh toán, COD, VietQR">
+          <strong>Checkout:</strong> Cart, payment information, COD, VietQR</li>
+        </ul>
+      </div>
+
+      <!-- 6. Plugins sử dụng / Plugins Used -->
+      <div class="content-block reveal">
+        <h3><span class="num">06</span> <span data-en="Plugins Used" data-vi="Plugins sử dụng">Plugins Used</span></h3>
+        <p data-en="List of installed and configured plugins:"
+        data-vi="Danh sách các plugin được cài đặt và cấu hình:">
+        List of installed and configured plugins:</p>
+        <div class="plugin-grid">
+          <div class="plugin-item">
+            <i class="fas fa-shopping-bag"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">WooCommerce</span>
+              <span class="plugin-desc" data-en="Build and manage online store" data-vi="Xây dựng và quản lý cửa hàng trực tuyến">Build and manage online store</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-rocket"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">Vietnam Checkout for WooCommerce</span>
+              <span class="plugin-desc" data-en="Page speed optimization, UX improvement" data-vi="Tăng tốc tải trang, cải thiện UX">Page speed optimization, UX improvement</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-search"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">Rank Math SEO</span>
+              <span class="plugin-desc" data-en="Keyword optimization, content structure" data-vi="Tối ưu từ khóa, cấu trúc nội dung">Keyword optimization, content structure</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-envelope"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">WP Mail SMTP</span>
+              <span class="plugin-desc" data-en="Ensure reliable order confirmation emails" data-vi="Đảm bảo email xác nhận hoạt động ổn định">Ensure reliable order confirmation emails</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-language"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">Loco Translate</span>
+              <span class="plugin-desc" data-en="Language translation support" data-vi="Hỗ trợ dịch ngôn ngữ">Language translation support</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-database"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">All-in-One WP Migration</span>
+              <span class="plugin-desc" data-en="Migrate and backup entire website" data-vi="Di chuyển và sao lưu toàn bộ website">Migrate and backup entire website</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-id-card"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">Contact Form 7</span>
+              <span class="plugin-desc" data-en="Create and manage contact forms" data-vi="Tạo và quản lý biểu mẫu liên hệ">Create and manage contact forms</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-qrcode"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">VietQR</span>
+              <span class="plugin-desc" data-en="QR code bank transfer payment" data-vi="Hỗ trợ thanh toán chuyển khoản bằng mã QR">QR code bank transfer payment</span>
+            </div>
+          </div>
+          <div class="plugin-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <div class="plugin-info">
+              <span class="plugin-name">PageSpeed Insights</span>
+              <span class="plugin-desc" data-en="Website speed testing" data-vi="Kiểm tra tốc độ website">Website speed testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. SEO & Marketing -->
+      <div class="content-block reveal">
+        <h3><span class="num">07</span> <span data-en="SEO & Digital Marketing" data-vi="SEO &amp; Tiếp thị điện tử">SEO &amp; Digital Marketing</span></h3>
+        <ul>
+          <li data-en="<strong>SEO (Search Engine Optimization):</strong> Optimize keywords to rank higher in search results"
+          data-vi="<strong>SEO (Search Engine Optimization):</strong> Tối ưu từ khóa tìm kiếm giúp trang web xuất hiện ở thứ hạng cao">
+          <strong>SEO (Search Engine Optimization):</strong> Optimize keywords to rank higher in search results</li>
+          <li data-en="<strong>Rank Math SEO:</strong> Optimize content, website structure, and keywords"
+          data-vi="<strong>Rank Math SEO:</strong> Tối ưu hóa nội dung, cấu trúc website và từ khóa">
+          <strong>Rank Math SEO:</strong> Optimize content, website structure, and keywords</li>
+          <li data-en="<strong>Google Search Console:</strong> Monitor and optimize website performance in search results"
+          data-vi="<strong>Google Search Console:</strong> Kiểm tra và tối ưu hiệu suất website trên kết quả tìm kiếm">
+          <strong>Google Search Console:</strong> Monitor and optimize website performance in search results</li>
+          <li data-en="<strong>Traffic 4 SEO:</strong> Simulate website traffic"
+          data-vi="<strong>Traffic 4 SEO:</strong> Mô phỏng lưu lượng truy cập vào website">
+          <strong>Traffic 4 SEO:</strong> Simulate website traffic</li>
+          <li data-en="<strong>PageSpeed Insights:</strong> Check website speed"
+          data-vi="<strong>PageSpeed Insights:</strong> Kiểm tra tốc độ website">
+          <strong>PageSpeed Insights:</strong> Check website speed</li>
+          <li data-en="<strong>Social Media Engagement:</strong> Connect and share content on Facebook"
+          data-vi="<strong>Tương tác mạng xã hội:</strong> Kết nối và chia sẻ nội dung trên Facebook">
+          <strong>Social Media Engagement:</strong> Connect and share content on Facebook</li>
+          <li data-en="<strong>Backlinks:</strong> Links placed on posts to attract traffic"
+          data-vi="<strong>Backlink:</strong> Các liên kết đặt trên bài đăng thu hút truy cập">
+          <strong>Backlinks:</strong> Links placed on posts to attract traffic</li>
+        </ul>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;margin-top:1.5rem;font-size:var(--fs-sm);" data-en="Keywords & Keyword Grouping" data-vi="Từ khóa và gom nhóm">Keywords &amp; Keyword Grouping</h4>
+        <p data-en="The website is optimized with key keywords in the technology device industry:"
+        data-vi="Website được tối ưu với các từ khóa chính trong lĩnh vực thiết bị công nghệ:">
+        The website is optimized with key keywords in the technology device industry:</p>
+        <div class="keyword-grid">
+          <div class="keyword-item">
+            <div class="keyword-label" data-en="Brands" data-vi="Thương hiệu">Brands</div>
+            <div class="keyword-tags">iPhone · MacBook · Samsung · Lenovo · Dell · Asus · HP · Huawei · Acer · MSI</div>
+          </div>
+          <div class="keyword-item">
+            <div class="keyword-label" data-en="Products" data-vi="Sản phẩm">Products</div>
+            <div class="keyword-tags" data-en="Phone · Laptop · MacBook Air · MacBook Pro · Legion · ThinkPad · Vivobook"
+            data-vi="Điện thoại · Laptop · MacBook Air · MacBook Pro · Legion · ThinkPad · Vivobook">Phone · Laptop · MacBook Air · MacBook Pro · Legion · ThinkPad · Vivobook</div>
+          </div>
+          <div class="keyword-item">
+            <div class="keyword-label" data-en="Popular Keywords" data-vi="Từ khóa phổ biến">Popular Keywords</div>
+            <div class="keyword-tags">thaison mobile · accessories · phone · laptop · macbook air m1 · thinkpad</div>
+          </div>
+        </div>
+        <div style="background:var(--accent-glow2);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;margin-top:0.75rem;">
+          <p style="font-size:var(--fs-sm);color:var(--text-m);margin:0;">
+            <strong data-en="📌 Grouped Keywords:" data-vi="📌 Từ khóa gom nhóm:">📌 Grouped Keywords:</strong> macbook air m1 · macbook pro m2 · lenovo legion 5 · dell g15 · asus vivobook 14 · hp probook · huawei matebook · msi katana · acer aspire · samsung notebook · legion 5 pro · gaming laptop · office laptop
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. Bảo mật / Security -->
+      <div class="content-block reveal">
+        <h3><span class="num">08</span> <span data-en="Security & Administration" data-vi="Bảo mật &amp; Quản trị">Security &amp; Administration</span></h3>
+        <ul>
+          <li data-en="<strong>SSL (Secure Sockets Layer):</strong> Customer information security certificate, enhances trust"
+          data-vi="<strong>SSL (Secure Sockets Layer):</strong> Chứng chỉ bảo mật thông tin khách hàng, tăng độ tin cậy">
+          <strong>SSL (Secure Sockets Layer):</strong> Customer information security certificate, enhances trust</li>
+          <li data-en="<strong>User Role Separation:</strong> Clear distinction between customer accounts and order management accounts"
+          data-vi="<strong>Phân quyền:</strong> Tách biệt giữa tài khoản đặt hàng và tài khoản quản lý đơn hàng">
+          <strong>User Role Separation:</strong> Clear distinction between customer accounts and order management accounts</li>
+          <li data-en="<strong>Transaction Security:</strong> Encrypt payment information for online transactions"
+          data-vi="<strong>Bảo mật giao dịch:</strong> Mã hóa thông tin khi thanh toán trực tuyến">
+          <strong>Transaction Security:</strong> Encrypt payment information for online transactions</li>
+          <li data-en="<strong>Regular Backup:</strong> Data is backed up to prevent incidents"
+          data-vi="<strong>Sao lưu định kỳ:</strong> Dữ liệu được backup phòng ngừa sự cố">
+          <strong>Regular Backup:</strong> Data is backed up to prevent incidents</li>
+          <li data-en="<strong>Google Search Console:</strong> Keyword indexing, performance monitoring and optimization"
+          data-vi="<strong>Google Search Console:</strong> Index từ khóa, kiểm tra và tối ưu hiệu suất website">
+          <strong>Google Search Console:</strong> Keyword indexing, performance monitoring and optimization</li>
+          <li data-en="<strong>Traffic 4 SEO:</strong> Simulate traffic flow"
+          data-vi="<strong>Traffic 4 SEO:</strong> Mô phỏng lưu lượng truy cập">
+          <strong>Traffic 4 SEO:</strong> Simulate traffic flow</li>
+          <li data-en="<strong>PageSpeed:</strong> Website speed testing"
+          data-vi="<strong>PageSpeed:</strong> Kiểm tra tốc độ website">
+          <strong>PageSpeed:</strong> Website speed testing</li>
+        </ul>
+      </div>
+
+      <!-- 9. Kết luận / Conclusion -->
+      <div class="content-block reveal">
+        <h3><span class="num">09</span> <span data-en="Conclusion & Future Direction" data-vi="Kết luận &amp; Định hướng">Conclusion &amp; Future Direction</span></h3>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;font-size:var(--fs-sm);" data-en="Conclusion" data-vi="Kết luận">Conclusion</h4>
+        <ul>
+          <li data-en="Full-featured interface meeting user needs"
+          data-vi="Giao diện đảm bảo đầy đủ chức năng đáp ứng nhu cầu sử dụng">
+          Full-featured interface meeting user needs</li>
+          <li data-en="Sufficient business functionality for enterprise operations"
+          data-vi="Đảm bảo đủ tính năng phục vụ bán hàng của doanh nghiệp">
+          Sufficient business functionality for enterprise operations</li>
+          <li data-en="Secure system, protecting customer information and payment data"
+          data-vi="Đảm bảo bảo mật, thông tin khách hàng, thanh toán an toàn">
+          Secure system, protecting customer information and payment data</li>
+          <li data-en="Meets all e-commerce platform requirements"
+          data-vi="Đáp ứng đủ yêu cầu của trang thương mại điện tử">
+          Meets all e-commerce platform requirements</li>
+        </ul>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;margin-top:1.5rem;font-size:var(--fs-sm);" data-en="Future Development" data-vi="Định hướng phát triển">Future Development</h4>
+        <ul>
+          <li data-en="<strong>Online Customer Care:</strong> Quick consultation, promotions via email notifications"
+          data-vi="<strong>Chăm sóc khách hàng trực tuyến:</strong> Tư vấn nhanh, ưu đãi qua thông báo email">
+          <strong>Online Customer Care:</strong> Quick consultation, promotions via email notifications</li>
+          <li data-en="<strong>Expand Sales Channels:</strong> Integration with Shopee, Lazada"
+          data-vi="<strong>Liên kết mở rộng bán hàng:</strong> Liên kết bán hàng trên Shopee, Lazada">
+          <strong>Expand Sales Channels:</strong> Integration with Shopee, Lazada</li>
+          <li data-en="<strong>SEO & Marketing Enhancement:</strong> Google Ads, social media"
+          data-vi="<strong>Tăng cường SEO &amp; Marketing:</strong> Google Ads, mạng xã hội">
+          <strong>SEO & Marketing Enhancement:</strong> Google Ads, social media</li>
+          <li data-en="<strong>Mobile Application Development:</strong> Mobile app for customers"
+          data-vi="<strong>Phát triển ứng dụng di động:</strong> Mobile App cho khách hàng">
+          <strong>Mobile Application Development:</strong> Mobile app for customers</li>
+        </ul>
+      </div>
+
+      <!-- 10. Giao diện người dùng / UI Gallery -->
+      <div class="content-block reveal">
+        <h3><span class="num">10</span> <span data-en="User Interface" data-vi="Giao diện người dùng">User Interface</span></h3>
+        <p data-en="Below are some key screens of the website:"
+        data-vi="Dưới đây là một số giao diện chính của website:">
+        Below are some key screens of the website:</p>
+        <div class="image-gallery">
+          <div class="gallery-item">
+            <img src="../assets/images/Trang chủ với sản phẩm nổi bật thaisonmobile.png" alt="Trang chủ Thái Sơn Mobile" loading="lazy" />
+            <div class="caption" data-en="Figure 10.1 - Homepage with Featured Products" data-vi="Hình 10.1 - Trang chủ với sản phẩm nổi bật">Figure 10.1 - Homepage with Featured Products</div>
+          </div>
+          <div class="gallery-item">
+            <img src="../assets/images/Danh sách sản phẩm thaisonmobile.png" alt="Trang sản phẩm Thái Sơn Mobile" loading="lazy" />
+            <div class="caption" data-en="Figure 10.2 - Product Listing Page" data-vi="Hình 10.2 - Danh sách sản phẩm">Figure 10.2 - Product Listing Page</div>
+          </div>
+        </div>
+        <p style="font-size:var(--fs-sm);color:var(--text-s);margin-top:0.5rem;">
+          <em data-en="Interface designed with WordPress and WooCommerce, fully responsive across all devices."
+          data-vi="Giao diện được thiết kế với WordPress và WooCommerce, hỗ trợ responsive trên mọi thiết bị.">
+          Interface designed with WordPress and WooCommerce, fully responsive across all devices.</em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">Lê Thị <span id="footerName">Tú Mi</span></div>
+    <div class="foot-links">
+      <a href="mailto:tusmile.joy@gmail.com">Email</a>
+      <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank">LinkedIn</a>
+      <a href="https://thaisonmobile.id.vn/" target="_blank"><span data-en="Live Demo" data-vi="Live Demo">Live Demo</span></a>
+      <a href="../index.html" data-en="Home" data-vi="Trang chủ">Home</a>
+    </div>
+    <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
+  </footer>
+
+  <!-- ── FLOATING ACTIONS ── -->
+  <div class="floating-actions">
+    <button class="fab fab-primary" id="chatToggle" title="Contact">
+      <i class="fas fa-comment"></i>
+    </button>
+    <button class="fab" id="themeBtnFloat" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="fab" id="backToTop" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- ── CHATBOX ── -->
+  <div class="chatbox" id="chatBox">
+    <div class="chat-header">
+      <span data-en="Contact" data-vi="Liên hệ">Contact</span>
+      <span id="closeChat">✕</span>
+    </div>
+    <div class="chat-body">
+      <p data-en="Connect with me via:" data-vi="Kết nối với tôi qua:">Connect with me via:</p>
+      <a href="mailto:tusmile.joy@gmail.com" class="chat-link">
+        <i class="fas fa-envelope"></i> tusmile.joy@gmail.com
+      </a>
+      <a href="tel:0774945169" class="chat-link">
+        <i class="fas fa-phone"></i> 0774.945.169
+      </a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" class="chat-link">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/LttuMi204" target="_blank" class="chat-link">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+
+  <script>
+    /* ── THEME ── */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const themeBtnFloat = document.getElementById('themeBtnFloat');
+    const themeIcon = document.getElementById('themeIcon');
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    updateThemeUI(saved);
+
+    function updateThemeUI(theme) {
+      const isDark = theme === 'dark';
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    function toggleTheme() {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      updateThemeUI(t);
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtnFloat.addEventListener('click', toggleTheme);
+
+    /* ── LANGUAGE ── */
+    let lang = localStorage.getItem('lang') || 'vi';
+    const langBtn = document.getElementById('langBtn');
+    const langFlag = document.getElementById('langFlag');
+    const langCode = document.getElementById('langCode');
+
+    function removeAccents(str) {
+      const map = {
+        'á': 'a', 'à': 'a', 'ả': 'a', 'ã': 'a', 'ạ': 'a', 'â': 'a', 'ầ': 'a', 'ẩ': 'a', 'ẫ': 'a', 'ậ': 'a', 'ấ': 'a',
+        'ă': 'a', 'ằ': 'a', 'ẳ': 'a', 'ẵ': 'a', 'ặ': 'a', 'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e', 'ê': 'e',
+        'ề': 'e', 'ể': 'e', 'ễ': 'e', 'ệ': 'e', 'í': 'i', 'ì': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i', 'ó': 'o', 'ò': 'o',
+        'ỏ': 'o', 'õ': 'o', 'ọ': 'o', 'ô': 'o', 'ồ': 'o', 'ổ': 'o', 'ỗ': 'o', 'ộ': 'o', 'ơ': 'o', 'ờ': 'o', 'ở': 'o',
+        'ỡ': 'o', 'ợ': 'o', 'ú': 'u', 'ù': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u', 'ư': 'u', 'ừ': 'u', 'ử': 'u', 'ữ': 'u',
+        'ự': 'u', 'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y', 'đ': 'd', 'Á': 'A', 'À': 'A', 'Ả': 'A', 'Ã': 'A',
+        'Ạ': 'A', 'Â': 'A', 'Ầ': 'A', 'Ẩ': 'A', 'Ẫ': 'A', 'Ậ': 'A', 'Ă': 'A', 'Ằ': 'A', 'Ẳ': 'A', 'Ẵ': 'A', 'Ặ': 'A',
+        'É': 'E', 'È': 'E', 'Ẻ': 'E', 'Ẽ': 'E', 'Ẹ': 'E', 'Ê': 'E', 'Ề': 'E', 'Ể': 'E', 'Ễ': 'E', 'Ệ': 'E', 'Í': 'I',
+        'Ì': 'I', 'Ỉ': 'I', 'Ĩ': 'I', 'Ị': 'I', 'Ó': 'O', 'Ò': 'O', 'Ỏ': 'O', 'Õ': 'O', 'Ọ': 'O', 'Ô': 'O', 'Ồ': 'O',
+        'Ổ': 'O', 'Ỗ': 'O', 'Ộ': 'O', 'Ơ': 'O', 'Ờ': 'O', 'Ở': 'O', 'Ỡ': 'O', 'Ợ': 'O', 'Ú': 'U', 'Ù': 'U', 'Ủ': 'U',
+        'Ũ': 'U', 'Ụ': 'U', 'Ư': 'U', 'Ừ': 'U', 'Ử': 'U', 'Ữ': 'U', 'Ự': 'U', 'Ý': 'Y', 'Ỳ': 'Y', 'Ỷ': 'Y', 'Ỹ': 'Y',
+        'Ỵ': 'Y', 'Đ': 'D'
+      };
+      return str.split('').map(ch => map[ch] || ch).join('');
+    }
+
+    const fullName = 'Lê Thị Tú Mi';
+    const englishName = removeAccents(fullName);
+
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem('lang', l);
+      langFlag.textContent = l === 'en' ? '🇺🇸' : '🇻🇳';
+      langCode.textContent = l === 'en' ? 'EN' : 'VI';
+
+      if (l === 'en') {
+        document.getElementById('brandName').textContent = 'Tu Mi';
+        document.getElementById('footerName').textContent = englishName;
+      } else {
+        document.getElementById('brandName').textContent = 'Tú Mi';
+        document.getElementById('footerName').textContent = 'Tú Mi';
+      }
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+    }
+
+    applyLang(lang);
+    langBtn.addEventListener('click', () => applyLang(lang === 'en' ? 'vi' : 'en'));
+
+    /* ── HAMBURGER ── */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => mob.classList.toggle('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible');
+          ro.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => ro.observe(el));
+
+    /* ── BACK TO TOP ── */
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── CHATBOX ── */
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+
+    chatToggle.addEventListener('click', () => {
+      chatBox.classList.toggle('show');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.remove('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!chatBox.contains(e.target) && e.target !== chatToggle && !chatToggle.contains(e.target)) {
+        chatBox.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,1147 +1,4124 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Lê Thị Tú Mi — Software Engineer & Business Analyst</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-/* ── TOKENS ─────────────────────────────── */
-:root {
-  --accent:       #6C8EFF;
-  --accent-v:     #A78BFA;
-  --accent-glow:  rgba(108,142,255,0.18);
-  --accent-glow2: rgba(167,139,250,0.12);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Le Thi Tu Mi — Software Engineer & Business Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --accent: #6C8EFF;
+      --accent-v: #A78BFA;
+      --accent-glow: rgba(108, 142, 255, 0.18);
+      --accent-glow2: rgba(167, 139, 250, 0.12);
 
-  --fs-display: clamp(2.8rem,6vw,4.8rem);
-  --fs-h2:      clamp(1.9rem,3.5vw,2.8rem);
-  --fs-h3:      1.15rem;
-  --fs-body:    1rem;
-  --fs-sm:      0.9rem;
-  --fs-xs:      0.78rem;
+      --fs-display: clamp(3.2rem, 7vw, 5rem);
+      --fs-h2: clamp(2rem, 4vw, 2.8rem);
+      --fs-h3: 1.25rem;
+      --fs-body: 1.05rem;
+      --fs-sm: 0.92rem;
+      --fs-xs: 0.78rem;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
 
-  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Sora', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
 
-[data-theme="dark"] {
-  --bg:         #0D0F14;
-  --bg-2:       #151820;
-  --bg-3:       #1C2030;
-  --bg-4:       #222640;
-  --border:     rgba(255,255,255,0.07);
-  --border-h:   rgba(255,255,255,0.14);
-  --text:       #E8EAF0;
-  --text-m:     #9EA6C0;
-  --text-s:     #5A6080;
-  --card-sh:    0 4px 32px rgba(0,0,0,0.4);
-}
-[data-theme="light"] {
-  --bg:         #F4F5FA;
-  --bg-2:       #FFFFFF;
-  --bg-3:       #EEF0F8;
-  --bg-4:       #E4E7F5;
-  --border:     rgba(0,0,0,0.07);
-  --border-h:   rgba(0,0,0,0.14);
-  --text:       #111827;
-  --text-m:     #4B5577;
-  --text-s:     #9AA0BC;
-  --card-sh:    0 4px 24px rgba(80,90,160,0.08);
-}
+    /* Ẩn nút theme trên header */
+    .nav-theme {
+      display: none !important;
+    }
 
-/* ── RESET ───────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:17px}
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;transition:background var(--transition),color var(--transition);overflow-x:hidden}
-body.lang-switching *{transition:none !important;animation:none !important;}
+    [data-theme="dark"] {
+      --bg: #0B0D12;
+      --bg-2: #13171F;
+      --bg-3: #1A1F2E;
+      --bg-4: #232A3D;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-h: rgba(255, 255, 255, 0.12);
+      --text: #EDEFF4;
+      --text-m: #A0A8C4;
+      --text-s: #5A6080;
+      --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
 
-a{color:inherit;text-decoration:none}
-ul{list-style:none}
-img{max-width:100%;display:block}
-button{cursor:pointer;border:none;background:none;font-family:inherit}
+    [data-theme="light"] {
+      --bg: #F2F4FA;
+      --bg-2: #FFFFFF;
+      --bg-3: #ECEEF6;
+      --bg-4: #E2E6F2;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-h: rgba(0, 0, 0, 0.12);
+      --text: #111827;
+      --text-m: #4B5577;
+      --text-s: #9AA0BC;
+      --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
+    }
 
-/* ── NAV ─────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 max(2rem,calc((100% - 1200px)/2 + 2rem));
-  background:rgba(13,15,20,0.72);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:background var(--transition);
-}
-[data-theme="light"] nav{background:rgba(244,245,250,0.82)}
-.nav-brand{
-  font-family:var(--font-display);
-  font-weight:700;font-size:1rem;
-  color:var(--text);
-  display:flex;align-items:center;gap:0.5rem;
-}
-.nav-brand-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--accent);
-  display:inline-block;
-  box-shadow:0 0 8px var(--accent);
-}
-.nav-center{display:flex;align-items:center;gap:2.5rem}
-.nav-center a{
-  font-size:var(--fs-sm);font-weight:500;
-  color:var(--text-m);
-  transition:color var(--transition);
-  letter-spacing:0.01em;
-}
-.nav-center a:hover{color:var(--text)}
-.nav-right{display:flex;align-items:center;gap:0.75rem}
-.nav-lang{
-  font-size:var(--fs-xs);font-weight:600;
-  color:var(--text-m);
-  border:1px solid var(--border);
-  border-radius:100px;
-  padding:0.3rem 0.75rem;
-  display:flex;align-items:center;gap:0.35rem;
-  transition:all var(--transition);
-  background:var(--bg-3);
-}
-.nav-lang:hover{border-color:var(--accent);color:var(--accent)}
-.nav-theme{
-  width:36px;height:36px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:var(--radius-sm);
-  background:var(--bg-3);
-  border:1px solid var(--border);
-  color:var(--text-m);
-  font-size:1rem;
-  transition:all var(--transition);
-}
-.nav-theme:hover{border-color:var(--accent);color:var(--accent)}
-.nav-cta{
-  font-size:var(--fs-sm);font-weight:600;
-  color:#fff;
-  background:var(--accent);
-  padding:0.45rem 1.2rem;
-  border-radius:100px;
-  transition:opacity var(--transition),transform var(--transition);
-  letter-spacing:0.01em;
-}
-.nav-cta:hover{opacity:0.88;transform:translateY(-1px)}
-.nav-hamburger{
-  display:none;
-  width:36px;height:36px;
-  align-items:center;justify-content:center;
-  border-radius:var(--radius-sm);
-  background:var(--bg-3);
-  border:1px solid var(--border);
-  font-size:1.2rem;
-  color:var(--text-m);
-}
-.mobile-menu{
-  display:none;
-  position:fixed;top:64px;left:0;right:0;z-index:190;
-  background:var(--bg-2);
-  border-bottom:1px solid var(--border);
-  padding:1.5rem 2rem;
-  flex-direction:column;gap:1.25rem;
-}
-.mobile-menu a{font-size:1rem;font-weight:500;color:var(--text-m)}
-.mobile-menu.open{display:flex}
+    /* ── FLOATING ACTIONS ────────────────────── */
+    .floating-actions {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-/* ── HERO ─────────────────────────────────── */
-#hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:80px max(2rem,calc((100% - 1200px)/2 + 2rem)) 4rem;
-  position:relative;overflow:hidden;
-}
-.hero-inner{align-items:start}
-.hero-text{min-width:0}
-.hero-bio{min-height:4.2em}
-.hero-title-line{min-height:1.45em}
-.stat-l{min-height:1.15em}
-.section-sub{min-height:3.6em}
-.sk-desc{min-height:5.2em}
-.proj-desc{min-height:5.1em}
-.tl-desc{min-height:6.6em}
+    .fab {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-2);
+      color: var(--text-m);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      box-shadow: var(--card-sh);
+      backdrop-filter: blur(8px);
+    }
 
-.hero-orb{
-  position:absolute;pointer-events:none;
-  border-radius:50%;filter:blur(80px);
-}
-.orb-1{
-  width:520px;height:520px;
-  top:-120px;right:-100px;
-  background:radial-gradient(circle,rgba(108,142,255,0.18) 0%,transparent 70%);
-  animation:orbFloat 8s ease-in-out infinite;
-}
-.orb-2{
-  width:380px;height:380px;
-  bottom:-60px;left:30%;
-  background:radial-gradient(circle,rgba(167,139,250,0.12) 0%,transparent 70%);
-  animation:orbFloat 10s ease-in-out infinite reverse;
-}
-@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
-.hero-inner{
-  display:grid;grid-template-columns:1fr auto;
-  gap:5rem;align-items:center;width:100%;
-}
-.hero-label{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  font-size:var(--fs-xs);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--accent);
-  background:var(--accent-glow);
-  border:1px solid rgba(108,142,255,0.25);
-  padding:0.35rem 0.9rem;border-radius:100px;
-  margin-bottom:1.25rem;
-}
-.hero-label-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-h1.hero-name{
-  font-family:var(--font-display);
-  font-size:var(--fs-display);
-  font-weight:800;line-height:1.05;
-  color:var(--text);
-  margin-bottom:0.5rem;
-  letter-spacing:-0.02em;
-}
-.hero-title-line{
-  font-family:var(--font-mono);
-  font-size:clamp(1rem,1.3vw,1.05rem);
-  color:var(--accent-v);
-  margin-bottom:1.5rem;
-  letter-spacing:0.01em;
-}
-h1.hero-name .accent{color:var(--accent)}
-.hc-name{font-size:1.1rem}
-.hc-sub{font-size:0.82rem}
-.hero-bio{
-  font-size:var(--fs-body);color:var(--text-m);
-  max-width:540px;line-height:1.8;margin-bottom:2.25rem;
-}
-.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  background:var(--accent);color:#fff;
-  padding:0.75rem 1.75rem;border-radius:100px;
-  font-size:var(--fs-sm);font-weight:600;
-  transition:all var(--transition);
-  box-shadow:0 0 24px rgba(108,142,255,0.3);
-}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(108,142,255,0.45)}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  border:1px solid var(--border-h);color:var(--text);
-  padding:0.73rem 1.75rem;border-radius:100px;
-  font-size:var(--fs-sm);font-weight:500;
-  transition:all var(--transition);
-  background:var(--bg-3);
-}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
-.stat{border-left:2px solid var(--border-h);padding-left:1.25rem}
-.stat-n{
-  font-family:var(--font-display);
-  font-size:2rem;font-weight:800;
-  color:var(--text);line-height:1;
-  letter-spacing:-0.02em;
-}
-.stat-n .accent{color:var(--accent)}
-.stat-l{font-size:var(--fs-xs);color:var(--text-m);font-weight:500;letter-spacing:0.04em;margin-top:0.25rem}
-/* Hero card */
-.hero-card{
-  width:340px;max-width:360px;flex-shrink:0;
-  background:var(--bg-2);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  padding:1.75rem;
-  box-shadow:var(--card-sh);
-  position:relative;
-}
-.hero-card::before{
-  content:'';position:absolute;inset:-1px;
-  border-radius:var(--radius-xl);
-  background:linear-gradient(135deg,rgba(108,142,255,0.25),transparent 60%,rgba(167,139,250,0.15));
-  z-index:-1;
-}
-.hc-avatar{
-  width:90px;height:90px;
-  border-radius:50%;
-  overflow:hidden;
-  margin-bottom:1rem;
-}
-.hc-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-.hc-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.25rem}
-.hc-sub{font-size:var(--fs-xs);color:var(--text-m);margin-bottom:1.25rem}
-.hc-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
-.chip{
-  font-size:0.68rem;font-weight:600;letter-spacing:0.05em;
-  padding:0.22rem 0.65rem;border-radius:100px;
-}
-.chip-blue{background:rgba(108,142,255,0.15);color:var(--accent);border:1px solid rgba(108,142,255,0.25)}
-.chip-violet{background:rgba(167,139,250,0.15);color:var(--accent-v);border:1px solid rgba(167,139,250,0.25)}
-.chip-muted{background:var(--bg-3);color:var(--text-m);border:1px solid var(--border)}
-.hc-sep{border:none;border-top:1px solid var(--border);margin:1rem 0}
-.hc-link{
-  display:flex;align-items:center;gap:0.6rem;
-  font-size:var(--fs-xs);color:var(--text-m);
-  margin-bottom:0.6rem;
-  transition:color var(--transition);
-}
-.hc-link:hover{color:var(--accent)}
-.hc-link-ico{
-  width:26px;height:26px;border-radius:var(--radius-sm);
-  background:var(--bg-3);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:0.8rem;
-}
-.hc-status{
-  margin-top:1.25rem;
-  background:rgba(72,210,140,0.1);
-  border:1px solid rgba(72,210,140,0.25);
-  border-radius:var(--radius-md);
-  padding:0.6rem 0.85rem;
-  display:flex;align-items:center;gap:0.5rem;
-  font-size:var(--fs-xs);font-weight:600;color:#48d28c;
-}
-.status-dot{width:7px;height:7px;border-radius:50%;background:#48d28c;animation:pulse 2s infinite}
+    .fab:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.2);
+    }
 
-/* ── SECTION BASE ─────────────────────────── */
-.section{padding:6rem max(2rem,calc((100% - 1200px)/2 + 2rem))}
-.eyebrow{
-  font-size:var(--fs-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:0.75rem;
-  display:flex;align-items:center;gap:0.5rem;
-}
-.eyebrow::before{content:'';width:20px;height:2px;background:var(--accent);border-radius:2px}
-h2.section-title{
-  font-family:var(--font-display);
-  font-size:var(--fs-h2);font-weight:800;
-  color:var(--text);line-height:1.15;
-  letter-spacing:-0.02em;margin-bottom:0.75rem;
-}
-h2.section-title em{font-style:italic;color:var(--accent)}
-.section-sub{font-size:var(--fs-body);color:var(--text-m);max-width:560px;line-height:1.75;margin-bottom:3rem}
+    .fab-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
 
-/* ── ABOUT ─────────────────────────────────── */
-#about{background:var(--bg-2)}
-.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:center}
-.about-img-wrap{position:relative}
-.about-img-box{
-  background:var(--bg-3);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  aspect-ratio:4/5;
-  position:relative;
-  overflow:hidden;
-  padding:0;
-}
-.about-img-box::before{
-  content:'';position:absolute;top:-60px;right:-60px;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(circle,var(--accent-glow),transparent 70%);
-}
-.about-img-box img{width:100%;height:100%;object-fit:cover;display:block;}
-.about-img-ico{font-size:3rem;opacity:0.3;margin-bottom:0.5rem}
-.about-float{
-  position:absolute;right:-20px;bottom:40px;
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-md);padding:0.75rem 1rem;
-  box-shadow:var(--card-sh);
-  font-size:var(--fs-xs);font-weight:600;color:var(--accent);
-  display:flex;align-items:center;gap:0.5rem;
-}
-.about-body{font-size:var(--fs-body);color:var(--text-m);line-height:1.8;margin-bottom:1rem}
-.about-hl{
-  display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin:1.5rem 0;
-}
-.hl-item{
-  background:var(--bg-3);border:1px solid var(--border);
-  border-radius:var(--radius-md);padding:0.9rem 1rem;
-  border-left:3px solid var(--accent);
-}
-.hl-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-s);margin-bottom:0.25rem}
-.hl-val{font-size:var(--fs-sm);font-weight:600;color:var(--text)}
-.goals-box{
-  background:rgba(167,139,250,0.06);
-  border:1px solid rgba(167,139,250,0.2);
-  border-radius:var(--radius-md);padding:1.25rem 1.5rem;
-}
-.goals-title{font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-v);margin-bottom:0.75rem}
-.goals-list li{font-size:var(--fs-sm);color:var(--text-m);padding-left:1.1rem;position:relative;margin-bottom:0.35rem}
-.goals-list li::before{content:'→';position:absolute;left:0;color:var(--accent-v);font-weight:700}
+    .fab-primary:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 0.85;
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.35);
+    }
 
+    /* ── CHATBOX ──────────────────────────────── */
+    .chatbox {
+      position: fixed;
+      right: 90px;
+      bottom: 30px;
+      width: 300px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9998;
+      display: none;
+    }
+
+    .chatbox.show {
+      display: block;
+      animation: fadeChat 0.3s ease;
+    }
+
+    @keyframes fadeChat {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header span {
+      cursor: pointer;
+      color: var(--text-m);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+
+    .chat-header span:hover {
+      color: var(--text);
+    }
+
+    .chat-body {
+      padding: 18px;
+    }
+
+    .chat-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-bottom: 12px;
+    }
+
+    .chat-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      font-size: var(--fs-sm);
+      transition: all var(--transition);
+      margin-bottom: 6px;
+    }
+
+    .chat-link:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* ── RESET ───────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ul {
+      list-style: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(242, 244, 250, 0.85)
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 120px;
+    }
+
+    .nav-brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .nav-center a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-m);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-center a:hover {
+      color: var(--text)
+    }
+
+    .nav-center a.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0
+    }
+
+    .nav-lang {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .nav-lang:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .nav-cta {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-width: 60px;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 1.3rem;
+      color: var(--text-m);
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-m)
+    }
+
+    .mobile-menu a.active {
+      color: var(--accent)
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── DROPDOWN CONTACT ────────────────────── */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      height: 38px;
+      min-width: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0;
+      box-shadow: var(--card-sh);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all var(--transition);
+      z-index: 300;
+      list-style: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+
+    .dropdown-item:hover i {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+        width: 100%;
+      }
+
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .nav-dropdown .dropdown-toggle::after {
+        content: ' ▾';
+        font-size: 0.7rem;
+      }
+
+      .nav-dropdown.open .dropdown-toggle::after {
+        content: ' ▴';
+      }
+
+      .dropdown-item {
+        padding: 0.4rem 0.75rem;
+        color: var(--text-m);
+      }
+
+      .dropdown-item i {
+        width: 20px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 88px max(2rem, calc((100% - 1200px)/2 + 2rem)) 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-orb {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      top: -160px;
+      right: -120px;
+      background: radial-gradient(circle, rgba(108, 142, 255, 0.15) 0%, transparent 70%);
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 440px;
+      height: 440px;
+      bottom: -80px;
+      left: 20%;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.10) 0%, transparent 70%);
+      animation: orbFloat 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes orbFloat {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-28px)
+      }
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .hero-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+      flex-shrink: 0
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    h1.hero-name {
+      font-family: var(--font-display);
+      font-size: var(--fs-display);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      min-height: 1.2em;
+    }
+
+    h1.hero-name .accent {
+      color: var(--accent)
+    }
+
+    .hero-title-line {
+      font-family: var(--font-mono);
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      color: var(--accent-v);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
+      min-height: 1.6em;
+    }
+
+    .hero-bio {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 540px;
+      line-height: 1.9;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+      box-shadow: 0 0 28px rgba(108, 142, 255, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 40px rgba(108, 142, 255, 0.45)
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--border-h);
+      color: var(--text);
+      padding: 0.83rem 2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      white-space: nowrap;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap
+    }
+
+    .stat {
+      border-left: 2px solid var(--border-h);
+      padding-left: 1.5rem;
+      min-width: 120px
+    }
+
+    .stat-n {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-n .accent {
+      color: var(--accent)
+    }
+
+    .stat-l {
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-top: 0.25rem
+    }
+
+    /* Hero card */
+    .hero-card {
+      width: 380px;
+      max-width: 380px;
+      flex-shrink: 0;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--card-sh);
+      position: relative;
+      transition: border-color var(--transition);
+    }
+
+    .hero-card:hover {
+      border-color: var(--border-h)
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(108, 142, 255, 0.2), transparent 60%, rgba(167, 139, 250, 0.1));
+      z-index: -1;
+    }
+
+    .hc-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-v));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    .hc-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hc-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+      min-height: 1.6em;
+    }
+
+    .hc-sub {
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      margin-bottom: 1.25rem;
+      min-height: 1.4em;
+    }
+
+    .hc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      min-height: 2.2rem
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .chip-blue {
+      background: rgba(108, 142, 255, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(108, 142, 255, 0.2)
+    }
+
+    .chip-violet {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent-v);
+      border: 1px solid rgba(167, 139, 250, 0.2)
+    }
+
+    .chip-muted {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border)
+    }
+
+    .hc-sep {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1rem 0
+    }
+
+    .hc-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      margin-bottom: 0.6rem;
+      transition: color var(--transition);
+      min-height: 2.2rem;
+    }
+
+    .hc-link:hover {
+      color: var(--accent)
+    }
+
+    .hc-link-ico {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.75rem;
+    }
+
+    .hc-status {
+      margin-top: 1.25rem;
+      background: rgba(72, 210, 140, 0.08);
+      border: 1px solid rgba(72, 210, 140, 0.2);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: #48d28c;
+      min-height: 3rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #48d28c;
+      animation: pulse 2s infinite;
+      flex-shrink: 0
+    }
+
+    /* ── SECTION BASE ─────────────────────────── */
+    .section {
+      padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
+    }
+
+    .eyebrow {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0
+    }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      min-height: 1.3em;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .section-sub {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 3rem
+    }
+
+    /* ── ABOUT ─────────────────────────────────── */
+    #about {
+      background: var(--bg-2)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: center
+    }
+
+    .about-img-wrap {
+      position: relative
+    }
+
+    .about-img-box {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      aspect-ratio: 4/5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--text-s);
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+    }
+
+    .about-img-box::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+    }
+
+    .about-float {
+      position: absolute;
+      right: -24px;
+      bottom: 40px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.1rem;
+      box-shadow: var(--card-sh);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .about-body {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      margin-bottom: 1rem
+    }
+
+    .about-hl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .hl-item {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .hl-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-s);
+      margin-bottom: 0.25rem
+    }
+
+    .hl-val {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .goals-box {
+      background: rgba(167, 139, 250, 0.05);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .goals-title {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-v);
+      margin-bottom: 0.75rem
+    }
+
+    .goals-list li {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      padding-left: 1.1rem;
+      position: relative;
+      margin-bottom: 0.35rem
+    }
+
+    .goals-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-v);
+      font-weight: 700
+    }
 /* ── SKILLS ─────────────────────────────────── */
-#skills{background:var(--bg)}
-.skills-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.stab{
-  font-size:var(--fs-sm);font-weight:500;
-  padding:0.5rem 1.1rem;border-radius:100px;
-  border:1px solid var(--border);
-  color:var(--text-m);background:var(--bg-3);
-  transition:all var(--transition);
-}
-.stab:hover,.stab.active{
-  background:var(--accent-glow);
-  border-color:rgba(108,142,255,0.4);
-  color:var(--accent);
-}
-.skills-panels{}
-.skill-panel{display:none}
-.skill-panel.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;animation:fadeUp 0.3s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.sk-card{
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-lg);padding:1.5rem;
-  transition:all var(--transition);
-}
-.sk-card:hover{border-color:var(--border-h);transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,142,255,0.1)}
-.sk-icon{font-size:1.4rem;margin-bottom:0.9rem}
-.sk-name{font-size:var(--fs-sm);font-weight:700;color:var(--text);margin-bottom:0.25rem}
-.sk-desc{font-size:var(--fs-xs);color:var(--text-m);line-height:1.6;margin-bottom:0.9rem}
-.sk-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
-.sk-tag{font-size:0.66rem;font-weight:500;padding:0.18rem 0.55rem;border-radius:100px;background:var(--bg-3);color:var(--text-m);border:1px solid var(--border)}
-.tools-strip{
-  margin-top:3rem;padding:1.5rem 2rem;
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
-}
-.tools-label-txt{font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-s);flex-shrink:0}
-.tools-chips{display:flex;flex-wrap:wrap;gap:0.5rem}
-.t-chip{
-  font-size:var(--fs-xs);font-weight:500;
-  padding:0.28rem 0.75rem;border-radius:100px;
-  background:var(--bg-3);color:var(--text-m);
-  border:1px solid var(--border);
+#skills {
+  background: var(--bg)
 }
 
-/* ── PROJECTS ─────────────────────────────── */
-#projects{background:var(--bg-2)}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
-.proj-card{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:var(--radius-xl);overflow:hidden;
-  display:flex;flex-direction:column;
-  transition:all var(--transition);
-  position:relative;
-}
-.proj-card:hover{border-color:var(--border-h);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
-.proj-card.featured{border-color:rgba(108,142,255,0.35)}
-.proj-card.featured::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--accent-v));
-}
-.proj-head{padding:1.75rem 1.75rem 1.25rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-.proj-ico{
-  width:52px;height:52px;border-radius:var(--radius-md);
-  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
-  flex-shrink:0;
-}
-.ico-blue{background:rgba(108,142,255,0.12);border:1px solid rgba(108,142,255,0.2)}
-.ico-violet{background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.2)}
-.ico-muted{background:var(--bg-3);border:1px solid var(--border)}
-.feat-badge{
-  font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--accent);background:rgba(108,142,255,0.12);
-  border:1px solid rgba(108,142,255,0.25);
-  padding:0.22rem 0.65rem;border-radius:100px;
-  white-space:nowrap;
-}
-.proj-body{padding:0 1.75rem 1.5rem;flex:1}
-.proj-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.2rem}
-.proj-role{font-size:var(--fs-xs);color:var(--accent);font-weight:600;letter-spacing:0.05em;margin-bottom:0.75rem;font-family:var(--font-mono)}
-.proj-desc{font-size:var(--fs-sm);color:var(--text-m);line-height:1.7;margin-bottom:1rem}
-.proj-metrics{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
-.metric{
-  font-size:0.67rem;font-weight:700;
-  padding:0.22rem 0.65rem;border-radius:var(--radius-sm);
-  background:var(--bg-3);color:var(--text-m);
-  border:1px solid var(--border);
-}
-.proj-foot{
-  padding:1rem 1.75rem;
-  border-top:1px solid var(--border);
-  display:flex;gap:1rem;
-}
-.plink{
-  font-size:var(--fs-xs);font-weight:600;
-  color:var(--accent);display:flex;align-items:center;gap:0.3rem;
-  transition:gap var(--transition);
-}
-.plink:hover{gap:0.55rem}
-.plink-m{color:var(--text-m)}
-
-/* ── EXPERIENCE ─────────────────────────── */
-#experience{background:var(--bg)}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.timeline{}
-.tl-item{position:relative;padding-left:2.25rem;padding-bottom:2.5rem}
-.tl-item:not(:last-child)::before{
-  content:'';position:absolute;left:7px;top:18px;bottom:0;width:1px;
-  background:linear-gradient(to bottom,var(--accent),transparent);
-  opacity:0.3;
-}
-.tl-dot{
-  position:absolute;left:0;top:6px;
-  width:16px;height:16px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--accent);
-  box-shadow:0 0 8px rgba(108,142,255,0.4);
-}
-.tl-period{font-size:var(--fs-xs);font-weight:600;letter-spacing:0.08em;color:var(--text-s);margin-bottom:0.3rem;text-transform:uppercase;font-family:var(--font-mono)}
-.tl-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.15rem}
-.tl-org{font-size:var(--fs-xs);color:var(--accent);font-weight:600;margin-bottom:0.6rem}
-.tl-desc{font-size:var(--fs-sm);color:var(--text-m);line-height:1.7}
-.tl-desc li{padding-left:0.9rem;position:relative;margin-bottom:0.2rem}
-.tl-desc li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:700}
-/* Right col */
-.exp-right{display:flex;flex-direction:column;gap:1rem}
-.cert-card{
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-md);padding:1.1rem 1.25rem;
-  display:flex;align-items:center;gap:1rem;
-  transition:all var(--transition);
-}
-.cert-card:hover{border-color:var(--border-h)}
-.cert-ico{
-  width:38px;height:38px;border-radius:var(--radius-sm);
-  background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.2);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
-}
-.cert-title{font-size:var(--fs-sm);font-weight:600;color:var(--text);margin-bottom:0.15rem}
-.cert-meta{font-size:var(--fs-xs);color:var(--text-s);font-family:var(--font-mono)}
-.ref-card{
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-md);padding:1.25rem;
-  display:flex;gap:1rem;align-items:flex-start;
-  border-left:3px solid var(--accent-v);
-}
-.ref-av{
-  width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent-v));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);font-size:0.9rem;font-weight:800;color:#fff;flex-shrink:0;
-}
-.ref-name{font-size:var(--fs-sm);font-weight:700;color:var(--text);margin-bottom:0.15rem}
-.ref-role{font-size:var(--fs-xs);color:var(--text-m);line-height:1.55}
-.differentiators{
-  background:var(--bg-2);border:1px solid var(--border);
-  border-radius:var(--radius-lg);padding:1.5rem;margin-top:0.5rem;
-}
-.diff-title{font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-v);margin-bottom:1rem}
-.diff-list{display:flex;flex-direction:column;gap:0.65rem}
-.diff-item{
-  display:flex;align-items:flex-start;gap:0.75rem;
-  font-size:var(--fs-sm);color:var(--text-m);line-height:1.55;
-}
-.diff-num{
-  font-family:var(--font-mono);font-size:0.72rem;font-weight:700;
-  color:var(--accent);flex-shrink:0;margin-top:0.1rem;
-  width:22px;
+.skills-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-/* ── CTA ─────────────────────────────────── */
-#contact{background:var(--bg-2);text-align:center}
-.cta-inner{
-  background:var(--bg-3);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  padding:5rem 3rem;
-  max-width:760px;margin:0 auto;
-  position:relative;overflow:hidden;
+.stab {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--text-m);
+  background: var(--bg-3);
+  transition: all var(--transition);
+  white-space: nowrap;
+  cursor: pointer;
 }
-.cta-inner::before{
-  content:'';position:absolute;top:-80px;right:-80px;
-  width:300px;height:300px;border-radius:50%;
-  background:radial-gradient(circle,var(--accent-glow),transparent 70%);
-  pointer-events:none;
-}
-.cta-inner::after{
-  content:'';position:absolute;bottom:-80px;left:-80px;
-  width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,var(--accent-glow2),transparent 70%);
-  pointer-events:none;
-}
-.cta-inner .section-title{margin-bottom:0.75rem}
-.cta-inner .section-sub{margin:0 auto 2rem;text-align:center}
-.cta-actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2.5rem}
-.cta-contacts{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}
-.cta-ci{
-  display:flex;align-items:center;gap:0.45rem;
-  font-size:var(--fs-sm);color:var(--text-m);font-weight:500;
-}
-.cta-ci-ico{font-size:0.9rem}
 
-/* ── FOOTER ─────────────────────────────── */
-footer{
-  background:var(--bg);
-  border-top:1px solid var(--border);
-  padding:2rem max(2rem,calc((100% - 1200px)/2 + 2rem));
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+.stab:hover,
+.stab.active {
+  background: var(--accent-glow);
+  border-color: rgba(108, 142, 255, 0.35);
+  color: var(--accent);
 }
-.foot-brand{font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:var(--text)}
-.foot-brand span{color:var(--accent)}
-.foot-links{display:flex;gap:1.5rem}
-.foot-links a{font-size:var(--fs-xs);color:var(--text-s);transition:color var(--transition)}
-.foot-links a:hover{color:var(--accent)}
-.foot-copy{font-size:var(--fs-xs);color:var(--text-s)}
 
-/* ── SCROLL REVEAL ────────────────────── */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.skills-panels {}
 
-/* ── RESPONSIVE ──────────────────────── */
-@media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:3rem}
-  .hero-card{width:100%;max-width:380px}
-  .about-grid{grid-template-columns:1fr;gap:2.5rem}
-  .about-img-box{aspect-ratio:16/7}
-  .exp-grid{grid-template-columns:1fr;gap:2.5rem}
+.skill-panel {
+  display: none;
 }
-@media(max-width:768px){
-  nav{padding:0 1.25rem}
-  .nav-center{display:none}
-  .nav-hamburger{display:flex}
-  .nav-cta{display:none}
-  .section{padding:4rem 1.5rem}
-  #hero{padding:80px 1.5rem 3rem}
-  .hero-stats{gap:1.5rem}
-  .cta-inner{padding:3rem 1.5rem}
-  footer{flex-direction:column;text-align:center;align-items:center}
-  .about-float{display:none}
+
+.skill-panel.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  animation: fadeUp 0.35s ease;
 }
-</style>
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sk-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.25rem 1rem;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 180px;
+  position: relative;
+}
+
+.sk-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(108, 142, 255, 0.06);
+}
+
+.sk-icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sk-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+  min-height: 2.6rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sk-desc {
+  font-size: 0.8rem;
+  color: var(--text-m);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.4rem;
+}
+
+.sk-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  min-height: 1.6rem;
+}
+
+.sk-tag {
+  font-size: 0.6rem;
+  font-weight: 500;
+  padding: 0.1rem 0.5rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ── NÚT XEM THÊM ── */
+.sk-more-btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.7rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 0.25rem;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sk-more-btn:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.sk-more-btn i {
+  font-size: 0.6rem;
+}
+
+/* ── POPUP SKILL DETAIL ── */
+.skill-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: overlayFade 0.3s ease;
+}
+
+.skill-popup-overlay.open {
+  display: flex;
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.skill-popup {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 860px;
+  height: 540px;
+  max-width: 94vw;
+  max-height: 88vh;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: popupSlide 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@keyframes popupSlide {
+  from { 
+    transform: scale(0.95) translateY(16px);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.skill-popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-v), var(--accent));
+  background-size: 200% 100%;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── POPUP HEADER ── */
+.skill-popup-header {
+  padding: 1rem 2rem 0.6rem 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg-3);
+}
+
+.skill-popup-header .header-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skill-popup-header .header-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-glow);
+  border: 1px solid rgba(108, 142, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.skill-popup-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  flex: 1;
+}
+
+.skill-popup-header .header-badge {
+  font-size: 0.55rem;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem;
+  border-radius: 100px;
+  background: var(--accent-glow);
+  color: var(--accent);
+  border: 1px solid rgba(108, 142, 255, 0.15);
+  white-space: nowrap;
+}
+
+.skill-popup-header p {
+  font-size: 0.72rem;
+  color: var(--text-m);
+  margin-top: 0.1rem;
+  padding-left: 2.75rem;
+}
+
+/* ── HEADER RIGHT GROUP (nav buttons + close) ── */
+.header-right-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.header-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-m);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: all var(--transition);
+  padding: 0;
+  font-family: var(--font-sans);
+}
+
+.header-nav-btn:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.05);
+}
+
+.header-nav-btn:active {
+  transform: scale(0.92);
+}
+
+.header-nav-btn .nav-label {
+  display: none;
+}
+
+/* Nút close nằm cạnh nút điều hướng */
+.skill-popup-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-m);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all var(--transition);
+  padding: 0;
+  font-family: var(--font-sans);
+  position: static;
+  margin: 0;
+}
+
+.skill-popup-close:hover {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: #ff4444;
+  color: #ff4444;
+  transform: scale(1.05);
+}
+
+/* ── POPUP BODY 2 CỘT ── */
+.skill-popup-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  height: calc(100% - 80px);
+}
+
+/* Cột trái: Danh sách kỹ năng */
+.skill-popup-sidebar {
+  width: 220px;
+  min-width: 190px;
+  background: var(--bg-3);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 0.5rem 0;
+  flex-shrink: 0;
+}
+
+.skill-popup-sidebar .sidebar-title {
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-s);
+  padding: 0.15rem 1.25rem 0.35rem;
+  opacity: 0.7;
+}
+
+.skill-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  border-left: 3px solid transparent;
+  font-size: 0.8rem;
+  color: var(--text-m);
+  text-align: left;
+  background: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  width: 100%;
+  font-family: var(--font-sans);
+  line-height: 1.2;
+  position: relative;
+}
+
+.skill-list-item::after {
+  content: '';
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border);
+  opacity: 0;
+  transition: all var(--transition);
+}
+
+.skill-list-item:hover {
+  background: var(--bg-2);
+  color: var(--text);
+}
+
+.skill-list-item:hover::after {
+  opacity: 1;
+  background: var(--text-s);
+}
+
+.skill-list-item.active {
+  background: var(--bg-2);
+  color: var(--text);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.skill-list-item.active::after {
+  opacity: 1;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.skill-list-item .list-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.skill-list-item.active .list-bullet {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(108, 142, 255, 0.4);
+}
+
+.skill-list-item .list-name {
+  flex: 1;
+}
+
+.skill-list-item .list-count {
+  font-size: 0.55rem;
+  color: var(--text-s);
+  background: var(--bg-3);
+  padding: 0.05rem 0.4rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+/* ── Cột phải: Nội dung chi tiết ── */
+.skill-popup-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.75rem 1.25rem 1.75rem;
+  background: var(--bg-2);
+}
+
+.skill-popup-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.skill-popup-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.skill-popup-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.skill-popup-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-s);
+}
+
+.skill-detail-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.05rem;
+  letter-spacing: -0.01em;
+}
+
+.skill-detail-sub {
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.skill-detail-desc {
+  font-size: 0.82rem;
+  color: var(--text-m);
+  line-height: 1.65;
+  padding: 0.6rem 0.85rem;
+  background: var(--bg-3);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.skill-detail-section {
+  margin-bottom: 0.6rem;
+}
+
+.skill-detail-section h4 {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-s);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.skill-detail-section h4::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.skill-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.skill-detail-tags span {
+  font-size: 0.62rem;
+  padding: 0.08rem 0.55rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+}
+
+.skill-detail-tags span:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.skill-detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.skill-detail-links a {
+  font-size: 0.68rem;
+  padding: 0.12rem 0.65rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+}
+
+.skill-detail-links a:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.skill-detail-links a i {
+  font-size: 0.55rem;
+}
+
+/* ── TOOLS STRIP TRONG POPUP ── */
+.skill-detail-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.skill-detail-tools span {
+  font-size: 0.6rem;
+  padding: 0.08rem 0.5rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.skill-detail-tools span::before {
+  content: '⚡';
+  font-size: 0.5rem;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px) {
+  .skill-popup {
+    width: 95vw;
+    height: 80vh;
+    max-height: 90vh;
+  }
+}
+
+@media(max-width:640px) {
+  .skill-popup {
+    height: 85vh;
+    border-radius: var(--radius-lg);
+    max-width: 98vw;
+  }
+  
+  .skill-popup-header {
+    padding: 0.6rem 1rem 0.4rem;
+  }
+  
+  .skill-popup-header .header-top {
+    flex-wrap: wrap;
+  }
+  
+  .skill-popup-header .header-badge {
+    margin-left: 0;
+  }
+  
+  .skill-popup-header p {
+    padding-left: 0;
+  }
+  
+  .header-nav-group {
+    margin-left: auto;
+  }
+  
+  .header-nav-btn .nav-label {
+    display: none;
+  }
+  
+  .skill-popup-body {
+    flex-direction: column;
+    height: auto;
+    flex: 1;
+  }
+  
+  .skill-popup-sidebar {
+    width: 100%;
+    min-width: unset;
+    max-height: 100px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.25rem 0.5rem;
+    gap: 0.15rem;
+    align-items: center;
+  }
+  
+  .skill-popup-sidebar .sidebar-title {
+    display: none;
+  }
+  
+  .skill-list-item {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: auto;
+    gap: 0.3rem;
+  }
+  
+  .skill-list-item .list-bullet {
+    display: none;
+  }
+  
+  .skill-list-item .list-count {
+    display: none;
+  }
+  
+  .skill-list-item.active {
+    border-left: none;
+    border-bottom-color: var(--accent);
+  }
+  
+  .skill-list-item::after {
+    display: none;
+  }
+  
+  .skill-popup-content {
+    padding: 0.6rem 0.8rem 0.8rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+  
+  .skill-detail-title {
+    font-size: 0.95rem;
+  }
+  
+  .skill-detail-desc {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .skill-detail-links a {
+    font-size: 0.62rem;
+    padding: 0.08rem 0.5rem;
+  }
+}
+
+@media(max-width:400px) {
+  .skill-popup-sidebar {
+    max-height: 80px;
+  }
+  
+  .skill-list-item {
+    font-size: 0.62rem;
+    padding: 0.15rem 0.4rem;
+  }
+}
+
+.tools-strip {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.75rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tools-label-txt {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-s);
+  flex-shrink: 0;
+}
+
+.tools-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.t-chip {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.7rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+}
+
+
+    /* ── PROJECTS ─────────────────────────────── */
+#projects {
+  background: var(--bg-2)
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.proj-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition);
+  position: relative;
+  height: 100%;
+}
+
+.proj-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3)
+}
+
+.proj-card.featured {
+  border-color: rgba(108, 142, 255, 0.3)
+}
+
+.proj-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-v));
+}
+
+/* ── HEADER ── */
+.proj-head {
+  padding: 0.5rem 1.25rem 0.15rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 1.2rem;
+}
+
+.proj-ico {
+  display: none;
+}
+
+.feat-badge {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(108, 142, 255, 0.10);
+  border: 1px solid rgba(108, 142, 255, 0.2);
+  padding: 0.1rem 0.5rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* ── BODY ── */
+.proj-body {
+  padding: 0 1.25rem 0.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* ── ẢNH DỰ ÁN: có khoảng cách viền ── */
+.proj-image {
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.proj-image img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+/* ── TIÊU ĐỀ DỰ ÁN ── */
+.proj-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  min-height: 2.6rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.05rem;
+}
+
+/* ── TÊN DỰ ÁN + THỜI GIAN ── */
+.proj-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-m);
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+  line-height: 1.4;
+}
+
+.proj-subtitle span {
+  color: var(--text-s);
+  font-weight: 400;
+}
+
+/* ── VAI TRÒ ── */
+.proj-role {
+  font-size: 0.65rem;
+  color: var(--accent);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  background: rgba(108, 142, 255, 0.08);
+  border: 1px solid rgba(108, 142, 255, 0.12);
+  padding: 0.15rem 0.6rem;
+  border-radius: 100px;
+  display: inline-block;
+  width: fit-content;
+  word-break: break-word;
+  white-space: normal;
+  margin-bottom: 0.1rem;
+  line-height: 1.4;
+}
+
+/* ── MÔ TẢ ── */
+.proj-desc {
+  font-size: 0.8rem;
+  color: var(--text-m);
+  line-height: 1.5;
+  margin-bottom: 0.2rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.6rem;
+}
+
+/* ── CÔNG CỤ SỬ DỤNG ── */
+.proj-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.2rem;
+  min-height: 1.6rem;
+  padding: 0.1rem 0;
+}
+
+.tool-tag {
+  font-size: 0.55rem;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  border-radius: 100px;
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.tool-tag.primary {
+  background: rgba(108, 142, 255, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(108, 142, 255, 0.2);
+}
+
+.tool-tag.violet {
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--accent-v);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+/* ── METRICS (nếu có) ── */
+.proj-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.15rem;
+  min-height: 1.4rem;
+}
+
+.metric {
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ── FOOTER LINKS ── */
+.proj-foot {
+  padding: 0.5rem 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  min-height: 2.2rem;
+  align-items: center;
+}
+
+.plink {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  transition: gap var(--transition);
+}
+
+.plink:hover {
+  gap: 0.4rem
+}
+
+.plink-m {
+  color: var(--text-m)
+}
+
+    /* ── EXPERIENCE ─────────────────────────── */
+    #experience {
+      background: var(--bg)
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start
+    }
+
+    .timeline {}
+
+    .tl-item {
+      position: relative;
+      padding-left: 2.5rem;
+      padding-bottom: 2.5rem
+    }
+
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 20px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.25;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2.5px solid var(--accent);
+      box-shadow: 0 0 12px rgba(108, 142, 255, 0.3);
+    }
+
+    .tl-period {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-s);
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      font-family: var(--font-mono)
+    }
+
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem
+    }
+
+    .tl-org {
+      font-size: var(--fs-xs);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem
+    }
+
+    .tl-desc {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      line-height: 1.8
+    }
+
+    .tl-desc li {
+      padding-left: 0.9rem;
+      position: relative;
+      margin-bottom: 0.25rem
+    }
+
+    .tl-desc li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    /* Right col */
+    .exp-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+
+    .cert-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all var(--transition);
+    }
+
+    .cert-card:hover {
+      border-color: var(--border-h)
+    }
+
+    .cert-ico {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(167, 139, 250, 0.10);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .cert-title {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem
+    }
+
+    .cert-meta {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      font-family: var(--font-mono)
+    }
+
+    .ref-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      border-left: 3px solid var(--accent-v);
+    }
+
+    .ref-av {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-v));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .ref-name {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem
+    }
+
+    .ref-role {
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      line-height: 1.6
+    }
+
+    .differentiators {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .diff-title {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-v);
+      margin-bottom: 1rem
+    }
+
+    .diff-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem
+    }
+
+    .diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      line-height: 1.6;
+    }
+
+    .diff-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      width: 24px;
+    }
+
+    /* ── CTA / CONTACT FORM ──────────────────── */
+    #contact {
+      background: var(--bg-2);
+      text-align: center
+    }
+
+    .cta-inner {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 4rem 3.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner .section-title {
+      margin-bottom: 0.75rem
+    }
+
+    .cta-inner .section-sub {
+      margin: 0 auto 2rem;
+      text-align: center
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-2);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: var(--fs-sm);
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-error {
+      color: #ff6b6b;
+      font-size: var(--fs-xs);
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .form-error.show {
+      display: block;
+    }
+
+    .form-success {
+      background: rgba(72, 210, 140, 0.1);
+      border: 1px solid rgba(72, 210, 140, 0.3);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      color: #48d28c;
+      text-align: center;
+      display: none;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 2.5rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .cta-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .cta-ci {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      font-weight: 500;
+    }
+
+    .cta-ci-ico {
+      font-size: 1rem
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px
+    }
+
+    .foot-brand span {
+      color: var(--accent)
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .foot-links a {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      transition: color var(--transition);
+      white-space: nowrap
+    }
+
+    .foot-links a:hover {
+      color: var(--accent)
+    }
+
+    .foot-copy {
+      font-size: var(--fs-xs);
+      color: var(--text-s)
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media(max-width:1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem
+      }
+
+      .hero-card {
+        width: 100%;
+        max-width: 420px
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .about-img-box {
+        aspect-ratio: 16/7
+      }
+
+      .exp-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .projects-grid {
+    grid-template-columns: 1fr 1fr; /* Tablet: 2 cột */
+  }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 1.25rem
+      }
+
+      .nav-center {
+        display: none
+      }
+
+      .nav-hamburger {
+        display: flex
+      }
+
+      .nav-cta {
+        display: none
+      }
+
+      .dropdown-toggle {
+        display: none;
+      }
+.projects-grid {
+    grid-template-columns: 1fr; /* Mobile: 1 cột */
+  }
+      .section {
+        padding: 4rem 1.5rem
+      }
+
+      #hero {
+        padding: 80px 1.5rem 3rem
+      }
+
+      .hero-stats {
+        gap: 1.5rem
+      }
+
+      .cta-inner {
+        padding: 3rem 1.5rem
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        align-items: center
+      }
+
+      .about-float {
+        display: none
+      }
+
+      .about-hl {
+        grid-template-columns: 1fr
+      }
+
+      .hero-card {
+        max-width: 100%
+      }
+
+      .floating-actions {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+      }
+
+      .fab {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+
+      .chatbox {
+        right: 16px;
+        bottom: 80px;
+        width: 280px;
+      }
+    }html {
+    scroll-behavior: smooth;
+}
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-brand" data-en="Tu Mi" data-vi="Tú Mi">
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand" id="navBrand">
     <span class="nav-brand-dot"></span>
-    Tú Mi
-  </div>
-  <div class="nav-center">
+    <a href="" id="brandName">Tú Mi</a>
+</div>
+    <div class="nav-center">
+      <a href="\index.html#about" data-en="About me" data-vi="Về tôi">About me</a>
+      <a href="\index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+      <a href="\index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="\index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-lang" id="langBtn" title="Switch language">
+        <span id="langFlag">🇺🇸</span><span id="langCode">EN</span>
+      </button>
+      <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
+      <a href="/projects/cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
+      <!-- Contact Dropdown -->
+      <div class="nav-dropdown">
+        <button class="dropdown-toggle" data-en="Contact" data-vi="Liên hệ">
+          Contact
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="mailto:tusmile.joy@gmail.com" class="dropdown-item">
+              <i class="fas fa-envelope"></i>
+              <span>Email: tusmile.joy@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:0774945169" class="dropdown-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call: 0774.945.169</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/LttuMi204" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://zalo.me/0774945169" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fas fa-comment-dots" style="color:#0068FF;"></i>
+              <span>Zalo: Lê Thị Tú Mi</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
     <a href="#about" data-en="About" data-vi="Về tôi">About</a>
     <a href="#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
     <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
     <a href="#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    <a href="/projects/cvweb.html" data-en="CV" data-vi="CV">CV</a>
+    <a href="mailto:tusmile.joy@gmail.com" class="btn-primary" style="width:fit-content" data-en="Contact Me"
+      data-vi="Liên hệ ngay">Contact Me</a>
   </div>
-  <div class="nav-right">
-    <button class="nav-lang" id="langBtn" title="Switch language">
-      <span id="langFlag">🇺🇸</span><span id="langCode">EN</span>
-    </button>
-    <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
-    <a href="mailto:tusmile.joy@gmail.com" class="nav-cta" data-en="Hire Me" data-vi="Liên hệ">Hire Me</a>
-    <button class="nav-hamburger" id="hamburger">☰</button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" data-en="About" data-vi="Về tôi">About</a>
-  <a href="#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
-  <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
-  <a href="#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
-  <a href="mailto:tusmile.joy@gmail.com" class="btn-primary" style="width:fit-content" data-en="Contact Me" data-vi="Liên hệ ngay">Contact Me</a>
-</div>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-orb orb-1"></div>
-  <div class="hero-orb orb-2"></div>
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-label">
-        <span class="hero-label-dot"></span>
-        <span data-en="Available for Opportunities · 2026" data-vi="Sẵn sàng ứng tuyển · 2026">Available for Opportunities · 2026</span>
-      </div>
-      <h1 class="hero-name" data-en="Le Thi <span class='accent'>Tu Mi</span>" data-vi="Lê Thị <span class='accent'>Tú Mi</span>">Lê Thị <span class="accent">Tú Mi</span></h1>
-      <p class="hero-title-line">
-        <span data-en="Software Engineer · Business Analyst · System Analyst" data-vi="Kỹ sư phần mềm · Phân tích nghiệp vụ · Phân tích hệ thống">Software Engineer · Business Analyst · System Analyst</span>
-      </p>
-      <p class="hero-bio" data-en="I bridge the gap between business needs and technical solutions — translating complex requirements into structured system designs, precise documentation, and scalable software architecture." data-vi="Tôi kết nối nghiệp vụ và kỹ thuật — chuyển hóa yêu cầu phức tạp thành thiết kế hệ thống có cấu trúc, tài liệu chuẩn xác và kiến trúc phần mềm có khả năng mở rộng.">
-        I bridge the gap between business needs and technical solutions — translating complex requirements into structured system designs, precise documentation, and scalable software architecture.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary" data-en="View My Work →" data-vi="Xem dự án →">View My Work →</a>
-        <a href="mailto:tusmile.joy@gmail.com" class="btn-outline" data-en="Get in Touch" data-vi="Liên hệ ngay">Get in Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-n"><span class="counter" data-target="450">0</span><span class="accent">+</span></div>
-          <div class="stat-l" data-en="Pages of Documentation" data-vi="Trang tài liệu">Pages of Documentation</div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-label">
+          <span class="hero-label-dot"></span>
+          <span data-en="Available for Opportunities · 2026" data-vi="Sẵn sàng ứng tuyển · 2026">Available for
+            Opportunities · 2026</span>
         </div>
-        <div class="stat">
-          <div class="stat-n"><span class="counter" data-target="66">0</span></div>
-          <div class="stat-l" data-en="API Endpoints Designed" data-vi="API Endpoints thiết kế">API Endpoints Designed</div>
+        <h1 class="hero-name" id="heroName">
+          Lê Thị <span class="accent">Tú Mi</span>
+        </h1>
+        <p class="hero-title-line">
+          <span data-en="Software Engineer · Business Analyst · System Analyst"
+            data-vi="Kỹ sư phần mềm · Phân tích nghiệp vụ · Phân tích hệ thống">Software Engineer · Business Analyst ·
+            System Analyst</span>
+        </p>
+        <p class="hero-bio"
+          data-en="I bridge the gap between business needs and technical solutions — translating complex requirements into structured system designs, precise documentation, and scalable software architecture."
+          data-vi="Tôi kết nối nghiệp vụ và kỹ thuật — chuyển hóa yêu cầu phức tạp thành thiết kế hệ thống có cấu trúc, tài liệu chuẩn xác và kiến trúc phần mềm có khả năng mở rộng.">
+          I bridge the gap between business needs and technical solutions — translating complex requirements into
+          structured system designs, precise documentation, and scalable software architecture.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary" data-en="View My Work →" data-vi="Xem dự án →">View My Work →</a>
+          <a href="/projects/cvweb.html" class="btn-outline" data-en="CV" data-vi="CV">CV</a>
         </div>
-        <div class="stat">
-          <div class="stat-n"><span class="counter" data-target="12">0</span></div>
-          <div class="stat-l" data-en="Project Deliverables" data-vi="Tài liệu bàn giao">Project Deliverables</div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-n"><span class="counter" data-target="450">0</span><span class="accent">+</span></div>
+            <div class="stat-l" data-en="Pages of Documentation" data-vi="Trang tài liệu">Pages of Documentation</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n"><span class="counter" data-target="66">0</span></div>
+            <div class="stat-l" data-en="API Endpoints Designed" data-vi="API Endpoints thiết kế">API Endpoints Designed
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-n"><span class="counter" data-target="12">0</span></div>
+            <div class="stat-l" data-en="Project Deliverables" data-vi="Tài liệu bàn giao">Project Deliverables</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hc-avatar" aria-hidden="true">
+          <img src="assets/images/avatar.png" alt="Avatar of Tu Mi" />
+        </div>
+        <div class="hc-name" id="cardName">Lê Thị Tú Mi</div>
+        <div class="hc-sub">Nam Can Tho University · Can Tho</div>
+        <div class="hc-tags">
+          <span class="chip chip-blue">Business Analysis</span>
+          <span class="chip chip-violet">System Design</span>
+          <span class="chip chip-muted">ASP.NET Core</span>
+          <span class="chip chip-blue">UML</span>
+          <span class="chip chip-violet">SQL Server</span>
+        </div>
+        <hr class="hc-sep" />
+        <a href="mailto:tusmile.joy@gmail.com" class="hc-link">
+          <span class="hc-link-ico">✉</span>tusmile.joy@gmail.com
+        </a>
+        <a href="https://github.com/LttuMi204" target="_blank" class="hc-link">
+          <span class="hc-link-ico">🐙</span>github.com/LttuMi204
+        </a>
+        <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank" class="hc-link">
+          <span class="hc-link-ico">💼</span>LinkedIn Profile
+        </a>
+        <div class="hc-status">
+          <span class="status-dot"></span>
+          <span data-en="Open to Work — Sep 2026" data-vi="Đang tìm việc — 9/2026">Open to Work — Sep 2026</span>
         </div>
       </div>
     </div>
+  </section>
 
-<div class="hero-card">
-      <div class="hc-avatar" aria-hidden="true">
-        <img src="assets/images/avatar.jpg" alt="Avatar of Tú Mi" />
-      </div>
-      <div class="hc-name">Lê Thị Tú Mi</div>
-      <div class="hc-sub">Nam Can Tho University · Can Tho</div>
-      <div class="hc-tags">
-        <span class="chip chip-blue">Business Analysis</span>
-        <span class="chip chip-violet">System Design</span>
-        <span class="chip chip-muted">ASP.NET Core</span>
-        <span class="chip chip-blue">UML</span>
-        <span class="chip chip-violet">SQL Server</span>
-      </div>
-      <hr class="hc-sep" />
-      <a href="mailto:tusmile.joy@gmail.com" class="hc-link">tusmile.joy@gmail.com</a>
-      <a href="https://github.com/LttuMi204" target="_blank" class="hc-link">github.com/LttuMi204</a>
-      <a href="https://www.linkedin.com/in/tú-mi-lê-thị-890a091aa/" target="_blank" class="hc-link">LinkedIn Profile</a>
-      <div class="hc-status">
-        <span class="status-dot"></span>
-        <span data-en="Open to Work — Jun 2026" data-vi="Đang tìm việc — 6/2026">Open to Work — Jun 2026</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="reveal">
-    <div class="eyebrow" data-en="About Me" data-vi="Về tôi">About Me</div>
-    <h2 class="section-title" data-en="Analytical mind, <em>technical depth</em>" data-vi="Tư duy phân tích, <em>chiều sâu kỹ thuật</em>">Analytical mind, <em>technical depth</em></h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-img-wrap reveal">
-      <div class="about-img-box">
-        <img src="assets/images/avatar.jpg" alt="Professional profile photo of Tú Mi" />
-      </div>
-      <div class="about-float">
-        <span>📄</span>
-        <span data-en="ISO/IEC 29148 · 450+ pages" data-vi="ISO/IEC 29148 · 450+ trang">ISO/IEC 29148 · 450+ pages</span>
-      </div>
-    </div>
+  <!-- ABOUT -->
+  <section id="about" class="section">
     <div class="reveal">
-      <p class="about-body" data-en="I'm a Software Engineering student preparing to graduate in September 2026 with a strong foundation across the full SDLC — from requirements elicitation and stakeholder analysis through system modeling, database architecture, and full-stack implementation." data-vi="Tôi là sinh viên Kỹ thuật phần mềm chuẩn bị tốt nghiệp tháng 9/2026 với nền tảng vững chắc trong toàn bộ SDLC — từ thu thập yêu cầu, phân tích stakeholder đến mô hình hóa hệ thống, kiến trúc CSDL và lập trình full-stack.">
-        I'm a Software Engineering student preparing to graduate in September 2026 with a strong foundation across the full SDLC — from requirements elicitation and stakeholder analysis through system modeling, database architecture, and full-stack implementation.
-      </p>
-      <p class="about-body" data-en="During my internship at PLPSoft, I independently led end-to-end BA/SA work on an enterprise HRMS, producing 12 professional documents (~450 pages) conforming to ISO/IEC 29148 — including BRD, SRS, SDD, Database Design, API Specification, and RTM." data-vi="Trong kỳ thực tập tại PLPSoft, tôi độc lập thực hiện toàn bộ công việc BA/SA cho hệ thống HRMS doanh nghiệp, tạo ra 12 tài liệu chuyên nghiệp (~450 trang) theo chuẩn ISO/IEC 29148 — gồm BRD, SRS, SDD, Database Design, API Spec và RTM.">
-        During my internship at PLPSoft, I independently led end-to-end BA/SA work on an enterprise HRMS, producing 12 professional documents (~450 pages) conforming to ISO/IEC 29148 — including BRD, SRS, SDD, Database Design, API Specification, and RTM.
-      </p>
-      <div class="about-hl">
-        <div class="hl-item">
-          <div class="hl-label" data-en="University" data-vi="Trường">University</div>
-          <div class="hl-val">Nam Can Tho University</div>
+      <div class="eyebrow" data-en="About Me" data-vi="Về tôi">About Me</div>
+      <h2 class="section-title" data-en="Analytical mind, <em>technical depth</em>"
+        data-vi="Tư duy phân tích, <em>chiều sâu kỹ thuật</em>">Analytical mind, <em>technical depth</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-box">
+          <img src="assets/images/tailieu.png" alt="Professional profile photo of Tu Mi" />
         </div>
-        <div class="hl-item">
-          <div class="hl-label" data-en="Degree" data-vi="Bằng cấp">Degree</div>
-          <div class="hl-val" data-en="Software Engineering" data-vi="Kỹ sư phần mềm">Software Engineering</div>
-        </div>
-        <div class="hl-item">
-          <div class="hl-label" data-en="Graduation" data-vi="Tốt nghiệp">Graduation</div>
-          <div class="hl-val" data-en="September 2026" data-vi="Tháng 9, 2026">September 2026</div>
-        </div>
-        <div class="hl-item">
-          <div class="hl-label" data-en="Internship" data-vi="Thực tập">Internship</div>
-          <div class="hl-val">PLPSoft — BA / SA</div>
+        <div class="about-float">
+          <span>📄</span>
+          <span data-en="ISO/IEC 29148 · 450+ pages" data-vi="ISO/IEC 29148 · 450+ trang">ISO/IEC 29148 · 450+
+            pages</span>
         </div>
       </div>
-      <div class="goals-box">
-        <div class="goals-title" data-en="Career Goals" data-vi="Mục tiêu nghề nghiệp">Career Goals</div>
-        <ul class="goals-list">
-          <li data-en="Now: Software Engineer · Business Analyst · System Analyst" data-vi="Hiện tại: Kỹ sư PM · BA · SA">Now: Software Engineer · Business Analyst · System Analyst</li>
-          <li data-en="Future: Solution Architect · Digital Transformation Consultant" data-vi="Tương lai: Solution Architect · Tư vấn Chuyển đổi số">Future: Solution Architect · Digital Transformation Consultant</li>
-        </ul>
+      <div class="reveal">
+        <p class="about-body"
+          data-en="I'm a Software Engineering student preparing to graduate in September 2026. Throughout 4 years of training and study, I have been nominated multiple times and contributed as team leader for projects ranging from foundational to specialized courses. My strengths lie in system analysis, business analysis, requirements engineering, and full-stack development — with a particular passion for bridging business objectives and technical implementation."
+          data-vi="Tôi là sinh viên Kỹ thuật phần mềm chuẩn bị tốt nghiệp tháng 9/2026. Trong suốt 4 năm rèn luyện và học tập, tôi đã nhiều lần được đề cử và đóng góp với vai trò trưởng nhóm các dự án từ các môn cơ sở đến chuyên ngành. Thế mạnh của tôi nằm ở phân tích hệ thống, phân tích nghiệp vụ, kỹ thuật yêu cầu và lập trình full-stack — với niềm đam mê đặc biệt trong việc kết nối mục tiêu kinh doanh với triển khai kỹ thuật.">
+          I'm a Software Engineering student preparing to graduate in September 2026. Throughout 4 years of training and
+          study, I have been nominated multiple times and contributed as team leader for projects ranging from
+          foundational to specialized courses. My strengths lie in system analysis, business analysis, requirements
+          engineering, and full-stack development — with a particular passion for bridging business objectives and
+          technical implementation.
+        </p>
+        <p class="about-body"
+          data-en="During my internship at PLPSoft, I independently led end-to-end BA/SA work on an enterprise HRMS, producing 12 professional documents (~450 pages) conforming to ISO/IEC 29148 — including BRD, SRS, SDD, Database Design, API Specification, and RTM. I thrive in environments that require structured thinking, clear communication, and the ability to transform complex requirements into actionable system designs."
+          data-vi="Trong kỳ thực tập tại PLPSoft, tôi độc lập thực hiện toàn bộ công việc BA/SA cho hệ thống HRMS doanh nghiệp, tạo ra 12 tài liệu chuyên nghiệp (~450 trang) theo chuẩn ISO/IEC 29148 — gồm BRD, SRS, SDD, Database Design, API Spec và RTM. Tôi phát huy tốt nhất trong môi trường đòi hỏi tư duy có cấu trúc, giao tiếp rõ ràng và khả năng chuyển hóa yêu cầu phức tạp thành thiết kế hệ thống khả thi.">
+          During my internship at PLPSoft, I independently led end-to-end BA/SA work on an enterprise HRMS, producing 12
+          professional documents (~450 pages) conforming to ISO/IEC 29148 — including BRD, SRS, SDD, Database Design,
+          API Specification, and RTM. I thrive in environments that require structured thinking, clear communication,
+          and the ability to transform complex requirements into actionable system designs.
+        </p>
+        <div class="about-hl">
+          <div class="hl-item">
+            <div class="hl-label" data-en="University" data-vi="Trường">University</div>
+            <div class="hl-val">Nam Can Tho University · Can Tho</div>
+          </div>
+          <div class="hl-item">
+            <div class="hl-label" data-en="Degree" data-vi="Bằng cấp">Degree</div>
+            <div class="hl-val" data-en="Software Engineering" data-vi="Kỹ sư Kỹ thuật phần mềm">Software Engineering
+            </div>
+          </div>
+          <div class="hl-item">
+            <div class="hl-label" data-en="Graduation" data-vi="Tốt nghiệp">Graduation</div>
+            <div class="hl-val" data-en="September 2026" data-vi="Tháng 9, 2026">September 2026</div>
+          </div>
+          <div class="hl-item">
+            <div class="hl-label" data-en="Internship" data-vi="Thực tập">Internship</div>
+            <div class="hl-val">PLPSoft — BA / SA</div>
+          </div>
+        </div>
+        <div class="goals-box">
+          <div class="goals-title" data-en="Career Goals" data-vi="Mục tiêu nghề nghiệp">Career Goals</div>
+          <ul class="goals-list">
+            <li data-en="Now: Software Engineer · Business Analyst · System Analyst"
+              data-vi="Hiện tại: Kỹ sư PM · BA · SA">Now: Software Engineer · Business Analyst · System Analyst</li>
+            <li data-en="Future: Solution Architect · Digital Transformation Consultant"
+              data-vi="Tương lai: Solution Architect · Tư vấn Chuyển đổi số">Future: Solution Architect · Digital
+              Transformation Consultant</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SKILLS -->
+  <!-- SKILLS -->
+  <!-- SKILLS -->
 <section id="skills" class="section">
   <div class="reveal">
-    <div class="eyebrow" data-en="Core Competencies" data-vi="Năng lực cốt lõi">Core Competencies</div>
-    <h2 class="section-title" data-en="What I bring to the <em>table</em>" data-vi="Những gì tôi <em>mang lại</em>">What I bring to the <em>table</em></h2>
-    <p class="section-sub" data-en="A hybrid skill set spanning requirements engineering, system modeling, software architecture, and full-stack development." data-vi="Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.">
-      A hybrid skill set spanning requirements engineering, system modeling, software architecture, and full-stack development.
+    <div class="eyebrow" data-en="Core Competencies" data-vi="Năng lực cốt lõi">Năng lực cốt lõi</div>
+    <h2 class="section-title" data-en="What I bring to the <em>table</em>" data-vi="Những gì tôi <em>mang lại</em>">
+      Những gì tôi <em>mang lại</em></h2>
+    <p class="section-sub"
+      data-en="A hybrid skill set spanning requirements engineering, system modeling, software architecture, and full-stack development."
+      data-vi="Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.">
+      Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.
     </p>
   </div>
+  
   <div class="skills-tabs reveal">
-    <button class="stab active" data-tab="analysis" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Analysis & Design</button>
-    <button class="stab" data-tab="dev" data-en="Development" data-vi="Lập trình">Development</button>
-    <button class="stab" data-tab="db" data-en="Database" data-vi="Cơ sở dữ liệu">Database</button>
-    <button class="stab" data-tab="quality" data-en="Quality & API" data-vi="Chất lượng & API">Quality & API</button>
+    <button class="stab active" data-tab="analysis" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân tích & Thiết kế</button>
+    <button class="stab" data-tab="dev" data-en="Development" data-vi="Lập trình">Lập trình</button>
+    <button class="stab" data-tab="db" data-en="Database" data-vi="Cơ sở dữ liệu">Cơ sở dữ liệu</button>
+    <button class="stab" data-tab="quality" data-en="Quality & API" data-vi="Chất lượng & API">Chất lượng & API</button>
   </div>
+  
   <div class="skills-panels">
+    <!-- Panel 1: Analysis & Design -->
     <div class="skill-panel active" id="panel-analysis">
       <div class="sk-card reveal">
         <div class="sk-icon">📋</div>
-        <div class="sk-name" data-en="Requirements Engineering" data-vi="Kỹ thuật yêu cầu">Requirements Engineering</div>
-        <div class="sk-desc" data-en="Elicitation, analysis, and specification of business requirements following international standards." data-vi="Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.">Elicitation, analysis, and specification of business requirements following international standards.</div>
-        <div class="sk-tags"><span class="sk-tag">BRD</span><span class="sk-tag">SRS</span><span class="sk-tag">User Stories</span><span class="sk-tag">Use Cases</span><span class="sk-tag">ISO/IEC 29148</span></div>
+        <div class="sk-name" data-en="Requirements Engineering" data-vi="Kỹ thuật yêu cầu">Kỹ thuật yêu cầu</div>
+        <div class="sk-desc" data-en="Elicitation, analysis, and specification of business requirements following international standards." data-vi="Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.">Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">BRD</span>
+          <span class="sk-tag">SRS</span>
+          <span class="sk-tag">User Stories</span>
+          <span class="sk-tag">Use Cases</span>
+        </div>
+        <button class="sk-more-btn" data-skill="req-eng"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">🗺️</div>
-        <div class="sk-name" data-en="UML & System Modeling" data-vi="UML & Mô hình hóa hệ thống">UML & System Modeling</div>
-        <div class="sk-desc" data-en="Visual blueprints for complex enterprise systems using industry-standard notation." data-vi="Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.">Visual blueprints for complex enterprise systems using industry-standard notation.</div>
-        <div class="sk-tags"><span class="sk-tag">Activity Diagrams</span><span class="sk-tag">Sequence Diagrams</span><span class="sk-tag">Class Diagrams</span><span class="sk-tag">ERD</span><span class="sk-tag">DFD</span><span class="sk-tag">StarUML</span><span class="sk-tag">Draw.io</span></div>
+        <div class="sk-name" data-en="UML & System Modeling" data-vi="UML & Mô hình hóa hệ thống">UML & Mô hình hóa hệ thống</div>
+        <div class="sk-desc" data-en="Visual blueprints for complex enterprise systems using industry-standard notation." data-vi="Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.">Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Activity Diagrams</span>
+          <span class="sk-tag">Sequence</span>
+          <span class="sk-tag">Class</span>
+          <span class="sk-tag">ERD</span>
+          <span class="sk-tag">DFD</span>
+        </div>
+        <button class="sk-more-btn" data-skill="uml"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">🏛️</div>
-        <div class="sk-name" data-en="Solution & Software Design" data-vi="Thiết kế giải pháp & phần mềm">Solution & Software Design</div>
-        <div class="sk-desc" data-en="Translating requirements into scalable software architecture and enterprise solution blueprints." data-vi="Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.">Translating requirements into scalable software architecture and enterprise solution blueprints.</div>
-        <div class="sk-tags"><span class="sk-tag">SDD</span><span class="sk-tag">MVC Architecture</span><span class="sk-tag">Layered Architecture</span><span class="sk-tag">Solution Design</span><span class="sk-tag">Digital Transformation</span></div>
+        <div class="sk-name" data-en="Solution & Software Design" data-vi="Thiết kế giải pháp & phần mềm">Thiết kế giải pháp & phần mềm</div>
+        <div class="sk-desc" data-en="Translating requirements into scalable software architecture and enterprise solution blueprints." data-vi="Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.">Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">SDD</span>
+          <span class="sk-tag">MVC</span>
+          <span class="sk-tag">Layered</span>
+          <span class="sk-tag">Solution Design</span>
+        </div>
+        <button class="sk-more-btn" data-skill="solution-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
     </div>
+
+    <!-- Panel 2: Development -->
     <div class="skill-panel" id="panel-dev">
       <div class="sk-card reveal">
         <div class="sk-icon">⚙️</div>
         <div class="sk-name">C# / ASP.NET Core MVC</div>
-        <div class="sk-desc" data-en="Backend and full-stack web application development using Microsoft .NET ecosystem." data-vi="Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.">Backend and full-stack web application development using Microsoft .NET ecosystem.</div>
-        <div class="sk-tags"><span class="sk-tag">C#</span><span class="sk-tag">ASP.NET Core</span><span class="sk-tag">Entity Framework Core</span><span class="sk-tag">MVC Pattern</span></div>
+        <div class="sk-desc" data-en="Backend and full-stack web application development using Microsoft .NET ecosystem." data-vi="Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.">Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">C#</span>
+          <span class="sk-tag">ASP.NET Core</span>
+          <span class="sk-tag">EF Core</span>
+          <span class="sk-tag">MVC</span>
+        </div>
+        <button class="sk-more-btn" data-skill="csharp"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">🐍</div>
         <div class="sk-name">Python & JavaScript</div>
-        <div class="sk-desc" data-en="Scripting, automation, and frontend interactivity across multiple paradigms." data-vi="Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.">Scripting, automation, and frontend interactivity across multiple paradigms.</div>
-        <div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">JavaScript ES6+</span><span class="sk-tag">HTML5</span><span class="sk-tag">CSS3</span></div>
+        <div class="sk-desc" data-en="Scripting, automation, and frontend interactivity across multiple paradigms." data-vi="Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.">Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Python</span>
+          <span class="sk-tag">JavaScript</span>
+          <span class="sk-tag">HTML5</span>
+          <span class="sk-tag">CSS3</span>
+        </div>
+        <button class="sk-more-btn" data-skill="python-js"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">🔧</div>
-        <div class="sk-name" data-en="Dev Tools & Workflow" data-vi="Công cụ phát triển">Dev Tools & Workflow</div>
-        <div class="sk-desc" data-en="Professional development environment and version control practices." data-vi="Môi trường phát triển chuyên nghiệp và quản lý phiên bản.">Professional development environment and version control practices.</div>
-        <div class="sk-tags"><span class="sk-tag">Git & GitHub</span><span class="sk-tag">Visual Studio</span><span class="sk-tag">VS Code</span><span class="sk-tag">Vercel</span></div>
+        <div class="sk-name" data-en="Dev Tools & Workflow" data-vi="Công cụ phát triển">Công cụ phát triển</div>
+        <div class="sk-desc" data-en="Professional development environment and version control practices." data-vi="Môi trường phát triển chuyên nghiệp và quản lý phiên bản.">Môi trường phát triển chuyên nghiệp và quản lý phiên bản.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Git</span>
+          <span class="sk-tag">GitHub</span>
+          <span class="sk-tag">VS Code</span>
+          <span class="sk-tag">Vercel</span>
+        </div>
+        <button class="sk-more-btn" data-skill="dev-tools"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
     </div>
+
+    <!-- Panel 3: Database -->
     <div class="skill-panel" id="panel-db">
       <div class="sk-card reveal">
         <div class="sk-icon">🗄️</div>
-        <div class="sk-name" data-en="Database Design & Modeling" data-vi="Thiết kế & mô hình CSDL">Database Design & Modeling</div>
-        <div class="sk-desc" data-en="Normalized, performant relational database architectures for enterprise systems." data-vi="Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.">Normalized, performant relational database architectures for enterprise systems.</div>
-        <div class="sk-tags"><span class="sk-tag">SQL Server</span><span class="sk-tag">MySQL</span><span class="sk-tag">Database Normalization</span><span class="sk-tag">29 Tables Designed</span></div>
+        <div class="sk-name" data-en="Database Design & Modeling" data-vi="Thiết kế & mô hình CSDL">Thiết kế & mô hình CSDL</div>
+        <div class="sk-desc" data-en="Normalized, performant relational database architectures for enterprise systems." data-vi="Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.">Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">SQL Server</span>
+          <span class="sk-tag">MySQL</span>
+          <span class="sk-tag">Normalization</span>
+          <span class="sk-tag">29 Tables</span>
+        </div>
+        <button class="sk-more-btn" data-skill="db-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">🔍</div>
-        <div class="sk-name" data-en="Data Modeling & ERD" data-vi="Mô hình hóa dữ liệu & ERD">Data Modeling & ERD</div>
-        <div class="sk-desc" data-en="Entity-relationship modeling and data flow analysis for complex business domains." data-vi="Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.">Entity-relationship modeling and data flow analysis for complex business domains.</div>
-        <div class="sk-tags"><span class="sk-tag">ERD Design</span><span class="sk-tag">Entity Framework Core</span><span class="sk-tag">Query Optimization</span><span class="sk-tag">Data Modeling</span></div>
+        <div class="sk-name" data-en="Data Modeling & ERD" data-vi="Mô hình hóa dữ liệu & ERD">Mô hình hóa dữ liệu & ERD</div>
+        <div class="sk-desc" data-en="Entity-relationship modeling and data flow analysis for complex business domains." data-vi="Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.">Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">ERD</span>
+          <span class="sk-tag">EF Core</span>
+          <span class="sk-tag">Query Optimization</span>
+        </div>
+        <button class="sk-more-btn" data-skill="data-modeling"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
     </div>
+
+    <!-- Panel 4: Quality & API -->
     <div class="skill-panel" id="panel-quality">
       <div class="sk-card reveal">
         <div class="sk-icon">🔌</div>
-        <div class="sk-name" data-en="API Design & Documentation" data-vi="Thiết kế & tài liệu API">API Design & Documentation</div>
-        <div class="sk-desc" data-en="RESTful API specification and testing — 66 endpoints documented across HRMS project." data-vi="Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.">RESTful API specification and testing — 66 endpoints documented across HRMS project.</div>
-        <div class="sk-tags"><span class="sk-tag">REST API Spec</span><span class="sk-tag">Postman</span><span class="sk-tag">66 Endpoints</span><span class="sk-tag">Figma</span></div>
+        <div class="sk-name" data-en="API Design & Documentation" data-vi="Thiết kế & tài liệu API">Thiết kế & tài liệu API</div>
+        <div class="sk-desc" data-en="RESTful API specification and testing — 66 endpoints documented across HRMS project." data-vi="Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.">Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">REST API</span>
+          <span class="sk-tag">Postman</span>
+          <span class="sk-tag">66 Endpoints</span>
+          <span class="sk-tag">Figma</span>
+        </div>
+        <button class="sk-more-btn" data-skill="api-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
+
       <div class="sk-card reveal">
         <div class="sk-icon">✅</div>
-        <div class="sk-name" data-en="Software Testing & QA" data-vi="Kiểm thử & Đảm bảo chất lượng">Software Testing & QA</div>
-        <div class="sk-desc" data-en="Test case design, requirement traceability, and systematic quality assurance." data-vi="Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.">Test case design, requirement traceability, and systematic quality assurance.</div>
-        <div class="sk-tags"><span class="sk-tag">51 Test Cases</span><span class="sk-tag">RTM</span><span class="sk-tag">Software Testing</span><span class="sk-tag">QA Documentation</span></div>
+        <div class="sk-name" data-en="Software Testing & QA" data-vi="Kiểm thử & Đảm bảo chất lượng">Kiểm thử & Đảm bảo chất lượng</div>
+        <div class="sk-desc" data-en="Test case design, requirement traceability, and systematic quality assurance." data-vi="Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.">Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">51 Test Cases</span>
+          <span class="sk-tag">RTM</span>
+          <span class="sk-tag">QA</span>
+        </div>
+        <button class="sk-more-btn" data-skill="qa"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
       </div>
     </div>
   </div>
+
   <div class="tools-strip reveal">
-    <span class="tools-label-txt" data-en="Tools" data-vi="Công cụ">Tools</span>
+    <span class="tools-label-txt" data-en="Tools" data-vi="Công cụ">Công cụ</span>
     <div class="tools-chips">
-      <span class="t-chip">Visual Studio</span><span class="t-chip">VS Code</span><span class="t-chip">Git</span>
-      <span class="t-chip">GitHub</span><span class="t-chip">Postman</span><span class="t-chip">Figma</span>
-      <span class="t-chip">Draw.io</span><span class="t-chip">StarUML</span><span class="t-chip">SQL Server</span>
+      <span class="t-chip">Visual Studio</span>
+      <span class="t-chip">VS Code</span>
+      <span class="t-chip">Git</span>
+      <span class="t-chip">GitHub</span>
+      <span class="t-chip">Postman</span>
+      <span class="t-chip">Figma</span>
+      <span class="t-chip">Draw.io</span>
+      <span class="t-chip">StarUML</span>
+      <span class="t-chip">SQL Server</span>
       <span class="t-chip">Vercel</span>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ── SKILL POPUP ── -->
+<div class="skill-popup-overlay" id="skillPopup">
+  <div class="skill-popup">
+    
+    <!-- Header -->
+    <div class="skill-popup-header">
+      <div class="header-top">
+        <div class="header-icon" id="popupIcon">📋</div>
+        <h3 id="popupTabTitle" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân tích & Thiết kế</h3>
+        <span class="header-badge" id="popupCount">3 skills</span>
+        
+        <!-- Nhóm nút bên phải: < > X -->
+        <div class="header-right-group">
+          <button class="header-nav-btn" id="navPrev" title="Previous category">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="header-nav-btn" id="navNext" title="Next category">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button class="skill-popup-close" id="popupClose" title="Close">✕</button>
+        </div>
+      </div>
+      <p data-en="Select a skill to explore detailed documentation and learning resources" data-vi="Chọn một kỹ năng để khám phá tài liệu chi tiết và tài nguyên học tập">Chọn một kỹ năng để khám phá tài liệu chi tiết và tài nguyên học tập</p>
+    </div>
+    
+    <!-- Body 2 cột -->
+    <div class="skill-popup-body">
+      <!-- Cột trái: Danh sách kỹ năng -->
+      <div class="skill-popup-sidebar" id="popupSidebar">
+        <div class="sidebar-title" data-en="Skills in this category" data-vi="Kỹ năng trong danh mục">Kỹ năng trong danh mục</div>
+        <!-- Được tạo động bằng JS -->
+      </div>
+      
+      <!-- Cột phải: Chi tiết -->
+      <div class="skill-popup-content" id="popupContent">
+        <div id="popupDetail">
+          <!-- Được tạo động bằng JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="reveal">
-    <div class="eyebrow" data-en="Project Portfolio" data-vi="Danh mục dự án">Project Portfolio</div>
-    <h2 class="section-title" data-en="Work that demonstrates <em>depth</em>" data-vi="Dự án thể hiện <em>chiều sâu</em>">Work that demonstrates <em>depth</em></h2>
-    <p class="section-sub" data-en="From enterprise-level system analysis to production full-stack applications — each project reflects real-world problem solving." data-vi="Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.">
-      From enterprise-level system analysis to production full-stack applications — each project reflects real-world problem solving.
+    <div class="eyebrow" data-en="Project Portfolio" data-vi="Danh mục dự án">Danh mục dự án</div>
+    <h2 class="section-title" data-en="Work that demonstrates <em>depth</em>"
+      data-vi="Dự án thể hiện <em>chiều sâu</em>">Dự án thể hiện <em>chiều sâu</em></h2>
+    <p class="section-sub"
+      data-en="From enterprise-level system analysis to production full-stack applications — each project reflects real-world problem solving."
+      data-vi="Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.">
+      Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.
     </p>
   </div>
   <div class="projects-grid">
 
-    <div class="proj-card featured reveal">
-      <div class="proj-head">
-        <div class="proj-ico ico-blue">🏢</div>
-        <span class="feat-badge" data-en="★ Featured" data-vi="★ Nổi bật">★ Featured</span>
-      </div>
-      <div class="proj-body">
-        <h3 class="proj-title" data-en="Human Resource Management System" data-vi="Hệ thống Quản lý Nhân sự">Human Resource Management System</h3>
-        <p class="proj-role">Business Analyst &amp; System Analyst · Enterprise HRMS</p>
-        <p class="proj-desc" data-en="Led end-to-end BA/SA for an enterprise HRMS covering the full employee lifecycle — profiles, contracts, leave, recruitment, training, performance evaluation, and audit logs. Produced 12 ISO/IEC 29148-compliant documents independently during internship at PLPSoft." data-vi="Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.">
-          Led end-to-end BA/SA for an enterprise HRMS covering the full employee lifecycle — profiles, contracts, leave, recruitment, training, performance evaluation, and audit logs. Produced 12 ISO/IEC 29148-compliant documents independently during internship at PLPSoft.
-        </p>
-        <div class="proj-metrics">
-          <span class="metric">12 Documents</span><span class="metric">450+ Pages</span>
-          <span class="metric">21 FRs</span><span class="metric">6 NFRs</span>
-          <span class="metric">66 API Endpoints</span><span class="metric">29 DB Tables</span>
-          <span class="metric">51 Test Cases</span>
-        </div>
-        <div class="hc-tags">
-          <span class="chip chip-blue">BRD / SRS / SDD</span>
-          <span class="chip chip-violet">UML</span>
-          <span class="chip chip-muted">ERD · DFD</span>
-          <span class="chip chip-blue">API Spec</span>
-          <span class="chip chip-violet">RTM</span>
-        </div>
-      </div>
-      <div class="proj-foot">
-        <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank" class="plink" data-en="Case Study →" data-vi="Xem chi tiết →">Case Study →</a>
-        <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank" class="plink plink-m" data-en="GitHub" data-vi="GitHub">GitHub</a>
-      </div>
+    <!-- Project 1: HRMS -->
+<div class="proj-card featured reveal">
+  <div class="proj-head">
+    <span class="feat-badge" data-en="★ Featured" data-vi="★ Nổi bật">★ Nổi bật</span>
+  </div>
+  <div class="proj-body">
+    <div class="proj-image">
+      <a href="projects/nhan-su.html">
+        <img src="assets/images/HRMS.png" alt="HRMS System" />
+      </a>
     </div>
+    
+    <!-- Tiêu đề dự án có link -->
+    <h3 class="proj-title">
+      <a href="projects/nhan-su.html" data-en="Human Resource Management System" data-vi="Hệ thống Quản lý Nhân sự" style="color:inherit;text-decoration:none;">Hệ thống Quản lý Nhân sự</a>
+    </h3>
+    
+    <!-- Tên dự án + thời gian -->
+    <p class="proj-subtitle">
+      <span data-en="HRMS Enterprise Project" data-vi="Dự án HRMS Doanh nghiệp">Dự án HRMS Doanh nghiệp</span>
+      <span> · </span>
+      <span data-en="2026" data-vi="2026">2026</span>
+    </p>
+    
+    <!-- Vai trò -->
+    <p class="proj-role" data-en="Business Analyst & System Analyst" data-vi="Business Analyst & System Analyst">Business Analyst & System Analyst</p>
+    
+    <!-- Mô tả -->
+    <p class="proj-desc"
+      data-en="Led end-to-end BA/SA for an enterprise HRMS covering the full employee lifecycle — profiles, contracts, leave, recruitment, training, performance evaluation, and audit logs. Produced 12 ISO/IEC 29148-compliant documents independently during internship at PLPSoft."
+      data-vi="Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.">
+      Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.
+    </p>
+    
+    <!-- Metrics -->
+    <div class="proj-metrics">
+      <span class="metric">12 Documents</span>
+      <span class="metric">450+ Pages</span>
+      <span class="metric">66 APIs</span>
+      <span class="metric">29 Tables</span>
+      <span class="metric">51 Test Cases</span>
+    </div>
+    
+    <!-- Công cụ sử dụng -->
+    <div class="proj-tools">
+      <span class="tool-tag primary">BRD / SRS / SDD</span>
+      <span class="tool-tag violet">UML</span>
+      <span class="tool-tag">ERD · DFD</span>
+      <span class="tool-tag primary">API Spec</span>
+      <span class="tool-tag violet">RTM</span>
+    </div>
+  </div>
+  
+  <!-- Liên kết / Minh chứng -->
+  <div class="proj-foot">
+    <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank" class="plink"
+      data-en="Demo →" data-vi="Demo →">Demo →</a>
+    <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank"
+      class="plink plink-m">GitHub</a>
+    <a href="https://drive.google.com/drive/folders/1P4ubwN8tDjhNaK0U7ZUKrxXAKQ5Mq-Zd?usp=drive_link" target="_blank"
+      class="plink plink-m" data-en="Documentation" data-vi="Tài liệu">Tài liệu</a>
+  </div>
+</div>
 
-    <div class="proj-card reveal">
-      <div class="proj-head">
-        <div class="proj-ico ico-violet">🦷</div>
-      </div>
-      <div class="proj-body">
-        <h3 class="proj-title" data-en="Dental Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám Nha khoa">Dental Clinic Management System</h3>
-        <p class="proj-role">Software Engineer · Full-Stack Web Application</p>
-        <p class="proj-desc" data-en="Designed and built a complete clinic management system — patients, doctors, appointments, treatment records, billing, and multi-role authentication — from database design through to live deployment." data-vi="Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.">
-          Designed and built a complete clinic management system — patients, doctors, appointments, treatment records, billing, and multi-role authentication — from database design through to live deployment.
-        </p>
-        <div class="proj-metrics">
-          <span class="metric">4 User Roles</span><span class="metric">Full-Stack</span><span class="metric">Live Demo</span>
-        </div>
-        <div class="hc-tags">
-          <span class="chip chip-blue">C# / ASP.NET Core MVC</span>
-          <span class="chip chip-violet">SQL Server · EF Core</span>
-          <span class="chip chip-muted">JavaScript</span>
-        </div>
-      </div>
-      <div class="proj-foot">
-        <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank" class="plink" data-en="Live Demo →" data-vi="Xem demo →">Live Demo →</a>
-        <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="plink plink-m">GitHub</a>
-      </div>
+<!-- Project 2: Nha khoa -->
+<div class="proj-card reveal">
+  <div class="proj-head"></div>
+  <div class="proj-body">
+    <div class="proj-image">
+      <a href="projects/nha-khoa.html">
+        <img src="assets/images/NHAKHOA.png" alt="Dental Clinic System" />
+      </a>
     </div>
+    
+    <h3 class="proj-title">
+      <a href="projects/nha-khoa.html" data-en="Dental Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám Nha khoa" style="color:inherit;text-decoration:none;">Hệ thống Quản lý Phòng khám Nha khoa</a>
+    </h3>
+    
+    <p class="proj-subtitle">
+      <span data-en="Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám">Hệ thống Quản lý Phòng khám</span>
+      <span> · </span>
+      <span data-en="2025" data-vi="2025">2025</span>
+    </p>
+    
+    <p class="proj-role" data-en="Full-Stack Developer" data-vi="Full-Stack Developer">Full-Stack Developer</p>
+    
+    <p class="proj-desc"
+      data-en="Designed and built a complete clinic management system — patients, doctors, appointments, treatment records, billing, and multi-role authentication — from database design through to live deployment."
+      data-vi="Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.">
+      Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.
+    </p>
+    
+    <div class="proj-metrics">
+      <span class="metric">4 User Roles</span>
+      <span class="metric">Full-Stack</span>
+      <span class="metric">Live Demo</span>
+    </div>
+    
+    <div class="proj-tools">
+      <span class="tool-tag primary">C# / ASP.NET Core MVC</span>
+      <span class="tool-tag violet">SQL Server · EF Core</span>
+      <span class="tool-tag">JavaScript</span>
+    </div>
+  </div>
+  <div class="proj-foot">
+    <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank" class="plink" data-en="Demo →"
+      data-vi="Demo →">Demo →</a>
+    <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="plink plink-m">GitHub</a>
+  </div>
+</div>
 
-    <div class="proj-card reveal">
-      <div class="proj-head">
-        <div class="proj-ico ico-muted">🛍️</div>
-      </div>
-      <div class="proj-body">
-        <h3 class="proj-title" data-en="E-Commerce Website" data-vi="Website Thương mại điện tử">E-Commerce Website</h3>
-        <p class="proj-role">Web Developer · Frontend Application</p>
-        <p class="proj-desc" data-en="Responsive online shopping interface with product management, shopping cart, order processing, and UX-optimized design." data-vi="Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.">
-          Responsive online shopping interface with product management, shopping cart, order processing, and UX-optimized design.
-        </p>
-        <div class="proj-metrics"><span class="metric">Responsive</span><span class="metric">UX Optimized</span></div>
-        <div class="hc-tags">
-          <span class="chip chip-muted">HTML5</span>
-          <span class="chip chip-muted">CSS3</span>
-          <span class="chip chip-muted">JavaScript</span>
-        </div>
-      </div>
-      <div class="proj-foot">
-        <span class="plink plink-m" data-en="Portfolio Project" data-vi="Dự án học thuật">Portfolio Project</span>
-      </div>
+<!-- Project 3: Bán hàng -->
+<div class="proj-card reveal">
+  <div class="proj-head"></div>
+  <div class="proj-body">
+    <div class="proj-image">
+      <a href="projects/ban-hang.html">
+        <img src="assets/images/BANHANG.png" alt="E-Commerce Website" />
+      </a>
     </div>
+    
+    <h3 class="proj-title">
+      <a href="projects/ban-hang.html" data-en="E-Commerce Website" data-vi="Website Thương mại điện tử" style="color:inherit;text-decoration:none;">Website Thương mại điện tử</a>
+    </h3>
+    
+    <p class="proj-subtitle">
+      <span data-en="Online Shopping Platform" data-vi="Nền tảng Mua sắm Trực tuyến">Nền tảng Mua sắm Trực tuyến</span>
+      <span> · </span>
+      <span data-en="2025" data-vi="2025">2025</span>
+    </p>
+    
+    <p class="proj-role" data-en="Web Developer" data-vi="Lập trình Web">Lập trình Web</p>
+    
+    <p class="proj-desc"
+      data-en="Responsive online shopping interface with product management, shopping cart, order processing, and UX-optimized design."
+      data-vi="Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.">
+      Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.
+    </p>
+    
+    <div class="proj-metrics">
+      <span class="metric">Responsive</span>
+      <span class="metric">UX Optimized</span>
+    </div>
+    
+    <div class="proj-tools">
+      <span class="tool-tag">HTML5</span>
+      <span class="tool-tag">CSS3</span>
+      <span class="tool-tag">JavaScript</span>
+    </div>
+  </div>
+  <div class="proj-foot">
+    <a href="https://thaisonmobile.id.vn/" target="_blank" class="plink" data-en="Demo →" data-vi="Demo →">Demo →</a>
+    <a href="https://github.com/LttuMi204" target="_blank" class="plink plink-m">GitHub</a>
+  </div>
+</div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section">
-  <div class="reveal">
-    <div class="eyebrow" data-en="Background" data-vi="Nền tảng">Background</div>
-    <h2 class="section-title" data-en="Experience & <em>Credentials</em>" data-vi="Kinh nghiệm & <em>Bằng cấp</em>">Experience & <em>Credentials</em></h2>
-    <p class="section-sub" data-en="Academic formation, hands-on industry internship, and professional certifications — all demonstrating readiness for enterprise environments." data-vi="Đào tạo học thuật, thực tập thực tiễn và chứng chỉ chuyên nghiệp — thể hiện sự sẵn sàng cho môi trường doanh nghiệp.">
-      Academic formation, hands-on industry internship, and professional certifications — all demonstrating readiness for enterprise environments.
-    </p>
-  </div>
-  <div class="exp-grid">
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-<div class="tl-period" data-en="2025 — Internship" data-vi="2025 — Thực tập">2025 — Internship</div>
-        <div class="tl-title" data-en="Business Analyst & System Analyst" data-vi="Phân tích nghiệp vụ & Phân tích hệ thống">Business Analyst & System Analyst</div>
-        <div class="tl-org">PLPSoft · Phúc Lâm Phương Software Technology Co., Ltd. · Vinh Long</div>
-        <ul class="tl-desc">
-          <li data-en="Independently led end-to-end BA/SA on enterprise HRMS" data-vi="Độc lập thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp">Independently led end-to-end BA/SA on enterprise HRMS</li>
-          <li data-en="Produced 12 documents (~450 pages) per ISO/IEC 29148" data-vi="Tạo ra 12 tài liệu (~450 trang) theo chuẩn ISO/IEC 29148">Produced 12 documents (~450 pages) per ISO/IEC 29148</li>
-          <li data-en="Designed 29-table database, 66 API endpoints, 51 test cases" data-vi="Thiết kế CSDL 29 bảng, 66 API endpoints, 51 test cases">Designed 29-table database, 66 API endpoints, 51 test cases</li>
-          <li data-en="Supervised by MSc. Võ Văn Phúc, Director of PLPSoft" data-vi="Dưới sự hướng dẫn của ThS. Võ Văn Phúc, Giám đốc PLPSoft">Supervised by MSc. Võ Văn Phúc, Director of PLPSoft</li>
-        </ul>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-<div class="tl-period" data-en="2022 — 2026" data-vi="2022 — 2026">2022 — 2026</div>
-<div class="tl-title" data-en="Software Engineering Student" data-vi="Sinh viên Kỹ thuật phần mềm">Software Engineering Student</div>
-        <div class="tl-org" data-en="Nam Can Tho University · Can Tho" data-vi="Trường ĐH Nam Cần Thơ · Cần Thơ">Nam Can Tho University · Can Tho</div>
-        <ul class="tl-desc">
-          <li data-en="SDLC, Software Architecture, System Analysis & Design" data-vi="SDLC, Kiến trúc phần mềm, Phân tích & thiết kế hệ thống">SDLC, Software Architecture, System Analysis & Design</li>
-          <li data-en="Database Systems, UML Modeling, IT Project Management" data-vi="Hệ cơ sở dữ liệu, Mô hình UML, Quản lý dự án CNTT">Database Systems, UML Modeling, IT Project Management</li>
-          <li data-en=".NET Web Development, Digital Transformation" data-vi="Lập trình Web .NET, Chuyển đổi số">.NET Web Development, Digital Transformation</li>
-          <li data-en="Graduation: September 2026" data-vi="Tốt nghiệp: Tháng 9, 2026">Graduation: September 2026</li>
-        </ul>
-      </div>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="reveal">
+      <div class="eyebrow" data-en="Background" data-vi="Nền tảng">Background</div>
+      <h2 class="section-title" data-en="Experience & <em>Credentials</em>" data-vi="Kinh nghiệm & <em>Bằng cấp</em>">
+        Experience & <em>Credentials</em></h2>
+      <p class="section-sub"
+        data-en="Academic formation, hands-on industry internship, and professional certifications — all demonstrating readiness for enterprise environments."
+        data-vi="Đào tạo học thuật, thực tập thực tiễn và chứng chỉ chuyên nghiệp — thể hiện sự sẵn sàng cho môi trường doanh nghiệp.">
+        Academic formation, hands-on industry internship, and professional certifications — all demonstrating readiness
+        for enterprise environments.
+      </p>
     </div>
-    <div class="exp-right reveal">
-      <div class="cert-card">
-        <div class="cert-ico">🌐</div>
-        <div>
-          <div class="cert-title" data-en="English B1 Certificate" data-vi="Chứng chỉ Tiếng Anh B1">English B1 Certificate</div>
-          <div class="cert-meta" data-en="Issued March 2024 · CEFR Level B1" data-vi="Cấp tháng 3/2024 · CEFR Bậc B1">Issued March 2024 · CEFR Level B1</div>
+    <div class="exp-grid">
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period" data-en="2026 — Internship" data-vi="2026 — Thực tập">2026 — Internship</div>
+          <div class="tl-title" data-en="Business Analyst & System Analyst"
+            data-vi="Phân tích nghiệp vụ & Phân tích hệ thống">Business Analyst & System Analyst</div>
+          <div class="tl-org">PLPSoft · Phúc Lâm Phương Software Technology Co., Ltd. · Vinh Long</div>
+          <ul class="tl-desc">
+            <li data-en="Independently led end-to-end BA/SA on enterprise HRMS"
+              data-vi="Độc lập thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp">Independently led end-to-end BA/SA on
+              enterprise HRMS</li>
+            <li data-en="Produced 12 documents (~450 pages) per ISO/IEC 29148"
+              data-vi="Tạo ra 12 tài liệu (~450 trang) theo chuẩn ISO/IEC 29148">Produced 12 documents (~450 pages) per
+              ISO/IEC 29148</li>
+            <li data-en="Designed 29-table database, 66 API endpoints, 51 test cases"
+              data-vi="Thiết kế CSDL 29 bảng, 66 API endpoints, 51 test cases">Designed 29-table database, 66 API
+              endpoints, 51 test cases</li>
+            <li data-en="Supervised by MSc. Võ Văn Phúc, Director of PLPSoft"
+              data-vi="Dưới sự hướng dẫn của ThS. Võ Văn Phúc, Giám đốc PLPSoft">Supervised by MSc. Võ Văn Phúc,
+              Director of PLPSoft</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period" data-en="2022 — 2026" data-vi="2022 — 2026">2022 — 2026</div>
+          <div class="tl-title" data-en="Software Engineering Student" data-vi="Sinh viên Kỹ thuật phần mềm">Software
+            Engineering Student</div>
+          <div class="tl-org" data-en="Nam Can Tho University · Can Tho" data-vi="Trường ĐH Nam Cần Thơ · Cần Thơ">Nam
+            Can Tho University · Can Tho</div>
+          <ul class="tl-desc">
+            <li data-en="SDLC, Software Architecture, System Analysis & Design"
+              data-vi="SDLC, Kiến trúc phần mềm, Phân tích & thiết kế hệ thống">SDLC, Software Architecture, System
+              Analysis & Design</li>
+            <li data-en="Database Systems, UML Modeling, IT Project Management"
+              data-vi="Hệ cơ sở dữ liệu, Mô hình UML, Quản lý dự án CNTT">Database Systems, UML Modeling, IT Project
+              Management</li>
+            <li data-en=".NET Web Development, Digital Transformation" data-vi="Lập trình Web .NET, Chuyển đổi số">.NET
+              Web Development, Digital Transformation</li>
+            <li data-en="Graduation: September 2026" data-vi="Tốt nghiệp: Tháng 9, 2026">Graduation: September 2026</li>
+          </ul>
         </div>
       </div>
-      <div class="cert-card">
-        <div class="cert-ico">💻</div>
-        <div>
-          <div class="cert-title" data-en="Advanced Computer Skills Certificate" data-vi="Chứng chỉ Tin học Nâng cao">Advanced Computer Skills Certificate</div>
-          <div class="cert-meta" data-en="Issued August 2024" data-vi="Cấp tháng 8/2024">Issued August 2024</div>
+      <div class="exp-right reveal">
+        <div class="cert-card">
+          <div class="cert-ico">🌐</div>
+          <div>
+            <div class="cert-title" data-en="English B1 Certificate" data-vi="Chứng chỉ Tiếng Anh B1">English B1
+              Certificate</div>
+            <div class="cert-meta" data-en="Issued March 2024 · CEFR Level B1" data-vi="Cấp tháng 3/2024 · CEFR Bậc B1">
+              Issued March 2024 · CEFR Level B1</div>
+          </div>
         </div>
-      </div>
-      <div class="ref-card">
-        <div class="ref-av">VP</div>
-        <div>
-          <div class="ref-name">MSc. Võ Văn Phúc</div>
-          <div class="ref-role" data-en="Director, PLPSoft · Vice Head, Dept. of Computer Networks & Data Communications, Nam Can Tho University · 0909.141.661" data-vi="Giám đốc PLPSoft · Phó trưởng Khoa Mạng máy tính & TT Dữ liệu, ĐH Nam Cần Thơ · 0909.141.661">
-            Director, PLPSoft · Vice Head, Dept. of Computer Networks & Data Communications, Nam Can Tho University · 0909.141.661
+        <div class="cert-card">
+          <div class="cert-ico">💻</div>
+          <div>
+            <div class="cert-title" data-en="Advanced Computer Skills Certificate" data-vi="Chứng chỉ Tin học Nâng cao">
+              Advanced Computer Skills Certificate</div>
+            <div class="cert-meta" data-en="Issued August 2024" data-vi="Cấp tháng 8/2024">Issued August 2024</div>
+          </div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-av">VP</div>
+          <div>
+            <div class="ref-name">MSc. Võ Văn Phúc</div>
+            <div class="ref-role"
+              data-en="Director, PLPSoft · Vice Head, Dept. of Computer Networks & Data Communications, Nam Can Tho University · 0909.141.661"
+              data-vi="Giám đốc PLPSoft · Phó trưởng Khoa Mạng máy tính & TT Dữ liệu, ĐH Nam Cần Thơ · 0909.141.661">
+              Director, PLPSoft · Vice Head, Dept. of Computer Networks & Data Communications, Nam Can Tho University ·
+              0909.141.661
+            </div>
+          </div>
+        </div>
+        <div class="differentiators">
+          <div class="diff-title" data-en="What Sets Me Apart" data-vi="Điểm khác biệt">What Sets Me Apart</div>
+          <div class="diff-list">
+            <div class="diff-item"><span class="diff-num">01</span><span
+                data-en="ISO/IEC 29148-compliant documentation as a fresher — rare in fresh graduates"
+                data-vi="Tài liệu chuẩn ISO/IEC 29148 ngay khi mới ra trường — hiếm gặp ở sinh viên">ISO/IEC
+                29148-compliant documentation as a fresher — rare in fresh graduates</span></div>
+            <div class="diff-item"><span class="diff-num">02</span><span
+                data-en="Dual BA/SA + full-stack development capability in one profile"
+                data-vi="Kết hợp BA/SA và lập trình full-stack trong một hồ sơ">Dual BA/SA + full-stack development
+                capability in one profile</span></div>
+            <div class="diff-item"><span class="diff-num">03</span><span
+                data-en="Measurable enterprise output: 450+ pages, 66 APIs, 51 test cases"
+                data-vi="Đầu ra doanh nghiệp đo lường được: 450+ trang, 66 APIs, 51 test cases">Measurable enterprise
+                output: 450+ pages, 66 APIs, 51 test cases</span></div>
+            <div class="diff-item"><span class="diff-num">04</span><span
+                data-en="Clear growth trajectory toward Solution Architecture & consulting"
+                data-vi="Lộ trình rõ ràng hướng đến Solution Architecture & tư vấn">Clear growth trajectory toward
+                Solution Architecture & consulting</span></div>
           </div>
         </div>
       </div>
-      <div class="differentiators">
-        <div class="diff-title" data-en="What Sets Me Apart" data-vi="Điểm khác biệt">What Sets Me Apart</div>
-        <div class="diff-list">
-          <div class="diff-item"><span class="diff-num">01</span><span data-en="ISO/IEC 29148-compliant documentation as a fresher — rare in fresh graduates" data-vi="Tài liệu chuẩn ISO/IEC 29148 ngay khi mới ra trường — hiếm gặp ở sinh viên">ISO/IEC 29148-compliant documentation as a fresher — rare in fresh graduates</span></div>
-          <div class="diff-item"><span class="diff-num">02</span><span data-en="Dual BA/SA + full-stack development capability in one profile" data-vi="Kết hợp BA/SA và lập trình full-stack trong một hồ sơ">Dual BA/SA + full-stack development capability in one profile</span></div>
-          <div class="diff-item"><span class="diff-num">03</span><span data-en="Measurable enterprise output: 450+ pages, 66 APIs, 51 test cases" data-vi="Đầu ra doanh nghiệp đo lường được: 450+ trang, 66 APIs, 51 test cases">Measurable enterprise output: 450+ pages, 66 APIs, 51 test cases</span></div>
-          <div class="diff-item"><span class="diff-num">04</span><span data-en="Clear growth trajectory toward Solution Architecture & consulting" data-vi="Lộ trình rõ ràng hướng đến Solution Architecture & tư vấn">Clear growth trajectory toward Solution Architecture & consulting</span></div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT FORM -->
+  <section id="contact" class="section">
+    <div class="cta-inner reveal">
+      <div class="eyebrow" style="justify-content:center" data-en="Let's Connect" data-vi="Hãy kết nối">Let's Connect
+      </div>
+      <h2 class="section-title" data-en="Ready to contribute <em>from day one</em>"
+        data-vi="Sẵn sàng đóng góp <em>ngay từ ngày đầu</em>">Ready to contribute <em>from day one</em></h2>
+      <p class="section-sub"
+        data-en="I'm actively seeking Fresher BA, System Analyst, or Software Engineer roles where structured thinking meets real business impact. Let's talk about how I can contribute to your team."
+        data-vi="Tôi đang tìm kiếm vị trí Fresher BA, System Analyst hoặc Software Engineer nơi tư duy có cấu trúc tạo ra tác động kinh doanh thực sự. Hãy cùng trao đổi về cách tôi có thể đóng góp cho đội ngũ của bạn.">
+        I'm actively seeking Fresher BA, System Analyst, or Software Engineer roles where structured thinking meets real
+        business impact. Let's talk about how I can contribute to your team.
+      </p>
+
+      <!-- FORM LIÊN HỆ -->
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/tusmile.joy@gmail.com" method="POST">
+        <!-- Ẩn redirect để xử lý bằng JS -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="#">
+
+        <div class="form-group">
+          <label for="senderName" data-en="Your Name" data-vi="Họ và tên">Họ và tên <span style="color:var(--accent)">*</span></label>
+          <input type="text" id="senderName" name="name" placeholder="Nguyễn Văn A" required>
+          <div class="form-error" id="nameError" data-en="Please enter your name" data-vi="Vui lòng nhập họ tên">Vui lòng nhập họ tên</div>
         </div>
+
+        <div class="form-group">
+          <label for="senderEmail" data-en="Your Email" data-vi="Email của bạn">Email của bạn <span style="color:var(--accent)">*</span></label>
+          <input type="email" id="senderEmail" name="email" placeholder="your@email.com" required>
+          <div class="form-error" id="emailError" data-en="Please enter a valid email" data-vi="Vui lòng nhập email hợp lệ">Vui lòng nhập email hợp lệ</div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject" data-en="Subject" data-vi="Tiêu đề">Tiêu đề</label>
+          <input type="text" id="subject" name="subject" placeholder="Về cơ hội việc làm...">
+        </div>
+
+        <div class="form-group">
+          <label for="message" data-en="Message" data-vi="Nội dung">Nội dung <span style="color:var(--accent)">*</span></label>
+          <textarea id="message" name="message" placeholder="Xin chào, tôi là..." required></textarea>
+          <div class="form-error" id="messageError" data-en="Please enter your message" data-vi="Vui lòng nhập nội dung">Vui lòng nhập nội dung</div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <i class="fas fa-paper-plane"></i>
+          <span data-en="Send Message" data-vi="Gửi tin nhắn">Gửi tin nhắn</span>
+        </button>
+
+        <div class="form-success" id="formSuccess">
+          <h3>🎉 Cảm ơn bạn đã liên hệ!</h3>
+          <p data-en="Your message has been sent successfully. I will respond within 24 hours." data-vi="Tin nhắn của bạn đã được gửi thành công. Tôi sẽ phản hồi trong vòng 24 giờ.">
+            Tin nhắn của bạn đã được gửi thành công. Tôi sẽ phản hồi trong vòng 24 giờ.
+          </p>
+          <br>
+          <p style="font-size:var(--fs-sm);color:var(--text-m);">
+            <span data-en="Thank you for your interest in my profile!" data-vi="Cảm ơn bạn đã quan tâm đến hồ sơ của tôi!">Cảm ơn bạn đã quan tâm đến hồ sơ của tôi!</span>
+          </p>
+        </div>
+      </form>
+
+      <div class="cta-contacts">
+        <div class="cta-ci"><span class="cta-ci-ico" data-en="Phone: " data-vi="Số điện thoại:"></span>0774.945.169</div>
+        <div class="cta-ci"><span class="cta-ci-ico" data-en="Email: " data-vi="Email:"></span>tusmile.joy@gmail.com</div>
+        <div class="cta-ci"><span class="cta-ci-ico" data-en="Address: " data-vi="Địa chỉ:"></span><span data-en="Tan An, Can Tho"
+            data-vi="Tân An, Cần Thơ">Tan An, Can Tho</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA -->
-<section id="contact" class="section">
-  <div class="cta-inner reveal">
-    <div class="eyebrow" style="justify-content:center" data-en="Let's Connect" data-vi="Hãy kết nối">Let's Connect</div>
-    <h2 class="section-title" data-en="Ready to contribute <em>from day one</em>" data-vi="Sẵn sàng đóng góp <em>ngay từ ngày đầu</em>">Ready to contribute <em>from day one</em></h2>
-    <p class="section-sub" data-en="I'm actively seeking Fresher BA, System Analyst, or Software Engineer roles where structured thinking meets real business impact." data-vi="Tôi đang tìm kiếm vị trí Fresher BA, System Analyst hoặc Software Engineer nơi tư duy có cấu trúc tạo ra tác động kinh doanh thực sự.">
-      I'm actively seeking Fresher BA, System Analyst, or Software Engineer roles where structured thinking meets real business impact.
-    </p>
-    <div class="cta-actions">
-      <a href="mailto:tusmile.joy@gmail.com" class="btn-primary" data-en="✉ Email Me" data-vi="✉ Gửi email">✉ Email Me</a>
-      <a href="https://github.com/LttuMi204" target="_blank" class="btn-outline" data-en="View GitHub" data-vi="Xem GitHub">View GitHub</a>
-      <a href="https://www.linkedin.com/in/tú-mi-lê-thị-890a091aa/" target="_blank" class="btn-outline" data-en="LinkedIn" data-vi="LinkedIn">LinkedIn</a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">Lê Thị <span id="footerName">Tú Mi</span></div>
+    <div class="foot-links">
+      <a href="mailto:tusmile.joy@gmail.com">Email</a>
+      <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank">LinkedIn</a>
+      <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">HRMS Case Study</a>
+      <a href="\projects\cvweb.html" data-en="CV" data-vi="CV">CV</a>
     </div>
-    <div class="cta-contacts">
-      <div class="cta-ci"><span class="cta-ci-ico">📞</span>0774.945.169</div>
-      <div class="cta-ci"><span class="cta-ci-ico">📧</span>tusmile.joy@gmail.com</div>
-      <div class="cta-ci"><span class="cta-ci-ico">📍</span><span data-en="Cao Lanh, Dong Thap" data-vi="Cao Lãnh, Đồng Tháp">Cao Lanh, Dong Thap</span></div>
+    <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
+  </footer>
+
+  <!-- ── FLOATING ACTIONS ── -->
+  <div class="floating-actions">
+    <!-- Chat / Contact -->
+    <button class="fab fab-primary" id="chatToggle" title="Contact">
+      <i class="fas fa-comment"></i>
+    </button>
+
+    <!-- Theme toggle -->
+    <button class="fab" id="themeBtnFloat" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <!-- Back to top -->
+    <button class="fab" id="backToTop" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- ── CHATBOX ── -->
+  <div class="chatbox" id="chatBox">
+    <div class="chat-header">
+      Contact
+      <span id="closeChat">✕</span>
+    </div>
+    <div class="chat-body">
+      <p>Connect with me via:</p>
+      <a href="mailto:tusmile.joy@gmail.com" class="chat-link">
+        <i class="fas fa-envelope"></i> tusmile.joy@gmail.com
+      </a>
+      <a href="tel:0774945169" class="chat-link">
+        <i class="fas fa-phone"></i> 0774.945.169
+      </a>
+      <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank" class="chat-link">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/LttuMi204" target="_blank" class="chat-link">
+        <i class="fab fa-github"></i> GitHub
+      </a>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-brand">Lê Thị <span>Tú Mi</span></div>
-  <div class="foot-links">
-    <a href="mailto:tusmile.joy@gmail.com">Email</a>
-    <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/tú-mi-lê-thị-890a091aa/" target="_blank">LinkedIn</a>
-    <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">HRMS Case Study</a>
-  </div>
-  <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
-</footer>
+  <script>
+    /* ── THEME ── */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const themeBtnFloat = document.getElementById('themeBtnFloat');
+    const themeIcon = document.getElementById('themeIcon');
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    updateThemeUI(saved);
 
-<script>
-/* ── THEME ── */
-const html = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-const saved = localStorage.getItem('theme') || 'dark';
-html.setAttribute('data-theme', saved);
-themeBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
-themeBtn.addEventListener('click', () => {
-  const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', t);
-  localStorage.setItem('theme', t);
-  themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
-});
-
-/* ── LANGUAGE ── */
-let lang = localStorage.getItem('lang') || 'en';
-const langBtn = document.getElementById('langBtn');
-const langFlag = document.getElementById('langFlag');
-const langCode = document.getElementById('langCode');
-function applyLang(l) {
-  lang = l;
-  localStorage.setItem('lang', l);
-  langFlag.textContent = l === 'en' ? '🇺🇸' : '🇻🇳';
-  langCode.textContent = l === 'en' ? 'EN' : 'VI';
-
-  document.body.classList.add('lang-switching');
-
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const txt = el.getAttribute('data-' + l);
-    if (txt) el.innerHTML = txt;
-  });
-
-  requestAnimationFrame(() => {
-    document.body.classList.remove('lang-switching');
-  });
-}
-
-applyLang(lang);
-langBtn.addEventListener('click', () => applyLang(lang === 'en' ? 'vi' : 'en'));
-
-/* ── HAMBURGER ── */
-const ham = document.getElementById('hamburger');
-const mob = document.getElementById('mobileMenu');
-ham.addEventListener('click', () => mob.classList.toggle('open'));
-mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
-
-/* ── SKILLS TABS ── */
-document.querySelectorAll('.stab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-  });
-});
-
-/* ── SCROLL REVEAL ── */
-const revealEls = document.querySelectorAll('.reveal');
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-}, { threshold: 0.12 });
-revealEls.forEach(el => ro.observe(el));
-
-/* ── COUNTER ANIMATION ── */
-function animateCounter(el, target, duration) {
-  const start = performance.now();
-  const update = (now) => {
-    const pct = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - pct, 3);
-    el.textContent = Math.floor(eased * target);
-    if (pct < 1) requestAnimationFrame(update);
-    else el.textContent = target;
-  };
-  requestAnimationFrame(update);
-}
-const counterObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCounter(e.target, parseInt(e.target.dataset.target), 1400);
-      counterObs.unobserve(e.target);
+    function updateThemeUI(theme) {
+      const isDark = theme === 'dark';
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
     }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    function toggleTheme() {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      updateThemeUI(t);
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtnFloat.addEventListener('click', toggleTheme);
+
+    /* ── LANGUAGE ── */
+    let currentLang = localStorage.getItem('lang') || 'en';
+    const langBtn = document.getElementById('langBtn');
+    const langFlag = document.getElementById('langFlag');
+    const langCode = document.getElementById('langCode');
+
+    function removeAccents(str) {
+      const map = {
+        'á': 'a', 'à': 'a', 'ả': 'a', 'ã': 'a', 'ạ': 'a', 'â': 'a', 'ầ': 'a', 'ẩ': 'a', 'ẫ': 'a', 'ậ': 'a', 'ấ': 'a',
+        'ă': 'a', 'ằ': 'a', 'ẳ': 'a', 'ẵ': 'a', 'ặ': 'a', 'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e', 'ê': 'e',
+        'ề': 'e', 'ể': 'e', 'ễ': 'e', 'ệ': 'e', 'í': 'i', 'ì': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i', 'ó': 'o', 'ò': 'o',
+        'ỏ': 'o', 'õ': 'o', 'ọ': 'o', 'ô': 'o', 'ồ': 'o', 'ổ': 'o', 'ỗ': 'o', 'ộ': 'o', 'ơ': 'o', 'ờ': 'o', 'ở': 'o',
+        'ỡ': 'o', 'ợ': 'o', 'ú': 'u', 'ù': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u', 'ư': 'u', 'ừ': 'u', 'ử': 'u', 'ữ': 'u',
+        'ự': 'u', 'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y', 'đ': 'd', 'Á': 'A', 'À': 'A', 'Ả': 'A', 'Ã': 'A',
+        'Ạ': 'A', 'Â': 'A', 'Ầ': 'A', 'Ẩ': 'A', 'Ẫ': 'A', 'Ậ': 'A', 'Ă': 'A', 'Ằ': 'A', 'Ẳ': 'A', 'Ẵ': 'A', 'Ặ': 'A',
+        'É': 'E', 'È': 'E', 'Ẻ': 'E', 'Ẽ': 'E', 'Ẹ': 'E', 'Ê': 'E', 'Ề': 'E', 'Ể': 'E', 'Ễ': 'E', 'Ệ': 'E', 'Í': 'I',
+        'Ì': 'I', 'Ỉ': 'I', 'Ĩ': 'I', 'Ị': 'I', 'Ó': 'O', 'Ò': 'O', 'Ỏ': 'O', 'Õ': 'O', 'Ọ': 'O', 'Ô': 'O', 'Ồ': 'O',
+        'Ổ': 'O', 'Ỗ': 'O', 'Ộ': 'O', 'Ơ': 'O', 'Ờ': 'O', 'Ở': 'O', 'Ỡ': 'O', 'Ợ': 'O', 'Ú': 'U', 'Ù': 'U', 'Ủ': 'U',
+        'Ũ': 'U', 'Ụ': 'U', 'Ư': 'U', 'Ừ': 'U', 'Ử': 'U', 'Ữ': 'U', 'Ự': 'U', 'Ý': 'Y', 'Ỳ': 'Y', 'Ỷ': 'Y', 'Ỹ': 'Y',
+        'Ỵ': 'Y', 'Đ': 'D'
+      };
+      return str.split('').map(ch => map[ch] || ch).join('');
+    }
+
+    const fullName = 'Lê Thị Tú Mi';
+    const englishName = removeAccents(fullName);
+
+    /* ── SKILL POPUP DATA ── */
+    const skillData = {
+      'req-eng': {
+        icon: '📋',
+        title: 'Kỹ thuật yêu cầu',
+        titleEn: 'Requirements Engineering',
+        sub: 'Phân tích nghiệp vụ · Quản lý yêu cầu',
+        subEn: 'Business Analysis · Requirements Management',
+        desc: 'Quy trình thu thập, phân tích, ghi chép và quản lý yêu cầu trong suốt vòng đời phát triển phần mềm. Đảm bảo sản phẩm cuối cùng đáp ứng nhu cầu của các bên liên quan và mục tiêu kinh doanh.',
+        descEn: 'The process of gathering, analyzing, documenting, and managing requirements throughout the software development lifecycle. Ensures that the final product meets stakeholder needs and business objectives.',
+        tags: ['BRD', 'SRS', 'User Stories', 'Use Cases', 'ISO/IEC 29148'],
+        links: [
+          { name: 'ISO/IEC 29148', url: 'https://www.iso.org/standard/45189.html' },
+          { name: 'IBM RE Guide', url: 'https://www.ibm.com/topics/requirements-engineering' },
+          { name: 'Visual Paradigm', url: 'https://www.visual-paradigm.com/guide/requirements-engineering/' }
+        ],
+        tools: ['Jira', 'Confluence', 'RequisitePro', 'Trello']
+      },
+      'uml': {
+        icon: '🗺️',
+        title: 'UML & Mô hình hóa hệ thống',
+        titleEn: 'UML & System Modeling',
+        sub: 'Thiết kế hệ thống · Kiến trúc phần mềm',
+        subEn: 'System Design · Software Architecture',
+        desc: 'Ngôn ngữ mô hình hóa thống nhất (UML) là ngôn ngữ mô hình hóa chuẩn hóa được sử dụng để tạo ra các biểu diễn trực quan của hệ thống phần mềm. Cần thiết cho việc truyền đạt thiết kế và kiến trúc hệ thống giữa các nhóm.',
+        descEn: 'Unified Modeling Language (UML) is a standardized modeling language used to create visual representations of software systems. Essential for communicating system design and architecture across teams.',
+        tags: ['Activity Diagrams', 'Sequence Diagrams', 'Class Diagrams', 'ERD', 'DFD'],
+        links: [
+          { name: 'UML Official', url: 'https://www.uml.org/' },
+          { name: 'Visual Paradigm Guide', url: 'https://www.visual-paradigm.com/guide/uml-unified-modeling-language/' },
+          { name: 'Lucidchart UML', url: 'https://www.lucidchart.com/pages/uml-diagrams' }
+        ],
+        tools: ['StarUML', 'Draw.io', 'Lucidchart', 'Visual Paradigm']
+      },
+      'solution-design': {
+        icon: '🏛️',
+        title: 'Thiết kế giải pháp & phần mềm',
+        titleEn: 'Solution & Software Design',
+        sub: 'Kiến trúc · Chuyển đổi số',
+        subEn: 'Architecture · Digital Transformation',
+        desc: 'Quá trình xác định kiến trúc phần mềm, thành phần, giao diện và mô hình dữ liệu để đáp ứng các yêu cầu đã xác định. Tập trung vào việc tạo ra các giải pháp doanh nghiệp có khả năng mở rộng, dễ bảo trì và hiệu quả.',
+        descEn: 'The process of defining software architecture, components, interfaces, and data models to meet specified requirements. Focuses on creating scalable, maintainable, and efficient enterprise solutions.',
+        tags: ['SDD', 'MVC Architecture', 'Layered Architecture', 'Solution Design'],
+        links: [
+          { name: 'Software Architecture Guide', url: 'https://martinfowler.com/architecture/' },
+          { name: 'Microsoft Architecture', url: 'https://learn.microsoft.com/en-us/dotnet/architecture/' }
+        ],
+        tools: ['Visual Studio', 'Enterprise Architect', 'Draw.io']
+      },
+      'csharp': {
+        icon: '⚙️',
+        title: 'C# / ASP.NET Core MVC',
+        titleEn: 'C# / ASP.NET Core MVC',
+        sub: 'Full-Stack · Hệ sinh thái .NET',
+        subEn: 'Full-Stack · .NET Ecosystem',
+        desc: 'Phát triển ứng dụng web hiện đại sử dụng nền tảng .NET của Microsoft. Xây dựng ứng dụng web mạnh mẽ, có khả năng mở rộng với C#, ASP.NET Core MVC và Entity Framework Core.',
+        descEn: 'Modern web application development using Microsoft\'s .NET platform. Building robust, scalable web applications with C#, ASP.NET Core MVC, and Entity Framework Core.',
+        tags: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'MVC Pattern'],
+        links: [
+          { name: 'Microsoft Learn C#', url: 'https://learn.microsoft.com/en-us/dotnet/csharp/' },
+          { name: 'ASP.NET Core Docs', url: 'https://learn.microsoft.com/en-us/aspnet/core/' }
+        ],
+        tools: ['Visual Studio', 'VS Code', 'SQL Server', 'Postman']
+      },
+      'python-js': {
+        icon: '🐍',
+        title: 'Python & JavaScript',
+        titleEn: 'Python & JavaScript',
+        sub: 'Scripting · Frontend · Tự động hóa',
+        subEn: 'Scripting · Frontend · Automation',
+        desc: 'Ngôn ngữ lập trình đa năng cho tự động hóa, xử lý dữ liệu và tương tác frontend. Python cho tự động hóa backend và phân tích dữ liệu; JavaScript cho giao diện web động.',
+        descEn: 'Versatile scripting languages for automation, data processing, and frontend interactivity. Python for backend automation and data analysis; JavaScript for dynamic web interfaces.',
+        tags: ['Python', 'JavaScript ES6+', 'HTML5', 'CSS3'],
+        links: [
+          { name: 'Python Official', url: 'https://www.python.org/' },
+          { name: 'MDN JavaScript', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' }
+        ],
+        tools: ['VS Code', 'PyCharm', 'Node.js', 'Chrome DevTools']
+      },
+      'dev-tools': {
+        icon: '🔧',
+        title: 'Công cụ phát triển',
+        titleEn: 'Dev Tools & Workflow',
+        sub: 'Quản lý phiên bản · CI/CD',
+        subEn: 'Version Control · CI/CD',
+        desc: 'Quy trình phát triển hiện đại với công cụ quản lý phiên bản, tích hợp và triển khai liên tục. Cần thiết cho phát triển phần mềm cộng tác và duy trì chất lượng mã nguồn.',
+        descEn: 'Modern development workflow with version control, continuous integration, and deployment tools. Essential for collaborative software development and maintaining code quality.',
+        tags: ['Git', 'GitHub', 'Visual Studio', 'Vercel'],
+        links: [
+          { name: 'Git Documentation', url: 'https://git-scm.com/doc' },
+          { name: 'GitHub Docs', url: 'https://docs.github.com/' }
+        ],
+        tools: ['Git', 'GitHub', 'VS Code', 'Vercel', 'Netlify']
+      },
+      'db-design': {
+        icon: '🗄️',
+        title: 'Thiết kế & mô hình CSDL',
+        titleEn: 'Database Design & Modeling',
+        sub: 'CSDL quan hệ · Chuẩn hóa',
+        subEn: 'Relational Database · Normalization',
+        desc: 'Thiết kế schema CSDL quan hệ với chuẩn hóa phù hợp, chiến lược đánh chỉ mục và tối ưu hiệu suất. Đảm bảo tính toàn vẹn dữ liệu và hiệu quả truy vấn cho hệ thống doanh nghiệp.',
+        descEn: 'Designing relational database schemas with proper normalization, indexing strategies, and performance optimization. Ensuring data integrity and query efficiency for enterprise systems.',
+        tags: ['SQL Server', 'MySQL', 'Normalization', '29 Tables'],
+        links: [
+          { name: 'SQL Server Docs', url: 'https://learn.microsoft.com/en-us/sql/' },
+          { name: 'Database Design Guide', url: 'https://www.databasejournal.com/features/mysql/database-design-a-step-by-step-guide/' }
+        ],
+        tools: ['SQL Server', 'MySQL Workbench', 'SQLite']
+      },
+      'data-modeling': {
+        icon: '🔍',
+        title: 'Mô hình hóa dữ liệu & ERD',
+        titleEn: 'Data Modeling & ERD',
+        sub: 'ERD · Phân tích luồng dữ liệu',
+        subEn: 'ERD · Data Flow Analysis',
+        desc: 'Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp. Tạo ra các biểu diễn trực quan của cấu trúc dữ liệu và mối quan hệ của chúng.',
+        descEn: 'Entity-Relationship modeling and data flow analysis for complex business domains. Creating visual representations of data structures and their relationships.',
+        tags: ['ERD Design', 'Entity Framework Core', 'Query Optimization', 'Data Modeling'],
+        links: [
+          { name: 'ERD Guide', url: 'https://www.lucidchart.com/pages/er-diagrams' },
+          { name: 'Database Modeling', url: 'https://www.ibm.com/topics/data-modeling' }
+        ],
+        tools: ['Draw.io', 'Lucidchart', 'StarUML', 'SQL Server']
+      },
+      'api-design': {
+        icon: '🔌',
+        title: 'Thiết kế & tài liệu API',
+        titleEn: 'API Design & Documentation',
+        sub: 'RESTful API · 66 Endpoints',
+        subEn: 'RESTful API · 66 Endpoints',
+        desc: 'Thiết kế RESTful API với đặc tả rõ ràng, tài liệu toàn diện và kiểm thử kỹ lưỡng. 66 endpoints đã được tài liệu hóa trong dự án HRMS với Swagger/OpenAPI.',
+        descEn: 'Designing RESTful APIs with clear specifications, comprehensive documentation, and thorough testing. 66 endpoints documented across HRMS project with Swagger/OpenAPI.',
+        tags: ['REST API', 'Postman', '66 Endpoints', 'Figma'],
+        links: [
+          { name: 'REST API Guide', url: 'https://restfulapi.net/' },
+          { name: 'Swagger Docs', url: 'https://swagger.io/docs/' }
+        ],
+        tools: ['Postman', 'Swagger', 'Figma', 'Visual Studio']
+      },
+      'qa': {
+        icon: '✅',
+        title: 'Kiểm thử & Đảm bảo chất lượng',
+        titleEn: 'Software Testing & QA',
+        sub: 'Test Cases · RTM · Quality Assurance',
+        subEn: 'Test Cases · RTM · Quality Assurance',
+        desc: 'Kiểm thử và đảm bảo chất lượng có hệ thống bao gồm thiết kế test case, ma trận truy vết yêu cầu (RTM) và tài liệu QA toàn diện. 51 test cases đã được tạo và thực thi.',
+        descEn: 'Systematic testing and quality assurance including test case design, requirement traceability matrix (RTM), and comprehensive QA documentation. 51 test cases created and executed.',
+        tags: ['51 Test Cases', 'RTM', 'Software Testing', 'QA Documentation'],
+        links: [
+          { name: 'ISTQB Testing', url: 'https://www.istqb.org/' },
+          { name: 'Test Automation Guide', url: 'https://www.guru99.com/software-testing.html' }
+        ],
+        tools: ['Postman', 'Selenium', 'Jira', 'TestRail']
+      }
+    };
+
+    // Mapping skill key -> tab
+    const skillTabMap = {
+      'req-eng': 'analysis',
+      'uml': 'analysis',
+      'solution-design': 'analysis',
+      'csharp': 'dev',
+      'python-js': 'dev',
+      'dev-tools': 'dev',
+      'db-design': 'db',
+      'data-modeling': 'db',
+      'api-design': 'quality',
+      'qa': 'quality'
+    };
+
+    // Tab order for navigation
+    const tabOrder = ['analysis', 'dev', 'db', 'quality'];
+
+    // Tab name mapping
+    const tabNames = {
+      'analysis': { en: 'Analysis & Design', vi: 'Phân tích & Thiết kế' },
+      'dev': { en: 'Development', vi: 'Lập trình' },
+      'db': { en: 'Database', vi: 'Cơ sở dữ liệu' },
+      'quality': { en: 'Quality & API', vi: 'Chất lượng & API' }
+    };
+
+    // Skills in each tab
+    const tabSkills = {
+      'analysis': ['req-eng', 'uml', 'solution-design'],
+      'dev': ['csharp', 'python-js', 'dev-tools'],
+      'db': ['db-design', 'data-modeling'],
+      'quality': ['api-design', 'qa']
+    };
+
+    const popupOverlay = document.getElementById('skillPopup');
+    const popupClose = document.getElementById('popupClose');
+    const popupSidebar = document.getElementById('popupSidebar');
+    const popupDetail = document.getElementById('popupDetail');
+    const popupTabTitle = document.getElementById('popupTabTitle');
+    const popupIcon = document.getElementById('popupIcon');
+    const popupCount = document.getElementById('popupCount');
+    const navPrev = document.getElementById('navPrev');
+    const navNext = document.getElementById('navNext');
+
+    let currentTab = 'analysis';
+    let currentSkill = 'req-eng';
+
+    function getTabIndex(tabKey) {
+      return tabOrder.indexOf(tabKey);
+    }
+
+    function navigateTab(direction) {
+      const currentIndex = getTabIndex(currentTab);
+      let newIndex = currentIndex + direction;
+      
+      if (newIndex < 0) newIndex = tabOrder.length - 1;
+      if (newIndex >= tabOrder.length) newIndex = 0;
+      
+      const newTab = tabOrder[newIndex];
+      const skills = tabSkills[newTab] || [];
+      const firstSkill = skills[0] || '';
+      
+      if (firstSkill) {
+        currentTab = newTab;
+        currentSkill = firstSkill;
+        updatePopupContent();
+      }
+    }
+
+    function updatePopupContent() {
+      const isEn = currentLang === 'en';
+      const tabName = tabNames[currentTab];
+      popupTabTitle.textContent = isEn ? tabName.en : tabName.vi;
+      
+      renderSkillList(currentTab);
+      renderSkillDetail(currentSkill);
+    }
+
+    function renderSkillList(tabKey) {
+      const isEn = currentLang === 'en';
+      const skills = tabSkills[tabKey] || [];
+      
+      // Update count
+      popupCount.textContent = `${skills.length} ${isEn ? 'skills' : 'kỹ năng'}`;
+      
+      let html = `<div class="sidebar-title" data-en="Skills in this category" data-vi="Kỹ năng trong danh mục">${isEn ? 'Skills in this category' : 'Kỹ năng trong danh mục'}</div>`;
+      
+      skills.forEach((key, index) => {
+        const data = skillData[key];
+        if (data) {
+          const name = isEn ? data.titleEn : data.title;
+          const active = key === currentSkill ? 'active' : '';
+          html += `
+            <button class="skill-list-item ${active}" data-skill="${key}">
+              <span class="list-bullet"></span>
+              <span class="list-name">${name}</span>
+              <span class="list-count">${index + 1}</span>
+            </button>
+          `;
+        }
+      });
+      
+      popupSidebar.innerHTML = html;
+      
+      // Add click events to list items
+      popupSidebar.querySelectorAll('.skill-list-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const skillKey = this.dataset.skill;
+          if (skillKey) {
+            currentSkill = skillKey;
+            renderSkillList(currentTab);
+            renderSkillDetail(skillKey);
+          }
+        });
+      });
+    }
+
+    function renderSkillDetail(skillKey) {
+      const data = skillData[skillKey];
+      const isEn = currentLang === 'en';
+      
+      if (!data) return;
+      
+      const title = isEn ? data.titleEn : data.title;
+      const sub = isEn ? data.subEn : data.sub;
+      const desc = isEn ? data.descEn : data.desc;
+      
+      // Update header icon
+      popupIcon.textContent = data.icon;
+      
+      let html = `
+        <div class="skill-detail-title">${title}</div>
+        <div class="skill-detail-sub">${sub}</div>
+        <div class="skill-detail-desc">${desc}</div>
+      `;
+      
+      // Tags
+      html += `
+        <div class="skill-detail-section">
+          <h4 data-en="Key Concepts" data-vi="Khái niệm chính">${isEn ? 'Key Concepts' : 'Khái niệm chính'}</h4>
+          <div class="skill-detail-tags">
+            ${data.tags.map(t => `<span>${t}</span>`).join('')}
+          </div>
+        </div>
+      `;
+      
+      // Links
+      html += `
+        <div class="skill-detail-section">
+          <h4 data-en="Learning Resources" data-vi="Tài liệu tham khảo">${isEn ? 'Learning Resources' : 'Tài liệu tham khảo'}</h4>
+          <div class="skill-detail-links">
+            ${data.links.map(l => `<a href="${l.url}" target="_blank"><i class="fas fa-external-link-alt"></i> ${l.name}</a>`).join('')}
+          </div>
+        </div>
+      `;
+      
+      // Tools
+      html += `
+        <div class="skill-detail-section">
+          <h4 data-en="Related Tools" data-vi="Công cụ liên quan">${isEn ? 'Related Tools' : 'Công cụ liên quan'}</h4>
+          <div class="skill-detail-tools">
+            ${data.tools.map(t => `<span>${t}</span>`).join('')}
+          </div>
+        </div>
+      `;
+      
+      popupDetail.innerHTML = html;
+    }
+
+    function openPopup(tabKey, skillKey) {
+      currentTab = tabKey || 'analysis';
+      currentSkill = skillKey || tabSkills[currentTab][0];
+      
+      updatePopupContent();
+      
+      popupOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      popupOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Event: Click "Xem thêm" on skill cards
+    document.querySelectorAll('.sk-more-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const skillKey = this.dataset.skill;
+        const tabKey = skillTabMap[skillKey] || 'analysis';
+        openPopup(tabKey, skillKey);
+      });
+    });
+
+    // Event: Navigation buttons
+    navPrev.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navigateTab(-1);
+    });
+
+    navNext.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navigateTab(1);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!popupOverlay.classList.contains('open')) return;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateTab(-1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateTab(1);
+      } else if (e.key === 'Escape') {
+        closePopup();
+      }
+    });
+
+    // Event: Close popup
+    popupClose.addEventListener('click', closePopup);
+    popupOverlay.addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+
+    /* ── APPLY LANGUAGE ── */
+    function applyLang(l) {
+      currentLang = l;
+      localStorage.setItem('lang', l);
+      langFlag.textContent = l === 'en' ? '🇺🇸' : '🇻🇳';
+      langCode.textContent = l === 'en' ? 'EN' : 'VI';
+
+      if (l === 'en') {
+        document.getElementById('brandName').textContent = 'Tu Mi';
+        document.getElementById('heroName').innerHTML = 'Le Thi <span class="accent">Tu Mi</span>';
+        document.getElementById('cardName').textContent = englishName;
+        document.getElementById('footerName').textContent = englishName;
+      } else {
+        document.getElementById('brandName').textContent = 'Tú Mi';
+        document.getElementById('heroName').innerHTML = 'Lê Thị <span class="accent">Tú Mi</span>';
+        document.getElementById('cardName').textContent = fullName;
+        document.getElementById('footerName').textContent = 'Tú Mi';
+      }
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+
+      // Update popup if open
+      if (popupOverlay && popupOverlay.classList.contains('open')) {
+        const isEn = currentLang === 'en';
+        const tabName = tabNames[currentTab];
+        popupTabTitle.textContent = isEn ? tabName.en : tabName.vi;
+        renderSkillList(currentTab);
+        renderSkillDetail(currentSkill);
+      }
+    }
+
+    applyLang(currentLang);
+    langBtn.addEventListener('click', () => applyLang(currentLang === 'en' ? 'vi' : 'en'));
+
+    /* ── HAMBURGER ── */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => mob.classList.toggle('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    /* ── SKILLS TABS ── */
+    document.querySelectorAll('.stab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = btn.dataset.tab;
+        document.getElementById('panel-' + tabId).classList.add('active');
+        
+        // Cập nhật popup nếu đang mở
+        if (popupOverlay.classList.contains('open')) {
+          const skills = tabSkills[tabId] || [];
+          const firstSkill = skills[0] || '';
+          if (firstSkill) {
+            currentTab = tabId;
+            currentSkill = firstSkill;
+            updatePopupContent();
+          }
+        }
+      });
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => ro.observe(el));
+
+    /* ── COUNTER ANIMATION ── */
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      const update = (now) => {
+        const pct = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - pct, 3);
+        el.textContent = Math.floor(eased * target);
+        if (pct < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(update);
+    }
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target, parseInt(e.target.dataset.target), 1400);
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    /* ── BACK TO TOP ── */
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── CHATBOX ── */
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+
+    chatToggle.addEventListener('click', () => {
+      chatBox.classList.toggle('show');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.remove('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!chatBox.contains(e.target) && e.target !== chatToggle && !chatToggle.contains(e.target)) {
+        chatBox.classList.remove('show');
+      }
+    });
+
+    /* ── CONTACT FORM ── */
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successDiv = document.getElementById('formSuccess');
+
+    const nameInput = document.getElementById('senderName');
+    const emailInput = document.getElementById('senderEmail');
+    const messageInput = document.getElementById('message');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const messageError = document.getElementById('messageError');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
+      let isValid = true;
+
+      if (!nameInput.value.trim()) {
+        nameError.classList.add('show');
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+        emailError.classList.add('show');
+        isValid = false;
+      }
+
+      if (!messageInput.value.trim()) {
+        messageError.classList.add('show');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+      const formData = new FormData(form);
+
+      fetch('https://formsubmit.co/tusmile.joy@gmail.com', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok || response.type === 'opaqueredirect') {
+          form.style.display = 'none';
+          successDiv.classList.add('show');
+        } else {
+          alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+        }
+      })
+      .catch(() => {
+        form.submit();
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      });
+    });
 </script>
 </body>
+
 </html>

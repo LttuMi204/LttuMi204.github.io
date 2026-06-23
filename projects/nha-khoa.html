@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Dental Clinic Management System | Lê Thị Tú Mi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --accent: #0EA5C2;
+      --accent-v: #06B6D4;
+      --accent-glow: rgba(14, 165, 194, 0.18);
+      --accent-glow2: rgba(14, 165, 194, 0.12);
+
+      --fs-display: clamp(2.8rem, 5vw, 3.8rem);
+      --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
+      --fs-h3: 1.15rem;
+      --fs-body: 1rem;
+      --fs-sm: 0.88rem;
+      --fs-xs: 0.75rem;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .nav-theme {
+      display: none !important;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0B0D12;
+      --bg-2: #13171F;
+      --bg-3: #1A1F2E;
+      --bg-4: #232A3D;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-h: rgba(255, 255, 255, 0.12);
+      --text: #EDEFF4;
+      --text-m: #A0A8C4;
+      --text-s: #5A6080;
+      --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg: #F2F4FA;
+      --bg-2: #FFFFFF;
+      --bg-3: #ECEEF6;
+      --bg-4: #E2E6F2;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-h: rgba(0, 0, 0, 0.12);
+      --text: #111827;
+      --text-m: #4B5577;
+      --text-s: #9AA0BC;
+      --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
+    }
+
+    /* ── FLOATING ACTIONS ────────────────────── */
+    .floating-actions {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-2);
+      color: var(--text-m);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      box-shadow: var(--card-sh);
+      backdrop-filter: blur(8px);
+    }
+
+    .fab:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(14, 165, 194, 0.2);
+    }
+
+    .fab-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .fab-primary:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 0.85;
+      box-shadow: 0 8px 24px rgba(14, 165, 194, 0.35);
+    }
+
+    /* ── CHATBOX ──────────────────────────────── */
+    .chatbox {
+      position: fixed;
+      right: 90px;
+      bottom: 30px;
+      width: 300px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9998;
+      display: none;
+    }
+
+    .chatbox.show {
+      display: block;
+      animation: fadeChat 0.3s ease;
+    }
+
+    @keyframes fadeChat {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header span {
+      cursor: pointer;
+      color: var(--text-m);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+
+    .chat-header span:hover {
+      color: var(--text);
+    }
+
+    .chat-body {
+      padding: 18px;
+    }
+
+    .chat-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-bottom: 12px;
+    }
+
+    .chat-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      font-size: var(--fs-sm);
+      transition: all var(--transition);
+      margin-bottom: 6px;
+    }
+
+    .chat-link:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* ── RESET ───────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ul {
+      list-style: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(242, 244, 250, 0.85)
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 120px;
+    }
+
+    .nav-brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .nav-center a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-m);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-center a:hover {
+      color: var(--text)
+    }
+
+    .nav-center a.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0
+    }
+
+    .nav-lang {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .nav-lang:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .nav-cta {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-width: 60px;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(14, 165, 194, 0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 1.3rem;
+      color: var(--text-m);
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-m)
+    }
+
+    .mobile-menu a.active {
+      color: var(--accent)
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── DROPDOWN CONTACT ────────────────────── */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      height: 38px;
+      min-width: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(14, 165, 194, 0.35);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0;
+      box-shadow: var(--card-sh);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all var(--transition);
+      z-index: 300;
+      list-style: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+
+    .dropdown-item:hover i {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+        width: 100%;
+      }
+
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .nav-dropdown .dropdown-toggle::after {
+        content: ' ▾';
+        font-size: 0.7rem;
+      }
+
+      .nav-dropdown.open .dropdown-toggle::after {
+        content: ' ▴';
+      }
+
+      .dropdown-item {
+        padding: 0.4rem 0.75rem;
+        color: var(--text-m);
+      }
+
+      .dropdown-item i {
+        width: 20px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── SECTION BASE ─────────────────────────── */
+    .section {
+      padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
+    }
+
+    .eyebrow {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0
+    }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      min-height: 1.3em;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .section-sub {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 700px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem
+    }
+
+    /* ── PROJECT HEADER ───────────────────────── */
+    .project-header {
+      background: var(--bg-2);
+      padding: 100px max(2rem, calc((100% - 1200px)/2 + 2rem)) 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-header .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-header .project-tags .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(14, 165, 194, 0.2);
+    }
+
+    .project-header h1 {
+      font-family: var(--font-display);
+      font-size: var(--fs-display);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-header .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-header .project-meta .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .project-header .project-meta .meta-item .label {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .project-header .project-meta .meta-item .value {
+      font-size: var(--fs-sm);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .project-header .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-header .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .project-header .project-links .btn-demo {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .project-header .project-links .btn-demo:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(14, 165, 194, 0.35);
+    }
+
+    .project-header .project-links .btn-gh {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-gh:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-header .project-links .btn-doc {
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
+
+    .project-header .project-links .btn-doc:hover {
+      border-color: var(--accent-v);
+      color: var(--accent-v);
+    }
+
+    /* ── PROJECT CONTENT ──────────────────────── */
+    .project-content {
+      background: var(--bg);
+      padding: 4rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+    }
+
+    .project-content .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-content .content-block {
+      margin-bottom: 3rem;
+    }
+
+    .project-content .content-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-content .content-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .project-content .content-block h3 .num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(14, 165, 194, 0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(14, 165, 194, 0.15);
+    }
+
+    .project-content .content-block p {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .project-content .content-block ul {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      list-style: disc;
+    }
+
+    .project-content .content-block ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .project-content .content-block .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .project-content .content-block .highlight-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .project-content .content-block .highlight-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-content .content-block .highlight-item .number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+
+    .project-content .content-block .highlight-item .desc {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-top: 0.25rem;
+    }
+
+    /* ── TABLE ────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .table-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+    }
+
+    .table-wrap table th {
+      background: var(--bg-3);
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap table tr:hover {
+      background: var(--bg-3);
+    }
+
+    /* ── CONFLICT CHECK ───────────────────────── */
+    .conflict-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .conflict-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all var(--transition);
+    }
+
+    .conflict-item:hover {
+      border-color: var(--accent);
+    }
+
+    .conflict-item .num-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+      padding: 0.1rem 0.45rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .conflict-item .conflict-label {
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+    }
+
+    .conflict-note {
+      background: var(--accent-glow2);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .conflict-note p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin: 0;
+    }
+
+    .conflict-note strong {
+      color: var(--text);
+    }
+
+    /* ── PIPELINE ────────────────────────────── */
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .pipeline::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: 30px;
+      right: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-v));
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .pipe-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pipe-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .pipe-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .pipe-sub {
+      font-size: 0.6rem;
+      color: var(--text-s);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    @media(max-width:768px) {
+      .pipeline {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem 0.5rem;
+      }
+
+      .pipeline::before {
+        display: none;
+      }
+    }
+
+    @media(max-width:480px) {
+      .pipeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── IMAGE GALLERY ────────────────────────── */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .image-gallery .gallery-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .image-gallery .gallery-item:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+    }
+
+    .image-gallery .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-gallery .gallery-item .caption {
+      padding: 0.75rem 1rem;
+      font-size: var(--fs-xs);
+      color: var(--text-m);
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media(max-width:1024px) {
+      .project-header h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 1.25rem
+      }
+
+      .nav-center {
+        display: none
+      }
+
+      .nav-hamburger {
+        display: flex
+      }
+
+      .nav-cta {
+        display: none
+      }
+
+      .dropdown-toggle {
+        display: none;
+      }
+
+      .section {
+        padding: 3rem 1.5rem
+      }
+
+      .project-header {
+        padding: 80px 1.5rem 2rem;
+      }
+
+      .project-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .project-header .project-meta {
+        gap: 1rem;
+      }
+
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-actions {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+      }
+
+      .fab {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+
+      .chatbox {
+        right: 16px;
+        bottom: 80px;
+        width: 280px;
+      }
+
+      .conflict-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .project-content .content-block .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+      .conflict-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px
+    }
+
+    .foot-brand span {
+      color: var(--accent)
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .foot-links a {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      transition: color var(--transition);
+      white-space: nowrap
+    }
+
+    .foot-links a:hover {
+      color: var(--accent)
+    }
+
+    .foot-copy {
+      font-size: var(--fs-xs);
+      color: var(--text-s)
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand" id="navBrand">
+      <span class="nav-brand-dot"></span>
+      <a href="../index.html" id="brandName" data-en="Tu Mi" data-vi="Tú Mi">
+        Tú Mi
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="../index.html#about" data-en="About me" data-vi="Về tôi">About me</a>
+      <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+      <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-lang" id="langBtn" title="Switch language">
+        <span id="langFlag">🇻🇳</span><span id="langCode">VI</span>
+      </button>
+      <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
+      <a href="cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
+      <div class="nav-dropdown">
+        <button class="dropdown-toggle" data-en="Contact" data-vi="Liên hệ">
+          Liên hệ
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="mailto:tusmile.joy@gmail.com" class="dropdown-item">
+              <i class="fas fa-envelope"></i>
+              <span>Email: tusmile.joy@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:0774945169" class="dropdown-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call: 0774.945.169</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/LttuMi204" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://zalo.me/0774945169" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fas fa-comment-dots" style="color:#0068FF;"></i>
+              <span>Zalo: Lê Thị Tú Mi</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html#about" data-en="About" data-vi="Về tôi">Về tôi</a>
+    <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Kỹ năng</a>
+    <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Dự án</a>
+    <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Kinh nghiệm</a>
+    <a href="../index.html#contact" data-en="Contact" data-vi="Liên hệ">Liên hệ</a>
+  </div>
+
+  <!-- PROJECT HEADER -->
+  <section class="project-header">
+    <div class="container">
+      <div class="project-tags">
+        <span class="tag" data-en="★ Featured Project" data-vi="★ Dự án nổi bật">★ Featured Project</span>
+        <span class="tag" data-en="Dental Clinic Management" data-vi="Quản lý Phòng khám Nha khoa">Dental Clinic Management</span>
+        <span class="tag" data-en="BA / SA" data-vi="BA / SA">BA / SA</span>
+        <span class="tag" data-en="MVC Architecture" data-vi="Kiến trúc MVC">MVC Architecture</span>
+      </div>
+      <h1><span data-en="Dental Clinic" data-vi="Hệ thống Quản lý">Hệ thống Quản lý</span> <br><span style="color:var(--accent)"><span data-en="Management System" data-vi="Phòng khám Nha khoa">Phòng khám Nha khoa</span></span></h1>
+      <p style="font-size:var(--fs-body);color:var(--text-m);max-width:700px;line-height:1.9;">
+        <span data-en="Comprehensive analysis and design of a dental clinic management system — from intelligent appointment scheduling, electronic health records, to billing and revenue reporting."
+        data-vi="Phân tích và thiết kế hệ thống quản lý phòng khám nha khoa toàn diện — từ đặt lịch khám thông minh, quản lý hồ sơ bệnh án điện tử đến thanh toán và báo cáo doanh thu.">
+        Comprehensive analysis and design of a dental clinic management system — from intelligent appointment scheduling, electronic health records, to billing and revenue reporting.
+      </span>
+      </p>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="label" data-en="Role" data-vi="Vai trò">Role</span>
+          <span class="value" data-en="Business Analyst · System Analyst" data-vi="Business Analyst · System Analyst">Business Analyst · System Analyst</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Duration" data-vi="Thời gian">Duration</span>
+          <span class="value" data-en="Apr 20 – May 31, 2026 (6 weeks)" data-vi="20/04 – 31/05/2026 (6 tuần)">Apr 20 – May 31, 2026 (6 weeks)</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Tech Stack" data-vi="Công nghệ">Tech Stack</span>
+          <span class="value" data-en="ASP.NET Core MVC · SQL Server" data-vi="ASP.NET Core MVC · SQL Server">ASP.NET Core MVC · SQL Server</span>
+        </div>
+        <div class="meta-item">
+          <span class="label" data-en="Database" data-vi="CSDL">Database</span>
+          <span class="value" data-en="28 Tables · 3NF" data-vi="28 Tables · 3NF">28 Tables · 3NF</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank" class="btn-demo">
+          <i class="fas fa-external-link-alt"></i> <span data-en="Live Demo" data-vi="Live Demo">Live Demo</span>
+        </a>
+        <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="btn-gh">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa/blob/main/BaoCao/baocaodoan2_quanlyphongkhamnhakhoa_223145_LETHITUMI.pdf" class="btn-doc">
+          <i class="fas fa-file-pdf"></i> <span data-en="PDF Report" data-vi="Báo cáo PDF">PDF Report</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CONTENT -->
+  <section class="project-content">
+    <div class="container">
+
+      <!-- 1. Tổng quan / Overview -->
+      <div class="content-block reveal">
+        <h3><span class="num">01</span> <span data-en="Project Overview" data-vi="Tổng quan dự án">Project Overview</span></h3>
+        <p data-en="The Dental Clinic Management System is a software solution that digitizes the entire operations of a dental clinic — including patient management, intelligent appointment scheduling (with automatic conflict detection), electronic health records, services and pricing, staff and payroll, multi-payment billing, inventory management, and statistical reporting."
+        data-vi="Hệ thống Quản lý Phòng khám Nha khoa là giải pháp phần mềm giúp số hóa toàn bộ hoạt động của phòng khám nha khoa — bao gồm: quản lý bệnh nhân, đặt lịch khám thông minh (kiểm tra xung đột tự động), hồ sơ bệnh án điện tử, dịch vụ và bảng giá, nhân viên và lương, thanh toán đa hình thức, quản lý vật tư và báo cáo thống kê.">
+          The Dental Clinic Management System is a software solution that digitizes the entire operations of a dental clinic — including patient management, intelligent appointment scheduling (with automatic conflict detection), electronic health records, services and pricing, staff and payroll, multi-payment billing, inventory management, and statistical reporting.
+        </p>
+        <p data-en="The project was undertaken with the goal of minimizing management errors, optimizing patient experience, and enhancing operational efficiency for the clinic."
+        data-vi="Dự án được thực hiện với mục tiêu giảm thiểu sai sót trong quản lý, tối ưu hóa trải nghiệm bệnh nhân và nâng cao hiệu quả vận hành cho phòng khám.">
+          The project was undertaken with the goal of minimizing management errors, optimizing patient experience, and enhancing operational efficiency for the clinic.
+        </p>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <span class="number">28</span>
+            <span class="desc" data-en="Database Tables" data-vi="Database Tables">Database Tables</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">15+</span>
+            <span class="desc" data-en="Functional Modules" data-vi="Module chức năng">Functional Modules</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">4</span>
+            <span class="desc" data-en="User Roles" data-vi="Vai trò người dùng">User Roles</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">7</span>
+            <span class="desc" data-en="Conflict Check Conditions" data-vi="Điều kiện kiểm tra lịch">Conflict Check Conditions</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">10+</span>
+            <span class="desc" data-en="Test Cases" data-vi="Test Cases">Test Cases</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">MVC</span>
+            <span class="desc" data-en="Architecture" data-vi="Kiến trúc">Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Vấn đề & Mục tiêu / Problems & Goals -->
+      <div class="content-block reveal">
+        <h3><span class="num">02</span> <span data-en="Problems & Goals" data-vi="Vấn đề &amp; Mục tiêu">Problems &amp; Goals</span></h3>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;font-size:var(--fs-sm);" data-en="Real-world Problems" data-vi="Vấn đề thực tế">Real-world Problems</h4>
+        <ul>
+          <li data-en="<strong>Distributed data:</strong> Patient records, appointments, and medical histories were manually managed on paper — easily lost and difficult to retrieve."
+          data-vi="<strong>Dữ liệu phân tán:</strong> Hồ sơ bệnh nhân, lịch khám, bệnh án được quản lý thủ công trên giấy — dễ thất lạc và khó tra cứu.">
+          <strong>Distributed data:</strong> Patient records, appointments, and medical histories were manually managed on paper — easily lost and difficult to retrieve.</li>
+          <li data-en="<strong>Complex scheduling:</strong> Manual appointment booking frequently led to overlapping schedules and conflicts between doctors."
+          data-vi="<strong>Đặt lịch phức tạp:</strong> Quy trình đặt lịch khám thủ công dễ xảy ra trùng lịch, chồng chéo giữa các bác sĩ.">
+          <strong>Complex scheduling:</strong> Manual appointment booking frequently led to overlapping schedules and conflicts between doctors.</li>
+          <li data-en="<strong>Billing errors:</strong> Manual treatment cost calculation and payment processing often resulted in mistakes."
+          data-vi="<strong>Thanh toán sai sót:</strong> Tính toán chi phí điều trị và thanh toán bằng tay dễ xảy ra nhầm lẫn.">
+          <strong>Billing errors:</strong> Manual treatment cost calculation and payment processing often resulted in mistakes.</li>
+          <li data-en="<strong>Delayed reporting:</strong> Revenue and performance reports were slow, inaccurate, and not timely for decision-making."
+          data-vi="<strong>Báo cáo không kịp thời:</strong> Báo cáo doanh thu và hiệu quả hoạt động thường chậm trễ, không chính xác.">
+          <strong>Delayed reporting:</strong> Revenue and performance reports were slow, inaccurate, and not timely for decision-making.</li>
+        </ul>
+        <h4 style="color:var(--text);font-weight:600;margin-bottom:0.5rem;margin-top:1.5rem;font-size:var(--fs-sm);" data-en="Project Goals" data-vi="Mục tiêu dự án">Project Goals</h4>
+        <ul>
+          <li data-en="<strong>Comprehensive digitalization:</strong> Transition from paper-based to centralized electronic system."
+          data-vi="<strong>Số hóa toàn diện:</strong> Chuyển đổi từ giấy tờ sang hệ thống điện tử tập trung.">
+          <strong>Comprehensive digitalization:</strong> Transition from paper-based to centralized electronic system.</li>
+          <li data-en="<strong>Intelligent scheduling:</strong> Automatically detect scheduling conflicts using 7 constraint conditions."
+          data-vi="<strong>Đặt lịch thông minh:</strong> Tự động kiểm tra xung đột lịch với 7 điều kiện ràng buộc.">
+          <strong>Intelligent scheduling:</strong> Automatically detect scheduling conflicts using 7 constraint conditions.</li>
+          <li data-en="<strong>Electronic health records:</strong> Secure storage, fast retrieval, and high data protection."
+          data-vi="<strong>Hồ sơ bệnh án điện tử:</strong> Lưu trữ an toàn, tra cứu nhanh chóng, bảo mật cao.">
+          <strong>Electronic health records:</strong> Secure storage, fast retrieval, and high data protection.</li>
+          <li data-en="<strong>Real-time reporting:</strong> Enable timely data-driven decision making."
+          data-vi="<strong>Báo cáo thời gian thực:</strong> Hỗ trợ ra quyết định kịp thời dựa trên dữ liệu.">
+          <strong>Real-time reporting:</strong> Enable timely data-driven decision making.</li>
+        </ul>
+      </div>
+
+      <!-- 3. Phạm vi chức năng / Functional Scope -->
+      <div class="content-block reveal">
+        <h3><span class="num">03</span> <span data-en="Functional Scope" data-vi="Phạm vi chức năng">Functional Scope</span></h3>
+        <p data-en="The system is designed with <strong>9 core functional modules</strong>:"
+        data-vi="Hệ thống được thiết kế với <strong>9 module chức năng</strong> chính:">
+        The system is designed with <strong>9 core functional modules</strong>:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="No." data-vi="STT">#</th>
+                <th data-en="Module" data-vi="Phân hệ chức năng">Module</th>
+                <th data-en="Description" data-vi="Mô tả chi tiết">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td data-en="Patient Management" data-vi="Quản lý bệnh nhân">Patient Management</td><td data-en="Create, update patient profiles, medical history, allergies, visit history" data-vi="Tạo hồ sơ, cập nhật, tiền sử bệnh, dị ứng, lịch sử khám">Create, update patient profiles, medical history, allergies, visit history</td></tr>
+              <tr><td>2</td><td data-en="Appointment Scheduling" data-vi="Đặt lịch khám">Appointment Scheduling</td><td data-en="Auto conflict detection, confirm/cancel appointments, multi-channel" data-vi="Kiểm tra xung đột tự động, xác nhận/hủy lịch, đa kênh">Auto conflict detection, confirm/cancel appointments, multi-channel</td></tr>
+              <tr><td>3</td><td data-en="Medical Records" data-vi="Hồ sơ bệnh án">Medical Records</td><td data-en="Symptoms, diagnosis, treatment methods" data-vi="Triệu chứng, chẩn đoán, phương pháp điều trị">Symptoms, diagnosis, treatment methods</td></tr>
+              <tr><td>4</td><td data-en="Services & Pricing" data-vi="Dịch vụ &amp; Giá">Services &amp; Pricing</td><td data-en="Service catalog, price list, price change history" data-vi="Danh mục dịch vụ, bảng giá, lịch sử thay đổi giá">Service catalog, price list, price change history</td></tr>
+              <tr><td>5</td><td data-en="Staff & Payroll" data-vi="Nhân viên &amp; Lương">Staff &amp; Payroll</td><td data-en="Staff information, work schedule, automatic payroll calculation" data-vi="Thông tin nhân viên, lịch làm việc, tính lương tự động">Staff information, work schedule, automatic payroll calculation</td></tr>
+              <tr><td>6</td><td data-en="Billing" data-vi="Thanh toán">Billing</td><td data-en="Multi-payment, installment, invoice generation, revenue reports" data-vi="Đa hình thức, trả góp, xuất hóa đơn, báo cáo doanh thu">Multi-payment, installment, invoice generation, revenue reports</td></tr>
+              <tr><td>7</td><td data-en="Inventory Management" data-vi="Quản lý vật tư">Inventory Management</td><td data-en="Stock, import/export, expiration alerts" data-vi="Tồn kho, nhập xuất, cảnh báo hết hạn">Stock, import/export, expiration alerts</td></tr>
+              <tr><td>8</td><td data-en="Account Management" data-vi="Quản lý tài khoản">Account Management</td><td data-en="Create accounts, RBAC, lock/unlock" data-vi="Tạo tài khoản, phân quyền, khóa/mở khóa">Create accounts, RBAC, lock/unlock</td></tr>
+              <tr><td>9</td><td data-en="Reports & Statistics" data-vi="Báo cáo thống kê">Reports &amp; Statistics</td><td data-en="Daily/monthly/yearly revenue reports" data-vi="Doanh thu theo ngày/tháng/năm">Daily/monthly/yearly revenue reports</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Vai trò người dùng / User Roles -->
+      <div class="content-block reveal">
+        <h3><span class="num">04</span> <span data-en="User Roles" data-vi="Vai trò người dùng">User Roles</span></h3>
+        <p data-en="The system supports <strong>4 user roles</strong> with distinct permissions:"
+        data-vi="Hệ thống hỗ trợ <strong>4 nhóm vai trò</strong> với phân quyền riêng biệt:">
+        The system supports <strong>4 user roles</strong> with distinct permissions:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-en="Role" data-vi="Vai trò">Role</th>
+                <th data-en="Permissions" data-vi="Quyền hạn">Permissions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>👑 <span data-en="Admin" data-vi="Admin">Admin</span></strong></td><td data-en="Full system administration, all permissions" data-vi="Quản trị toàn hệ thống, toàn bộ quyền">Full system administration, all permissions</td></tr>
+              <tr><td><strong>🩺 <span data-en="Doctor" data-vi="Bác sĩ">Doctor</span></strong></td><td data-en="Manage own appointments, own medical records" data-vi="Quản lý lịch khám, hồ sơ bệnh án của mình">Manage own appointments, own medical records</td></tr>
+              <tr><td><strong>📋 <span data-en="Receptionist" data-vi="Lễ tân">Receptionist</span></strong></td><td data-en="Manage patients, appointments, billing" data-vi="Quản lý bệnh nhân, đặt lịch, thanh toán">Manage patients, appointments, billing</td></tr>
+              <tr><td><strong>🧑‍⚕️ <span data-en="Patient" data-vi="Bệnh nhân">Patient</span></strong></td><td data-en="View own profile and appointments" data-vi="Xem hồ sơ và lịch hẹn của bản thân">View own profile and appointments</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5. Kiểm tra xung đột / Conflict Detection -->
+      <div class="content-block reveal">
+        <h3><span class="num">05</span> <span data-en="Appointment Conflict Detection" data-vi="Kiểm tra xung đột lịch khám">Appointment Conflict Detection</span></h3>
+        <p data-en="The system automatically validates <strong>7 conditions</strong> when booking an appointment:"
+        data-vi="Hệ thống tự động kiểm tra <strong>7 điều kiện</strong> khi đặt lịch khám:">
+        The system automatically validates <strong>7 conditions</strong> when booking an appointment:</p>
+        <div class="conflict-grid">
+          <div class="conflict-item">
+            <span class="num-badge">1</span>
+            <span class="conflict-label" data-en="Selected shift" data-vi="Ca khám được chọn">Selected shift</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">2</span>
+            <span class="conflict-label" data-en="Valid check-in time" data-vi="Giờ nhận hợp lệ">Valid check-in time</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">3</span>
+            <span class="conflict-label" data-en="Patient not double-booked" data-vi="Bệnh nhân không trùng lịch">Patient not double-booked</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">4</span>
+            <span class="conflict-label" data-en="Doctor not overloaded" data-vi="Bác sĩ không quá tải">Doctor not overloaded</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">5</span>
+            <span class="conflict-label" data-en="Chair not broken" data-vi="Ghế không hỏng">Chair not broken</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">6</span>
+            <span class="conflict-label" data-en="Chair not full" data-vi="Ghế chưa đầy">Chair not full</span>
+          </div>
+          <div class="conflict-item">
+            <span class="num-badge">7</span>
+            <span class="conflict-label" data-en="Valid service" data-vi="Dịch vụ hợp lệ">Valid service</span>
+          </div>
+        </div>
+        <div class="conflict-note">
+          <p data-en="<strong>Note:</strong> Each doctor can accept a maximum of <strong>10 patients per day</strong> and <strong>3 patients per hour</strong>."
+          data-vi="<strong>Lưu ý:</strong> Mỗi bác sĩ chỉ nhận tối đa <strong>10 bệnh nhân/ngày</strong> và <strong>3 bệnh nhân/giờ</strong>.">
+          <strong>Note:</strong> Each doctor can accept a maximum of <strong>10 patients per day</strong> and <strong>3 patients per hour</strong>.</p>
+        </div>
+      </div>
+
+      <!-- 6. Quy trình đặt lịch / Appointment Workflow -->
+      <div class="content-block reveal">
+        <h3><span class="num">06</span> <span data-en="Appointment Workflow" data-vi="Quy trình đặt lịch khám">Appointment Workflow</span></h3>
+        <p data-en="The appointment booking process follows 6 steps:"
+        data-vi="Quy trình đặt lịch khám được thiết kế theo 6 bước:">
+        The appointment booking process follows 6 steps:</p>
+        <div class="pipeline">
+          <div class="pipe-step">
+            <div class="pipe-dot">01</div>
+            <div class="pipe-label" data-en="Select<br />Patient" data-vi="Chọn<br />Bệnh nhân">Select<br />Patient</div>
+            <div class="pipe-sub" data-en="Search<br/>or create new" data-vi="Tìm kiếm<br/>hoặc tạo mới">Search<br/>or create new</div>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-dot">02</div>
+            <div class="pipe-label" data-en="Select<br />Service" data-vi="Chọn<br />Dịch vụ">Select<br />Service</div>
+            <div class="pipe-sub" data-en="Exam 30'<br/>Scaling 45'" data-vi="Khám 30'<br/>Cạo vôi 45'">Exam 30'<br/>Scaling 45'</div>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-dot">03</div>
+            <div class="pipe-label" data-en="Select Doctor<br/>&amp; Time" data-vi="Chọn Bác sĩ<br/>&amp; Thời gian">Select Doctor<br/>&amp; Time</div>
+            <div class="pipe-sub" data-en="Available<br/>weekly schedule" data-vi="Lịch trống<br/>theo tuần">Available<br/>weekly schedule</div>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-dot">04</div>
+            <div class="pipe-label" data-en="Select<br />Chair" data-vi="Chọn<br />Ghế khám">Select<br />Chair</div>
+            <div class="pipe-sub" data-en="Available chair<br/>not in maintenance" data-vi="Ghế còn trống<br/>không bảo trì">Available chair<br/>not in maintenance</div>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-dot">05</div>
+            <div class="pipe-label" data-en="Conflict<br />Check" data-vi="Kiểm tra<br />Xung đột">Conflict<br />Check</div>
+            <div class="pipe-sub" data-en="7 conditions<br/>auto-validated" data-vi="7 điều kiện<br/>tự động">7 conditions<br/>auto-validated</div>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-dot">06</div>
+            <div class="pipe-label" data-en="Save &amp;<br />Notify" data-vi="Lưu &amp;<br />Thông báo">Save &amp;<br />Notify</div>
+            <div class="pipe-sub" data-en="Pending<br/>confirmation" data-vi="Chờ xác nhận<br/>Gửi thông báo">Pending<br/>confirmation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Công nghệ sử dụng / Tech Stack -->
+      <div class="content-block reveal">
+        <h3><span class="num">07</span> <span data-en="Technology Stack" data-vi="Công nghệ sử dụng">Technology Stack</span></h3>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin:1rem 0;">
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-code" style="color:var(--accent);margin-right:0.3rem;"></i> ASP.NET Core MVC</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-database" style="color:var(--accent);margin-right:0.3rem;"></i> SQL Server</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-code-branch" style="color:var(--accent);margin-right:0.3rem;"></i> EF Core</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-paint-brush" style="color:var(--accent);margin-right:0.3rem;"></i> Bootstrap 5</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-project-diagram" style="color:var(--accent);margin-right:0.3rem;"></i> UML</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-shield-alt" style="color:var(--accent);margin-right:0.3rem;"></i> RBAC</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-mobile-alt" style="color:var(--accent);margin-right:0.3rem;"></i> Responsive</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-js" style="color:var(--accent);margin-right:0.3rem;"></i> JavaScript / AJAX</span>
+          <span style="background:var(--bg-2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:var(--fs-xs);color:var(--text-m);"><i class="fas fa-credit-card" style="color:var(--accent);margin-right:0.3rem;"></i> Payment</span>
+        </div>
+      </div>
+
+      <!-- 8. Kết quả đạt được / Results -->
+      <div class="content-block reveal">
+        <h3><span class="num">08</span> <span data-en="Key Results" data-vi="Kết quả đạt được">Key Results</span></h3>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <span class="number">100%</span>
+            <span class="desc" data-en="Patient records digitized" data-vi="Số hóa hồ sơ bệnh nhân">Patient records digitized</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">0</span>
+            <span class="desc" data-en="Scheduling conflicts" data-vi="Trùng lịch khám">Scheduling conflicts</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">95%</span>
+            <span class="desc" data-en="Reduction in billing errors" data-vi="Giảm sai sót thanh toán">Reduction in billing errors</span>
+          </div>
+          <div class="highlight-item">
+            <span class="number">70%</span>
+            <span class="desc" data-en="Increased scheduling efficiency" data-vi="Tăng hiệu quả đặt lịch">Increased scheduling efficiency</span>
+          </div>
+        </div>
+        <p data-en="<strong>Business Value:</strong> The system enables the dental clinic to operate more efficiently, minimize management errors, enhance patient experience, and support data-driven decision making through accurate reporting."
+        data-vi="<strong>Giá trị thực tiễn:</strong> Hệ thống giúp phòng khám nha khoa vận hành hiệu quả hơn, giảm thiểu sai sót trong quản lý, nâng cao trải nghiệm bệnh nhân và hỗ trợ ra quyết định dựa trên dữ liệu báo cáo chính xác.">
+        <strong>Business Value:</strong> The system enables the dental clinic to operate more efficiently, minimize management errors, enhance patient experience, and support data-driven decision making through accurate reporting.</p>
+      </div>
+
+      <!-- 9. Giao diện người dùng / UI Gallery -->
+      <div class="content-block reveal">
+        <h3><span class="num">09</span> <span data-en="User Interface" data-vi="Giao diện người dùng">User Interface</span></h3>
+        <p data-en="Below are some key screens of the system:"
+        data-vi="Dưới đây là một số giao diện chính của hệ thống:">
+        Below are some key screens of the system:</p>
+        <div class="image-gallery">
+          <div class="gallery-item">
+            <img src="../assets/images/Dashboard tổng quan nhakhoa.png" alt="Dashboard tổng quan hệ thống quản lý phòng khám nha khoa" loading="lazy" />
+            <div class="caption" data-en="Figure 9.1 - Dashboard Overview" data-vi="Hình 9.1 - Dashboard tổng quan">Figure 9.1 - Dashboard Overview</div>
+          </div>
+          <div class="gallery-item">
+            <img src="../assets/images/Giao diện đặt lịch khám nha khoa.png" alt="Giao diện đặt lịch khám nha khoa với kiểm tra xung đột tự động" loading="lazy" />
+            <div class="caption" data-en="Figure 9.2 - Appointment Scheduling Interface" data-vi="Hình 9.2 - Giao diện đặt lịch khám">Figure 9.2 - Appointment Scheduling Interface</div>
+          </div>
+          <div class="gallery-item">
+            <img src="../assets/images/Hồ sơ bệnh nhân nha khoa.png" alt="Hồ sơ bệnh nhân nha khoa với tiền sử và lịch sử khám" loading="lazy" />
+            <div class="caption" data-en="Figure 9.3 - Patient Medical Record" data-vi="Hình 9.3 - Hồ sơ bệnh nhân">Figure 9.3 - Patient Medical Record</div>
+          </div>
+        </div>
+        <p style="font-size:var(--fs-sm);color:var(--text-s);margin-top:0.5rem;">
+          <em data-en="Interface built with ASP.NET Core MVC and Bootstrap 5, fully responsive across all devices."
+          data-vi="Giao diện được thiết kế với ASP.NET Core MVC và Bootstrap 5, hỗ trợ responsive trên mọi thiết bị.">
+          Interface built with ASP.NET Core MVC and Bootstrap 5, fully responsive across all devices.</em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">Lê Thị <span id="footerName">Tú Mi</span></div>
+    <div class="foot-links">
+      <a href="mailto:tusmile.joy@gmail.com">Email</a>
+      <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank">LinkedIn</a>
+      <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank"><span data-en="Live Demo" data-vi="Live Demo">Live Demo</span></a>
+      <a href="../index.html" data-en="Home" data-vi="Trang chủ">Home</a>
+    </div>
+    <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
+  </footer>
+
+  <!-- ── FLOATING ACTIONS ── -->
+  <div class="floating-actions">
+    <button class="fab fab-primary" id="chatToggle" title="Contact">
+      <i class="fas fa-comment"></i>
+    </button>
+    <button class="fab" id="themeBtnFloat" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="fab" id="backToTop" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- ── CHATBOX ── -->
+  <div class="chatbox" id="chatBox">
+    <div class="chat-header">
+      <span data-en="Contact" data-vi="Liên hệ">Contact</span>
+      <span id="closeChat">✕</span>
+    </div>
+    <div class="chat-body">
+      <p data-en="Connect with me via:" data-vi="Kết nối với tôi qua:">Connect with me via:</p>
+      <a href="mailto:tusmile.joy@gmail.com" class="chat-link">
+        <i class="fas fa-envelope"></i> tusmile.joy@gmail.com
+      </a>
+      <a href="tel:0774945169" class="chat-link">
+        <i class="fas fa-phone"></i> 0774.945.169
+      </a>
+      <a href="https://www.linkedin.com/in/t%C3%BA-mi-l%C3%AA-th%E1%BB%8B-890a091aa/" target="_blank" class="chat-link">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/LttuMi204" target="_blank" class="chat-link">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+
+  <script>
+    /* ── THEME ── */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const themeBtnFloat = document.getElementById('themeBtnFloat');
+    const themeIcon = document.getElementById('themeIcon');
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    updateThemeUI(saved);
+
+    function updateThemeUI(theme) {
+      const isDark = theme === 'dark';
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    function toggleTheme() {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      updateThemeUI(t);
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtnFloat.addEventListener('click', toggleTheme);
+
+    /* ── LANGUAGE ── */
+    let lang = localStorage.getItem('lang') || 'vi';
+    const langBtn = document.getElementById('langBtn');
+    const langFlag = document.getElementById('langFlag');
+    const langCode = document.getElementById('langCode');
+
+    function removeAccents(str) {
+      const map = {
+        'á': 'a', 'à': 'a', 'ả': 'a', 'ã': 'a', 'ạ': 'a', 'â': 'a', 'ầ': 'a', 'ẩ': 'a', 'ẫ': 'a', 'ậ': 'a', 'ấ': 'a',
+        'ă': 'a', 'ằ': 'a', 'ẳ': 'a', 'ẵ': 'a', 'ặ': 'a', 'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e', 'ê': 'e',
+        'ề': 'e', 'ể': 'e', 'ễ': 'e', 'ệ': 'e', 'í': 'i', 'ì': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i', 'ó': 'o', 'ò': 'o',
+        'ỏ': 'o', 'õ': 'o', 'ọ': 'o', 'ô': 'o', 'ồ': 'o', 'ổ': 'o', 'ỗ': 'o', 'ộ': 'o', 'ơ': 'o', 'ờ': 'o', 'ở': 'o',
+        'ỡ': 'o', 'ợ': 'o', 'ú': 'u', 'ù': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u', 'ư': 'u', 'ừ': 'u', 'ử': 'u', 'ữ': 'u',
+        'ự': 'u', 'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y', 'đ': 'd', 'Á': 'A', 'À': 'A', 'Ả': 'A', 'Ã': 'A',
+        'Ạ': 'A', 'Â': 'A', 'Ầ': 'A', 'Ẩ': 'A', 'Ẫ': 'A', 'Ậ': 'A', 'Ă': 'A', 'Ằ': 'A', 'Ẳ': 'A', 'Ẵ': 'A', 'Ặ': 'A',
+        'É': 'E', 'È': 'E', 'Ẻ': 'E', 'Ẽ': 'E', 'Ẹ': 'E', 'Ê': 'E', 'Ề': 'E', 'Ể': 'E', 'Ễ': 'E', 'Ệ': 'E', 'Í': 'I',
+        'Ì': 'I', 'Ỉ': 'I', 'Ĩ': 'I', 'Ị': 'I', 'Ó': 'O', 'Ò': 'O', 'Ỏ': 'O', 'Õ': 'O', 'Ọ': 'O', 'Ô': 'O', 'Ồ': 'O',
+        'Ổ': 'O', 'Ỗ': 'O', 'Ộ': 'O', 'Ơ': 'O', 'Ờ': 'O', 'Ở': 'O', 'Ỡ': 'O', 'Ợ': 'O', 'Ú': 'U', 'Ù': 'U', 'Ủ': 'U',
+        'Ũ': 'U', 'Ụ': 'U', 'Ư': 'U', 'Ừ': 'U', 'Ử': 'U', 'Ữ': 'U', 'Ự': 'U', 'Ý': 'Y', 'Ỳ': 'Y', 'Ỷ': 'Y', 'Ỹ': 'Y',
+        'Ỵ': 'Y', 'Đ': 'D'
+      };
+      return str.split('').map(ch => map[ch] || ch).join('');
+    }
+
+    const fullName = 'Lê Thị Tú Mi';
+    const englishName = removeAccents(fullName);
+
+    function applyLang(l) {
+      lang = l;
+      localStorage.setItem('lang', l);
+      langFlag.textContent = l === 'en' ? '🇺🇸' : '🇻🇳';
+      langCode.textContent = l === 'en' ? 'EN' : 'VI';
+
+      if (l === 'en') {
+        document.getElementById('brandName').textContent = 'Tu Mi';
+        document.getElementById('footerName').textContent = englishName;
+      } else {
+        document.getElementById('brandName').textContent = 'Tú Mi';
+        document.getElementById('footerName').textContent = 'Tú Mi';
+      }
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = el.getAttribute('data-' + l);
+        if (txt) el.innerHTML = txt;
+      });
+    }
+
+    applyLang(lang);
+    langBtn.addEventListener('click', () => applyLang(lang === 'en' ? 'vi' : 'en'));
+
+    /* ── HAMBURGER ── */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => mob.classList.toggle('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible');
+          ro.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => ro.observe(el));
+
+    /* ── BACK TO TOP ── */
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── CHATBOX ── */
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+
+    chatToggle.addEventListener('click', () => {
+      chatBox.classList.toggle('show');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.remove('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!chatBox.contains(e.target) && e.target !== chatToggle && !chatToggle.contains(e.target)) {
+        chatBox.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+
+</html>
