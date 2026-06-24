@@ -119,13 +119,40 @@ lethitumi-ejsh.github.io/
 | ✅ Test Cases | 51 |
 
 ---
-
 ## 📬 Liên hệ
 
 - **Email:** [tusmile.joy@gmail.com](mailto:tusmile.joy@gmail.com)
 - **GitHub:** [github.com/LttuMi204](https://github.com/LttuMi204)
 - **LinkedIn:** [linkedin.com/in/tu-mi-le-thi-kpm](https://www.linkedin.com/in/tu-mi-le-thi-kpm/)
 - **Zalo:** 0774.945.169
+
+## ✉️ Form liên hệ
+
+Trang web tích hợp form liên hệ để nhà tuyển dụng và đối tác có thể gửi tin nhắn trực tiếp.
+
+| Thông tin | Chi tiết |
+|-----------|----------|
+| **Dịch vụ** | Formspree |
+| **Form ID** | `mykqkdyp` |
+| **Email nhận** | `tusmile.joy@gmail.com` |
+| **Trạng thái** | ✅ Đang hoạt động |
+
+### Tính năng bảo mật
+
+- ✅ **Xác thực phía client** - Kiểm tra dữ liệu đầu vào trước khi gửi
+- ✅ **Rate limiting** - Giới hạn 1 tin nhắn/30 giây để chống spam
+- ✅ **Formspree backend** - Xử lý form an toàn, không lộ email
+- ✅ **Hiển thị thông báo thành công** - Tự động đóng sau 3 giây
+- ✅ **Hỗ trợ đa ngôn ngữ** - Tiếng Việt & Tiếng Anh
+
+### Cách thức hoạt động
+
+1. Người dùng điền thông tin vào form
+2. Dữ liệu được gửi đến Formspree (`https://formspree.io/f/mykqkdyp`)
+3. Formspree chuyển tiếp email đến `tusmile.joy@gmail.com`
+4. Người dùng nhận được thông báo thành công
+
+> 📌 **Lưu ý:** Form đã được cấu hình và đang hoạt động tốt. Bạn có thể kiểm tra tại [trang chủ](https://lttumi204.github.io/lethitumi-ejsh.github.io/#contact).
 
 ---
 
