@@ -2652,86 +2652,428 @@
         /* Tablet: 2 cột */
       }
     }
+@media(max-width:768px) {
+  /* ── NAV ── */
+  nav {
+    padding: 0 1.25rem
+  }
+  .nav-center {
+    display: none
+  }
+  .nav-hamburger {
+    display: flex
+  }
+  .nav-cta {
+    display: none
+  }
+  .dropdown-toggle {
+    display: none;
+  }
 
-    @media(max-width:768px) {
-      nav {
-        padding: 0 1.25rem
-      }
+  /* ── PROJECTS ── */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 
-      .nav-center {
-        display: none
-      }
+  /* ── SECTION ── */
+  .section {
+    padding: 3rem 1rem;
+  }
 
-      .nav-hamburger {
-        display: flex
-      }
+  /* ── HERO ── */
+  #hero {
+    padding: 70px 1rem 2rem;
+    min-height: auto;
+  }
+  .hero-inner {
+    gap: 2rem;
+  }
+  .hero-text {
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+    margin: 0 auto 1rem;
+    white-space: normal;
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+  }
+  .hero-title-line {
+    font-size: 0.85rem !important;
+  }
+  .hero-bio {
+    font-size: 0.9rem;
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .btn-primary, .btn-outline {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  .hero-stats {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .stat {
+    padding-left: 1rem;
+    min-width: 80px;
+    text-align: center;
+    border-left: none;
+    border-top: 2px solid var(--border-h);
+    padding-top: 0.5rem;
+  }
+  .stat-n {
+    font-size: 1.6rem;
+  }
+  .stat-l {
+    font-size: 0.65rem;
+  }
 
-      .nav-cta {
-        display: none
-      }
+  /* ── HERO CARD ── */
+  .hero-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    margin: 0 auto;
+  }
+  .hc-avatar {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 0.75rem;
+  }
+  .hc-name {
+    text-align: center;
+    font-size: 1rem;
+  }
+  .hc-sub {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+  .hc-tags {
+    justify-content: center;
+  }
+  .hc-link {
+    font-size: 0.75rem;
+    justify-content: center;
+  }
+  .hc-status {
+    font-size: 0.7rem;
+    justify-content: center;
+  }
 
-      .dropdown-toggle {
-        display: none;
-      }
+  /* ── ABOUT ── */
+  .section-title {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    text-align: center;
+  }
+  .section-sub {
+    text-align: center;
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+  .eyebrow {
+    justify-content: center;
+  }
+  .about-grid {
+    gap: 1.5rem;
+  }
+  .about-img-box {
+    aspect-ratio: 16/10;
+  }
+  .about-body {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+  .about-hl {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .hl-item {
+    padding: 0.6rem 0.8rem;
+  }
+  .hl-val {
+    font-size: 0.8rem;
+  }
 
-      .projects-grid {
-        grid-template-columns: 1fr;
-        /* Mobile: 1 cột */
-      }
+  /* ── SKILLS ── */
+  .skills-tabs {
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .stab {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.8rem;
+  }
+  .skill-panel.active {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .sk-card {
+    min-height: 150px;
+    padding: 0.8rem;
+  }
+  .sk-name {
+    font-size: 0.85rem;
+    min-height: 2.2rem;
+  }
+  .sk-desc {
+    font-size: 0.7rem;
+    min-height: 2rem;
+  }
+  .sk-tag {
+    font-size: 0.5rem;
+    padding: 0.05rem 0.35rem;
+  }
+  .tools-strip {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+  .tools-chips {
+    justify-content: center;
+  }
+  .t-chip {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.5rem;
+  }
 
-      .section {
-        padding: 4rem 1.5rem
-      }
+  /* ── PROJECTS ── */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .proj-card {
+    border-radius: var(--radius-md);
+  }
+  .proj-image img {
+    aspect-ratio: 16/10;
+  }
+  .proj-title {
+    font-size: 0.9rem;
+    min-height: auto;
+  }
+  .proj-desc {
+    font-size: 0.75rem;
+    min-height: auto;
+    -webkit-line-clamp: 4;
+  }
+  .proj-metrics {
+    gap: 0.15rem;
+  }
+  .metric {
+    font-size: 0.45rem;
+    padding: 0.05rem 0.35rem;
+  }
+  .proj-foot {
+    padding: 0.4rem 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .plink {
+    font-size: 0.6rem;
+  }
 
-      #hero {
-        padding: 80px 1.5rem 3rem
-      }
+  /* ── EXPERIENCE ── */
+  .exp-grid {
+    gap: 2rem;
+  }
+  .tl-item {
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+  }
+  .tl-dot {
+    width: 16px;
+    height: 16px;
+    top: 4px;
+  }
+  .tl-period {
+    font-size: 0.65rem;
+  }
+  .tl-title {
+    font-size: 0.95rem;
+  }
+  .tl-desc {
+    font-size: 0.8rem;
+  }
+  .exp-right {
+    gap: 0.75rem;
+  }
+  .cert-card {
+    padding: 0.8rem 1rem;
+  }
+  .cert-title {
+    font-size: 0.85rem;
+  }
+  .ref-card {
+    padding: 1rem;
+  }
+  .differentiators {
+    padding: 1rem 1.25rem;
+  }
+  .diff-item {
+    font-size: 0.8rem;
+  }
 
-      .hero-stats {
-        gap: 1.5rem
-      }
+  /* ── CONTACT ── */
+  .cta-inner {
+    padding: 2rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+  .cta-inner .section-title {
+    font-size: clamp(1.3rem, 4vw, 1.8rem) !important;
+  }
+  .cta-inner .section-sub {
+    font-size: 0.85rem;
+  }
+  .contact-form {
+    max-width: 100%;
+  }
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+  .form-group input,
+  .form-group textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .btn-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  .cta-contacts {
+    gap: 0.8rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-ci {
+    font-size: 0.8rem;
+  }
 
-      .cta-inner {
-        padding: 3rem 1.5rem
-      }
+  /* ── FOOTER ── */
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+  .foot-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  .foot-links a {
+    font-size: 0.7rem;
+  }
 
-      footer {
-        flex-direction: column;
-        text-align: center;
-        align-items: center
-      }
+  /* ── FLOATING ACTIONS ── */
+  .floating-actions {
+    right: 12px;
+    bottom: 12px;
+    gap: 8px;
+  }
+  .fab {
+    width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
 
-      .about-float {
-        display: none
-      }
+  /* ── CHATBOX ── */
+  .chatbox {
+    right: 12px;
+    bottom: 70px;
+    width: 250px;
+  }
+  .chat-header {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  .chat-body {
+    padding: 12px 14px;
+  }
+  .chat-link {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
 
-      .about-hl {
-        grid-template-columns: 1fr
-      }
+  /* ── FORM SUCCESS ── */
+  .form-success {
+    padding: 1.25rem 1rem;
+  }
+  .form-success .success-title {
+    font-size: 1rem;
+  }
+  .form-success .success-desc {
+    font-size: 0.8rem;
+  }
+  .btn-reset-form {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+  }
 
-      .hero-card {
-        max-width: 100%
-      }
+  /* ── SOFT SKILLS ── */
+  .soft-skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem;
+  }
+  .soft-skill-item {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
 
-      .floating-actions {
-        right: 16px;
-        bottom: 16px;
-        gap: 10px;
-      }
+  /* ── ABOUT FLOAT ── */
+  .about-float {
+    display: none;
+  }
+  .about-hl {
+    grid-template-columns: 1fr;
+  }
+  .hero-card {
+    max-width: 100%;
+  }
+}
 
-      .fab {
-        width: 42px;
-        height: 42px;
-        font-size: 0.95rem;
-      }
-
-      .chatbox {
-        right: 16px;
-        bottom: 80px;
-        width: 280px;
-      }
-    }
-
+/* ── BREAKPOINT CHO MÀN HÌNH RẤT NHỎ ── */
+@media(max-width:400px) {
+  #hero {
+    padding: 60px 0.75rem 1.5rem;
+  }
+  .hero-name {
+    font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+  }
+  .hero-stats {
+    gap: 0.5rem;
+  }
+  .stat {
+    min-width: 60px;
+    padding-top: 0.3rem;
+  }
+  .stat-n {
+    font-size: 1.3rem;
+  }
+  .skill-panel.active {
+    grid-template-columns: 1fr;
+  }
+  .about-hl {
+    grid-template-columns: 1fr;
+  }
+  .soft-skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-inner {
+    padding: 1.5rem 1rem;
+  }
+  .cta-contacts {
+    gap: 0.5rem;
+  }
+}
     html {
       scroll-behavior: smooth;
     }
