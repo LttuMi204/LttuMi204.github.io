@@ -684,7 +684,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 40px rgba(108, 142, 255, 0.45)
+      box-shadow: 0 6px 40px rgba(108, 142, 255, 0.45);
     }
 
     .btn-outline {
@@ -705,7 +705,7 @@
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
-      background: var(--accent-glow)
+      background: var(--accent-glow);
     }
 
     .hero-stats {
@@ -2652,428 +2652,519 @@
         /* Tablet: 2 cột */
       }
     }
-@media(max-width:768px) {
-  /* ── NAV ── */
-  nav {
-    padding: 0 1.25rem
-  }
-  .nav-center {
-    display: none
-  }
-  .nav-hamburger {
-    display: flex
-  }
-  .nav-cta {
-    display: none
-  }
-  .dropdown-toggle {
-    display: none;
-  }
 
-  /* ── PROJECTS ── */
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+    @media(max-width:768px) {
 
-  /* ── SECTION ── */
-  .section {
-    padding: 3rem 1rem;
-  }
+      /* ── NAV ── */
+      nav {
+        padding: 0 1.25rem
+      }
 
-  /* ── HERO ── */
-  #hero {
-    padding: 70px 1rem 2rem;
-    min-height: auto;
-  }
-  .hero-inner {
-    gap: 2rem;
-  }
-  .hero-text {
-    text-align: center;
-  }
-  .hero-label {
-    font-size: 0.6rem;
-    padding: 0.3rem 0.8rem;
-    margin: 0 auto 1rem;
-    white-space: normal;
-  }
-  .hero-name {
-    font-size: clamp(2.2rem, 8vw, 3rem) !important;
-  }
-  .hero-title-line {
-    font-size: 0.85rem !important;
-  }
-  .hero-bio {
-    font-size: 0.9rem;
-    max-width: 100%;
-    text-align: center;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .btn-primary, .btn-outline {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.85rem;
-  }
-  .hero-stats {
-    justify-content: center;
-    gap: 1rem;
-  }
-  .stat {
-    padding-left: 1rem;
-    min-width: 80px;
-    text-align: center;
-    border-left: none;
-    border-top: 2px solid var(--border-h);
-    padding-top: 0.5rem;
-  }
-  .stat-n {
-    font-size: 1.6rem;
-  }
-  .stat-l {
-    font-size: 0.65rem;
-  }
+      .nav-center {
+        display: none
+      }
 
-  /* ── HERO CARD ── */
-  .hero-card {
-    width: 100%;
-    max-width: 100%;
-    padding: 1.5rem;
-    margin: 0 auto;
-  }
-  .hc-avatar {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 0.75rem;
-  }
-  .hc-name {
-    text-align: center;
-    font-size: 1rem;
-  }
-  .hc-sub {
-    text-align: center;
-    font-size: 0.7rem;
-  }
-  .hc-tags {
-    justify-content: center;
-  }
-  .hc-link {
-    font-size: 0.75rem;
-    justify-content: center;
-  }
-  .hc-status {
-    font-size: 0.7rem;
-    justify-content: center;
-  }
+      .nav-hamburger {
+        display: flex
+      }
 
-  /* ── ABOUT ── */
-  .section-title {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-    text-align: center;
-  }
-  .section-sub {
-    text-align: center;
-    font-size: 0.9rem;
-    max-width: 100%;
-  }
-  .eyebrow {
-    justify-content: center;
-  }
-  .about-grid {
-    gap: 1.5rem;
-  }
-  .about-img-box {
-    aspect-ratio: 16/10;
-  }
-  .about-body {
-    font-size: 0.9rem;
-    text-align: justify;
-  }
-  .about-hl {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-  .hl-item {
-    padding: 0.6rem 0.8rem;
-  }
-  .hl-val {
-    font-size: 0.8rem;
-  }
+      .nav-cta {
+        display: none
+      }
 
-  /* ── SKILLS ── */
-  .skills-tabs {
-    justify-content: center;
-    gap: 0.3rem;
-  }
-  .stab {
-    font-size: 0.7rem;
-    padding: 0.35rem 0.8rem;
-  }
-  .skill-panel.active {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-  }
-  .sk-card {
-    min-height: 150px;
-    padding: 0.8rem;
-  }
-  .sk-name {
-    font-size: 0.85rem;
-    min-height: 2.2rem;
-  }
-  .sk-desc {
-    font-size: 0.7rem;
-    min-height: 2rem;
-  }
-  .sk-tag {
-    font-size: 0.5rem;
-    padding: 0.05rem 0.35rem;
-  }
-  .tools-strip {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem;
-  }
-  .tools-chips {
-    justify-content: center;
-  }
-  .t-chip {
-    font-size: 0.6rem;
-    padding: 0.1rem 0.5rem;
-  }
+      .dropdown-toggle {
+        display: none;
+      }
 
-  /* ── PROJECTS ── */
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .proj-card {
-    border-radius: var(--radius-md);
-  }
-  .proj-image img {
-    aspect-ratio: 16/10;
-  }
-  .proj-title {
-    font-size: 0.9rem;
-    min-height: auto;
-  }
-  .proj-desc {
-    font-size: 0.75rem;
-    min-height: auto;
-    -webkit-line-clamp: 4;
-  }
-  .proj-metrics {
-    gap: 0.15rem;
-  }
-  .metric {
-    font-size: 0.45rem;
-    padding: 0.05rem 0.35rem;
-  }
-  .proj-foot {
-    padding: 0.4rem 0.8rem;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .plink {
-    font-size: 0.6rem;
-  }
+      /* ── PROJECTS ── */
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
 
-  /* ── EXPERIENCE ── */
-  .exp-grid {
-    gap: 2rem;
-  }
-  .tl-item {
-    padding-left: 2rem;
-    padding-bottom: 2rem;
-  }
-  .tl-dot {
-    width: 16px;
-    height: 16px;
-    top: 4px;
-  }
-  .tl-period {
-    font-size: 0.65rem;
-  }
-  .tl-title {
-    font-size: 0.95rem;
-  }
-  .tl-desc {
-    font-size: 0.8rem;
-  }
-  .exp-right {
-    gap: 0.75rem;
-  }
-  .cert-card {
-    padding: 0.8rem 1rem;
-  }
-  .cert-title {
-    font-size: 0.85rem;
-  }
-  .ref-card {
-    padding: 1rem;
-  }
-  .differentiators {
-    padding: 1rem 1.25rem;
-  }
-  .diff-item {
-    font-size: 0.8rem;
-  }
+      /* ── SECTION ── */
+      .section {
+        padding: 3rem 1rem;
+      }
 
-  /* ── CONTACT ── */
-  .cta-inner {
-    padding: 2rem 1.25rem;
-    border-radius: var(--radius-lg);
-  }
-  .cta-inner .section-title {
-    font-size: clamp(1.3rem, 4vw, 1.8rem) !important;
-  }
-  .cta-inner .section-sub {
-    font-size: 0.85rem;
-  }
-  .contact-form {
-    max-width: 100%;
-  }
-  .form-group {
-    margin-bottom: 0.8rem;
-  }
-  .form-group input,
-  .form-group textarea {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
-  }
-  .btn-submit {
-    width: 100%;
-    justify-content: center;
-    padding: 0.7rem 1.5rem;
-    font-size: 0.85rem;
-  }
-  .cta-contacts {
-    gap: 0.8rem;
-    flex-direction: column;
-    align-items: center;
-  }
-  .cta-ci {
-    font-size: 0.8rem;
-  }
+      /* ── HERO ── */
+      #hero {
+        padding: 70px 1rem 2rem;
+        min-height: auto;
+      }
 
-  /* ── FOOTER ── */
-  footer {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-    padding: 1.5rem 1rem;
-  }
-  .foot-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
-  }
-  .foot-links a {
-    font-size: 0.7rem;
-  }
+      .hero-inner {
+        gap: 2rem;
+      }
 
-  /* ── FLOATING ACTIONS ── */
-  .floating-actions {
-    right: 12px;
-    bottom: 12px;
-    gap: 8px;
-  }
-  .fab {
-    width: 38px;
-    height: 38px;
-    font-size: 0.85rem;
-  }
+      .hero-text {
+        text-align: center;
+      }
 
-  /* ── CHATBOX ── */
-  .chatbox {
-    right: 12px;
-    bottom: 70px;
-    width: 250px;
-  }
-  .chat-header {
-    padding: 10px 14px;
-    font-size: 0.85rem;
-  }
-  .chat-body {
-    padding: 12px 14px;
-  }
-  .chat-link {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
+      .hero-label {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.8rem;
+        margin: 0 auto 1rem;
+        white-space: normal;
+      }
 
-  /* ── FORM SUCCESS ── */
-  .form-success {
-    padding: 1.25rem 1rem;
-  }
-  .form-success .success-title {
-    font-size: 1rem;
-  }
-  .form-success .success-desc {
-    font-size: 0.8rem;
-  }
-  .btn-reset-form {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.8rem;
-  }
+      .hero-name {
+        font-size: clamp(2.2rem, 8vw, 3rem) !important;
+      }
 
-  /* ── SOFT SKILLS ── */
-  .soft-skills-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.3rem;
-  }
-  .soft-skill-item {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
-  }
+      .hero-title-line {
+        font-size: 0.85rem !important;
+      }
 
-  /* ── ABOUT FLOAT ── */
-  .about-float {
-    display: none;
-  }
-  .about-hl {
-    grid-template-columns: 1fr;
-  }
-  .hero-card {
-    max-width: 100%;
-  }
-}
+      .hero-bio {
+        font-size: 0.9rem;
+        max-width: 100%;
+        text-align: center;
+      }
 
-/* ── BREAKPOINT CHO MÀN HÌNH RẤT NHỎ ── */
-@media(max-width:400px) {
-  #hero {
-    padding: 60px 0.75rem 1.5rem;
-  }
-  .hero-name {
-    font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
-  }
-  .hero-stats {
-    gap: 0.5rem;
-  }
-  .stat {
-    min-width: 60px;
-    padding-top: 0.3rem;
-  }
-  .stat-n {
-    font-size: 1.3rem;
-  }
-  .skill-panel.active {
-    grid-template-columns: 1fr;
-  }
-  .about-hl {
-    grid-template-columns: 1fr;
-  }
-  .soft-skills-grid {
-    grid-template-columns: 1fr;
-  }
-  .cta-inner {
-    padding: 1.5rem 1rem;
-  }
-  .cta-contacts {
-    gap: 0.5rem;
-  }
-}
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .btn-primary,
+      .btn-outline {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .hero-stats {
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .stat {
+        padding-left: 1rem;
+        min-width: 80px;
+        text-align: center;
+        border-left: none;
+        border-top: 2px solid var(--border-h);
+        padding-top: 0.5rem;
+      }
+
+      .stat-n {
+        font-size: 1.6rem;
+      }
+
+      .stat-l {
+        font-size: 0.65rem;
+      }
+
+      /* ── HERO CARD ── */
+      .hero-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+        margin: 0 auto;
+      }
+
+      .hc-avatar {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 0.75rem;
+      }
+
+      .hc-name {
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .hc-sub {
+        text-align: center;
+        font-size: 0.7rem;
+      }
+
+      .hc-tags {
+        justify-content: center;
+      }
+
+      .hc-link {
+        font-size: 0.75rem;
+        justify-content: center;
+      }
+
+      .hc-status {
+        font-size: 0.7rem;
+        justify-content: center;
+      }
+
+      /* ── ABOUT ── */
+      .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem) !important;
+        text-align: center;
+      }
+
+      .section-sub {
+        text-align: center;
+        font-size: 0.9rem;
+        max-width: 100%;
+      }
+
+      .eyebrow {
+        justify-content: center;
+      }
+
+      .about-grid {
+        gap: 1.5rem;
+      }
+
+      .about-img-box {
+        aspect-ratio: 16/10;
+      }
+
+      .about-body {
+        font-size: 0.9rem;
+        text-align: justify;
+      }
+
+      .about-hl {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .hl-item {
+        padding: 0.6rem 0.8rem;
+      }
+
+      .hl-val {
+        font-size: 0.8rem;
+      }
+
+      /* ── SKILLS ── */
+      .skills-tabs {
+        justify-content: center;
+        gap: 0.3rem;
+      }
+
+      .stab {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.8rem;
+      }
+
+      .skill-panel.active {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+      }
+
+      .sk-card {
+        min-height: 150px;
+        padding: 0.8rem;
+      }
+
+      .sk-name {
+        font-size: 0.85rem;
+        min-height: 2.2rem;
+      }
+
+      .sk-desc {
+        font-size: 0.7rem;
+        min-height: 2rem;
+      }
+
+      .sk-tag {
+        font-size: 0.5rem;
+        padding: 0.05rem 0.35rem;
+      }
+
+      .tools-strip {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem;
+      }
+
+      .tools-chips {
+        justify-content: center;
+      }
+
+      .t-chip {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.5rem;
+      }
+
+      /* ── PROJECTS ── */
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .proj-card {
+        border-radius: var(--radius-md);
+      }
+
+      .proj-image img {
+        aspect-ratio: 16/10;
+      }
+
+      .proj-title {
+        font-size: 0.9rem;
+        min-height: auto;
+      }
+
+      .proj-desc {
+        font-size: 0.75rem;
+        min-height: auto;
+        -webkit-line-clamp: 4;
+      }
+
+      .proj-metrics {
+        gap: 0.15rem;
+      }
+
+      .metric {
+        font-size: 0.45rem;
+        padding: 0.05rem 0.35rem;
+      }
+
+      .proj-foot {
+        padding: 0.4rem 0.8rem;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .plink {
+        font-size: 0.6rem;
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-grid {
+        gap: 2rem;
+      }
+
+      .tl-item {
+        padding-left: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .tl-dot {
+        width: 16px;
+        height: 16px;
+        top: 4px;
+      }
+
+      .tl-period {
+        font-size: 0.65rem;
+      }
+
+      .tl-title {
+        font-size: 0.95rem;
+      }
+
+      .tl-desc {
+        font-size: 0.8rem;
+      }
+
+      .exp-right {
+        gap: 0.75rem;
+      }
+
+      .cert-card {
+        padding: 0.8rem 1rem;
+      }
+
+      .cert-title {
+        font-size: 0.85rem;
+      }
+
+      .ref-card {
+        padding: 1rem;
+      }
+
+      .differentiators {
+        padding: 1rem 1.25rem;
+      }
+
+      .diff-item {
+        font-size: 0.8rem;
+      }
+
+      /* ── CONTACT ── */
+      .cta-inner {
+        padding: 2rem 1.25rem;
+        border-radius: var(--radius-lg);
+      }
+
+      .cta-inner .section-title {
+        font-size: clamp(1.3rem, 4vw, 1.8rem) !important;
+      }
+
+      .cta-inner .section-sub {
+        font-size: 0.85rem;
+      }
+
+      .contact-form {
+        max-width: 100%;
+      }
+
+      .form-group {
+        margin-bottom: 0.8rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .btn-submit {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .cta-contacts {
+        gap: 0.8rem;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-ci {
+        font-size: 0.8rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 1.5rem 1rem;
+      }
+
+      .foot-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+
+      .foot-links a {
+        font-size: 0.7rem;
+      }
+
+      /* ── FLOATING ACTIONS ── */
+      .floating-actions {
+        right: 12px;
+        bottom: 12px;
+        gap: 8px;
+      }
+
+      .fab {
+        width: 38px;
+        height: 38px;
+        font-size: 0.85rem;
+      }
+
+      /* ── CHATBOX ── */
+      .chatbox {
+        right: 12px;
+        bottom: 70px;
+        width: 250px;
+      }
+
+      .chat-header {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+      }
+
+      .chat-body {
+        padding: 12px 14px;
+      }
+
+      .chat-link {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+
+      /* ── FORM SUCCESS ── */
+      .form-success {
+        padding: 1.25rem 1rem;
+      }
+
+      .form-success .success-title {
+        font-size: 1rem;
+      }
+
+      .form-success .success-desc {
+        font-size: 0.8rem;
+      }
+
+      .btn-reset-form {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+      }
+
+      /* ── SOFT SKILLS ── */
+      .soft-skills-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.3rem;
+      }
+
+      .soft-skill-item {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      /* ── ABOUT FLOAT ── */
+      .about-float {
+        display: none;
+      }
+
+      .about-hl {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 100%;
+      }
+    }
+
+    /* ── BREAKPOINT CHO MÀN HÌNH RẤT NHỎ ── */
+    @media(max-width:400px) {
+      #hero {
+        padding: 60px 0.75rem 1.5rem;
+      }
+
+      .hero-name {
+        font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+      }
+
+      .hero-stats {
+        gap: 0.5rem;
+      }
+
+      .stat {
+        min-width: 60px;
+        padding-top: 0.3rem;
+      }
+
+      .stat-n {
+        font-size: 1.3rem;
+      }
+
+      .skill-panel.active {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hl {
+        grid-template-columns: 1fr;
+      }
+
+      .soft-skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-inner {
+        padding: 1.5rem 1rem;
+      }
+
+      .cta-contacts {
+        gap: 0.5rem;
+      }
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -3186,7 +3277,7 @@
         </p>
         <div class="hero-actions">
           <a href="#projects" class="btn-primary" data-en="View My Work →" data-vi="Xem dự án →">View My Work →</a>
-         
+          <a href="projects/cvweb.html" class="btn-outline" data-en="View CV" data-vi="Xem CV">Xem CV</a>
         </div>
         <div class="hero-stats">
           <div class="stat">
@@ -4553,143 +4644,143 @@
       }
     });
 
-   /* ── CONTACT FORM ── */
-const form = document.getElementById('contactForm');
-const submitBtn = document.getElementById('submitBtn');
-const successDiv = document.getElementById('formSuccess');
-const successTimer = document.getElementById('successTimer');
+    /* ── CONTACT FORM ── */
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successDiv = document.getElementById('formSuccess');
+    const successTimer = document.getElementById('successTimer');
 
-const nameInput = document.getElementById('senderName');
-const emailInput = document.getElementById('senderEmail');
-const messageInput = document.getElementById('message');
-const nameError = document.getElementById('nameError');
-const emailError = document.getElementById('emailError');
-const messageError = document.getElementById('messageError');
+    const nameInput = document.getElementById('senderName');
+    const emailInput = document.getElementById('senderEmail');
+    const messageInput = document.getElementById('message');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const messageError = document.getElementById('messageError');
 
-// Rate limiting - ngăn spam
-let lastSubmitTime = 0;
-const MIN_SUBMIT_INTERVAL = 30000; // 30 giây
-let timerInterval = null;
+    // Rate limiting - ngăn spam
+    let lastSubmitTime = 0;
+    const MIN_SUBMIT_INTERVAL = 30000; // 30 giây
+    let timerInterval = null;
 
-// Hàm reset form về trạng thái ban đầu
-function resetForm() {
-  // Reset form
-  form.reset();
-  // Ẩn success
-  successDiv.classList.remove('show');
-  successDiv.style.display = 'none';
-  // Reset errors
-  [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
-  // Hiện lại form
-  form.style.display = 'block';
-  // Clear timer
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-}
+    // Hàm reset form về trạng thái ban đầu
+    function resetForm() {
+      // Reset form
+      form.reset();
+      // Ẩn success
+      successDiv.classList.remove('show');
+      successDiv.style.display = 'none';
+      // Reset errors
+      [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
+      // Hiện lại form
+      form.style.display = 'block';
+      // Clear timer
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
 
-// Hàm hiển thị thông báo thành công và tự động đóng
-function showSuccess() {
-  // Ẩn form
-  form.style.display = 'none';
-  // Hiện success
-  successDiv.style.display = 'block';
-  setTimeout(() => {
-    successDiv.classList.add('show');
-  }, 10);
-  
-  // Đếm ngược 3 giây
-  let seconds = 3;
-  successTimer.textContent = `Tự động đóng sau ${seconds}s...`;
-  
-  timerInterval = setInterval(() => {
-    seconds--;
-    if (seconds > 0) {
+    // Hàm hiển thị thông báo thành công và tự động đóng
+    function showSuccess() {
+      // Ẩn form
+      form.style.display = 'none';
+      // Hiện success
+      successDiv.style.display = 'block';
+      setTimeout(() => {
+        successDiv.classList.add('show');
+      }, 10);
+
+      // Đếm ngược 3 giây
+      let seconds = 3;
       successTimer.textContent = `Tự động đóng sau ${seconds}s...`;
-    } else {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      successTimer.textContent = 'Đã đóng';
-      // Reset form sau 3 giây
-      resetForm();
+
+      timerInterval = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          successTimer.textContent = `Tự động đóng sau ${seconds}s...`;
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          successTimer.textContent = 'Đã đóng';
+          // Reset form sau 3 giây
+          resetForm();
+        }
+      }, 1000);
+
+      // Cuộn lên để thấy thông báo
+      successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, 1000);
-  
-  // Cuộn lên để thấy thông báo
-  successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
 
-// Xử lý submit form
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+    // Xử lý submit form
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-  // Rate limiting
-  const now = Date.now();
-  if (now - lastSubmitTime < MIN_SUBMIT_INTERVAL) {
-    const remaining = Math.ceil((MIN_SUBMIT_INTERVAL - (now - lastSubmitTime)) / 1000);
-    alert(`Vui lòng đợi ${remaining} giây trước khi gửi lại.`);
-    return;
-  }
+      // Rate limiting
+      const now = Date.now();
+      if (now - lastSubmitTime < MIN_SUBMIT_INTERVAL) {
+        const remaining = Math.ceil((MIN_SUBMIT_INTERVAL - (now - lastSubmitTime)) / 1000);
+        alert(`Vui lòng đợi ${remaining} giây trước khi gửi lại.`);
+        return;
+      }
 
-  // Reset errors
-  [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
-  let isValid = true;
+      // Reset errors
+      [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
+      let isValid = true;
 
-  // Validate name
-  if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
-    nameError.classList.add('show');
-    isValid = false;
-  }
+      // Validate name
+      if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+        nameError.classList.add('show');
+        isValid = false;
+      }
 
-  // Validate email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
-    emailError.classList.add('show');
-    isValid = false;
-  }
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+        emailError.classList.add('show');
+        isValid = false;
+      }
 
-  // Validate message
-  if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
-    messageError.classList.add('show');
-    isValid = false;
-  }
+      // Validate message
+      if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+        messageError.classList.add('show');
+        isValid = false;
+      }
 
-  if (!isValid) return;
+      if (!isValid) return;
 
-  // Disable button và hiển thị loading
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+      // Disable button và hiển thị loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
 
-  const formData = new FormData(form);
+      const formData = new FormData(form);
 
-  // Gửi form qua Formspree
-  fetch('https://formspree.io/f/mykqkdyp', {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-  .then(response => {
-    if (response.ok) {
-      lastSubmitTime = Date.now();
-      showSuccess();
-    } else {
-      return response.json().then(data => {
-        throw new Error(data.error || 'Có lỗi xảy ra');
-      });
-    }
-  })
-  .catch(error => {
-    console.error('Form error:', error);
-    alert('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
-  })
-  .finally(() => {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi tin nhắn';
-  });
-});
+      // Gửi form qua Formspree
+      fetch('https://formspree.io/f/mykqkdyp', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            lastSubmitTime = Date.now();
+            showSuccess();
+          } else {
+            return response.json().then(data => {
+              throw new Error(data.error || 'Có lỗi xảy ra');
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Form error:', error);
+          alert('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi tin nhắn';
+        });
+    });
   </script>
 </body>
 

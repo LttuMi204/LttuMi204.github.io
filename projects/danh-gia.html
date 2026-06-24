@@ -1314,7 +1314,30 @@ footer {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0)
-}</style>
+}
+/* ── SWOT ENHANCEMENT ── */
+.review-swot-box ul li[data-en] {
+  cursor: default;
+  transition: opacity var(--transition);
+}
+
+.review-swot-box ul li[data-en]:hover {
+  opacity: 0.8;
+}
+
+/* Cải thiện responsive cho SWOT trên mobile */
+@media (max-width: 480px) {
+  .review-swot-box ul li {
+    font-size: 0.7rem !important;
+    padding-left: 0.6rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .review-swot-box .swot-title {
+    font-size: 0.75rem !important;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -1396,15 +1419,15 @@ footer {
     <div class="container">
       <div class="project-tags">
         <span class="tag">★ <span data-en="AI-Powered Assessment" data-vi="Đánh giá bởi AI">Đánh giá bởi AI</span></span>
-        <span class="tag" data-en="Claude 3.7 Sonnet" data-vi="Claude 3.7 Sonnet">Claude 3.7 Sonnet</span>
+        <span class="tag" data-en="Claude 4.6 Sonnet" data-vi="Claude 4.6 Sonnet">Claude 4.6 Sonnet</span>
         <span class="tag" data-en="Advanced AI Analysis" data-vi="Phân tích AI nâng cao">Phân tích AI nâng cao</span>
         <span class="tag" data-en="Senior BA/SA Perspective" data-vi="Góc nhìn Senior BA/SA">Góc nhìn Senior BA/SA</span>
       </div>
       <h1><span data-en="AI-Powered" data-vi="Đánh giá">AI-Powered</span> <span style="color:var(--accent)"><span data-en="Assessment" data-vi="bởi Claude AI">Assessment</span></span></h1>
       <p style="font-size:var(--fs-body);color:var(--text-m);max-width:700px;line-height:1.9;">
-        <span data-en="A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 3.7 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities."
-        data-vi="Đánh giá toàn diện, khách quan về hồ sơ, portfolio và sản phẩm kỹ thuật của tôi — được thực hiện bởi <strong>Claude 3.7 Sonnet</strong>, trợ lý AI tiên tiến với khả năng phân tích cấp chuyên gia.">
-        A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 3.7 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities.
+        <span data-en="A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities."
+        data-vi="Đánh giá toàn diện, khách quan về hồ sơ, portfolio và sản phẩm kỹ thuật của tôi — được thực hiện bởi <strong>Claude 4.6 Sonnet</strong>, trợ lý AI tiên tiến với khả năng phân tích cấp chuyên gia.">
+        A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities.
       </span>
       </p>
       <div class="project-meta">
@@ -1414,7 +1437,7 @@ footer {
         </div>
         <div class="meta-item">
           <span class="label" data-en="Model" data-vi="Mô hình AI">Mô hình AI</span>
-          <span class="value" data-en="Claude 3.7 Sonnet" data-vi="Claude 3.7 Sonnet">Claude 3.7 Sonnet</span>
+          <span class="value" data-en="Claude 4.6 Sonnet" data-vi="Claude 4.6 Sonnet">Claude 4.6 Sonnet</span>
         </div>
         <div class="meta-item">
           <span class="label" data-en="Capabilities" data-vi="Năng lực">Năng lực</span>
@@ -1448,9 +1471,9 @@ footer {
         <p>
           <strong data-en="🤖 AI-Powered Assessment by Claude" data-vi="🤖 Đánh giá bởi trí tuệ nhân tạo Claude">🤖 Đánh giá bởi trí tuệ nhân tạo Claude</strong>
           <br>
-          <span data-en="This assessment was conducted by <strong>Claude 3.7 Sonnet</strong>, an advanced AI assistant developed by Anthropic. Claude analyzed the complete project portfolio, technical documentation, and web profile to provide an objective, expert-level evaluation from a Senior BA/SA perspective."
-                data-vi="Đánh giá này được thực hiện bởi <strong>Claude 3.7 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.">
-            Đánh giá này được thực hiện bởi <strong>Claude 3.7 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.
+          <span data-en="This assessment was conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant developed by Anthropic. Claude analyzed the complete project portfolio, technical documentation, and web profile to provide an objective, expert-level evaluation from a Senior BA/SA perspective."
+                data-vi="Đánh giá này được thực hiện bởi <strong>Claude 4.6 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.">
+            Đánh giá này được thực hiện bởi <strong>Claude 4.6 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.
           </span>
         </p>
       </div>
@@ -1706,49 +1729,59 @@ footer {
 
       <!-- SWOT -->
       <div class="review-section-title reveal" data-en="SWOT Analysis" data-vi="Ma trận SWOT">Ma trận SWOT</div>
-      <div class="review-swot-grid reveal">
-        <div class="review-swot-box">
-          <div class="swot-title strong"><i class="fas fa-plus-circle"></i> <span data-en="Strengths" data-vi="Điểm mạnh">Điểm mạnh</span></div>
-          <ul>
-            <li>ISO/IEC 29148 mastery — rare for fresher</li>
-            <li>450+ pages of documented evidence</li>
-            <li>Full-cycle BA: BRD→SRS→SDD→DBD→RTM</li>
-            <li>Portfolio website high-quality, self-built</li>
-            <li>Dual-track: BA/SA + ASP.NET full-stack</li>
-            <li>Measurable outputs with specific metrics</li>
-          </ul>
-        </div>
-        <div class="review-swot-box">
-          <div class="swot-title weak"><i class="fas fa-minus-circle"></i> <span data-en="Points for improvement" data-vi="Điểm cần cải thiện">Điểm cần cải thiện</span></div>
-          <ul>
-            <li>English B1 — limits international roles</li>
-            <li>No real-world Agile/Scrum experience</li>
-            <li>Technical depth in distributed systems thin</li>
-            <li>No CI/CD, DevOps exposure</li>
-            <li>Only 1 internship (8 weeks) — limited team exposure</li>
-            <li>Contact form lacks backend validation</li>
-          </ul>
-        </div>
-        <div class="review-swot-box">
-          <div class="swot-title opp"><i class="fas fa-arrow-trend-up"></i> <span data-en="Opportunities" data-vi="Cơ hội">Cơ hội</span></div>
-          <ul>
-            <li>Mekong Delta market lacks quality BA/SA</li>
-            <li>ERP/HIS/Fintech need documentation experts</li>
-            <li>BABOK certification will add rapid value</li>
-            <li>Solution Architect path in 3-5 years feasible</li>
-            <li>Digital transformation in SMEs booming</li>
-          </ul>
-        </div>
-        <div class="review-swot-box">
-          <div class="swot-title risk"><i class="fas fa-triangle-exclamation"></i> <span data-en="Risks" data-vi="Rủi ro">Rủi ro</span></div>
-          <ul>
-            <li>Misclassified as "Developer" instead of BA/SA</li>
-            <li>HRMS metrics need verification — interviewer will test</li>
-            <li>Branding too dependent on a single portfolio point</li>
-            <li>Competition with HCMC freshers from better environments</li>
-          </ul>
-        </div>
-      </div>
+      
+<div class="review-swot-grid reveal">
+  
+  <!-- Strengths / Điểm mạnh -->
+  <div class="review-swot-box">
+    <div class="swot-title strong"><i class="fas fa-plus-circle"></i> <span data-en="Strengths" data-vi="Điểm mạnh">Điểm mạnh</span></div>
+    <ul>
+      <li data-en="ISO/IEC 29148 mastery — rare for fresher" data-vi="Thành thạo ISO/IEC 29148 — hiếm gặp ở fresher">ISO/IEC 29148 mastery — rare for fresher</li>
+      <li data-en="450+ pages of documented evidence" data-vi="450+ trang tài liệu có bằng chứng">450+ pages of documented evidence</li>
+      <li data-en="Full-cycle BA: BRD→SRS→SDD→DBD→RTM" data-vi="Toàn bộ quy trình BA: BRD→SRS→SDD→DBD→RTM">Full-cycle BA: BRD→SRS→SDD→DBD→RTM</li>
+      <li data-en="Portfolio website high-quality, self-built" data-vi="Portfolio website chất lượng cao, tự xây dựng">Portfolio website high-quality, self-built</li>
+      <li data-en="Dual-track: BA/SA + ASP.NET full-stack" data-vi="Kết hợp BA/SA + full-stack ASP.NET">Dual-track: BA/SA + ASP.NET full-stack</li>
+      <li data-en="Measurable outputs with specific metrics" data-vi="Kết quả đo lường được với chỉ số cụ thể">Measurable outputs with specific metrics</li>
+    </ul>
+  </div>
+  
+  <!-- Weaknesses / Điểm cần cải thiện -->
+  <div class="review-swot-box">
+    <div class="swot-title weak"><i class="fas fa-minus-circle"></i> <span data-en="Points for improvement" data-vi="Điểm cần cải thiện">Điểm cần cải thiện</span></div>
+    <ul>
+      <li data-en="English B1 — limits international roles" data-vi="Tiếng Anh B1 — hạn chế cơ hội quốc tế">English B1 — limits international roles</li>
+      <li data-en="No real-world Agile/Scrum experience" data-vi="Chưa có kinh nghiệm Agile/Scrum thực tế">No real-world Agile/Scrum experience</li>
+      <li data-en="Technical depth in distributed systems thin" data-vi="Chiều sâu kỹ thuật về distributed systems còn mỏng">Technical depth in distributed systems thin</li>
+      <li data-en="No CI/CD, DevOps exposure" data-vi="Chưa tiếp xúc với CI/CD, DevOps">No CI/CD, DevOps exposure</li>
+      <li data-en="Only 1 internship (8 weeks) — limited team exposure" data-vi="Chỉ 1 kỳ thực tập (8 tuần) — ít trải nghiệm làm việc nhóm">Only 1 internship (8 weeks) — limited team exposure</li>
+      <li data-en="Contact form lacks backend validation" data-vi="Contact form thiếu validation backend">Contact form lacks backend validation</li>
+    </ul>
+  </div>
+  
+  <!-- Opportunities / Cơ hội -->
+  <div class="review-swot-box">
+    <div class="swot-title opp"><i class="fas fa-arrow-trend-up"></i> <span data-en="Opportunities" data-vi="Cơ hội">Cơ hội</span></div>
+    <ul>
+      <li data-en="Mekong Delta market lacks quality BA/SA" data-vi="Thị trường ĐBSCL thiếu BA/SA chất lượng">Mekong Delta market lacks quality BA/SA</li>
+      <li data-en="ERP/HIS/Fintech need documentation experts" data-vi="ERP/HIS/Fintech cần chuyên gia tài liệu hóa">ERP/HIS/Fintech need documentation experts</li>
+      <li data-en="BABOK certification will add rapid value" data-vi="Chứng chỉ BABOK sẽ tăng giá trị nhanh chóng">BABOK certification will add rapid value</li>
+      <li data-en="Solution Architect path in 3-5 years feasible" data-vi="Lộ trình Solution Architect trong 3-5 năm khả thi">Solution Architect path in 3-5 years feasible</li>
+      <li data-en="Digital transformation in SMEs booming" data-vi="Chuyển đổi số trong doanh nghiệp vừa và nhỏ đang bùng nổ">Digital transformation in SMEs booming</li>
+    </ul>
+  </div>
+  
+  <!-- Risks / Rủi ro -->
+  <div class="review-swot-box">
+    <div class="swot-title risk"><i class="fas fa-triangle-exclamation"></i> <span data-en="Risks" data-vi="Rủi ro">Rủi ro</span></div>
+    <ul>
+      <li data-en="Misclassified as 'Developer' instead of BA/SA" data-vi="Bị xếp nhầm vào vị trí 'Developer' thay vì BA/SA">Misclassified as 'Developer' instead of BA/SA</li>
+      <li data-en="HRMS metrics need verification — interviewer will test" data-vi="Số liệu HRMS cần được xác minh — interviewer sẽ kiểm tra">HRMS metrics need verification — interviewer will test</li>
+      <li data-en="Branding too dependent on a single portfolio point" data-vi="Xây dựng thương hiệu quá phụ thuộc vào một điểm trong portfolio">Branding too dependent on a single portfolio point</li>
+      <li data-en="Competition with HCMC freshers from better environments" data-vi="Cạnh tranh với fresher TP.HCM từ môi trường tốt hơn">Competition with HCMC freshers from better environments</li>
+    </ul>
+  </div>
+  
+</div>
 
       <!-- Final Verdict -->
       <div class="review-final-card reveal">
@@ -1855,9 +1888,9 @@ footer {
       <!-- AI Credit -->
       <div style="text-align:center;padding:1.5rem 0 0.5rem;font-size:0.7rem;color:var(--text-s);opacity:0.6;border-top:0.5px solid var(--border);margin-top:1.5rem;">
         <i class="fas fa-robot" style="margin-right:4px;"></i>
-        <span data-en="This assessment was generated by Claude 3.7 Sonnet · Powered by Anthropic" 
-              data-vi="Đánh giá này được tạo bởi Claude 3.7 Sonnet · Công nghệ từ Anthropic">
-          Đánh giá này được tạo bởi Claude 3.7 Sonnet · Công nghệ từ Anthropic
+        <span data-en="This assessment was generated by Claude 4.6 Sonnet · Powered by Anthropic" 
+              data-vi="Đánh giá này được tạo bởi Claude 4.6 Sonnet · Công nghệ từ Anthropic">
+          Đánh giá này được tạo bởi Claude 4.6 Sonnet · Công nghệ từ Anthropic
         </span>
       </div>
 
