@@ -3,265 +3,145 @@
 [![Website](https://img.shields.io/badge/Website-lttumi204.github.io%2Flethitumi--ejsh.github.io-blue?style=for-the-badge&logo=github)](https://lttumi204.github.io/lethitumi-ejsh.github.io/)
 [![GitHub](https://img.shields.io/badge/GitHub-LttuMi204-181717?style=for-the-badge&logo=github)](https://github.com/LttuMi204)
 
----
-
-## English / Tiếng Anh
-
 > **Software Engineer | Business Analyst | System Analyst**  
 > *Bridging the gap between business needs and technical solutions*
 
-### Live Demo
+---
 
-**View CV online:** [https://lttumi204.github.io/lethitumi-ejsh.github.io/](https://lttumi204.github.io/lethitumi-ejsh.github.io/)
+## 🌐 Live Demo
 
-| Page | Link |
-|------|------|
-| Home | [lttumi204.github.io/lethitumi-ejsh.github.io/](https://lttumi204.github.io/lethitumi-ejsh.github.io/) |
-| Projects | [lttumi204.github.io/lethitumi-ejsh.github.io/#projects](https://lttumi204.github.io/lethitumi-ejsh.github.io/#projects) |
-| Experience | [lttumi204.github.io/lethitumi-ejsh.github.io/#experience](https://lttumi204.github.io/lethitumi-ejsh.github.io/#experience) |
-| Detailed CV | [lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html) |
-| Expert Review | [lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html) |
-
-### Introduction
-
-Personal CV/Portfolio website of **Le Thi Tu Mi** - Software Engineering student graduating in September 2026 at Nam Can Tho University.
-
-**Key Strengths:**
-- Business Analysis & System Design (BA/SA)
-- Full-stack Development with .NET Core
-- Database Design and Modeling
-- Requirements Documentation following ISO/IEC 29148 standards
-
-### Technologies Used
-
-| Technology | Purpose |
-|------------|---------|
-| HTML5 / CSS3 | Structure and interface |
-| JavaScript | Interactive features (popup, tabs, language switch, counter animation) |
-| Font Awesome | Icons and symbols |
-| Google Fonts | Professional typography (Sora, Inter, JetBrains Mono) |
-| GitHub Pages | Hosting platform |
-| Formspree | Contact form backend |
-
-### Project Structure
-
-```
-lethitumi-ejsh.github.io/
-│
-├── index.html                 # Main page
-├── projects/
-│   ├── cvweb.html             # Detailed CV (print-friendly)
-│   ├── danh-gia.html          # Expert review / Assessment
-│   ├── nhan-su.html           # HRMS project detail
-│   ├── nha-khoa.html          # Dental Clinic project detail
-│   └── ban-hang.html          # E-Commerce project detail
-├── assets/
-│   ├── images/                # Project images, avatar
-│   └── pdf/                   # PDF CV download
-└── README.md
-```
-
-### Featured Projects
-
-**1. Human Resource Management System (HRMS)**
-- Role: Business Analyst & System Analyst
-- End-to-end BA/SA for enterprise HRMS system
-- Produced 12 documents (~450 pages) following ISO/IEC 29148
-- Designed 29 database tables, 66 API endpoints, 51 test cases
-- [View Details](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nhan-su.html)
-
-**2. Dental Clinic Management System**
-- Role: Full-Stack Developer
-- Complete clinic management system for patients, appointments, billing
-- 4 role-based access control (Admin, Doctor, Receptionist, Patient)
-- Technologies: ASP.NET Core MVC, SQL Server, EF Core
-- [View Details](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nha-khoa.html)
-
-**3. E-Commerce Website**
-- Role: Web Developer
-- Responsive interface with UX optimization
-- Product management, shopping cart, order processing
-- [View Details](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/ban-hang.html)
-
-### Key Metrics
-
-| Metric | Value |
-|--------|-------|
-| Documentation Pages | 450+ |
-| API Endpoints | 66 |
-| Project Deliverables | 12 |
-| Database Tables | 29 |
-| Test Cases | 51 |
-
-### Contact
-
-- Email: [tusmile.joy@gmail.com](mailto:tusmile.joy@gmail.com)
-- GitHub: [github.com/LttuMi204](https://github.com/LttuMi204)
-- LinkedIn: [linkedin.com/in/tu-mi-le-thi-kpm](https://www.linkedin.com/in/tu-mi-le-thi-kpm/)
-- Zalo: 0774.945.169
-
-### Contact Form
-
-The website integrates a contact form for recruiters and partners to send messages directly.
-
-| Information | Details |
-|-------------|---------|
-| Service | Formspree |
-| Form ID | `mykqkdyp` |
-| Receiving Email | `tusmile.joy@gmail.com` |
-| Status | Active |
-
-**Security Features:**
-- Client-side validation - Input validation before submission
-- Rate limiting - 1 message per 30 seconds to prevent spam
-- Formspree backend - Secure form processing, no email exposure
-- Success notification - Auto-closes after 3 seconds
-- Multilingual support - Vietnamese & English
-
-**How It Works:**
-1. User fills in the form
-2. Data is sent to Formspree (`https://formspree.io/f/mykqkdyp`)
-3. Formspree forwards the email to `tusmile.joy@gmail.com`
-4. User receives a success notification
-
-> **Note:** The form is configured and working properly. You can test it on the [homepage](https://lttumi204.github.io/lethitumi-ejsh.github.io/#contact).
-
-### Notes
-
-- Multilingual support (Vietnamese / English) - toggle with the language button on the navigation bar
-- Dark/Light theme - automatic theme switching
-- Scroll reveal and counter animation effects when scrolling
-- Skill detail popup with references and learning resources
+| English | Vietnamese |
+|---------|------------|
+| [Home](https://lttumi204.github.io/lethitumi-ejsh.github.io/) | [Trang chủ](https://lttumi204.github.io/lethitumi-ejsh.github.io/) |
+| [Projects](https://lttumi204.github.io/lethitumi-ejsh.github.io/#projects) | [Dự án](https://lttumi204.github.io/lethitumi-ejsh.github.io/#projects) |
+| [Experience](https://lttumi204.github.io/lethitumi-ejsh.github.io/#experience) | [Kinh nghiệm](https://lttumi204.github.io/lethitumi-ejsh.github.io/#experience) |
+| [Detailed CV](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html) | [CV chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html) |
+| [Expert Review](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html) | [Đánh giá chuyên gia](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html) |
 
 ---
 
-## Tiếng Việt / Vietnamese
+## 📋 About / Giới thiệu
 
-> **Kỹ sư phần mềm | Chuyên viên phân tích nghiệp vụ | Chuyên viên phân tích hệ thống**  
-> *Kết nối giữa nhu cầu kinh doanh và giải pháp kỹ thuật*
+**English:** Personal CV/Portfolio of **Le Thi Tu Mi** - Software Engineering student, graduating Sep 2026 at Nam Can Tho University.
 
-### Bản thử nghiệm trực tiếp
+**Tiếng Việt:** CV/Portfolio cá nhân của **Lê Thị Tú Mi** - Sinh viên Kỹ thuật phần mềm, tốt nghiệp 09/2026 tại ĐH Nam Cần Thơ.
 
-**Xem CV trực tuyến:** [https://lttumi204.github.io/lethitumi-ejsh.github.io/](https://lttumi204.github.io/lethitumi-ejsh.github.io/)
+| Strengths / Thế mạnh | |
+|----------------------|-|
+| 🧠 Business Analysis & System Design (BA/SA) | Phân tích nghiệp vụ & thiết kế hệ thống |
+| 💻 Full-stack Development with .NET Core | Phát triển Full-stack .NET Core |
+| 📊 Database Design & Modeling | Thiết kế CSDL & mô hình hóa |
+| 📝 ISO/IEC 29148 Documentation | Tài liệu hóa theo chuẩn ISO/IEC 29148 |
 
-| Trang | Link |
-|-------|------|
-| Trang chủ | [lttumi204.github.io/lethitumi-ejsh.github.io/](https://lttumi204.github.io/lethitumi-ejsh.github.io/) |
-| Dự án | [lttumi204.github.io/lethitumi-ejsh.github.io/#projects](https://lttumi204.github.io/lethitumi-ejsh.github.io/#projects) |
-| Kinh nghiệm | [lttumi204.github.io/lethitumi-ejsh.github.io/#experience](https://lttumi204.github.io/lethitumi-ejsh.github.io/#experience) |
-| CV chi tiết | [lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/cvweb.html) |
-| Đánh giá chuyên gia | [lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/danh-gia.html) |
+---
 
-### Giới thiệu
+## 🛠 Tech Stack / Công nghệ
 
-Trang web CV/Portfolio cá nhân của **Lê Thị Tú Mi** - Sinh viên Kỹ thuật phần mềm sắp tốt nghiệp (09/2026) tại Trường Đại học Nam Cần Thơ.
+| Technology | Purpose | Mục đích |
+|------------|---------|----------|
+| HTML5 / CSS3 | Structure & UI | Cấu trúc & giao diện |
+| JavaScript | Interactivity | Tương tác động |
+| Font Awesome | Icons | Biểu tượng |
+| Google Fonts | Typography | Font chữ |
+| GitHub Pages | Hosting | Lưu trữ |
+| Formspree | Contact Form | Form liên hệ |
 
-**Thế mạnh chính:**
-- Phân tích nghiệp vụ & thiết kế hệ thống (BA/SA)
-- Phát triển Full-stack với .NET Core
-- Thiết kế cơ sở dữ liệu và mô hình hóa
-- Tài liệu hóa yêu cầu theo chuẩn ISO/IEC 29148
+---
 
-### Công nghệ sử dụng
-
-| Công nghệ | Mục đích |
-|-----------|----------|
-| HTML5 / CSS3 | Cấu trúc và giao diện |
-| JavaScript | Tương tác động (popup, tabs, chuyển đổi ngôn ngữ, hiệu ứng đếm) |
-| Font Awesome | Biểu tượng và icon |
-| Google Fonts | Font chữ chuyên nghiệp (Sora, Inter, JetBrains Mono) |
-| GitHub Pages | Nền tảng hosting |
-| Formspree | Xử lý form liên hệ |
-
-### Cấu trúc thư mục
+## 📁 Structure / Cấu trúc
 
 ```
 lethitumi-ejsh.github.io/
-│
-├── index.html                 # Trang chính
+├── index.html                 # Main / Trang chính
 ├── projects/
-│   ├── cvweb.html             # CV chi tiết (dạng in)
-│   ├── danh-gia.html          # Đánh giá chuyên gia
-│   ├── nhan-su.html           # Chi tiết dự án HRMS
-│   ├── nha-khoa.html          # Chi tiết dự án Nha khoa
-│   └── ban-hang.html          # Chi tiết dự án Bán hàng
-├── assets/
-│   ├── images/                # Hình ảnh dự án, avatar
-│   └── pdf/                   # Tải xuống CV PDF
-└── README.md
+│   ├── cvweb.html             # Detailed CV / CV chi tiết
+│   ├── danh-gia.html          # Expert Review / Đánh giá chuyên gia
+│   ├── nhan-su.html           # HRMS Project / Dự án HRMS
+│   ├── nha-khoa.html          # Dental Clinic / Nha khoa
+│   └── ban-hang.html          # E-Commerce / Bán hàng
+└── assets/
+    ├── images/                # Project images / Hình ảnh dự án
+    └── pdf/                   # PDF CV download / Tải CV PDF
 ```
 
-### Dự án nổi bật
+---
 
-**1. Hệ thống Quản lý Nhân sự (HRMS)**
-- Vai trò: Business Analyst & System Analyst
-- Thực hiện toàn bộ BA/SA cho hệ thống HRMS doanh nghiệp
-- Tạo 12 tài liệu (~450 trang) theo chuẩn ISO/IEC 29148
-- Thiết kế 29 bảng CSDL, 66 API endpoints, 51 test cases
-- [Xem chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nhan-su.html)
+## 🚀 Projects / Dự án
 
-**2. Hệ thống Quản lý Phòng khám Nha khoa**
-- Vai trò: Full-Stack Developer
-- Xây dựng hệ thống quản lý bệnh nhân, lịch hẹn, thanh toán
-- Phân quyền 4 vai trò (Admin, Bác sĩ, Lễ tân, Bệnh nhân)
-- Công nghệ: ASP.NET Core MVC, SQL Server, EF Core
-- [Xem chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nha-khoa.html)
+### 1. HRMS - Human Resource Management / Quản lý Nhân sự
+> **Role / Vai trò:** Business Analyst & System Analyst
 
-**3. Website Thương mại điện tử**
-- Vai trò: Web Developer
-- Giao diện responsive, tối ưu UX
-- Quản lý sản phẩm, giỏ hàng, đơn hàng
-- [Xem chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/ban-hang.html)
+| English | Tiếng Việt |
+|---------|------------|
+| End-to-end BA/SA for enterprise HRMS | BA/SA toàn diện cho HRMS doanh nghiệp |
+| 12 documents (~450 pages) ISO/IEC 29148 | 12 tài liệu (~450 trang) chuẩn ISO/IEC 29148 |
+| 29 tables, 66 APIs, 51 test cases | 29 bảng, 66 APIs, 51 test cases |
 
-### Số liệu ấn tượng
+🔗 [Details / Chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nhan-su.html)
 
-| Thống kê | Giá trị |
-|----------|---------|
-| Trang tài liệu | 450+ |
+### 2. Dental Clinic Management / Quản lý Phòng khám Nha khoa
+> **Role / Vai trò:** Full-Stack Developer
+
+| Feature / Tính năng | |
+|---------------------|-|
+| Patient management / Quản lý bệnh nhân | Appointments / Lịch hẹn |
+| Billing / Thanh toán | 4 role-based access / 4 vai trò phân quyền |
+| ASP.NET Core MVC · SQL Server · EF Core | |
+
+🔗 [Details / Chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/nha-khoa.html)
+
+### 3. E-Commerce Website / Thương mại điện tử
+> **Role / Vai trò:** Web Developer
+
+Responsive interface with product management, shopping cart, order processing. / Giao diện responsive với quản lý sản phẩm, giỏ hàng, đơn hàng.
+
+🔗 [Details / Chi tiết](https://lttumi204.github.io/lethitumi-ejsh.github.io/projects/ban-hang.html)
+
+---
+
+## 📊 Metrics / Số liệu
+
+| Metric / Chỉ số | Value / Giá trị |
+|-----------------|-----------------|
+| Documentation Pages / Trang tài liệu | 450+ |
 | API Endpoints | 66 |
-| Tài liệu bàn giao | 12 |
-| Bảng CSDL | 29 |
+| Deliverables / Tài liệu bàn giao | 12 |
+| Database Tables / Bảng CSDL | 29 |
 | Test Cases | 51 |
 
-### Liên hệ
+---
 
-- Email: [tusmile.joy@gmail.com](mailto:tusmile.joy@gmail.com)
-- GitHub: [github.com/LttuMi204](https://github.com/LttuMi204)
-- LinkedIn: [linkedin.com/in/tu-mi-le-thi-kpm](https://www.linkedin.com/in/tu-mi-le-thi-kpm/)
-- Zalo: 0774.945.169
+## 📬 Contact / Liên hệ
 
-### Form liên hệ
+| | English | Tiếng Việt |
+|-|---------|------------|
+| Email | [tusmile.joy@gmail.com](mailto:tusmile.joy@gmail.com) | [tusmile.joy@gmail.com](mailto:tusmile.joy@gmail.com) |
+| GitHub | [LttuMi204](https://github.com/LttuMi204) | [LttuMi204](https://github.com/LttuMi204) |
+| LinkedIn | [Tu Mi Le Thi](https://linkedin.com/in/tu-mi-le-thi-kpm) | [Tu Mi Le Thi](https://linkedin.com/in/tu-mi-le-thi-kpm/) |
+| Zalo | 0774.945.169 | 0774.945.169 |
 
-Trang web tích hợp form liên hệ để nhà tuyển dụng và đối tác có thể gửi tin nhắn trực tiếp.
+---
 
-| Thông tin | Chi tiết |
-|-----------|----------|
-| Dịch vụ | Formspree |
-| Form ID | `mykqkdyp` |
-| Email nhận | `tusmile.joy@gmail.com` |
-| Trạng thái | Hoạt động |
+## ✉️ Contact Form / Form liên hệ
 
-**Tính năng bảo mật:**
-- Xác thực phía client - Kiểm tra dữ liệu đầu vào trước khi gửi
-- Giới hạn tốc độ - 1 tin nhắn/30 giây để chống spam
-- Backend Formspree - Xử lý form an toàn, không lộ email
-- Thông báo thành công - Tự động đóng sau 3 giây
-- Hỗ trợ đa ngôn ngữ - Tiếng Việt & Tiếng Anh
+**Service / Dịch vụ:** Formspree · **Form ID:** `mykqkdyp` · **Status / Trạng thái:** ✅ Active
 
-**Cách thức hoạt động:**
-1. Người dùng điền thông tin vào form
-2. Dữ liệu được gửi đến Formspree (`https://formspree.io/f/mykqkdyp`)
-3. Formspree chuyển tiếp email đến `tusmile.joy@gmail.com`
-4. Người dùng nhận được thông báo thành công
+| Feature / Tính năng | |
+|---------------------|-|
+| Client-side validation / Xác thực phía client | Rate limiting (1/30s) / Giới hạn tốc độ |
+| Backend security / Bảo mật backend | Auto-close notification / Thông báo tự động đóng |
+| Multilingual support / Hỗ trợ đa ngôn ngữ | |
 
-> **Lưu ý:** Form đã được cấu hình và đang hoạt động tốt. Bạn có thể kiểm tra tại [trang chủ](https://lttumi204.github.io/lethitumi-ejsh.github.io/#contact).
+🔗 [Test here / Kiểm tra tại đây](https://lttumi204.github.io/lethitumi-ejsh.github.io/#contact)
 
-### Ghi chú
+---
 
-- Hỗ trợ đa ngôn ngữ (Tiếng Việt / Tiếng Anh) - chuyển đổi bằng nút ngôn ngữ trên thanh điều hướng
-- Chủ đề sáng/tối - tự động chuyển đổi
-- Hiệu ứng scroll reveal và counter animation khi cuộn trang
-- Popup chi tiết kỹ năng với tài liệu tham khảo và link học tập
+## 📝 Notes / Ghi chú
+
+| Feature / Tính năng | |
+|---------------------|-|
+| 🌐 Multilingual (EN/VN) / Đa ngôn ngữ | 🌓 Dark/Light theme / Chủ đề sáng/tối |
+| 📜 Scroll reveal & counter animation | 💡 Skill popup with references / Popup kỹ năng |
 
 ---
 
