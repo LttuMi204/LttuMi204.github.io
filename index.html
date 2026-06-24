@@ -141,6 +141,7 @@
         opacity: 0;
         transform: translateY(16px) scale(0.96);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1085,1016 +1086,1031 @@
       color: var(--accent-v);
       font-weight: 700
     }
-/* ── SKILLS ─────────────────────────────────── */
-#skills {
-  background: var(--bg)
-}
-
-.skills-tabs {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.stab {
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  padding: 0.5rem 1.2rem;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  color: var(--text-m);
-  background: var(--bg-3);
-  transition: all var(--transition);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.stab:hover,
-.stab.active {
-  background: var(--accent-glow);
-  border-color: rgba(108, 142, 255, 0.35);
-  color: var(--accent);
-}
-
-.skills-panels {}
-
-.skill-panel {
-  display: none;
-}
-
-.skill-panel.active {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  animation: fadeUp 0.35s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.sk-card {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.25rem 1rem;
-  transition: all var(--transition);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 180px;
-  position: relative;
-}
-
-.sk-card:hover {
-  border-color: var(--border-h);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(108, 142, 255, 0.06);
-}
-
-.sk-icon {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.sk-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.2rem;
-  line-height: 1.3;
-  min-height: 2.6rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.sk-desc {
-  font-size: 0.8rem;
-  color: var(--text-m);
-  line-height: 1.5;
-  margin-bottom: 0.6rem;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 2.4rem;
-}
-
-.sk-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-bottom: 0.5rem;
-  min-height: 1.6rem;
-}
-
-.sk-tag {
-  font-size: 0.6rem;
-  font-weight: 500;
-  padding: 0.1rem 0.5rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  white-space: nowrap;
-}
-
-/* ── NÚT XEM THÊM ── */
-.sk-more-btn {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 0.2rem 0.7rem;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all var(--transition);
-  margin-top: 0.25rem;
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.sk-more-btn:hover {
-  background: var(--accent-glow);
-  border-color: var(--accent);
-}
-
-.sk-more-btn i {
-  font-size: 0.6rem;
-}
-
-/* ── POPUP SKILL DETAIL ── */
-.skill-popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  animation: overlayFade 0.3s ease;
-}
-
-.skill-popup-overlay.open {
-  display: flex;
-}
-
-@keyframes overlayFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.skill-popup {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  width: 860px;
-  height: 540px;
-  max-width: 94vw;
-  max-height: 88vh;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-  position: relative;
-  animation: popupSlide 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-@keyframes popupSlide {
-  from { 
-    transform: scale(0.95) translateY(16px);
-    opacity: 0;
-  }
-  to { 
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-.skill-popup::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-v), var(--accent));
-  background-size: 200% 100%;
-  animation: gradientMove 3s ease-in-out infinite;
-}
-
-@keyframes gradientMove {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* ── POPUP HEADER ── */
-.skill-popup-header {
-  padding: 1rem 2rem 0.6rem 2rem;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-  background: var(--bg-3);
-}
-
-.skill-popup-header .header-top {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.skill-popup-header .header-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-glow);
-  border: 1px solid rgba(108, 142, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.skill-popup-header h3 {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0;
-  flex: 1;
-}
-
-.skill-popup-header .header-badge {
-  font-size: 0.55rem;
-  font-weight: 600;
-  padding: 0.1rem 0.6rem;
-  border-radius: 100px;
-  background: var(--accent-glow);
-  color: var(--accent);
-  border: 1px solid rgba(108, 142, 255, 0.15);
-  white-space: nowrap;
-}
-
-.skill-popup-header p {
-  font-size: 0.72rem;
-  color: var(--text-m);
-  margin-top: 0.1rem;
-  padding-left: 2.75rem;
-}
-
-/* ── HEADER RIGHT GROUP (nav buttons + close) ── */
-.header-right-group {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  flex-shrink: 0;
-  margin-left: auto;
-}
-
-.header-nav-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-2);
-  color: var(--text-m);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  transition: all var(--transition);
-  padding: 0;
-  font-family: var(--font-sans);
-}
-
-.header-nav-btn:hover {
-  background: var(--accent-glow);
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: scale(1.05);
-}
-
-.header-nav-btn:active {
-  transform: scale(0.92);
-}
-
-.header-nav-btn .nav-label {
-  display: none;
-}
-
-/* Nút close nằm cạnh nút điều hướng */
-.skill-popup-close {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-2);
-  color: var(--text-m);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  transition: all var(--transition);
-  padding: 0;
-  font-family: var(--font-sans);
-  position: static;
-  margin: 0;
-}
-
-.skill-popup-close:hover {
-  background: rgba(255, 0, 0, 0.1);
-  border-color: #ff4444;
-  color: #ff4444;
-  transform: scale(1.05);
-}
-
-/* ── POPUP BODY 2 CỘT ── */
-.skill-popup-body {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  min-height: 0;
-  height: calc(100% - 80px);
-}
-
-/* Cột trái: Danh sách kỹ năng */
-.skill-popup-sidebar {
-  width: 220px;
-  min-width: 190px;
-  background: var(--bg-3);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 0.5rem 0;
-  flex-shrink: 0;
-}
-
-.skill-popup-sidebar .sidebar-title {
-  font-size: 0.55rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-s);
-  padding: 0.15rem 1.25rem 0.35rem;
-  opacity: 0.7;
-}
-
-.skill-list-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1.25rem;
-  cursor: pointer;
-  transition: all var(--transition);
-  border-left: 3px solid transparent;
-  font-size: 0.8rem;
-  color: var(--text-m);
-  text-align: left;
-  background: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: none;
-  width: 100%;
-  font-family: var(--font-sans);
-  line-height: 1.2;
-  position: relative;
-}
-
-.skill-list-item::after {
-  content: '';
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--border);
-  opacity: 0;
-  transition: all var(--transition);
-}
-
-.skill-list-item:hover {
-  background: var(--bg-2);
-  color: var(--text);
-}
-
-.skill-list-item:hover::after {
-  opacity: 1;
-  background: var(--text-s);
-}
-
-.skill-list-item.active {
-  background: var(--bg-2);
-  color: var(--text);
-  border-left-color: var(--accent);
-  font-weight: 600;
-}
-
-.skill-list-item.active::after {
-  opacity: 1;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-
-.skill-list-item .list-bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--border);
-  flex-shrink: 0;
-  transition: all var(--transition);
-}
-
-.skill-list-item.active .list-bullet {
-  background: var(--accent);
-  box-shadow: 0 0 12px rgba(108, 142, 255, 0.4);
-}
-
-.skill-list-item .list-name {
-  flex: 1;
-}
-
-.skill-list-item .list-count {
-  font-size: 0.55rem;
-  color: var(--text-s);
-  background: var(--bg-3);
-  padding: 0.05rem 0.4rem;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-}
-
-/* ── Cột phải: Nội dung chi tiết ── */
-.skill-popup-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem 1.75rem 1.25rem 1.75rem;
-  background: var(--bg-2);
-}
-
-.skill-popup-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.skill-popup-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.skill-popup-content::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-
-.skill-popup-content::-webkit-scrollbar-thumb:hover {
-  background: var(--text-s);
-}
-
-.skill-detail-title {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.05rem;
-  letter-spacing: -0.01em;
-}
-
-.skill-detail-sub {
-  font-size: 0.72rem;
-  color: var(--accent);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
-}
-
-.skill-detail-desc {
-  font-size: 0.82rem;
-  color: var(--text-m);
-  line-height: 1.65;
-  padding: 0.6rem 0.85rem;
-  background: var(--bg-3);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--accent);
-  margin-bottom: 0.75rem;
-}
-
-.skill-detail-section {
-  margin-bottom: 0.6rem;
-}
-
-.skill-detail-section h4 {
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-s);
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.skill-detail-section h4::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-.skill-detail-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-
-.skill-detail-tags span {
-  font-size: 0.62rem;
-  padding: 0.08rem 0.55rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  transition: all var(--transition);
-}
-
-.skill-detail-tags span:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.skill-detail-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.skill-detail-links a {
-  font-size: 0.68rem;
-  padding: 0.12rem 0.65rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  transition: all var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  text-decoration: none;
-}
-
-.skill-detail-links a:hover {
-  background: var(--accent-glow);
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-1px);
-}
-
-.skill-detail-links a i {
-  font-size: 0.55rem;
-}
-
-/* ── TOOLS STRIP TRONG POPUP ── */
-.skill-detail-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-
-.skill-detail-tools span {
-  font-size: 0.6rem;
-  padding: 0.08rem 0.5rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.skill-detail-tools span::before {
-  content: '⚡';
-  font-size: 0.5rem;
-}
-
-/* ── RESPONSIVE ── */
-@media(max-width:820px) {
-  .skill-popup {
-    width: 95vw;
-    height: 80vh;
-    max-height: 90vh;
-  }
-}
-
-@media(max-width:640px) {
-  .skill-popup {
-    height: 85vh;
-    border-radius: var(--radius-lg);
-    max-width: 98vw;
-  }
-  
-  .skill-popup-header {
-    padding: 0.6rem 1rem 0.4rem;
-  }
-  
-  .skill-popup-header .header-top {
-    flex-wrap: wrap;
-  }
-  
-  .skill-popup-header .header-badge {
-    margin-left: 0;
-  }
-  
-  .skill-popup-header p {
-    padding-left: 0;
-  }
-  
-  .header-nav-group {
-    margin-left: auto;
-  }
-  
-  .header-nav-btn .nav-label {
-    display: none;
-  }
-  
-  .skill-popup-body {
-    flex-direction: column;
-    height: auto;
-    flex: 1;
-  }
-  
-  .skill-popup-sidebar {
-    width: 100%;
-    min-width: unset;
-    max-height: 100px;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 0.25rem 0.5rem;
-    gap: 0.15rem;
-    align-items: center;
-  }
-  
-  .skill-popup-sidebar .sidebar-title {
-    display: none;
-  }
-  
-  .skill-list-item {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.7rem;
-    border-left: none;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    flex-shrink: 0;
-    width: auto;
-    gap: 0.3rem;
-  }
-  
-  .skill-list-item .list-bullet {
-    display: none;
-  }
-  
-  .skill-list-item .list-count {
-    display: none;
-  }
-  
-  .skill-list-item.active {
-    border-left: none;
-    border-bottom-color: var(--accent);
-  }
-  
-  .skill-list-item::after {
-    display: none;
-  }
-  
-  .skill-popup-content {
-    padding: 0.6rem 0.8rem 0.8rem;
-    overflow-y: auto;
-    flex: 1;
-  }
-  
-  .skill-detail-title {
-    font-size: 0.95rem;
-  }
-  
-  .skill-detail-desc {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
-  }
-  
-  .skill-detail-links a {
-    font-size: 0.62rem;
-    padding: 0.08rem 0.5rem;
-  }
-}
-
-@media(max-width:400px) {
-  .skill-popup-sidebar {
-    max-height: 80px;
-  }
-  
-  .skill-list-item {
-    font-size: 0.62rem;
-    padding: 0.15rem 0.4rem;
-  }
-}
-
-.tools-strip {
-  margin-top: 2.5rem;
-  padding: 1.25rem 1.75rem;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.tools-label-txt {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-s);
-  flex-shrink: 0;
-}
-
-.tools-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.t-chip {
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 0.2rem 0.7rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-}
+
+    /* ── SKILLS ─────────────────────────────────── */
+    #skills {
+      background: var(--bg)
+    }
+
+    .skills-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stab {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      background: var(--bg-3);
+      transition: all var(--transition);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .stab:hover,
+    .stab.active {
+      background: var(--accent-glow);
+      border-color: rgba(108, 142, 255, 0.35);
+      color: var(--accent);
+    }
+
+    .skills-panels {}
+
+    .skill-panel {
+      display: none;
+    }
+
+    .skill-panel.active {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      animation: fadeUp 0.35s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .sk-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.25rem 1rem;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 180px;
+      position: relative;
+    }
+
+    .sk-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.06);
+    }
+
+    .sk-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sk-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+      min-height: 2.6rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .sk-desc {
+      font-size: 0.8rem;
+      color: var(--text-m);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.4rem;
+    }
+
+    .sk-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+      min-height: 1.6rem;
+    }
+
+    .sk-tag {
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 0.1rem 0.5rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    /* ── NÚT XEM THÊM ── */
+    .sk-more-btn {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 0.25rem;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .sk-more-btn:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+    }
+
+    .sk-more-btn i {
+      font-size: 0.6rem;
+    }
+
+    /* ── POPUP SKILL DETAIL ── */
+    .skill-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: overlayFade 0.3s ease;
+    }
+
+    .skill-popup-overlay.open {
+      display: flex;
+    }
+
+    @keyframes overlayFade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .skill-popup {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      width: 860px;
+      height: 540px;
+      max-width: 94vw;
+      max-height: 88vh;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: popupSlide 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @keyframes popupSlide {
+      from {
+        transform: scale(0.95) translateY(16px);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .skill-popup::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-v), var(--accent));
+      background-size: 200% 100%;
+      animation: gradientMove 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientMove {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* ── POPUP HEADER ── */
+    .skill-popup-header {
+      padding: 1rem 2rem 0.6rem 2rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      background: var(--bg-3);
+    }
+
+    .skill-popup-header .header-top {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skill-popup-header .header-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-glow);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .skill-popup-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+      flex: 1;
+    }
+
+    .skill-popup-header .header-badge {
+      font-size: 0.55rem;
+      font-weight: 600;
+      padding: 0.1rem 0.6rem;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(108, 142, 255, 0.15);
+      white-space: nowrap;
+    }
+
+    .skill-popup-header p {
+      font-size: 0.72rem;
+      color: var(--text-m);
+      margin-top: 0.1rem;
+      padding-left: 2.75rem;
+    }
+
+    /* ── HEADER RIGHT GROUP (nav buttons + close) ── */
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .header-nav-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      color: var(--text-m);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      transition: all var(--transition);
+      padding: 0;
+      font-family: var(--font-sans);
+    }
+
+    .header-nav-btn:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .header-nav-btn:active {
+      transform: scale(0.92);
+    }
+
+    .header-nav-btn .nav-label {
+      display: none;
+    }
+
+    /* Nút close nằm cạnh nút điều hướng */
+    .skill-popup-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      color: var(--text-m);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all var(--transition);
+      padding: 0;
+      font-family: var(--font-sans);
+      position: static;
+      margin: 0;
+    }
+
+    .skill-popup-close:hover {
+      background: rgba(255, 0, 0, 0.1);
+      border-color: #ff4444;
+      color: #ff4444;
+      transform: scale(1.05);
+    }
+
+    /* ── POPUP BODY 2 CỘT ── */
+    .skill-popup-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+      height: calc(100% - 80px);
+    }
+
+    /* Cột trái: Danh sách kỹ năng */
+    .skill-popup-sidebar {
+      width: 220px;
+      min-width: 190px;
+      background: var(--bg-3);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 0.5rem 0;
+      flex-shrink: 0;
+    }
+
+    .skill-popup-sidebar .sidebar-title {
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-s);
+      padding: 0.15rem 1.25rem 0.35rem;
+      opacity: 0.7;
+    }
+
+    .skill-list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1.25rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      border-left: 3px solid transparent;
+      font-size: 0.8rem;
+      color: var(--text-m);
+      text-align: left;
+      background: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: none;
+      width: 100%;
+      font-family: var(--font-sans);
+      line-height: 1.2;
+      position: relative;
+    }
+
+    .skill-list-item::after {
+      content: '';
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+      opacity: 0;
+      transition: all var(--transition);
+    }
+
+    .skill-list-item:hover {
+      background: var(--bg-2);
+      color: var(--text);
+    }
+
+    .skill-list-item:hover::after {
+      opacity: 1;
+      background: var(--text-s);
+    }
+
+    .skill-list-item.active {
+      background: var(--bg-2);
+      color: var(--text);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .skill-list-item.active::after {
+      opacity: 1;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .skill-list-item .list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .skill-list-item.active .list-bullet {
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(108, 142, 255, 0.4);
+    }
+
+    .skill-list-item .list-name {
+      flex: 1;
+    }
+
+    .skill-list-item .list-count {
+      font-size: 0.55rem;
+      color: var(--text-s);
+      background: var(--bg-3);
+      padding: 0.05rem 0.4rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── Cột phải: Nội dung chi tiết ── */
+    .skill-popup-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.75rem 1.25rem 1.75rem;
+      background: var(--bg-2);
+    }
+
+    .skill-popup-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .skill-popup-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .skill-popup-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .skill-popup-content::-webkit-scrollbar-thumb:hover {
+      background: var(--text-s);
+    }
+
+    .skill-detail-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .skill-detail-sub {
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      letter-spacing: 0.02em;
+    }
+
+    .skill-detail-desc {
+      font-size: 0.82rem;
+      color: var(--text-m);
+      line-height: 1.65;
+      padding: 0.6rem 0.85rem;
+      background: var(--bg-3);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-detail-section {
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-detail-section h4 {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-s);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .skill-detail-section h4::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skill-detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .skill-detail-tags span {
+      font-size: 0.62rem;
+      padding: 0.08rem 0.55rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+
+    .skill-detail-tags span:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .skill-detail-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .skill-detail-links a {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.65rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      text-decoration: none;
+    }
+
+    .skill-detail-links a:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .skill-detail-links a i {
+      font-size: 0.55rem;
+    }
+
+    /* ── TOOLS STRIP TRONG POPUP ── */
+    .skill-detail-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .skill-detail-tools span {
+      font-size: 0.6rem;
+      padding: 0.08rem 0.5rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .skill-detail-tools span::before {
+      content: '⚡';
+      font-size: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:820px) {
+      .skill-popup {
+        width: 95vw;
+        height: 80vh;
+        max-height: 90vh;
+      }
+    }
+
+    @media(max-width:640px) {
+      .skill-popup {
+        height: 85vh;
+        border-radius: var(--radius-lg);
+        max-width: 98vw;
+      }
+
+      .skill-popup-header {
+        padding: 0.6rem 1rem 0.4rem;
+      }
+
+      .skill-popup-header .header-top {
+        flex-wrap: wrap;
+      }
+
+      .skill-popup-header .header-badge {
+        margin-left: 0;
+      }
+
+      .skill-popup-header p {
+        padding-left: 0;
+      }
+
+      .header-nav-group {
+        margin-left: auto;
+      }
+
+      .header-nav-btn .nav-label {
+        display: none;
+      }
+
+      .skill-popup-body {
+        flex-direction: column;
+        height: auto;
+        flex: 1;
+      }
+
+      .skill-popup-sidebar {
+        width: 100%;
+        min-width: unset;
+        max-height: 100px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0.25rem 0.5rem;
+        gap: 0.15rem;
+        align-items: center;
+      }
+
+      .skill-popup-sidebar .sidebar-title {
+        display: none;
+      }
+
+      .skill-list-item {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.7rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+        flex-shrink: 0;
+        width: auto;
+        gap: 0.3rem;
+      }
+
+      .skill-list-item .list-bullet {
+        display: none;
+      }
+
+      .skill-list-item .list-count {
+        display: none;
+      }
+
+      .skill-list-item.active {
+        border-left: none;
+        border-bottom-color: var(--accent);
+      }
+
+      .skill-list-item::after {
+        display: none;
+      }
+
+      .skill-popup-content {
+        padding: 0.6rem 0.8rem 0.8rem;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      .skill-detail-title {
+        font-size: 0.95rem;
+      }
+
+      .skill-detail-desc {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .skill-detail-links a {
+        font-size: 0.62rem;
+        padding: 0.08rem 0.5rem;
+      }
+    }
+
+    @media(max-width:400px) {
+      .skill-popup-sidebar {
+        max-height: 80px;
+      }
+
+      .skill-list-item {
+        font-size: 0.62rem;
+        padding: 0.15rem 0.4rem;
+      }
+    }
+
+    .tools-strip {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.75rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tools-label-txt {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-s);
+      flex-shrink: 0;
+    }
+
+    .tools-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .t-chip {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+    }
 
 
     /* ── PROJECTS ─────────────────────────────── */
-#projects {
-  background: var(--bg-2)
-}
+    #projects {
+      background: var(--bg-2)
+    }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
-}
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+    }
 
-.proj-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: all var(--transition);
-  position: relative;
-  height: 100%;
-}
+    .proj-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      position: relative;
+      height: 100%;
+    }
 
-.proj-card:hover {
-  border-color: var(--border-h);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3)
-}
+    .proj-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3)
+    }
 
-.proj-card.featured {
-  border-color: rgba(108, 142, 255, 0.3)
-}
+    .proj-card.featured {
+      border-color: rgba(108, 142, 255, 0.3)
+    }
 
-.proj-card.featured::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-v));
-}
+    .proj-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-v));
+    }
 
-/* ── HEADER ── */
-.proj-head {
-  padding: 0.5rem 1.25rem 0.15rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  min-height: 1.2rem;
-}
+    /* ── HEADER ── */
+    .proj-head {
+      padding: 0.5rem 1.25rem 0.15rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-height: 1.2rem;
+    }
 
-.proj-ico {
-  display: none;
-}
+    .proj-ico {
+      display: none;
+    }
 
-.feat-badge {
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(108, 142, 255, 0.10);
-  border: 1px solid rgba(108, 142, 255, 0.2);
-  padding: 0.1rem 0.5rem;
-  border-radius: 100px;
-  white-space: nowrap;
-}
+    .feat-badge {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(108, 142, 255, 0.10);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+      padding: 0.1rem 0.5rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
 
-/* ── BODY ── */
-.proj-body {
-  padding: 0 1.25rem 0.75rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
+    /* ── BODY ── */
+    .proj-body {
+      padding: 0 1.25rem 0.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
 
-/* ── ẢNH DỰ ÁN: có khoảng cách viền ── */
-.proj-image {
-  margin: 0 0 0.5rem 0;
-  padding: 0;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
+    /* ── ẢNH DỰ ÁN: có khoảng cách viền ── */
+    .proj-image {
+      margin: 0 0 0.5rem 0;
+      padding: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
 
-.proj-image img {
-  width: 100%;
-  border-radius: var(--radius-sm);
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  display: block;
-  border: 1px solid var(--border);
-}
+    .proj-image img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+    }
 
-/* ── TIÊU ĐỀ DỰ ÁN ── */
-.proj-title {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-  min-height: 2.6rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 0.05rem;
-}
+    /* ── TIÊU ĐỀ DỰ ÁN ── */
+    .proj-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      min-height: 2.6rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0.05rem;
+    }
 
-/* ── TÊN DỰ ÁN + THỜI GIAN ── */
-.proj-subtitle {
-  font-size: 0.75rem;
-  color: var(--text-m);
-  font-weight: 500;
-  margin-bottom: 0.1rem;
-  line-height: 1.4;
-}
+    /* ── TÊN DỰ ÁN + THỜI GIAN ── */
+    .proj-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-m);
+      font-weight: 500;
+      margin-bottom: 0.1rem;
+      line-height: 1.4;
+    }
 
-.proj-subtitle span {
-  color: var(--text-s);
-  font-weight: 400;
-}
+    .proj-subtitle span {
+      color: var(--text-s);
+      font-weight: 400;
+    }
 
-/* ── VAI TRÒ ── */
-.proj-role {
-  font-size: 0.65rem;
-  color: var(--accent);
-  font-weight: 600;
-  font-family: var(--font-mono);
-  background: rgba(108, 142, 255, 0.08);
-  border: 1px solid rgba(108, 142, 255, 0.12);
-  padding: 0.15rem 0.6rem;
-  border-radius: 100px;
-  display: inline-block;
-  width: fit-content;
-  word-break: break-word;
-  white-space: normal;
-  margin-bottom: 0.1rem;
-  line-height: 1.4;
-}
+    /* ── VAI TRÒ ── */
+    .proj-role {
+      font-size: 0.65rem;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      background: rgba(108, 142, 255, 0.08);
+      border: 1px solid rgba(108, 142, 255, 0.12);
+      padding: 0.15rem 0.6rem;
+      border-radius: 100px;
+      display: inline-block;
+      width: fit-content;
+      word-break: break-word;
+      white-space: normal;
+      margin-bottom: 0.1rem;
+      line-height: 1.4;
+    }
 
-/* ── MÔ TẢ ── */
-.proj-desc {
-  font-size: 0.8rem;
-  color: var(--text-m);
-  line-height: 1.5;
-  margin-bottom: 0.2rem;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 3.6rem;
-}
+    /* ── MÔ TẢ ── */
+    .proj-desc {
+      font-size: 0.8rem;
+      color: var(--text-m);
+      line-height: 1.5;
+      margin-bottom: 0.2rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 3.6rem;
+    }
 
-/* ── CÔNG CỤ SỬ DỤNG ── */
-.proj-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-bottom: 0.2rem;
-  min-height: 1.6rem;
-  padding: 0.1rem 0;
-}
+    /* ── CÔNG CỤ SỬ DỤNG ── */
+    .proj-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.2rem;
+      min-height: 1.6rem;
+      padding: 0.1rem 0;
+    }
 
-.tool-tag {
-  font-size: 0.55rem;
-  font-weight: 600;
-  padding: 0.1rem 0.5rem;
-  border-radius: 100px;
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  white-space: nowrap;
-}
+    .tool-tag {
+      font-size: 0.55rem;
+      font-weight: 600;
+      padding: 0.1rem 0.5rem;
+      border-radius: 100px;
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
 
-.tool-tag.primary {
-  background: rgba(108, 142, 255, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(108, 142, 255, 0.2);
-}
+    .tool-tag.primary {
+      background: rgba(108, 142, 255, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+    }
 
-.tool-tag.violet {
-  background: rgba(167, 139, 250, 0.12);
-  color: var(--accent-v);
-  border: 1px solid rgba(167, 139, 250, 0.2);
-}
+    .tool-tag.violet {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent-v);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
 
-/* ── METRICS (nếu có) ── */
-.proj-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-bottom: 0.15rem;
-  min-height: 1.4rem;
-}
+    /* ── METRICS (nếu có) ── */
+    .proj-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.15rem;
+      min-height: 1.4rem;
+    }
 
-.metric {
-  font-size: 0.5rem;
-  font-weight: 700;
-  padding: 0.1rem 0.45rem;
-  border-radius: var(--radius-sm);
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  white-space: nowrap;
-}
+    .metric {
+      font-size: 0.5rem;
+      font-weight: 700;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
 
-/* ── FOOTER LINKS ── */
-.proj-foot {
-  padding: 0.5rem 1.25rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: auto;
-  min-height: 2.2rem;
-  align-items: center;
-}
+    /* ── FOOTER LINKS ── */
+    .proj-foot {
+      padding: 0.5rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      min-height: 2.2rem;
+      align-items: center;
+    }
 
-.plink {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  transition: gap var(--transition);
-}
+    .plink {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      transition: gap var(--transition);
+    }
 
-.plink:hover {
-  gap: 0.4rem
-}
+    .plink:hover {
+      gap: 0.4rem
+    }
 
-.plink-m {
-  color: var(--text-m)
-}
+    .plink-m {
+      color: var(--text-m)
+    }
 
     /* ── EXPERIENCE ─────────────────────────── */
     #experience {
@@ -2416,28 +2432,89 @@
       display: block;
     }
 
+    /* ── FORM SUCCESS ENHANCEMENT ── */
     .form-success {
-      background: rgba(72, 210, 140, 0.1);
-      border: 1px solid rgba(72, 210, 140, 0.3);
+      background: rgba(72, 210, 140, 0.08);
+      border: 1.5px solid rgba(72, 210, 140, 0.25);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
-      color: #48d28c;
+      padding: 1.5rem 1.5rem;
       text-align: center;
       display: none;
+      animation: fadeInUp 0.4s ease;
+      margin-bottom: 1.5rem;
     }
 
     .form-success.show {
       display: block;
     }
 
-    .form-success h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .form-success p {
-      font-size: var(--fs-sm);
+    .form-success .success-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-text-success, #3B6D11);
+      margin-bottom: 0.3rem;
+      font-family: var(--font-display);
+    }
+
+    .form-success .success-desc {
+      font-size: 0.9rem;
       color: var(--text-m);
+      line-height: 1.6;
+    }
+
+    .form-success .success-desc strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .form-success .success-timer {
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--text-s);
+      opacity: 0.7;
+    }
+
+    .btn-reset-form {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bg-3);
+      color: var(--text);
+      padding: 0.7rem 2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .btn-reset-form:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .form-success .success-footer {
+      font-size: 0.65rem;
+      color: var(--text-s);
+      opacity: 0.6;
+      margin-top: 1rem;
+      border-top: 0.5px solid var(--border);
+      padding-top: 1rem;
     }
 
     .btn-submit {
@@ -2571,8 +2648,9 @@
       }
 
       .projects-grid {
-    grid-template-columns: 1fr 1fr; /* Tablet: 2 cột */
-  }
+        grid-template-columns: 1fr 1fr;
+        /* Tablet: 2 cột */
+      }
     }
 
     @media(max-width:768px) {
@@ -2595,9 +2673,12 @@
       .dropdown-toggle {
         display: none;
       }
-.projects-grid {
-    grid-template-columns: 1fr; /* Mobile: 1 cột */
-  }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        /* Mobile: 1 cột */
+      }
+
       .section {
         padding: 4rem 1.5rem
       }
@@ -2649,9 +2730,11 @@
         bottom: 80px;
         width: 280px;
       }
-    }html {
-    scroll-behavior: smooth;
-}
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 
@@ -2660,23 +2743,25 @@
   <!-- NAV -->
   <nav>
     <div class="nav-brand" id="navBrand">
-    <span class="nav-brand-dot"></span>
-    <a href="" id="brandName">Tú Mi</a>
-</div>
+      <span class="nav-brand-dot"></span>
+      <a href="" id="brandName">Tú Mi</a>
+    </div>
     <div class="nav-center">
-  <a href="#about" data-en="About me" data-vi="Về tôi">About me</a>
-  <a href="#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
-  <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
-  <a href="#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
-</div>
+      <a href="#about" data-en="About me" data-vi="Về tôi">About me</a>
+      <a href="#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
+      <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
+      <a href="#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+      <!-- Thêm vào nav-center -->
+      <a href="projects/danh-gia.html" data-en="Review" data-vi="Đánh giá">Đánh giá</a>
+    </div>
     <div class="nav-right">
       <button class="nav-lang" id="langBtn" title="Switch language">
         <span id="langFlag">🇺🇸</span><span id="langCode">EN</span>
       </button>
       <button class="nav-theme" id="themeBtn" title="Toggle theme">☀️</button>
-      
-<a href="projects/cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
-<!-- Contact Dropdown -->
+
+      <a href="projects/cvweb.html" class="nav-cta" style="background:var(--accent-v)" data-en="CV" data-vi="CV">CV</a>
+      <!-- Contact Dropdown -->
       <div class="nav-dropdown">
         <button class="dropdown-toggle" data-en="Contact" data-vi="Liên hệ">
           Contact
@@ -2695,7 +2780,8 @@
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+            <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank" rel="noopener noreferrer"
+              class="dropdown-item">
               <i class="fab fa-linkedin-in"></i>
               <span>LinkedIn</span>
             </a>
@@ -2724,8 +2810,9 @@
     <a href="#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
     <a href="#projects" data-en="Projects" data-vi="Dự án">Projects</a>
     <a href="#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
-    
-<a href="projects/cvweb.html" data-en="CV" data-vi="CV">CV</a>
+    <!-- Thêm vào nav-center -->
+    <a href="projects/danh-gia.html" data-en="Review" data-vi="Đánh giá">Đánh giá</a>
+    <a href="projects/cvweb.html" data-en="CV" data-vi="CV">CV</a>
     <a href="mailto:tusmile.joy@gmail.com" class="btn-primary" style="width:fit-content" data-en="Contact Me"
       data-vi="Liên hệ ngay">Contact Me</a>
   </div>
@@ -2878,399 +2965,461 @@
 
   <!-- SKILLS -->
   <!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="reveal">
-    <div class="eyebrow" data-en="Core Competencies" data-vi="Năng lực cốt lõi">Năng lực cốt lõi</div>
-    <h2 class="section-title" data-en="What I bring to the <em>table</em>" data-vi="Những gì tôi <em>mang lại</em>">
-      Những gì tôi <em>mang lại</em></h2>
-    <p class="section-sub"
-      data-en="A hybrid skill set spanning requirements engineering, system modeling, software architecture, and full-stack development."
-      data-vi="Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.">
-      Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.
-    </p>
-  </div>
-  
-  <div class="skills-tabs reveal">
-    <button class="stab active" data-tab="analysis" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân tích & Thiết kế</button>
-    <button class="stab" data-tab="dev" data-en="Development" data-vi="Lập trình">Lập trình</button>
-    <button class="stab" data-tab="db" data-en="Database" data-vi="Cơ sở dữ liệu">Cơ sở dữ liệu</button>
-    <button class="stab" data-tab="quality" data-en="Quality & API" data-vi="Chất lượng & API">Chất lượng & API</button>
-  </div>
-  
-  <div class="skills-panels">
-    <!-- Panel 1: Analysis & Design -->
-    <div class="skill-panel active" id="panel-analysis">
-      <div class="sk-card reveal">
-        <div class="sk-icon">📋</div>
-        <div class="sk-name" data-en="Requirements Engineering" data-vi="Kỹ thuật yêu cầu">Kỹ thuật yêu cầu</div>
-        <div class="sk-desc" data-en="Elicitation, analysis, and specification of business requirements following international standards." data-vi="Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.">Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">BRD</span>
-          <span class="sk-tag">SRS</span>
-          <span class="sk-tag">User Stories</span>
-          <span class="sk-tag">Use Cases</span>
+  <section id="skills" class="section">
+    <div class="reveal">
+      <div class="eyebrow" data-en="Core Competencies" data-vi="Năng lực cốt lõi">Năng lực cốt lõi</div>
+      <h2 class="section-title" data-en="What I bring to the <em>table</em>" data-vi="Những gì tôi <em>mang lại</em>">
+        Những gì tôi <em>mang lại</em></h2>
+      <p class="section-sub"
+        data-en="A hybrid skill set spanning requirements engineering, system modeling, software architecture, and full-stack development."
+        data-vi="Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.">
+        Bộ kỹ năng lai kết hợp phân tích yêu cầu, mô hình hóa hệ thống, kiến trúc phần mềm và lập trình full-stack.
+      </p>
+    </div>
+
+    <div class="skills-tabs reveal">
+      <button class="stab active" data-tab="analysis" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân
+        tích & Thiết kế</button>
+      <button class="stab" data-tab="dev" data-en="Development" data-vi="Lập trình">Lập trình</button>
+      <button class="stab" data-tab="db" data-en="Database" data-vi="Cơ sở dữ liệu">Cơ sở dữ liệu</button>
+      <button class="stab" data-tab="quality" data-en="Quality & API" data-vi="Chất lượng & API">Chất lượng &
+        API</button>
+    </div>
+
+    <div class="skills-panels">
+      <!-- Panel 1: Analysis & Design -->
+      <div class="skill-panel active" id="panel-analysis">
+        <div class="sk-card reveal">
+          <div class="sk-icon">📋</div>
+          <div class="sk-name" data-en="Requirements Engineering" data-vi="Kỹ thuật yêu cầu">Kỹ thuật yêu cầu</div>
+          <div class="sk-desc"
+            data-en="Elicitation, analysis, and specification of business requirements following international standards."
+            data-vi="Thu thập, phân tích và đặc tả yêu cầu nghiệp vụ theo chuẩn quốc tế.">Thu thập, phân tích và đặc tả
+            yêu cầu nghiệp vụ theo chuẩn quốc tế.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">BRD</span>
+            <span class="sk-tag">SRS</span>
+            <span class="sk-tag">User Stories</span>
+            <span class="sk-tag">Use Cases</span>
+          </div>
+          <button class="sk-more-btn" data-skill="req-eng"><i class="fas fa-plus-circle"></i> <span data-en="Learn more"
+              data-vi="Xem thêm">Xem thêm</span></button>
         </div>
-        <button class="sk-more-btn" data-skill="req-eng"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">🗺️</div>
+          <div class="sk-name" data-en="UML & System Modeling" data-vi="UML & Mô hình hóa hệ thống">UML & Mô hình hóa hệ
+            thống</div>
+          <div class="sk-desc"
+            data-en="Visual blueprints for complex enterprise systems using industry-standard notation."
+            data-vi="Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.">Sơ đồ trực quan cho
+            hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">Activity Diagrams</span>
+            <span class="sk-tag">Sequence</span>
+            <span class="sk-tag">Class</span>
+            <span class="sk-tag">ERD</span>
+            <span class="sk-tag">DFD</span>
+          </div>
+          <button class="sk-more-btn" data-skill="uml"><i class="fas fa-plus-circle"></i> <span data-en="Learn more"
+              data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">🏛️</div>
+          <div class="sk-name" data-en="Solution & Software Design" data-vi="Thiết kế giải pháp & phần mềm">Thiết kế
+            giải pháp & phần mềm</div>
+          <div class="sk-desc"
+            data-en="Translating requirements into scalable software architecture and enterprise solution blueprints."
+            data-vi="Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.">Chuyển
+            hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">SDD</span>
+            <span class="sk-tag">MVC</span>
+            <span class="sk-tag">Layered</span>
+            <span class="sk-tag">Solution Design</span>
+          </div>
+          <button class="sk-more-btn" data-skill="solution-design"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
       </div>
 
-      <div class="sk-card reveal">
-        <div class="sk-icon">🗺️</div>
-        <div class="sk-name" data-en="UML & System Modeling" data-vi="UML & Mô hình hóa hệ thống">UML & Mô hình hóa hệ thống</div>
-        <div class="sk-desc" data-en="Visual blueprints for complex enterprise systems using industry-standard notation." data-vi="Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.">Sơ đồ trực quan cho hệ thống doanh nghiệp phức tạp theo ký hiệu chuẩn ngành.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Activity Diagrams</span>
-          <span class="sk-tag">Sequence</span>
-          <span class="sk-tag">Class</span>
-          <span class="sk-tag">ERD</span>
-          <span class="sk-tag">DFD</span>
+      <!-- Panel 2: Development -->
+      <div class="skill-panel" id="panel-dev">
+        <div class="sk-card reveal">
+          <div class="sk-icon">⚙️</div>
+          <div class="sk-name">C# / ASP.NET Core MVC</div>
+          <div class="sk-desc"
+            data-en="Backend and full-stack web application development using Microsoft .NET ecosystem."
+            data-vi="Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.">Phát triển backend và full-stack
+            với hệ sinh thái Microsoft .NET.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">C#</span>
+            <span class="sk-tag">ASP.NET Core</span>
+            <span class="sk-tag">EF Core</span>
+            <span class="sk-tag">MVC</span>
+          </div>
+          <button class="sk-more-btn" data-skill="csharp"><i class="fas fa-plus-circle"></i> <span data-en="Learn more"
+              data-vi="Xem thêm">Xem thêm</span></button>
         </div>
-        <button class="sk-more-btn" data-skill="uml"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">🐍</div>
+          <div class="sk-name">Python & JavaScript</div>
+          <div class="sk-desc" data-en="Scripting, automation, and frontend interactivity across multiple paradigms."
+            data-vi="Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.">Scripting, tự động hóa và tương
+            tác frontend trên nhiều ngôn ngữ.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">Python</span>
+            <span class="sk-tag">JavaScript</span>
+            <span class="sk-tag">HTML5</span>
+            <span class="sk-tag">CSS3</span>
+          </div>
+          <button class="sk-more-btn" data-skill="python-js"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">🔧</div>
+          <div class="sk-name" data-en="Dev Tools & Workflow" data-vi="Công cụ phát triển">Công cụ phát triển</div>
+          <div class="sk-desc" data-en="Professional development environment and version control practices."
+            data-vi="Môi trường phát triển chuyên nghiệp và quản lý phiên bản.">Môi trường phát triển chuyên nghiệp và
+            quản lý phiên bản.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">Git</span>
+            <span class="sk-tag">GitHub</span>
+            <span class="sk-tag">VS Code</span>
+            <span class="sk-tag">Vercel</span>
+          </div>
+          <button class="sk-more-btn" data-skill="dev-tools"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
       </div>
 
-      <div class="sk-card reveal">
-        <div class="sk-icon">🏛️</div>
-        <div class="sk-name" data-en="Solution & Software Design" data-vi="Thiết kế giải pháp & phần mềm">Thiết kế giải pháp & phần mềm</div>
-        <div class="sk-desc" data-en="Translating requirements into scalable software architecture and enterprise solution blueprints." data-vi="Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.">Chuyển hóa yêu cầu thành kiến trúc phần mềm có khả năng mở rộng và bản thiết kế giải pháp.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">SDD</span>
-          <span class="sk-tag">MVC</span>
-          <span class="sk-tag">Layered</span>
-          <span class="sk-tag">Solution Design</span>
+      <!-- Panel 3: Database -->
+      <div class="skill-panel" id="panel-db">
+        <div class="sk-card reveal">
+          <div class="sk-icon">🗄️</div>
+          <div class="sk-name" data-en="Database Design & Modeling" data-vi="Thiết kế & mô hình CSDL">Thiết kế & mô hình
+            CSDL</div>
+          <div class="sk-desc"
+            data-en="Normalized, performant relational database architectures for enterprise systems."
+            data-vi="Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.">Kiến trúc CSDL quan hệ
+            chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">SQL Server</span>
+            <span class="sk-tag">MySQL</span>
+            <span class="sk-tag">Normalization</span>
+            <span class="sk-tag">29 Tables</span>
+          </div>
+          <button class="sk-more-btn" data-skill="db-design"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
         </div>
-        <button class="sk-more-btn" data-skill="solution-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">🔍</div>
+          <div class="sk-name" data-en="Data Modeling & ERD" data-vi="Mô hình hóa dữ liệu & ERD">Mô hình hóa dữ liệu &
+            ERD</div>
+          <div class="sk-desc"
+            data-en="Entity-relationship modeling and data flow analysis for complex business domains."
+            data-vi="Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.">Mô hình thực thể-quan
+            hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">ERD</span>
+            <span class="sk-tag">EF Core</span>
+            <span class="sk-tag">Query Optimization</span>
+          </div>
+          <button class="sk-more-btn" data-skill="data-modeling"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
+      </div>
+
+      <!-- Panel 4: Quality & API -->
+      <div class="skill-panel" id="panel-quality">
+        <div class="sk-card reveal">
+          <div class="sk-icon">🔌</div>
+          <div class="sk-name" data-en="API Design & Documentation" data-vi="Thiết kế & tài liệu API">Thiết kế & tài
+            liệu API</div>
+          <div class="sk-desc"
+            data-en="RESTful API specification and testing — 66 endpoints documented across HRMS project."
+            data-vi="Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.">Đặc tả và kiểm thử
+            RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">REST API</span>
+            <span class="sk-tag">Postman</span>
+            <span class="sk-tag">66 Endpoints</span>
+            <span class="sk-tag">Figma</span>
+          </div>
+          <button class="sk-more-btn" data-skill="api-design"><i class="fas fa-plus-circle"></i> <span
+              data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
+
+        <div class="sk-card reveal">
+          <div class="sk-icon">✅</div>
+          <div class="sk-name" data-en="Software Testing & QA" data-vi="Kiểm thử & Đảm bảo chất lượng">Kiểm thử & Đảm
+            bảo chất lượng</div>
+          <div class="sk-desc" data-en="Test case design, requirement traceability, and systematic quality assurance."
+            data-vi="Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.">Thiết kế test case,
+            traceability yêu cầu và đảm bảo chất lượng có hệ thống.</div>
+          <div class="sk-tags">
+            <span class="sk-tag">51 Test Cases</span>
+            <span class="sk-tag">RTM</span>
+            <span class="sk-tag">QA</span>
+          </div>
+          <button class="sk-more-btn" data-skill="qa"><i class="fas fa-plus-circle"></i> <span data-en="Learn more"
+              data-vi="Xem thêm">Xem thêm</span></button>
+        </div>
       </div>
     </div>
 
-    <!-- Panel 2: Development -->
-    <div class="skill-panel" id="panel-dev">
-      <div class="sk-card reveal">
-        <div class="sk-icon">⚙️</div>
-        <div class="sk-name">C# / ASP.NET Core MVC</div>
-        <div class="sk-desc" data-en="Backend and full-stack web application development using Microsoft .NET ecosystem." data-vi="Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.">Phát triển backend và full-stack với hệ sinh thái Microsoft .NET.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">C#</span>
-          <span class="sk-tag">ASP.NET Core</span>
-          <span class="sk-tag">EF Core</span>
-          <span class="sk-tag">MVC</span>
-        </div>
-        <button class="sk-more-btn" data-skill="csharp"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
-      </div>
-
-      <div class="sk-card reveal">
-        <div class="sk-icon">🐍</div>
-        <div class="sk-name">Python & JavaScript</div>
-        <div class="sk-desc" data-en="Scripting, automation, and frontend interactivity across multiple paradigms." data-vi="Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.">Scripting, tự động hóa và tương tác frontend trên nhiều ngôn ngữ.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Python</span>
-          <span class="sk-tag">JavaScript</span>
-          <span class="sk-tag">HTML5</span>
-          <span class="sk-tag">CSS3</span>
-        </div>
-        <button class="sk-more-btn" data-skill="python-js"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
-      </div>
-
-      <div class="sk-card reveal">
-        <div class="sk-icon">🔧</div>
-        <div class="sk-name" data-en="Dev Tools & Workflow" data-vi="Công cụ phát triển">Công cụ phát triển</div>
-        <div class="sk-desc" data-en="Professional development environment and version control practices." data-vi="Môi trường phát triển chuyên nghiệp và quản lý phiên bản.">Môi trường phát triển chuyên nghiệp và quản lý phiên bản.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Git</span>
-          <span class="sk-tag">GitHub</span>
-          <span class="sk-tag">VS Code</span>
-          <span class="sk-tag">Vercel</span>
-        </div>
-        <button class="sk-more-btn" data-skill="dev-tools"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+    <div class="tools-strip reveal">
+      <span class="tools-label-txt" data-en="Tools" data-vi="Công cụ">Công cụ</span>
+      <div class="tools-chips">
+        <span class="t-chip">Visual Studio</span>
+        <span class="t-chip">VS Code</span>
+        <span class="t-chip">Git</span>
+        <span class="t-chip">GitHub</span>
+        <span class="t-chip">Postman</span>
+        <span class="t-chip">Figma</span>
+        <span class="t-chip">Draw.io</span>
+        <span class="t-chip">StarUML</span>
+        <span class="t-chip">SQL Server</span>
+        <span class="t-chip">Vercel</span>
       </div>
     </div>
+  </section>
 
-    <!-- Panel 3: Database -->
-    <div class="skill-panel" id="panel-db">
-      <div class="sk-card reveal">
-        <div class="sk-icon">🗄️</div>
-        <div class="sk-name" data-en="Database Design & Modeling" data-vi="Thiết kế & mô hình CSDL">Thiết kế & mô hình CSDL</div>
-        <div class="sk-desc" data-en="Normalized, performant relational database architectures for enterprise systems." data-vi="Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.">Kiến trúc CSDL quan hệ chuẩn hóa, hiệu suất cao cho hệ thống doanh nghiệp.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">SQL Server</span>
-          <span class="sk-tag">MySQL</span>
-          <span class="sk-tag">Normalization</span>
-          <span class="sk-tag">29 Tables</span>
+  <!-- ── SKILL POPUP ── -->
+  <div class="skill-popup-overlay" id="skillPopup">
+    <div class="skill-popup">
+
+      <!-- Header -->
+      <div class="skill-popup-header">
+        <div class="header-top">
+          <div class="header-icon" id="popupIcon">📋</div>
+          <h3 id="popupTabTitle" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân tích & Thiết kế</h3>
+          <span class="header-badge" id="popupCount">3 skills</span>
+
+          <!-- Nhóm nút bên phải: < > X -->
+          <div class="header-right-group">
+            <button class="header-nav-btn" id="navPrev" title="Previous category">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="header-nav-btn" id="navNext" title="Next category">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="skill-popup-close" id="popupClose" title="Close">✕</button>
+          </div>
         </div>
-        <button class="sk-more-btn" data-skill="db-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
+        <p data-en="Select a skill to explore detailed documentation and learning resources"
+          data-vi="Chọn một kỹ năng để khám phá tài liệu chi tiết và tài nguyên học tập">Chọn một kỹ năng để khám phá
+          tài liệu chi tiết và tài nguyên học tập</p>
       </div>
 
-      <div class="sk-card reveal">
-        <div class="sk-icon">🔍</div>
-        <div class="sk-name" data-en="Data Modeling & ERD" data-vi="Mô hình hóa dữ liệu & ERD">Mô hình hóa dữ liệu & ERD</div>
-        <div class="sk-desc" data-en="Entity-relationship modeling and data flow analysis for complex business domains." data-vi="Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.">Mô hình thực thể-quan hệ và phân tích luồng dữ liệu cho nghiệp vụ phức tạp.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">ERD</span>
-          <span class="sk-tag">EF Core</span>
-          <span class="sk-tag">Query Optimization</span>
-        </div>
-        <button class="sk-more-btn" data-skill="data-modeling"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
-      </div>
-    </div>
-
-    <!-- Panel 4: Quality & API -->
-    <div class="skill-panel" id="panel-quality">
-      <div class="sk-card reveal">
-        <div class="sk-icon">🔌</div>
-        <div class="sk-name" data-en="API Design & Documentation" data-vi="Thiết kế & tài liệu API">Thiết kế & tài liệu API</div>
-        <div class="sk-desc" data-en="RESTful API specification and testing — 66 endpoints documented across HRMS project." data-vi="Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.">Đặc tả và kiểm thử RESTful API — 66 endpoints đã tài liệu hóa trong dự án HRMS.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">REST API</span>
-          <span class="sk-tag">Postman</span>
-          <span class="sk-tag">66 Endpoints</span>
-          <span class="sk-tag">Figma</span>
-        </div>
-        <button class="sk-more-btn" data-skill="api-design"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
-      </div>
-
-      <div class="sk-card reveal">
-        <div class="sk-icon">✅</div>
-        <div class="sk-name" data-en="Software Testing & QA" data-vi="Kiểm thử & Đảm bảo chất lượng">Kiểm thử & Đảm bảo chất lượng</div>
-        <div class="sk-desc" data-en="Test case design, requirement traceability, and systematic quality assurance." data-vi="Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.">Thiết kế test case, traceability yêu cầu và đảm bảo chất lượng có hệ thống.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">51 Test Cases</span>
-          <span class="sk-tag">RTM</span>
-          <span class="sk-tag">QA</span>
-        </div>
-        <button class="sk-more-btn" data-skill="qa"><i class="fas fa-plus-circle"></i> <span data-en="Learn more" data-vi="Xem thêm">Xem thêm</span></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="tools-strip reveal">
-    <span class="tools-label-txt" data-en="Tools" data-vi="Công cụ">Công cụ</span>
-    <div class="tools-chips">
-      <span class="t-chip">Visual Studio</span>
-      <span class="t-chip">VS Code</span>
-      <span class="t-chip">Git</span>
-      <span class="t-chip">GitHub</span>
-      <span class="t-chip">Postman</span>
-      <span class="t-chip">Figma</span>
-      <span class="t-chip">Draw.io</span>
-      <span class="t-chip">StarUML</span>
-      <span class="t-chip">SQL Server</span>
-      <span class="t-chip">Vercel</span>
-    </div>
-  </div>
-</section>
-
-<!-- ── SKILL POPUP ── -->
-<div class="skill-popup-overlay" id="skillPopup">
-  <div class="skill-popup">
-    
-    <!-- Header -->
-    <div class="skill-popup-header">
-      <div class="header-top">
-        <div class="header-icon" id="popupIcon">📋</div>
-        <h3 id="popupTabTitle" data-en="Analysis & Design" data-vi="Phân tích & Thiết kế">Phân tích & Thiết kế</h3>
-        <span class="header-badge" id="popupCount">3 skills</span>
-        
-        <!-- Nhóm nút bên phải: < > X -->
-        <div class="header-right-group">
-          <button class="header-nav-btn" id="navPrev" title="Previous category">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="header-nav-btn" id="navNext" title="Next category">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button class="skill-popup-close" id="popupClose" title="Close">✕</button>
-        </div>
-      </div>
-      <p data-en="Select a skill to explore detailed documentation and learning resources" data-vi="Chọn một kỹ năng để khám phá tài liệu chi tiết và tài nguyên học tập">Chọn một kỹ năng để khám phá tài liệu chi tiết và tài nguyên học tập</p>
-    </div>
-    
-    <!-- Body 2 cột -->
-    <div class="skill-popup-body">
-      <!-- Cột trái: Danh sách kỹ năng -->
-      <div class="skill-popup-sidebar" id="popupSidebar">
-        <div class="sidebar-title" data-en="Skills in this category" data-vi="Kỹ năng trong danh mục">Kỹ năng trong danh mục</div>
-        <!-- Được tạo động bằng JS -->
-      </div>
-      
-      <!-- Cột phải: Chi tiết -->
-      <div class="skill-popup-content" id="popupContent">
-        <div id="popupDetail">
+      <!-- Body 2 cột -->
+      <div class="skill-popup-body">
+        <!-- Cột trái: Danh sách kỹ năng -->
+        <div class="skill-popup-sidebar" id="popupSidebar">
+          <div class="sidebar-title" data-en="Skills in this category" data-vi="Kỹ năng trong danh mục">Kỹ năng trong
+            danh mục</div>
           <!-- Được tạo động bằng JS -->
         </div>
+
+        <!-- Cột phải: Chi tiết -->
+        <div class="skill-popup-content" id="popupContent">
+          <div id="popupDetail">
+            <!-- Được tạo động bằng JS -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- PROJECTS -->
-<section id="projects" class="section">
-  <div class="reveal">
-    <div class="eyebrow" data-en="Project Portfolio" data-vi="Danh mục dự án">Danh mục dự án</div>
-    <h2 class="section-title" data-en="Work that demonstrates <em>depth</em>"
-      data-vi="Dự án thể hiện <em>chiều sâu</em>">Dự án thể hiện <em>chiều sâu</em></h2>
-    <p class="section-sub"
-      data-en="From enterprise-level system analysis to production full-stack applications — each project reflects real-world problem solving."
-      data-vi="Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.">
-      Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.
-    </p>
-  </div>
-  <div class="projects-grid">
+  <section id="projects" class="section">
+    <div class="reveal">
+      <div class="eyebrow" data-en="Project Portfolio" data-vi="Danh mục dự án">Danh mục dự án</div>
+      <h2 class="section-title" data-en="Work that demonstrates <em>depth</em>"
+        data-vi="Dự án thể hiện <em>chiều sâu</em>">Dự án thể hiện <em>chiều sâu</em></h2>
+      <p class="section-sub"
+        data-en="From enterprise-level system analysis to production full-stack applications — each project reflects real-world problem solving."
+        data-vi="Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn đề thực tế.">
+        Từ phân tích hệ thống doanh nghiệp đến ứng dụng full-stack thực tế — mỗi dự án thể hiện kỹ năng giải quyết vấn
+        đề thực tế.
+      </p>
+    </div>
+    <div class="projects-grid">
 
-    <!-- Project 1: HRMS -->
-<div class="proj-card featured reveal">
-  <div class="proj-head">
-    <span class="feat-badge" data-en="★ Featured" data-vi="★ Nổi bật">★ Nổi bật</span>
-  </div>
-  <div class="proj-body">
-    <div class="proj-image">
-      <a href="projects/nhan-su.html">
-        <img src="assets/images/HRMS.png" alt="HRMS System" />
-      </a>
-    </div>
-    
-    <!-- Tiêu đề dự án có link -->
-    <h3 class="proj-title">
-      <a href="projects/nhan-su.html" data-en="Human Resource Management System" data-vi="Hệ thống Quản lý Nhân sự" style="color:inherit;text-decoration:none;">Hệ thống Quản lý Nhân sự</a>
-    </h3>
-    
-    <!-- Tên dự án + thời gian -->
-    <p class="proj-subtitle">
-      <span data-en="HRMS Enterprise Project" data-vi="Dự án HRMS Doanh nghiệp">Dự án HRMS Doanh nghiệp</span>
-      <span> · </span>
-      <span data-en="2026" data-vi="2026">2026</span>
-    </p>
-    
-    <!-- Vai trò -->
-    <p class="proj-role" data-en="Business Analyst & System Analyst" data-vi="Business Analyst & System Analyst">Business Analyst & System Analyst</p>
-    
-    <!-- Mô tả -->
-    <p class="proj-desc"
-      data-en="Led end-to-end BA/SA for an enterprise HRMS covering the full employee lifecycle — profiles, contracts, leave, recruitment, training, performance evaluation, and audit logs. Produced 12 ISO/IEC 29148-compliant documents independently during internship at PLPSoft."
-      data-vi="Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.">
-      Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.
-    </p>
-    
-    <!-- Metrics -->
-    <div class="proj-metrics">
-      <span class="metric">12 Documents</span>
-      <span class="metric">450+ Pages</span>
-      <span class="metric">66 APIs</span>
-      <span class="metric">29 Tables</span>
-      <span class="metric">51 Test Cases</span>
-    </div>
-    
-    <!-- Công cụ sử dụng -->
-    <div class="proj-tools">
-      <span class="tool-tag primary">BRD / SRS / SDD</span>
-      <span class="tool-tag violet">UML</span>
-      <span class="tool-tag">ERD · DFD</span>
-      <span class="tool-tag primary">API Spec</span>
-      <span class="tool-tag violet">RTM</span>
-    </div>
-  </div>
-  
-  <!-- Liên kết / Minh chứng -->
-  <div class="proj-foot">
-    <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank" class="plink"
-      data-en="Demo →" data-vi="Demo →">Demo →</a>
-    <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank"
-      class="plink plink-m">GitHub</a>
-    <a href="https://drive.google.com/drive/folders/1P4ubwN8tDjhNaK0U7ZUKrxXAKQ5Mq-Zd?usp=drive_link" target="_blank"
-      class="plink plink-m" data-en="Documentation" data-vi="Tài liệu">Tài liệu</a>
-  </div>
-</div>
+      <!-- Project 1: HRMS -->
+      <div class="proj-card featured reveal">
+        <div class="proj-head">
+          <span class="feat-badge" data-en="★ Featured" data-vi="★ Nổi bật">★ Nổi bật</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-image">
+            <a href="projects/nhan-su.html">
+              <img src="assets/images/HRMS.png" alt="HRMS System" />
+            </a>
+          </div>
 
-<!-- Project 2: Nha khoa -->
-<div class="proj-card reveal">
-  <div class="proj-head"></div>
-  <div class="proj-body">
-    <div class="proj-image">
-      <a href="projects/nha-khoa.html">
-        <img src="assets/images/NHAKHOA.png" alt="Dental Clinic System" />
-      </a>
-    </div>
-    
-    <h3 class="proj-title">
-      <a href="projects/nha-khoa.html" data-en="Dental Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám Nha khoa" style="color:inherit;text-decoration:none;">Hệ thống Quản lý Phòng khám Nha khoa</a>
-    </h3>
-    
-    <p class="proj-subtitle">
-      <span data-en="Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám">Hệ thống Quản lý Phòng khám</span>
-      <span> · </span>
-      <span data-en="2025" data-vi="2025">2025</span>
-    </p>
-    
-    <p class="proj-role" data-en="Full-Stack Developer" data-vi="Full-Stack Developer">Full-Stack Developer</p>
-    
-    <p class="proj-desc"
-      data-en="Designed and built a complete clinic management system — patients, doctors, appointments, treatment records, billing, and multi-role authentication — from database design through to live deployment."
-      data-vi="Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.">
-      Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.
-    </p>
-    
-    <div class="proj-metrics">
-      <span class="metric">4 User Roles</span>
-      <span class="metric">Full-Stack</span>
-      <span class="metric">Live Demo</span>
-    </div>
-    
-    <div class="proj-tools">
-      <span class="tool-tag primary">C# / ASP.NET Core MVC</span>
-      <span class="tool-tag violet">SQL Server · EF Core</span>
-      <span class="tool-tag">JavaScript</span>
-    </div>
-  </div>
-  <div class="proj-foot">
-    <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank" class="plink" data-en="Demo →"
-      data-vi="Demo →">Demo →</a>
-    <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="plink plink-m">GitHub</a>
-  </div>
-</div>
+          <!-- Tiêu đề dự án có link -->
+          <h3 class="proj-title">
+            <a href="projects/nhan-su.html" data-en="Human Resource Management System"
+              data-vi="Hệ thống Quản lý Nhân sự" style="color:inherit;text-decoration:none;">Hệ thống Quản lý Nhân
+              sự</a>
+          </h3>
 
-<!-- Project 3: Bán hàng -->
-<div class="proj-card reveal">
-  <div class="proj-head"></div>
-  <div class="proj-body">
-    <div class="proj-image">
-      <a href="projects/ban-hang.html">
-        <img src="assets/images/BANHANG.png" alt="E-Commerce Website" />
-      </a>
+          <!-- Tên dự án + thời gian -->
+          <p class="proj-subtitle">
+            <span data-en="HRMS Enterprise Project" data-vi="Dự án HRMS Doanh nghiệp">Dự án HRMS Doanh nghiệp</span>
+            <span> · </span>
+            <span data-en="2026" data-vi="2026">2026</span>
+          </p>
+
+          <!-- Vai trò -->
+          <p class="proj-role" data-en="Business Analyst & System Analyst" data-vi="Business Analyst & System Analyst">
+            Business Analyst & System Analyst</p>
+
+          <!-- Mô tả -->
+          <p class="proj-desc"
+            data-en="Led end-to-end BA/SA for an enterprise HRMS covering the full employee lifecycle — profiles, contracts, leave, recruitment, training, performance evaluation, and audit logs. Produced 12 ISO/IEC 29148-compliant documents independently during internship at PLPSoft."
+            data-vi="Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo, đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại PLPSoft.">
+            Thực hiện toàn bộ BA/SA cho HRMS doanh nghiệp — hồ sơ nhân viên, hợp đồng, nghỉ phép, tuyển dụng, đào tạo,
+            đánh giá hiệu suất và audit log. Độc lập tạo ra 12 tài liệu theo chuẩn ISO/IEC 29148 trong kỳ thực tập tại
+            PLPSoft.
+          </p>
+
+          <!-- Metrics -->
+          <div class="proj-metrics">
+            <span class="metric">12 Documents</span>
+            <span class="metric">450+ Pages</span>
+            <span class="metric">66 APIs</span>
+            <span class="metric">29 Tables</span>
+            <span class="metric">51 Test Cases</span>
+          </div>
+
+          <!-- Công cụ sử dụng -->
+          <div class="proj-tools">
+            <span class="tool-tag primary">BRD / SRS / SDD</span>
+            <span class="tool-tag violet">UML</span>
+            <span class="tool-tag">ERD · DFD</span>
+            <span class="tool-tag primary">API Spec</span>
+            <span class="tool-tag violet">RTM</span>
+          </div>
+        </div>
+
+        <!-- Liên kết / Minh chứng -->
+        <div class="proj-foot">
+          <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank" class="plink"
+            data-en="Demo →" data-vi="Demo →">Demo →</a>
+          <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank"
+            class="plink plink-m">GitHub</a>
+          <a href="https://drive.google.com/drive/folders/1P4ubwN8tDjhNaK0U7ZUKrxXAKQ5Mq-Zd?usp=drive_link"
+            target="_blank" class="plink plink-m" data-en="Documentation" data-vi="Tài liệu">Tài liệu</a>
+        </div>
+      </div>
+
+      <!-- Project 2: Nha khoa -->
+      <div class="proj-card reveal">
+        <div class="proj-head"></div>
+        <div class="proj-body">
+          <div class="proj-image">
+            <a href="projects/nha-khoa.html">
+              <img src="assets/images/NHAKHOA.png" alt="Dental Clinic System" />
+            </a>
+          </div>
+
+          <h3 class="proj-title">
+            <a href="projects/nha-khoa.html" data-en="Dental Clinic Management System"
+              data-vi="Hệ thống Quản lý Phòng khám Nha khoa" style="color:inherit;text-decoration:none;">Hệ thống Quản
+              lý Phòng khám Nha khoa</a>
+          </h3>
+
+          <p class="proj-subtitle">
+            <span data-en="Clinic Management System" data-vi="Hệ thống Quản lý Phòng khám">Hệ thống Quản lý Phòng
+              khám</span>
+            <span> · </span>
+            <span data-en="2025" data-vi="2025">2025</span>
+          </p>
+
+          <p class="proj-role" data-en="Full-Stack Developer" data-vi="Full-Stack Developer">Full-Stack Developer</p>
+
+          <p class="proj-desc"
+            data-en="Designed and built a complete clinic management system — patients, doctors, appointments, treatment records, billing, and multi-role authentication — from database design through to live deployment."
+            data-vi="Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị, thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.">
+            Thiết kế và xây dựng hệ thống quản lý phòng khám hoàn chỉnh — bệnh nhân, bác sĩ, lịch hẹn, hồ sơ điều trị,
+            thanh toán và phân quyền đa vai trò — từ thiết kế CSDL đến triển khai thực tế.
+          </p>
+
+          <div class="proj-metrics">
+            <span class="metric">4 User Roles</span>
+            <span class="metric">Full-Stack</span>
+            <span class="metric">Live Demo</span>
+          </div>
+
+          <div class="proj-tools">
+            <span class="tool-tag primary">C# / ASP.NET Core MVC</span>
+            <span class="tool-tag violet">SQL Server · EF Core</span>
+            <span class="tool-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="proj-foot">
+          <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank" class="plink" data-en="Demo →"
+            data-vi="Demo →">Demo →</a>
+          <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank" class="plink plink-m">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 3: Bán hàng -->
+      <div class="proj-card reveal">
+        <div class="proj-head"></div>
+        <div class="proj-body">
+          <div class="proj-image">
+            <a href="projects/ban-hang.html">
+              <img src="assets/images/BANHANG.png" alt="E-Commerce Website" />
+            </a>
+          </div>
+
+          <h3 class="proj-title">
+            <a href="projects/ban-hang.html" data-en="E-Commerce Website" data-vi="Website Thương mại điện tử"
+              style="color:inherit;text-decoration:none;">Website Thương mại điện tử</a>
+          </h3>
+
+          <p class="proj-subtitle">
+            <span data-en="Online Shopping Platform" data-vi="Nền tảng Mua sắm Trực tuyến">Nền tảng Mua sắm Trực
+              tuyến</span>
+            <span> · </span>
+            <span data-en="2025" data-vi="2025">2025</span>
+          </p>
+
+          <p class="proj-role" data-en="Web Developer" data-vi="Lập trình Web">Lập trình Web</p>
+
+          <p class="proj-desc"
+            data-en="Responsive online shopping interface with product management, shopping cart, order processing, and UX-optimized design."
+            data-vi="Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.">
+            Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu
+            UX.
+          </p>
+
+          <div class="proj-metrics">
+            <span class="metric">Responsive</span>
+            <span class="metric">UX Optimized</span>
+          </div>
+
+          <div class="proj-tools">
+            <span class="tool-tag">HTML5</span>
+            <span class="tool-tag">CSS3</span>
+            <span class="tool-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="proj-foot">
+          <a href="https://thaisonmobile.id.vn/" target="_blank" class="plink" data-en="Demo →" data-vi="Demo →">Demo
+            →</a>
+          <a href="https://github.com/LttuMi204" target="_blank" class="plink plink-m">GitHub</a>
+        </div>
+      </div>
     </div>
-    
-    <h3 class="proj-title">
-      <a href="projects/ban-hang.html" data-en="E-Commerce Website" data-vi="Website Thương mại điện tử" style="color:inherit;text-decoration:none;">Website Thương mại điện tử</a>
-    </h3>
-    
-    <p class="proj-subtitle">
-      <span data-en="Online Shopping Platform" data-vi="Nền tảng Mua sắm Trực tuyến">Nền tảng Mua sắm Trực tuyến</span>
-      <span> · </span>
-      <span data-en="2025" data-vi="2025">2025</span>
-    </p>
-    
-    <p class="proj-role" data-en="Web Developer" data-vi="Lập trình Web">Lập trình Web</p>
-    
-    <p class="proj-desc"
-      data-en="Responsive online shopping interface with product management, shopping cart, order processing, and UX-optimized design."
-      data-vi="Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.">
-      Giao diện mua sắm trực tuyến responsive với quản lý sản phẩm, giỏ hàng, xử lý đơn hàng và thiết kế tối ưu UX.
-    </p>
-    
-    <div class="proj-metrics">
-      <span class="metric">Responsive</span>
-      <span class="metric">UX Optimized</span>
-    </div>
-    
-    <div class="proj-tools">
-      <span class="tool-tag">HTML5</span>
-      <span class="tool-tag">CSS3</span>
-      <span class="tool-tag">JavaScript</span>
-    </div>
-  </div>
-  <div class="proj-foot">
-    <a href="https://thaisonmobile.id.vn/" target="_blank" class="plink" data-en="Demo →" data-vi="Demo →">Demo →</a>
-    <a href="https://github.com/LttuMi204" target="_blank" class="plink plink-m">GitHub</a>
-  </div>
-</div>
-  </div>
-</section>
+  </section>
 
   <!-- EXPERIENCE -->
   <section id="experience" class="section">
@@ -3398,57 +3547,60 @@
       </p>
 
       <!-- FORM LIÊN HỆ -->
-      <form class="contact-form" id="contactForm" action="https://formsubmit.co/tusmile.joy@gmail.com" method="POST">
-        <!-- Ẩn redirect để xử lý bằng JS -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="#">
+      <!-- FORM LIÊN HỆ - TÍCH HỢP FORMSPREE -->
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykqkdyp" method="POST">
+
+        <!-- Trường ẩn để gửi email đến đúng địa chỉ -->
+        <input type="hidden" name="_to" value="tusmile.joy@gmail.com">
+
+        <!-- Tùy chỉnh tiêu đề email -->
+        <input type="hidden" name="_subject" value="New message from Tu Mi's Portfolio">
+
+        <!-- Chuyển hướng sau khi gửi thành công (có thể tùy chỉnh) -->
+        <input type="hidden" name="_next" value="#success">
 
         <div class="form-group">
-          <label for="senderName" data-en="Your Name" data-vi="Họ và tên">Họ và tên <span style="color:var(--accent)">*</span></label>
-          <input type="text" id="senderName" name="name" placeholder="Nguyễn Văn A" required>
-          <div class="form-error" id="nameError" data-en="Please enter your name" data-vi="Vui lòng nhập họ tên">Vui lòng nhập họ tên</div>
+          <label for="senderName">Họ và tên <span style="color:var(--accent)">*</span></label>
+          <input type="text" id="senderName" name="name" placeholder="Nguyễn Văn A" required minlength="2">
+          <div class="form-error" id="nameError">Vui lòng nhập họ tên (tối thiểu 2 ký tự)</div>
         </div>
 
         <div class="form-group">
-          <label for="senderEmail" data-en="Your Email" data-vi="Email của bạn">Email của bạn <span style="color:var(--accent)">*</span></label>
+          <label for="senderEmail">Email của bạn <span style="color:var(--accent)">*</span></label>
           <input type="email" id="senderEmail" name="email" placeholder="your@email.com" required>
-          <div class="form-error" id="emailError" data-en="Please enter a valid email" data-vi="Vui lòng nhập email hợp lệ">Vui lòng nhập email hợp lệ</div>
+          <div class="form-error" id="emailError">Vui lòng nhập email hợp lệ</div>
         </div>
 
         <div class="form-group">
-          <label for="subject" data-en="Subject" data-vi="Tiêu đề">Tiêu đề</label>
+          <label for="subject">Tiêu đề</label>
           <input type="text" id="subject" name="subject" placeholder="Về cơ hội việc làm...">
         </div>
 
         <div class="form-group">
-          <label for="message" data-en="Message" data-vi="Nội dung">Nội dung <span style="color:var(--accent)">*</span></label>
-          <textarea id="message" name="message" placeholder="Xin chào, tôi là..." required></textarea>
-          <div class="form-error" id="messageError" data-en="Please enter your message" data-vi="Vui lòng nhập nội dung">Vui lòng nhập nội dung</div>
+          <label for="message">Nội dung <span style="color:var(--accent)">*</span></label>
+          <textarea id="message" name="message" placeholder="Xin chào, tôi là..." required minlength="10"></textarea>
+          <div class="form-error" id="messageError">Vui lòng nhập nội dung (tối thiểu 10 ký tự)</div>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn">
-          <i class="fas fa-paper-plane"></i>
-          <span data-en="Send Message" data-vi="Gửi tin nhắn">Gửi tin nhắn</span>
+          <i class="fas fa-paper-plane"></i> Gửi tin nhắn
         </button>
-
         <div class="form-success" id="formSuccess">
-          <h3>🎉 Cảm ơn bạn đã liên hệ!</h3>
-          <p data-en="Your message has been sent successfully. I will respond within 24 hours." data-vi="Tin nhắn của bạn đã được gửi thành công. Tôi sẽ phản hồi trong vòng 24 giờ.">
-            Tin nhắn của bạn đã được gửi thành công. Tôi sẽ phản hồi trong vòng 24 giờ.
-          </p>
-          <br>
-          <p style="font-size:var(--fs-sm);color:var(--text-m);">
-            <span data-en="Thank you for your interest in my profile!" data-vi="Cảm ơn bạn đã quan tâm đến hồ sơ của tôi!">Cảm ơn bạn đã quan tâm đến hồ sơ của tôi!</span>
-          </p>
+          <div class="success-title">✓ Gửi tin nhắn thành công!</div>
+          <div class="success-desc">
+            Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi trong vòng <strong>24 giờ</strong>.
+          </div>
+          <div class="success-timer" id="successTimer">Tự động đóng sau 3s...</div>
         </div>
-      </form>
+    </div>
+    </form>
 
-      <div class="cta-contacts">
-        <div class="cta-ci"><span class="cta-ci-ico" data-en="Phone: " data-vi="Số điện thoại:"></span>0774.945.169</div>
-        <div class="cta-ci"><span class="cta-ci-ico" data-en="Email: " data-vi="Email:"></span>tusmile.joy@gmail.com</div>
-        <div class="cta-ci"><span class="cta-ci-ico" data-en="Address: " data-vi="Địa chỉ:"></span><span data-en="Tan An, Can Tho"
-            data-vi="Tân An, Cần Thơ">Tan An, Can Tho</span></div>
-      </div>
+    <div class="cta-contacts">
+      <div class="cta-ci"><span class="cta-ci-ico" data-en="Phone: " data-vi="Số điện thoại:"></span>0774.945.169</div>
+      <div class="cta-ci"><span class="cta-ci-ico" data-en="Email: " data-vi="Email:"></span>tusmile.joy@gmail.com</div>
+      <div class="cta-ci"><span class="cta-ci-ico" data-en="Address: " data-vi="Địa chỉ:"></span><span
+          data-en="Tan An, Can Tho" data-vi="Tân An, Cần Thơ">Tan An, Can Tho</span></div>
+    </div>
     </div>
   </section>
 
@@ -3460,7 +3612,7 @@
       <a href="https://github.com/LttuMi204" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/tu-mi-le-thi-kpm/" target="_blank">LinkedIn</a>
       <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">HRMS Case Study</a>
-<a href="projects/cvweb.html" data-en="CV" data-vi="CV">CV</a>
+      <a href="projects/cvweb.html" data-en="CV" data-vi="CV">CV</a>
     </div>
     <div class="foot-copy">© 2026 Lê Thị Tú Mi</div>
   </footer>
@@ -3768,14 +3920,14 @@
     function navigateTab(direction) {
       const currentIndex = getTabIndex(currentTab);
       let newIndex = currentIndex + direction;
-      
+
       if (newIndex < 0) newIndex = tabOrder.length - 1;
       if (newIndex >= tabOrder.length) newIndex = 0;
-      
+
       const newTab = tabOrder[newIndex];
       const skills = tabSkills[newTab] || [];
       const firstSkill = skills[0] || '';
-      
+
       if (firstSkill) {
         currentTab = newTab;
         currentSkill = firstSkill;
@@ -3787,7 +3939,7 @@
       const isEn = currentLang === 'en';
       const tabName = tabNames[currentTab];
       popupTabTitle.textContent = isEn ? tabName.en : tabName.vi;
-      
+
       renderSkillList(currentTab);
       renderSkillDetail(currentSkill);
     }
@@ -3795,12 +3947,12 @@
     function renderSkillList(tabKey) {
       const isEn = currentLang === 'en';
       const skills = tabSkills[tabKey] || [];
-      
+
       // Update count
       popupCount.textContent = `${skills.length} ${isEn ? 'skills' : 'kỹ năng'}`;
-      
+
       let html = `<div class="sidebar-title" data-en="Skills in this category" data-vi="Kỹ năng trong danh mục">${isEn ? 'Skills in this category' : 'Kỹ năng trong danh mục'}</div>`;
-      
+
       skills.forEach((key, index) => {
         const data = skillData[key];
         if (data) {
@@ -3815,12 +3967,12 @@
           `;
         }
       });
-      
+
       popupSidebar.innerHTML = html;
-      
+
       // Add click events to list items
       popupSidebar.querySelectorAll('.skill-list-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           const skillKey = this.dataset.skill;
           if (skillKey) {
             currentSkill = skillKey;
@@ -3834,22 +3986,22 @@
     function renderSkillDetail(skillKey) {
       const data = skillData[skillKey];
       const isEn = currentLang === 'en';
-      
+
       if (!data) return;
-      
+
       const title = isEn ? data.titleEn : data.title;
       const sub = isEn ? data.subEn : data.sub;
       const desc = isEn ? data.descEn : data.desc;
-      
+
       // Update header icon
       popupIcon.textContent = data.icon;
-      
+
       let html = `
         <div class="skill-detail-title">${title}</div>
         <div class="skill-detail-sub">${sub}</div>
         <div class="skill-detail-desc">${desc}</div>
       `;
-      
+
       // Tags
       html += `
         <div class="skill-detail-section">
@@ -3859,7 +4011,7 @@
           </div>
         </div>
       `;
-      
+
       // Links
       html += `
         <div class="skill-detail-section">
@@ -3869,7 +4021,7 @@
           </div>
         </div>
       `;
-      
+
       // Tools
       html += `
         <div class="skill-detail-section">
@@ -3879,16 +4031,16 @@
           </div>
         </div>
       `;
-      
+
       popupDetail.innerHTML = html;
     }
 
     function openPopup(tabKey, skillKey) {
       currentTab = tabKey || 'analysis';
       currentSkill = skillKey || tabSkills[currentTab][0];
-      
+
       updatePopupContent();
-      
+
       popupOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -3900,7 +4052,7 @@
 
     // Event: Click "Xem thêm" on skill cards
     document.querySelectorAll('.sk-more-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
+      btn.addEventListener('click', function (e) {
         e.stopPropagation();
         const skillKey = this.dataset.skill;
         const tabKey = skillTabMap[skillKey] || 'analysis';
@@ -3909,20 +4061,20 @@
     });
 
     // Event: Navigation buttons
-    navPrev.addEventListener('click', function(e) {
+    navPrev.addEventListener('click', function (e) {
       e.stopPropagation();
       navigateTab(-1);
     });
 
-    navNext.addEventListener('click', function(e) {
+    navNext.addEventListener('click', function (e) {
       e.stopPropagation();
       navigateTab(1);
     });
 
     // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (!popupOverlay.classList.contains('open')) return;
-      
+
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         navigateTab(-1);
@@ -3936,7 +4088,7 @@
 
     // Event: Close popup
     popupClose.addEventListener('click', closePopup);
-    popupOverlay.addEventListener('click', function(e) {
+    popupOverlay.addEventListener('click', function (e) {
       if (e.target === this) closePopup();
     });
 
@@ -3991,7 +4143,7 @@
         btn.classList.add('active');
         const tabId = btn.dataset.tab;
         document.getElementById('panel-' + tabId).classList.add('active');
-        
+
         // Cập nhật popup nếu đang mở
         if (popupOverlay.classList.contains('open')) {
           const skills = tabSkills[tabId] || [];
@@ -4059,68 +4211,144 @@
       }
     });
 
-    /* ── CONTACT FORM ── */
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const successDiv = document.getElementById('formSuccess');
+   /* ── CONTACT FORM ── */
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const successDiv = document.getElementById('formSuccess');
+const successTimer = document.getElementById('successTimer');
 
-    const nameInput = document.getElementById('senderName');
-    const emailInput = document.getElementById('senderEmail');
-    const messageInput = document.getElementById('message');
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const messageError = document.getElementById('messageError');
+const nameInput = document.getElementById('senderName');
+const emailInput = document.getElementById('senderEmail');
+const messageInput = document.getElementById('message');
+const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
+const messageError = document.getElementById('messageError');
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+// Rate limiting - ngăn spam
+let lastSubmitTime = 0;
+const MIN_SUBMIT_INTERVAL = 30000; // 30 giây
+let timerInterval = null;
 
-      [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
-      let isValid = true;
+// Hàm reset form về trạng thái ban đầu
+function resetForm() {
+  // Reset form
+  form.reset();
+  // Ẩn success
+  successDiv.classList.remove('show');
+  successDiv.style.display = 'none';
+  // Reset errors
+  [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
+  // Hiện lại form
+  form.style.display = 'block';
+  // Clear timer
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
 
-      if (!nameInput.value.trim()) {
-        nameError.classList.add('show');
-        isValid = false;
-      }
+// Hàm hiển thị thông báo thành công và tự động đóng
+function showSuccess() {
+  // Ẩn form
+  form.style.display = 'none';
+  // Hiện success
+  successDiv.style.display = 'block';
+  setTimeout(() => {
+    successDiv.classList.add('show');
+  }, 10);
+  
+  // Đếm ngược 3 giây
+  let seconds = 3;
+  successTimer.textContent = `Tự động đóng sau ${seconds}s...`;
+  
+  timerInterval = setInterval(() => {
+    seconds--;
+    if (seconds > 0) {
+      successTimer.textContent = `Tự động đóng sau ${seconds}s...`;
+    } else {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      successTimer.textContent = 'Đã đóng';
+      // Reset form sau 3 giây
+      resetForm();
+    }
+  }, 1000);
+  
+  // Cuộn lên để thấy thông báo
+  successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
-        emailError.classList.add('show');
-        isValid = false;
-      }
+// Xử lý submit form
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
 
-      if (!messageInput.value.trim()) {
-        messageError.classList.add('show');
-        isValid = false;
-      }
+  // Rate limiting
+  const now = Date.now();
+  if (now - lastSubmitTime < MIN_SUBMIT_INTERVAL) {
+    const remaining = Math.ceil((MIN_SUBMIT_INTERVAL - (now - lastSubmitTime)) / 1000);
+    alert(`Vui lòng đợi ${remaining} giây trước khi gửi lại.`);
+    return;
+  }
 
-      if (!isValid) return;
+  // Reset errors
+  [nameError, emailError, messageError].forEach(el => el.classList.remove('show'));
+  let isValid = true;
 
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  // Validate name
+  if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+    nameError.classList.add('show');
+    isValid = false;
+  }
 
-      const formData = new FormData(form);
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+    emailError.classList.add('show');
+    isValid = false;
+  }
 
-      fetch('https://formsubmit.co/tusmile.joy@gmail.com', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        if (response.ok || response.type === 'opaqueredirect') {
-          form.style.display = 'none';
-          successDiv.classList.add('show');
-        } else {
-          alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
-        }
-      })
-      .catch(() => {
-        form.submit();
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  // Validate message
+  if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+    messageError.classList.add('show');
+    isValid = false;
+  }
+
+  if (!isValid) return;
+
+  // Disable button và hiển thị loading
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+
+  const formData = new FormData(form);
+
+  // Gửi form qua Formspree
+  fetch('https://formspree.io/f/mykqkdyp', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      lastSubmitTime = Date.now();
+      showSuccess();
+    } else {
+      return response.json().then(data => {
+        throw new Error(data.error || 'Có lỗi xảy ra');
       });
-    });
-</script>
+    }
+  })
+  .catch(error => {
+    console.error('Form error:', error);
+    alert('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi tin nhắn';
+  });
+});
+  </script>
 </body>
 
 </html>

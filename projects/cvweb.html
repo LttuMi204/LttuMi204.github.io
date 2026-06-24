@@ -648,46 +648,44 @@
     }
 
     .cv-header .cv-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
 
-    .cv-header .cv-actions a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.4rem;
-      border-radius: 100px;
-      font-size: var(--fs-sm);
-      font-weight: 600;
-      transition: all var(--transition);
-    }
+.cv-header .cv-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: all var(--transition);
+  background: var(--bg-3);
+  color: var(--text-m);
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
 
-    .cv-header .cv-actions .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
+.cv-header .cv-actions a i {
+  font-size: 0.95rem;
+  color: var(--accent);
+}
 
-    .cv-header .cv-actions .btn-primary:hover {
-      opacity: 0.85;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
-    }
+.cv-header .cv-actions a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
+}
 
-    .cv-header .cv-actions .btn-outline {
-      background: var(--bg-3);
-      color: var(--text-m);
-      border: 1px solid var(--border);
-    }
-
-    .cv-header .cv-actions .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+.cv-header .cv-actions a:hover i {
+  color: var(--accent);
+}
 
     /* ── CV CONTENT ───────────────────────────── */
 .cv-content {
@@ -712,23 +710,27 @@
   position: sticky;
   top: 100px;
 }
-
+.cv-sidebar .info-item .label {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 85px;
+  flex-shrink: 0;
+}
 .cv-sidebar .block {
   background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem; /* Giảm từ 1.5rem 1.75rem */
 }
-
 .cv-sidebar .block-title {
   font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800; /* Tăng từ 700 lên 800 */
   color: var(--text);
   letter-spacing: 0.04em;
-  margin-bottom: 0.6rem; /* Giảm từ 0.75rem */
-  padding-bottom: 0.4rem; /* Giảm từ 0.5rem */
-  border-bottom: 2px solid var(--accent);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid var(--accent); /* Tăng độ dày viền */
 }
 
 .cv-sidebar .info-item {
@@ -742,12 +744,12 @@
 
 /* ===== KỸ NĂNG CHUYÊN MÔN (TRÁI) ===== */
 .skill-card {
-  background: #ffffff;
-  border: 1px solid #d6eaf8;
-  border-radius: 6px;
-  padding: 12px 16px; /* Giảm từ 15px 18px */
-  margin-bottom: 10px; /* Giảm từ 12px */
-  transition: border-color 0.2s;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  transition: all var(--transition);
 }
 
 .skill-card:last-child {
@@ -755,32 +757,33 @@
 }
 
 .skill-card:hover {
-  border-color: #85c1e9;
+  border-color: var(--accent);
+  transform: translateX(2px);
 }
 
 .skill-card .skill-label {
-  font-size: 14px; /* Giảm từ 15px */
+  font-size: 0.82rem;
   font-weight: 600;
-  color: #1a5276;
+  color: var(--text);
   display: block;
-  margin-bottom: 5px; /* Giảm từ 6px */
+  margin-bottom: 5px;
 }
 
 .skill-card .skill-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 6px; /* Giảm từ 3px 8px */
+  gap: 2px 6px;
 }
 
 .skill-card .skill-tag {
-  font-size: 13.5px; /* Giảm từ 14.5px */
-  color: #2d3748;
+  font-size: 0.8rem;
+  color: var(--text-m);
 }
 
-.skill-card .skill-tag+.skill-tag::before {
+.skill-card .skill-tag + .skill-tag::before {
   content: "·";
-  margin-right: 6px; /* Giảm từ 8px */
-  color: #85c1e9;
+  margin-right: 6px;
+  color: var(--text-s);
 }
 
 .skill-card .skill-tag:first-child::before {
@@ -789,7 +792,7 @@
 
 .skill-card .skill-tag.primary {
   font-weight: 600;
-  color: #1a5276;
+  color: var(--accent);
 }
 
 /* ── MAIN CONTENT ─────────────────────────── */
@@ -1189,6 +1192,8 @@
       <a href="../index.html#skills" data-en="Skills" data-vi="Kỹ năng">Skills</a>
       <a href="../index.html#projects" data-en="Projects" data-vi="Dự án">Projects</a>
       <a href="../index.html#experience" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
+      
+<a href="../projects/danh-gia.html" data-en="Review" data-vi="Đánh giá">Đánh giá</a>
     </div>
     <div class="nav-right">
       <button class="nav-lang" id="langBtn" title="Switch language">
@@ -1262,8 +1267,8 @@
         </div>
         <div class="cv-info">
           <h1 id="cvName">LÊ THỊ <span>TÚ MI</span></h1>
-          <div class="title" data-en="Software Engineer · System Analyst · ASP.NET Developer" data-vi="Kỹ sư phần mềm · Phân tích hệ thống · ASP.NET Developer">
-            Software Engineer · System Analyst · ASP.NET Developer
+          <div class="title" data-en="Software Engineer · System Analyst · ASP.NET Developer" data-vi="Kỹ sư phần mềm · Phân tích hệ thống · Lập trình viên ASP.NET">
+            Software Engineer · System Analyst · Lập trình viên ASP.NET
           </div>
           <div class="contact-grid">
             <span class="contact-item">
@@ -1286,10 +1291,13 @@
       </div>
 
       <div class="cv-actions">
-        <a href="../index.html" class="btn-outline">
-          <i class="fas fa-arrow-left"></i> <span data-en="Back" data-vi="Quay lại">Quay lại</span>
-        </a>
-      </div>
+  <a href="../index.html" class="btn-outline">
+    <i class="fas fa-arrow-left"></i> <span data-en="Back" data-vi="Quay lại">Quay lại</span>
+  </a>
+  <a href="../assets/pdf/CV – LÊ THỊ TÚ MI.pdf" class="btn-primary" download>
+    <i class="fas fa-download"></i> <span data-en="Download CV" data-vi="Tải CV">Tải CV</span>
+  </a>
+</div>
     </div>
   </section>
 
@@ -1302,28 +1310,28 @@
 
         <!-- Thông tin cá nhân -->
         <div class="block reveal">
-          <div class="block-title"><span data-en="Personal Info" data-vi="Thông tin cá nhân">Thông tin cá nhân</span></div>
-          <div class="info-item">
-            <span class="label"><span data-en="Full Name" data-vi="Họ tên">Họ tên</span></span>
-            <span>LÊ THỊ TÚ MI</span>
-          </div>
-          <div class="info-item">
-            <span class="label"><span data-en="Date of Birth" data-vi="Ngày sinh">Ngày sinh</span></span>
-            <span>05/11/2004</span>
-          </div>
-          <div class="info-item">
-            <span class="label"><span data-en="Phone" data-vi="Điện thoại">Điện thoại</span></span>
-            <span>0774 945 169</span>
-          </div>
-          <div class="info-item">
-            <span class="label">Email</span>
-            <span><a href="mailto:tusmile.joy@gmail.com">tusmile.joy@gmail.com</a></span>
-          </div>
-          <div class="info-item">
-            <span class="label"><span data-en="Address" data-vi="Địa chỉ">Địa chỉ</span></span>
-            <span><span data-en="Can Tho, Vietnam" data-vi="Cần Thơ, Việt Nam">Cần Thơ, Việt Nam</span></span>
-          </div>
-        </div>
+  <div class="block-title"><span data-en="Personal Info" data-vi="Thông tin cá nhân">Thông tin cá nhân</span></div>
+  <div class="info-item">
+    <span class="label"><span data-en="Full Name" data-vi="Họ tên">Họ tên</span></span>
+    <span>LÊ THỊ TÚ MI</span>
+  </div>
+  <div class="info-item">
+    <span class="label"><span data-en="DOB" data-vi="Ngày sinh">Ngày sinh</span></span>
+    <span>05/11/2004</span>
+  </div>
+  <div class="info-item">
+    <span class="label"><span data-en="Phone" data-vi="Điện thoại">Điện thoại</span></span>
+    <span>0774 945 169</span>
+  </div>
+  <div class="info-item">
+    <span class="label">Email</span>
+    <span><a href="mailto:tusmile.joy@gmail.com">tusmile.joy@gmail.com</a></span>
+  </div>
+  <div class="info-item">
+    <span class="label"><span data-en="Address" data-vi="Địa chỉ">Địa chỉ</span></span>
+    <span><span data-en="Can Tho, Vietnam" data-vi="Cần Thơ, Việt Nam">Cần Thơ, Việt Nam</span></span>
+  </div>
+</div>
 
         <!-- Học vấn -->
         <div class="block reveal">
@@ -1419,8 +1427,8 @@
             <span data-en="Vice Head, Dept. of Computer Networks & Data Communications, NCTU" data-vi="Phó Trưởng Bộ môn Mạng Máy tính & TT Dữ liệu – ĐH Nam Cần Thơ">Phó Trưởng Bộ môn Mạng Máy tính &amp; TT Dữ liệu – ĐH Nam Cần Thơ</span>
           </div>
           <div style="font-size:var(--fs-xs);color:var(--text-m);">
-            <span data-en="Director, PLPSoft" data-vi="Giám đốc Công ty TNHH Phần mềm Phúc Lâm Phương">Giám đốc Công ty TNHH Phần mềm Phúc Lâm Phương</span>
-          </div>
+  <span data-en="Director, PLPSoft" data-vi="Giám đốc Công ty TNHH Công nghệ Phần mềm Phúc Lâm Phương">Giám đốc Công ty TNHH Công nghệ Phần mềm Phúc Lâm Phương</span>
+</div>
           <div style="font-size:var(--fs-xs);color:var(--text-s);margin-top:0.25rem;">
             <i class="fas fa-phone" style="color:var(--accent);"></i> 0909 141 661
           </div>
