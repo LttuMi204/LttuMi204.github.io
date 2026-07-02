@@ -1,5 +1,5 @@
 # Lê Thị Tú Mi - CV & Portfolio
-[![Website](https://img.shields.io/badge/Website-lttumi204.github.io%2Flethitumi--ejsh.github.io-blue?style=for-the-badge&logo=github)](https://lttumi204.github.io/)
+[![Website](https://img.shields.io/badge/Website-lttumi204.github.io-blue?style=for-the-badge&logo=github)](https://lttumi204.github.io/)
 [![GitHub](https://img.shields.io/badge/GitHub-LttuMi204-181717?style=for-the-badge&logo=github)](https://github.com/LttuMi204)
 > **Software Engineer | Business Analyst | System Analyst** 
 > *Bridging the gap between business needs and technical solutions*
