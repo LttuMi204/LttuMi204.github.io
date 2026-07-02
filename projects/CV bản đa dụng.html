@@ -1,1086 +1,639 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CV – LÊ THỊ TÚ MI</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ─── TOKENS ─── */
+    :root {
+      --navy:    #1c2b3a;
+      --slate:   #2e4057;
+      --mid:     #4a6274;
+      --muted:   #6b8394;
+      --rule:    #c9d6df;
+      --bg-left: #f4f7f9;
+      --bg-page: #ffffff;
+      --accent:  #2c6e9e;
+      --tag-bg:  #e8f0f5;
+
+      --f-head: 'Georgia', 'Times New Roman', serif;
+      --f-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
 
+    /* ─── RESET ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ─── SCREEN WRAPPER ─── */
     body {
-      background: #eef3f8;
+      background: #dde4ea;
+      font-family: var(--f-body);
+      font-size: 13px;
+      color: #2d3748;
+      padding: 32px 20px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 17px;
     }
 
+    /* ─── CV SHELL — exact A4 width ─── */
     .cv {
-      max-width: 1100px;
-      width: 100%;
-      background: #ffffff;
-      box-shadow: 0 6px 30px rgba(46, 134, 193, 0.08);
-      border-radius: 4px;
-      overflow: hidden;
+      width: 794px;
+      background: var(--bg-page);
+      box-shadow: 0 4px 24px rgba(0,0,0,.10);
     }
 
-    /* ===== HEADER ===== */
+    /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
     .header {
       display: flex;
       align-items: center;
-      gap: 60px;
-      padding: 38px 55px 32px;
-      background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 50%, #85c1e9 100%);
-      color: #1a5276;
+      gap: 28px;
+      padding: 26px 32px 22px;
+      background: var(--navy);
+      color: #fff;
     }
 
-    .header .avatar-wrapper {
-      flex: 0 0 220px;
-      width: 220px;
-      height: 220px;
+    .avatar {
+      flex: 0 0 92px;
+      width: 92px; height: 92px;
       border-radius: 50%;
       overflow: hidden;
-      flex-shrink: 0;
-      background: #ffffff;
-      border: 4px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 25px rgba(26, 82, 118, 0.15);
-      transition: transform 0.3s ease;
+      border: 2px solid rgba(255,255,255,.25);
+      background: var(--slate);
     }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .header .avatar-wrapper:hover {
-      transform: scale(1.03);
-    }
+    .header-text { flex: 1; }
 
-    .header .avatar-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .header .header-text {
-      flex: 1;
-    }
-
-    .header .header-text h1 {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: 50px;
+    .header-text h1 {
+      font-family: var(--f-head);
+      font-size: 28px;
       font-weight: 700;
-      letter-spacing: 4px;
-      color: #1a5276;
-      line-height: 1.15;
+      letter-spacing: 3px;
+      color: #fff;
+      line-height: 1.2;
     }
 
-    .header .header-text .title {
-      font-size: 22px;
+    .header-text .tagline {
+      font-size: 12px;
       font-weight: 400;
-      color: #2e86c1;
-      letter-spacing: 0.5px;
-      margin-top: 6px;
+      color: #a8c5da;
+      letter-spacing: .5px;
+      margin-top: 4px;
     }
+    .header-text .tagline strong { color: #fff; font-weight: 500; }
+    .header-text .tagline .sep { color: rgba(255,255,255,.2); margin: 0 8px; }
 
-    .header .header-text .title span {
-      color: #1a5276;
-      font-weight: 500;
+    /* ─── CONTACT ROW ─── */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin-top: 10px;
     }
-
-    .header .header-text .title .sep {
-      color: rgba(26, 82, 118, 0.15);
-      margin: 0 10px;
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      color: #b8d0e0;
     }
+    .contact-item a { color: #b8d0e0; text-decoration: none; }
+    .contact-item a:hover { color: #fff; }
+    .contact-item svg { flex-shrink: 0; opacity: .7; }
 
-    /* ===== BODY ===== */
+    /* ════════════════════════════════
+       BODY GRID
+    ════════════════════════════════ */
     .body {
       display: grid;
-      grid-template-columns: 3fr 5fr;
+      grid-template-columns: 212px 1fr;
     }
 
-    /* ===== LEFT COLUMN (3/8) ===== */
+    /* ════════════════════════════════
+       LEFT COLUMN
+    ════════════════════════════════ */
     .left {
-      background: #f7fbfe;
-      padding: 34px 30px 38px;
-      border-right: 1px solid #d6eaf8;
+      background: var(--bg-left);
+      padding: 20px 18px 24px;
+      border-right: 1px solid var(--rule);
     }
 
-    .left .section {
-      margin-bottom: 30px;
-    }
-
-    .left .section:last-child {
-      margin-bottom: 0;
-    }
-
-    .left .section-title {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: #1a5276;
-      letter-spacing: 1.5px;
-      border-bottom: 2px solid #aed6f1;
-      padding-bottom: 7px;
-      margin-bottom: 15px;
-    }
-
-    .info-item {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #2d3748;
-      padding: 2px 0;
-    }
-
-    .info-item .label {
-      font-weight: 600;
-      color: #1a5276;
-      display: inline-block;
-      min-width: 75px;
-    }
-
-    .info-item a {
-      color: #2d3748;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .info-item a:hover {
-      border-bottom-color: #2e86c1;
-    }
-
-    .edu-item {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #2d3748;
-    }
-
-    .edu-item strong {
-      font-weight: 600;
-      color: #1a5276;
-    }
-
-    .edu-item .meta {
-      color: #5a7a8a;
-      font-size: 15px;
-    }
-
-    .edu-list {
-      list-style: none;
-      padding: 0;
-      margin: 6px 0 0;
-    }
-
-    .edu-list li {
-      font-size: 15.5px;
-      color: #3d4d5a;
-      padding: 2px 0 2px 16px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .edu-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: #2e86c1;
-    }
-
-    .lang-item {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #2d3748;
-    }
-
-    .lang-item strong {
-      font-weight: 600;
-      color: #1a5276;
-    }
-
-    .lang-item .level {
-      color: #5a7a8a;
-      font-size: 15px;
-    }
-
-    .lang-desc {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 0;
-    }
-
-    .lang-desc li {
-      font-size: 15.5px;
-      color: #3d4d5a;
-      padding: 2px 0 2px 16px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .lang-desc li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: #2e86c1;
-    }
-
-    /* ===== KỸ NĂNG CHUYÊN MÔN (TRÁI) ===== */
-    .skill-card {
-      background: #ffffff;
-      border: 1px solid #d6eaf8;
-      border-radius: 6px;
-      padding: 15px 18px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s;
-    }
-
-    .skill-card:last-child {
-      margin-bottom: 0;
-    }
-
-    .skill-card:hover {
-      border-color: #85c1e9;
-    }
-
-    .skill-card .skill-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #1a5276;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .skill-card .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px 8px;
-    }
-
-    .skill-card .skill-tag {
-      font-size: 14.5px;
-      color: #2d3748;
-    }
-
-    .skill-card .skill-tag+.skill-tag::before {
-      content: "·";
-      margin-right: 8px;
-      color: #85c1e9;
-    }
-
-    .skill-card .skill-tag:first-child::before {
-      content: none;
-    }
-
-    .skill-card .skill-tag.primary {
-      font-weight: 600;
-      color: #1a5276;
-    }
-
-    .ref-item {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #2d3748;
-    }
-
-    .ref-item strong {
-      font-weight: 600;
-      color: #1a5276;
-    }
-
-    .ref-item .ref-role {
-      color: #5a7a8a;
-      font-size: 15px;
-    }
-
-    .ref-item .ref-contact {
-      color: #5a7a8a;
-      font-size: 15px;
-    }
-
-    /* ===== RIGHT COLUMN (5/8) ===== */
+    /* ════════════════════════════════
+       RIGHT COLUMN
+    ════════════════════════════════ */
     .right {
-      background: #ffffff;
-      padding: 34px 36px 38px 32px;
+      background: var(--bg-page);
+      padding: 20px 22px 24px 20px;
     }
 
-    .right .section {
-      margin-bottom: 30px;
-    }
+    /* ─── SECTION HEADING ─── */
+    .section { margin-bottom: 18px; }
+    .section:last-child { margin-bottom: 0; }
 
-    .right .section:last-child {
-      margin-bottom: 0;
-    }
-
-    .right .section-title {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: 21px;
+    .sec-title {
+      font-family: var(--f-head);
+      font-size: 11px;
       font-weight: 700;
-      color: #1a5276;
-      letter-spacing: 1.5px;
-      border-bottom: 2px solid #aed6f1;
-      padding-bottom: 7px;
-      margin-bottom: 15px;
+      color: var(--accent);
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
     }
 
-    /* Intro */
-    .intro-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #2d3748;
+    /* ─── INFO LIST (left col) ─── */
+    .info-item {
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--slate);
+      padding: 1px 0;
+    }
+    .info-item .lbl {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+    .info-item:first-child .lbl { margin-top: 0; }
+
+    /* ─── EDU ─── */
+    .edu-school {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .edu-degree {
+      font-size: 11.5px;
+      color: var(--slate);
+      margin-top: 1px;
+    }
+    .edu-year {
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+    .dot-list {
+      list-style: none;
+      margin-top: 5px;
+    }
+    .dot-list li {
+      font-size: 11px;
+      color: var(--mid);
+      padding: 1.5px 0 1.5px 12px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .dot-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ─── SKILL BLOCK (left) ─── */
+    .skill-block { margin-bottom: 10px; }
+    .skill-block:last-child { margin-bottom: 0; }
+    .skill-block .sk-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 3px 4px; }
+    .tag {
+      font-size: 10.5px;
+      color: var(--slate);
+      background: var(--tag-bg);
+      border: 1px solid #d0dce5;
+      border-radius: 3px;
+      padding: 2px 7px;
+      line-height: 1.4;
+    }
+    .tag.primary {
+      font-weight: 600;
+      color: var(--accent);
+      background: #ddeef8;
+      border-color: #aacce0;
+    }
+
+    /* ─── REFERENCE ─── */
+    .ref-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .ref-role {
+      font-size: 11px;
+      color: var(--mid);
+      line-height: 1.45;
+    }
+    .ref-contact {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ─── INTRO / OBJECTIVE (right) ─── */
+    .prose {
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--slate);
       text-align: justify;
     }
+    .prose p { margin-bottom: 6px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--navy); font-weight: 600; }
 
-    .intro-text p {
-      margin-bottom: 12px;
-    }
-
-    .intro-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .intro-text strong {
-      color: #1a5276;
-      font-weight: 600;
-    }
-
-    /* Experience */
-    .exp-item {
-      margin-bottom: 15px;
-    }
-
-    .exp-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .exp-item .exp-header {
+    /* ─── EXPERIENCE ─── */
+    .exp-header { margin-bottom: 3px; }
+    .exp-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .exp-meta {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: baseline;
     }
+    .exp-company { font-size: 11.5px; color: var(--mid); }
+    .exp-period { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
 
-    .exp-item .exp-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1a5276;
-    }
-
-    .exp-item .exp-company {
-      font-size: 16px;
-      font-weight: 500;
-      color: #2d3748;
-    }
-
-    .exp-item .exp-period {
-      font-size: 15px;
-      color: #5a7a8a;
-    }
-
-    .exp-item .exp-list {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 0;
-    }
-
-    .exp-item .exp-list li {
-      font-size: 15.5px;
-      color: #3d4d5a;
-      padding: 2px 0 2px 18px;
+    .bullet-list { list-style: none; margin-top: 5px; }
+    .bullet-list li {
+      font-size: 11.5px;
+      color: var(--mid);
+      padding: 2px 0 2px 14px;
       position: relative;
       line-height: 1.5;
     }
-
-    .exp-item .exp-list li::before {
+    .bullet-list li::before {
       content: "▹";
       position: absolute;
       left: 0;
-      color: #2e86c1;
+      color: var(--accent);
+      font-size: 10px;
+      top: 3px;
     }
+    .bullet-list li strong { color: var(--slate); font-weight: 600; }
 
-    /* ===== PROJECTS - GRID 2x2 ===== */
+    /* ─── PROJECT CARDS ─── */
     .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .proj-card {
-      background: #f7fbfe;
-      border: 1px solid #d6eaf8;
-      border-radius: 6px;
-      padding: 16px 18px;
-      transition: border-color 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .proj-card:hover {
-      border-color: #85c1e9;
-    }
-
-    .proj-card .proj-title {
-      font-size: 17px;
-      font-weight: 600;
-      color: #1a5276;
-      margin-bottom: 2px;
-    }
-
-    .proj-card .proj-meta {
-      font-size: 14.5px;
-      color: #2e86c1;
-      font-weight: 500;
-    }
-
-    .proj-card .proj-tech {
-      font-size: 14px;
-      color: #5a7a8a;
-      margin: 4px 0 6px;
-      padding: 4px 0;
-      border-top: 1px dashed #d6eaf8;
-      border-bottom: 1px dashed #d6eaf8;
-    }
-
-    .proj-card .proj-list {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 4px;
-      flex: 1;
-    }
-
-    .proj-card .proj-list li {
-      font-size: 15px;
-      color: #3d4d5a;
-      padding: 2px 0 2px 16px;
-      position: relative;
-      line-height: 1.5;
-    }
-
-    .proj-card .proj-list li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: #2e86c1;
-    }
-
-    .proj-card .proj-result {
-      font-size: 15px;
-      color: #1a5276;
-      font-weight: 500;
-      margin-top: 2px;
-      padding: 2px 0 2px 16px;
-      position: relative;
-    }
-
-    .proj-card .proj-result::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #2e86c1;
-    }
-
-    .proj-card .proj-links {
-      font-size: 14.5px;
-      color: #5a7a8a;
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px solid #d6eaf8;
-    }
-
-    .proj-card .proj-links a {
-      color: #2e86c1;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .proj-card .proj-links a:hover {
-      border-bottom-color: #2e86c1;
-    }
-
-    .proj-card .proj-links .sep {
-      color: #d0d8e0;
-      margin: 0 4px;
-    }
-
-    /* ===== KỸ NĂNG MỀM (PHẢI - 2 CỘT) ===== */
-    .soft-skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
+    .proj-card {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-page);
+    }
+    .proj-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 1px; }
+    .proj-role { font-size: 10.5px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+    .proj-tech {
+      font-size: 10px;
+      color: var(--muted);
+      padding: 3px 0;
+      border-top: 1px dashed #d8e4ec;
+      border-bottom: 1px dashed #d8e4ec;
+      margin-bottom: 5px;
+    }
+    .proj-list { list-style: none; flex: 1; }
+    .proj-list li {
+      font-size: 11px;
+      color: var(--mid);
+      padding: 1.5px 0 1.5px 12px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .proj-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 2px;
+    }
+    .proj-result {
+      font-size: 10.5px;
+      color: var(--navy);
+      font-weight: 500;
+      margin-top: 5px;
+      padding: 2px 0 2px 12px;
+      position: relative;
+    }
+    .proj-result::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+    .proj-links {
+      font-size: 10px;
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid #e8edf2;
+      color: var(--muted);
+    }
+    .proj-links a { color: var(--accent); text-decoration: none; }
+    .proj-links a:hover { text-decoration: underline; }
+    .proj-links .sep { margin: 0 4px; color: #ccc; }
 
-    .soft-skill-item {
-      background: #f7fbfe;
-      border: 1px solid #d6eaf8;
-      border-radius: 6px;
-      padding: 11px 16px;
-      transition: border-color 0.2s;
-      font-size: 15px;
-      color: #2d3748;
+    /* ─── SOFT SKILLS ─── */
+    .soft-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .soft-item {
+      font-size: 11px;
+      color: var(--slate);
+      background: var(--tag-bg);
+      border: 1px solid #d0dce5;
+      border-radius: 3px;
+      padding: 5px 8px;
       text-align: center;
+      line-height: 1.4;
     }
 
-    .soft-skill-item:hover {
-      border-color: #85c1e9;
-    }
+    /* ─── LANG ─── */
+    .lang-name { font-size: 12px; font-weight: 600; color: var(--navy); }
+    .lang-level { font-size: 11px; color: var(--muted); margin-left: 4px; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 820px) {
-      .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 24px;
-        padding: 28px 30px;
-      }
-
-      .header .avatar-wrapper {
-        flex: 0 0 170px;
-        width: 170px;
-        height: 170px;
-      }
-
-      .header .header-text h1 {
-        font-size: 36px;
-        letter-spacing: 2px;
-      }
-
-      .header .header-text .title {
-        font-size: 18px;
-      }
-
-      .body {
-        grid-template-columns: 1fr;
-      }
-
-      .left {
-        border-right: none;
-        border-bottom: 1px solid #d6eaf8;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .soft-skills-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header {
-        padding: 20px 16px;
-        gap: 18px;
-      }
-
-      .header .avatar-wrapper {
-        flex: 0 0 140px;
-        width: 140px;
-        height: 140px;
-        border-width: 3px;
-      }
-
-      .header .header-text h1 {
-        font-size: 28px;
-        letter-spacing: 1px;
-      }
-
-      .header .header-text .title {
-        font-size: 15px;
-      }
-
-      .header .header-text .title .sep {
-        margin: 0 4px;
-      }
-
-      .left {
-        padding: 20px 16px;
-      }
-
-      .right {
-        padding: 20px 16px;
-      }
-
-      .left .section-title,
-      .right .section-title {
-        font-size: 17px;
-      }
-
-      .exp-item .exp-header {
-        flex-direction: column;
-      }
-
-      .proj-card {
-        padding: 12px 14px;
-      }
-
-      .skill-card {
-        padding: 10px 12px;
-      }
-
-      .soft-skills-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ===== PRINT ===== */
+    /* ════════════════════════════════
+       PRINT
+    ════════════════════════════════ */
     @media print {
-      body {
-        background: #fff;
-        padding: 0;
-        font-size: 15px;
-      }
+      body { background: #fff; padding: 0; }
+      .cv { width: 100%; box-shadow: none; }
+      .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .left   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tag    { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .soft-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .proj-card  { break-inside: avoid; page-break-inside: avoid; }
+      .skill-block { break-inside: avoid; page-break-inside: avoid; }
+      .soft-item   { break-inside: avoid; }
+    }
 
-      .cv {
-        max-width: 100%;
-        box-shadow: none;
-        border-radius: 0;
-      }
-
-      .header {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        padding: 25px 40px 20px;
-        gap: 45px;
-      }
-
-      .header .avatar-wrapper {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        flex: 0 0 180px;
-        width: 180px;
-        height: 180px;
-        border-width: 4px;
-        box-shadow: none;
-      }
-
-      .header .avatar-wrapper:hover {
-        transform: none;
-      }
-
-      .header .header-text h1 {
-        font-size: 38px;
-        letter-spacing: 3px;
-      }
-
-      .header .header-text .title {
-        font-size: 19px;
-      }
-
-      .left {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .left .section-title {
-        font-size: 16px;
-      }
-
-      .right .section-title {
-        font-size: 17px;
-      }
-
-      .left .section-title,
-      .right .section-title {
-        border-bottom-width: 1.5px;
-      }
-
-      .proj-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        border-color: #d0d8e0;
-      }
-
-      .skill-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        border-color: #d0d8e0;
-      }
-
-      .soft-skill-item {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        border-color: #d0d8e0;
-      }
-
-      .proj-card .proj-links a {
-        color: #1a5276;
-      }
-
-      .info-item a {
-        color: #1a5276;
-      }
-
-      .skill-card .skill-tag.primary {
-        color: #1a5276;
-      }
-
-      .info-item {
-        font-size: 14px;
-      }
-
-      .edu-item {
-        font-size: 14px;
-      }
-
-      .edu-list li {
-        font-size: 13.5px;
-      }
-
-      .lang-item {
-        font-size: 14px;
-      }
-
-      .lang-desc li {
-        font-size: 13.5px;
-      }
-
-      .ref-item {
-        font-size: 14px;
-      }
-
-      .intro-text {
-        font-size: 14px;
-      }
-
-      .exp-item .exp-title {
-        font-size: 16px;
-      }
-
-      .exp-item .exp-company {
-        font-size: 14px;
-      }
-
-      .exp-item .exp-period {
-        font-size: 13px;
-      }
-
-      .exp-item .exp-list li {
-        font-size: 13.5px;
-      }
-
-      .proj-card .proj-title {
-        font-size: 15px;
-      }
-
-      .proj-card .proj-meta {
-        font-size: 12.5px;
-      }
-
-      .proj-card .proj-tech {
-        font-size: 12px;
-      }
-
-      .proj-card .proj-list li {
-        font-size: 13px;
-      }
-
-      .proj-card .proj-result {
-        font-size: 13px;
-      }
-
-      .proj-card .proj-links {
-        font-size: 12.5px;
-      }
-
-      .skill-card .skill-label {
-        font-size: 14px;
-      }
-
-      .skill-card .skill-tag {
-        font-size: 13px;
-      }
-
-      .soft-skill-item {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
+    /* ─── RESPONSIVE (screen only) ─── */
+    @media (max-width: 860px) {
+      .cv { width: 100%; }
+      .body { grid-template-columns: 1fr; }
+      .left { border-right: none; border-bottom: 1px solid var(--rule); }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
+<div class="cv">
 
-  <div class="cv">
-
-    <!-- ===== HEADER MỞ RỘNG ===== -->
-    <div class="header">
-      <div class="avatar-wrapper">
-        <img src="/assets/images/avatarcv.png" alt="Lê Thị Tú Mi" />
-      </div>
-      <div class="header-text">
-        <h1>LÊ THỊ TÚ MI</h1>
-        <div class="title">
-          <span>Software</span> Developer
-          <span class="sep">|</span>
-          <span>Business</span> Analyst
-          <span class="sep">|</span>
-          <span>IT</span> Consultant
-        </div>
-      </div>
+  <!-- ══════════════ HEADER ══════════════ -->
+  <div class="header">
+    <div class="avatar">
+      <img src="assets/images/avatarcv.png" alt="Lê Thị Tú Mi" />
     </div>
-
-    <!-- ===== BODY ===== -->
-    <div class="body">
-
-      <!-- ===== LEFT: 3/8 ===== -->
-      <div class="left">
-
-        <!-- THÔNG TIN CÁ NHÂN -->
-        <div class="section">
-          <div class="section-title">Thông tin cá nhân</div>
-          <div class="info-item">
-            <span class="label">Họ tên</span> LÊ THỊ TÚ MI
-          </div>
-          <div class="info-item">
-            <span class="label">Ngày sinh</span> 05/11/2004
-          </div>
-          <div class="info-item">
-            <span class="label">Điện thoại</span> 0774 945 169
-          </div>
-          <div class="info-item">
-            <span class="label">Email</span> <a href="mailto:tusmile.joy@gmail.com">tusmile.joy@gmail.com</a>
-          </div>
-          <div class="info-item">
-            <span class="label">Địa chỉ</span> Nguyễn Văn Cừ nối dài, Tân An, Cần Thơ
-          </div>
-          <div class="info-item">
-            <span class="label">GitHub</span> <a href="https://github.com/LttuMi204" target="_blank">github.com/LttuMi204</a>
-          </div>
-          <div class="info-item">
-            <span class="label">LinkedIn</span> <a href="https://linkedin.com/in/tu-mi-le-thi-kpm" target="_blank">linkedin.com/in/tu-mi-le-thi-kpm</a>
-          </div>
-        </div>
-
-        <!-- TRÌNH ĐỘ HỌC VẤN -->
-        <div class="section">
-          <div class="section-title">Trình độ học vấn</div>
-          <div class="edu-item">
-            <strong>Trường Đại học Nam Cần Thơ</strong><br />
-            Kỹ sư Kỹ thuật Phần mềm <span class="meta">(2022 – 2026)</span>
-          </div>
-          <ul class="edu-list">
-            <li>Phát triển phần mềm: ASP.NET Core MVC, C#, SQL Server</li>
-            <li>Phân tích &amp; thiết kế hệ thống: UML, BRD, SRS</li>
-            <li>Quản lý dự án CNTT, Kiểm thử phần mềm (UAT)</li>
-            <li>Quy trình vận hành doanh nghiệp (ERP, CRM)</li>
-          </ul>
-        </div>
-
-        <!-- NGOẠI NGỮ -->
-        <div class="section">
-          <div class="section-title">Ngoại ngữ</div>
-          <div class="lang-item">
-            <strong>Tiếng Anh</strong> <span class="level">– B1 (2024)</span>
-          </div>
-          <ul class="lang-desc">
-            <li>Đọc hiểu tài liệu kỹ thuật CNTT</li>
-            <li>Giao tiếp cơ bản với khách hàng</li>
-          </ul>
-        </div>
-
-        <!-- ===== KỸ NĂNG CHUYÊN MÔN ===== -->
-        <div class="section">
-          <div class="section-title">Kỹ năng chuyên môn</div>
-
-          <div class="skill-card">
-            <span class="skill-label">Lập trình &amp; Phát triển</span>
-            <div class="skill-tags">
-              <span class="skill-tag primary">ASP.NET Core MVC</span>
-              <span class="skill-tag primary">C#</span>
-              <span class="skill-tag primary">SQL Server</span>
-              <span class="skill-tag">Entity Framework Core</span>
-              <span class="skill-tag">RESTful API</span>
-              <span class="skill-tag">Git / GitHub</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <span class="skill-label">Phân tích &amp; Thiết kế</span>
-            <div class="skill-tags">
-              <span class="skill-tag primary">UML</span>
-              <span class="skill-tag">BRD</span>
-              <span class="skill-tag">SRS</span>
-              <span class="skill-tag">Database Design</span>
-              <span class="skill-tag">Viết test case</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <span class="skill-label">Frontend &amp; CMS</span>
-            <div class="skill-tags">
-              <span class="skill-tag">HTML5</span>
-              <span class="skill-tag">CSS3</span>
-              <span class="skill-tag">Bootstrap</span>
-              <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">WordPress</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <span class="skill-label">Tư vấn &amp; Hỗ trợ</span>
-            <div class="skill-tags">
-              <span class="skill-tag">Tư vấn giải pháp</span>
-              <span class="skill-tag">Đào tạo người dùng</span>
-              <span class="skill-tag">Hỗ trợ kỹ thuật</span>
-              <span class="skill-tag">UAT</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- NGƯỜI XÁC NHẬN -->
-        <div class="section">
-          <div class="section-title">Người xác nhận</div>
-          <div class="ref-item">
-            <strong>ThS. Võ Văn Phúc</strong><br />
-            <span class="ref-role"><strong>Công ty TNHH Công nghệ Phần mềm Phúc Lâm Phương (PLPSoft)</strong></span><br>
-            <span class="ref-role">- Phó Trưởng Bộ môn Mạng Máy tính &amp; Truyền dữ liệu – ĐH Nam Cần Thơ</span><br />
-            <span class="ref-role">- Giám đốc Công ty TNHH Công nghệ Phần mềm Phúc Lâm Phương (PLPSoft)</span><br />
-            <span class="ref-contact">SĐT: 0909 141 661</span><br />
-            <span class="ref-contact">Email: plpsoft.vn@gmail.com</span>
-          </div>
-        </div>
-
+    <div class="header-text">
+      <h1>LÊ THỊ TÚ MI</h1>
+      <div class="tagline">
+        <strong>Software Implementation</strong>
+        <span class="sep">|</span>
+        <strong>Business Analyst</strong>
+        <span class="sep">|</span>
+        Healthcare IT
       </div>
-
-      <!-- ===== RIGHT: 5/8 ===== -->
-      <div class="right">
-
-        <!-- GIỚI THIỆU BẢN THÂN -->
-        <div class="section">
-          <div class="section-title">Giới thiệu bản thân</div>
-          <div class="intro-text">
-            <p>
-              Tôi là <strong>Lê Thị Tú Mi</strong>, kỹ sư phần mềm với nền tảng vững chắc về <strong>phát triển phần mềm, phân tích thiết kế hệ thống</strong> và <strong>tư vấn giải pháp công nghệ</strong>. Tôi có khả năng kết nối giữa công nghệ và con người, từ phát triển sản phẩm đến triển khai và hỗ trợ khách hàng.
-            </p>
-            <p>
-              Trong quá trình học tập và thực hiện đồ án, tôi đã tham gia phát triển và phân tích các hệ thống phần mềm đa dạng: <strong>quản lý phòng khám nha khoa, quản lý nhân sự (HRMS), thương mại điện tử và quản lý nhà hàng</strong>. Qua đó, tôi tích lũy được kinh nghiệm về <strong>ASP.NET Core MVC, C#, SQL Server, UML, BRD, SRS</strong> và kiểm thử phần mềm.
-            </p>
-            <p>
-              Trong kỳ thực tập tại PLPSoft (04–05/2026), tôi đảm nhận vai trò <strong>Business Analyst</strong>, thực hiện khảo sát, phân tích nhu cầu khách hàng và xây dựng tài liệu BRD/SRS. Tôi có kỹ năng <strong>giao tiếp, thuyết trình, đào tạo người dùng</strong> và xây dựng mối quan hệ với khách hàng. Bên cạnh đó, tôi có kinh nghiệm hỗ trợ kiểm thử UAT, debug và xử lý sự cố.
-            </p>
-            <p>
-              Tôi mong muốn được làm việc trong môi trường chuyên nghiệp để phát triển chuyên môn, đồng thời đóng góp vào các dự án phần mềm chất lượng – từ khâu <strong>phân tích, phát triển đến triển khai và hỗ trợ</strong>.
-            </p>
-          </div>
+      <div class="contact-row">
+        <!-- Phone -->
+        <div class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          0774 945 169
         </div>
-
-        <!-- KINH NGHIỆM LÀM VIỆC -->
-        <div class="section">
-          <div class="section-title">Kinh nghiệm làm việc</div>
-
-          <div class="exp-item">
-            <div class="exp-header">
-              <span class="exp-title">Thực tập sinh Business Analyst</span>
-              <span class="exp-company">PLPSoft</span>
-            </div>
-            <div class="exp-period">04/2026 – 05/2026</div>
-            <ul class="exp-list">
-              <li>Khảo sát, phân tích nhu cầu và quy trình vận hành của khách hàng</li>
-              <li>Xây dựng tài liệu BRD, SRS, UML (Use Case, Class, Sequence)</li>
-              <li>Thiết kế database 12 tables và đặc tả yêu cầu chức năng</li>
-              <li>Hỗ trợ kiểm thử UAT và xử lý lỗi phát sinh</li>
-              <li>Phối hợp với đội ngũ kỹ thuật triển khai và bàn giao sản phẩm</li>
-            </ul>
-          </div>
+        <!-- Email -->
+        <div class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:tusmile.joy@gmail.com">tusmile.joy@gmail.com</a>
         </div>
-
-        <!-- ===== DỰ ÁN - GRID 2x2 ===== -->
-        <div class="section">
-          <div class="section-title">Dự án</div>
-
-          <div class="projects-grid">
-
-            <!-- Project 1: Clinic -->
-            <div class="proj-card">
-              <div class="proj-title">Hệ thống Quản lý Phòng khám Nha khoa</div>
-              <div class="proj-meta">Full Stack Developer</div>
-              <div class="proj-tech">ASP.NET Core MVC · C# · SQL Server · EF Core</div>
-              <ul class="proj-list">
-                <li>Thiết kế hệ thống quản lý bệnh nhân, lịch khám, hồ sơ khám</li>
-                <li>Xây dựng database 15+ tables mô phỏng quy trình HIS</li>
-                <li>CRUD, phân quyền (RBAC), tìm kiếm, phân trang</li>
-                <li>Debug &amp; tối ưu truy vấn SQL</li>
-              </ul>
-              <div class="proj-result">Mô phỏng quy trình phòng khám thực tế</div>
-              <div class="proj-links">
-                <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank">GitHub</a>
-                <span class="sep">|</span>
-                <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank">Web Demo</a>
-              </div>
-            </div>
-
-            <!-- Project 2: HRMS -->
-            <div class="proj-card">
-              <div class="proj-title">Hệ thống Quản lý Nhân sự</div>
-              <div class="proj-meta">System Analyst</div>
-              <div class="proj-tech">UML · SQL Server · BRD · SRS · REST API</div>
-              <ul class="proj-list">
-                <li>Phân tích nghiệp vụ hệ thống HRMS</li>
-                <li>Thiết kế UML + BRD + SRS</li>
-                <li>Database 12 tables</li>
-                <li>Đặc tả chức năng và API cơ bản</li>
-              </ul>
-              <div class="proj-links">
-                <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank">GitHub</a>
-                <span class="sep">|</span>
-                <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">Web Demo</a>
-              </div>
-            </div>
-
-            <!-- Project 3: Thaison Mobile -->
-            <div class="proj-card">
-              <div class="proj-title">Website Bán hàng Thiết bị Di động</div>
-              <div class="proj-meta">Web Developer</div>
-              <div class="proj-tech">WordPress · ASP.NET MVC · C# · SQL Server · Bootstrap</div>
-              <ul class="proj-list">
-                <li>Xây dựng website thương mại điện tử trên nền tảng WordPress</li>
-                <li>Tùy chỉnh giao diện và quản lý sản phẩm, danh mục</li>
-                <li>Tối ưu trải nghiệm người dùng và hiệu năng</li>
-              </ul>
-              <div class="proj-links">
-                <a href="https://thaisonmobile.id.vn/" target="_blank">Web Demo</a>
-              </div>
-            </div>
-
-            <!-- Project 4: Restaurant -->
-            <div class="proj-card">
-              <div class="proj-title">Hệ thống Quản lý Nhà hàng</div>
-              <div class="proj-meta">Developer</div>
-              <div class="proj-tech">C# · Windows Forms · SQL Server</div>
-              <ul class="proj-list">
-                <li>Quản lý món ăn, đơn hàng, khách hàng</li>
-                <li>Ứng dụng desktop CRUD cơ bản</li>
-              </ul>
-              <div class="proj-links">
-                <a href="https://github.com/LttuMi204/WindowsFormsApp_DOAN-2203" target="_blank">GitHub</a>
-              </div>
-            </div>
-
-          </div>
+        <!-- Location -->
+        <div class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tân An, Cần Thơ
         </div>
-
-        <!-- ===== KỸ NĂNG MỀM (PHẢI - 2 CỘT) ===== -->
-        <div class="section">
-          <div class="section-title">Kỹ năng mềm</div>
-
-          <div class="soft-skills-grid">
-            <div class="soft-skill-item">Giao tiếp &amp; hỗ trợ người dùng</div>
-            <div class="soft-skill-item">Làm việc nhóm &amp; phối hợp</div>
-            <div class="soft-skill-item">Tư duy phân tích &amp; giải quyết vấn đề</div>
-            <div class="soft-skill-item">Quản lý thời gian</div>
-            <div class="soft-skill-item">Thuyết trình &amp; đào tạo</div>
-            <div class="soft-skill-item">Chủ động học hỏi &amp; nghiên cứu</div>
-          </div>
+        <!-- GitHub -->
+        <div class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          <a href="https://github.com/LttuMi204" target="_blank">github.com/LttuMi204</a>
         </div>
-
+        <!-- LinkedIn -->
+        <div class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://linkedin.com/in/tu-mi-le-thi-kpm" target="_blank">linkedin.com/in/tu-mi-le-thi-kpm</a>
+        </div>
       </div>
     </div>
   </div>
 
-</body>
+  <!-- ══════════════ BODY ══════════════ -->
+  <div class="body">
 
+    <!-- ── LEFT COLUMN ── -->
+    <div class="left">
+
+      <!-- EDUCATION -->
+      <div class="section">
+        <div class="sec-title">Học vấn</div>
+        <div class="edu-school">Trường Đại học Nam Cần Thơ</div>
+        <div class="edu-degree">Kỹ sư Kỹ thuật Phần mềm</div>
+        <div class="edu-year">2022 – 2026 (dự kiến tốt nghiệp 9/2026)</div>
+        <ul class="dot-list">
+          <li>ASP.NET Core MVC · C# · SQL Server · EF Core</li>
+          <li>Phân tích &amp; thiết kế hệ thống (UML, BRD, SRS)</li>
+          <li>Quản lý dự án CNTT · Kiểm thử phần mềm</li>
+        </ul>
+      </div>
+
+      <!-- LANGUAGE -->
+      <div class="section">
+        <div class="sec-title">Ngoại ngữ</div>
+        <div class="lang-name">Tiếng Anh <span class="lang-level">B1 (2024)</span></div>
+        <ul class="dot-list">
+          <li>Đọc hiểu tài liệu kỹ thuật CNTT</li>
+          <li>Giao tiếp cơ bản với khách hàng</li>
+        </ul>
+      </div>
+
+      <!-- PROFESSIONAL SKILLS -->
+      <div class="section">
+        <div class="sec-title">Kỹ năng chuyên môn</div>
+
+        <div class="skill-block">
+          <div class="sk-label">Triển khai &amp; Hỗ trợ phần mềm</div>
+          <div class="tag-row">
+            <span class="tag primary">Hướng dẫn &amp; đào tạo người dùng</span>
+            <span class="tag">Kiểm thử UAT</span>
+            <span class="tag">Tiếp nhận yêu cầu</span>
+            <span class="tag">Viết tài liệu hướng dẫn</span>
+            <span class="tag">Hỗ trợ qua UltraViewer / Zalo</span>
+            <span class="tag">Xử lý lỗi nghiệp vụ</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="sk-label">Phân tích &amp; Thiết kế hệ thống</div>
+          <div class="tag-row">
+            <span class="tag primary">BRD · SRS · SDD · RTM</span>
+            <span class="tag">UML (Use Case, Class, Sequence)</span>
+            <span class="tag">ERD · API Specification</span>
+            <span class="tag">Draw.io</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="sk-label">Lập trình &amp; Backend</div>
+          <div class="tag-row">
+            <span class="tag primary">ASP.NET Core MVC</span>
+            <span class="tag">C# · SQL Server</span>
+            <span class="tag">Entity Framework Core</span>
+            <span class="tag">RESTful API</span>
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="sk-label">Frontend &amp; CMS</div>
+          <div class="tag-row">
+            <span class="tag">HTML5 · CSS3 · Bootstrap</span>
+            <span class="tag">JavaScript · jQuery</span>
+            <span class="tag">WordPress</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="sk-label">Hệ thống &amp; Database</div>
+          <div class="tag-row">
+            <span class="tag">Debug &amp; xử lý lỗi SQL</span>
+            <span class="tag">Transaction SQL cơ bản</span>
+            <span class="tag">Xử lý lỗi logic nghiệp vụ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- REFERENCE -->
+      <div class="section">
+        <div class="sec-title">Người xác nhận</div>
+        <div class="ref-name">ThS. Võ Văn Phúc</div>
+        <div class="ref-role">
+          Phó Trưởng Bộ môn Mạng Máy tính &amp; Truyền dữ liệu<br />
+          Trường Đại học Nam Cần Thơ<br />
+          Giám đốc Công ty TNHH Phần mềm Phúc Lâm Phương (PLPSoft)
+        </div>
+        <div class="ref-contact">
+          SĐT: 0909 141 661<br />
+          Email: plpsoft.vn@gmail.com
+        </div>
+      </div>
+
+    </div><!-- /left -->
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div class="right">
+
+      <!-- INTRO -->
+      <div class="section">
+        <div class="sec-title">Giới thiệu bản thân</div>
+        <div class="prose">
+          <p>Tôi là <strong>Lê Thị Tú Mi</strong>, sinh viên ngành <strong>Kỹ thuật Phần mềm</strong>, định hướng <strong>Nhân viên Triển khai &amp; Hỗ trợ Phần mềm</strong> trong lĩnh vực y tế và quản trị doanh nghiệp.</p>
+          <p>Tôi có kinh nghiệm xây dựng <strong>Hệ thống Quản lý Phòng khám Nha khoa</strong> (ASP.NET Core MVC) và phân tích &amp; thiết kế toàn diện <strong>Hệ thống HRMS</strong> theo chuẩn ISO/IEC 29148 trong đợt thực tập tại PLPSoft. Tôi hiểu rõ vòng đời triển khai phần mềm — từ khảo sát nghiệp vụ, đặc tả yêu cầu, kiểm thử UAT đến đào tạo người dùng cuối.</p>
+          <p>Tôi giao tiếp tốt, chủ động giải quyết vấn đề và sẵn sàng <strong>onsite</strong> tại bệnh viện, phòng khám hoặc văn phòng khách hàng theo phân công.</p>
+        </div>
+      </div>
+
+      <!-- OBJECTIVE -->
+      <div class="section">
+        <div class="sec-title">Mục tiêu nghề nghiệp</div>
+        <div class="prose">
+          <p>Mong muốn đảm nhận vai trò <strong>Triển khai Phần mềm / Implementation Consultant</strong>, tham gia cài đặt, hướng dẫn vận hành và hỗ trợ kỹ thuật cho các giải pháp phần mềm trong lĩnh vực <strong>y tế (HIS, EMR)</strong> hoặc <strong>quản trị doanh nghiệp (ERP, HRMS)</strong>.</p>
+          <p>Về dài hạn, tôi hướng đến vị trí <strong>Solution Consultant / System Analyst</strong>, đóng góp vào quá trình chuyển đổi số cho các tổ chức y tế và doanh nghiệp tại Việt Nam.</p>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="section">
+        <div class="sec-title">Kinh nghiệm làm việc</div>
+        <div class="exp-header">
+          <div class="exp-title">Thực tập sinh Phân tích &amp; Thiết kế Hệ thống</div>
+          <div class="exp-meta">
+            <span class="exp-company">Công ty TNHH Phần mềm Phúc Lâm Phương (PLPSoft) · Vĩnh Long</span>
+            <span class="exp-period">04/2025 – 05/2025</span>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Phân tích nghiệp vụ</strong> quản lý nhân sự — xác định nhu cầu, vấn đề hiện tại, xây dựng BRD với 21 nhóm chức năng (hồ sơ, nghỉ phép, hợp đồng, đánh giá, ký số, đổi ca, xe công ty).</li>
+          <li><strong>Lập SRS, SDD và RTM</strong> theo chuẩn ISO/IEC/IEEE 29148:2018 — đảm bảo truy xuất 100% yêu cầu.</li>
+          <li><strong>Thiết kế hệ thống</strong>: ERD (29 bảng), DFD, Sequence Diagram, API Specification (66 endpoint, kiến trúc 7 microservice).</li>
+          <li><strong>Hỗ trợ kiểm thử UAT</strong>, ghi nhận lỗi và phối hợp với bộ phận kỹ thuật xử lý.</li>
+          <li><strong>Đào tạo người dùng</strong>, viết tài liệu hướng dẫn sử dụng trong giai đoạn vận hành thử nghiệm.</li>
+        </ul>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="section">
+        <div class="sec-title">Dự án nổi bật</div>
+        <div class="projects-grid">
+
+          <div class="proj-card">
+            <div class="proj-title">Hệ thống Quản lý Phòng khám Nha khoa</div>
+            <div class="proj-role">Full-stack Developer · Đồ án học tập</div>
+            <div class="proj-tech">ASP.NET Core MVC · C# · SQL Server · EF Core</div>
+            <ul class="proj-list">
+              <li>Quản lý bệnh nhân, lịch hẹn, hồ sơ điều trị, thanh toán</li>
+              <li>Database 15+ bảng mô phỏng quy trình HIS</li>
+              <li>CRUD · RBAC · tìm kiếm · phân trang · debug SQL</li>
+              <li>Thực hành nghiệp vụ cơ sở y tế — nền tảng cho HIS thực tế</li>
+            </ul>
+            <div class="proj-result">Mô phỏng hoàn chỉnh quy trình vận hành phòng khám</div>
+            <div class="proj-links">
+              <a href="https://github.com/LttuMi204/quanlyphongkhamnhakhoa" target="_blank">GitHub</a>
+              <span class="sep">|</span>
+              <a href="http://quanlyphongkham-doan2.runasp.net/" target="_blank">Web Demo</a>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-title">Hệ thống Quản lý Nhân sự (HRMS)</div>
+            <div class="proj-role">System Analyst · Thực tập PLPSoft</div>
+            <div class="proj-tech">BRD · SRS · SDD · RTM · UML · ERD · API Spec</div>
+            <ul class="proj-list">
+              <li>21 nhóm chức năng, 29 bảng CSDL, 66 API endpoint</li>
+              <li>Kiến trúc 7 microservice · Sequence &amp; DFD đầy đủ</li>
+              <li>RTM đảm bảo truy xuất 100% yêu cầu nghiệp vụ</li>
+              <li>Hỗ trợ UAT, đào tạo &amp; viết tài liệu người dùng</li>
+            </ul>
+            <div class="proj-result">Bộ tài liệu SA/SD hoàn chỉnh làm cơ sở triển khai ERP</div>
+            <div class="proj-links">
+              <a href="https://github.com/LttuMi204/HRMS-Human-Resource-Management-System" target="_blank">GitHub</a>
+              <span class="sep">|</span>
+              <a href="https://lttumi204.github.io/HRMS-Human-Resource-Management-System/" target="_blank">Demo</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SOFT SKILLS -->
+      <div class="section">
+        <div class="sec-title">Kỹ năng mềm</div>
+        <div class="soft-grid">
+          <div class="soft-item">Giao tiếp &amp; hướng dẫn người dùng</div>
+          <div class="soft-item">Tư duy phân tích &amp; giải quyết vấn đề</div>
+          <div class="soft-item">Làm việc nhóm &amp; phối hợp đa bộ phận</div>
+          <div class="soft-item">Tiếp nhận &amp; xử lý yêu cầu khách hàng</div>
+          <div class="soft-item">Lập báo cáo &amp; đào tạo người dùng</div>
+          <div class="soft-item">Chủ động học hỏi &amp; chịu áp lực công việc</div>
+        </div>
+      </div>
+
+    </div><!-- /right -->
+  </div><!-- /body -->
+</div><!-- /cv -->
+</body>
 </html>
