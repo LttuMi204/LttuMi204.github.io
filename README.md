@@ -1,5 +1,5 @@
 # Lê Thị Tú Mi - CV & Portfolio
-[![Website](https://img.shields.io/badge/Website-lttumi204.github.io%2Flethitumi--ejsh.github.io-blue?style=for-the-badge&logo=github)](https://https://lttumi204.github.io/)
+[![Website](https://img.shields.io/badge/Website-lttumi204.github.io%2Flethitumi--ejsh.github.io-blue?style=for-the-badge&logo=github)](https://lttumi204.github.io/)
 [![GitHub](https://img.shields.io/badge/GitHub-LttuMi204-181717?style=for-the-badge&logo=github)](https://github.com/LttuMi204)
 > **Software Engineer | Business Analyst | System Analyst** 
 > *Bridging the gap between business needs and technical solutions*
@@ -7,11 +7,11 @@
 ## 🌐 Live Demo
 | Page | Link |
 |------|------|
-| Home | [https://lttumi204.github.io/](https://https://lttumi204.github.io/) |
-| Projects | [https://lttumi204.github.io/#projects](https://https://lttumi204.github.io/#projects) |
-| Experience | [https://lttumi204.github.io/#experience](https://https://lttumi204.github.io/#experience) |
-| Detailed CV | [https://lttumi204.github.io/projects/cvweb.html](https://https://lttumi204.github.io/projects/cvweb.html) |
-| Expert Review | [https://lttumi204.github.io/projects/danh-gia.html](https://https://lttumi204.github.io/projects/danh-gia.html) |
+| Home | [lttumi204.github.io/](https://lttumi204.github.io/) |
+| Projects | [lttumi204.github.io/#projects](https://lttumi204.github.io/#projects) |
+| Experience | [lttumi204.github.io/#experience](https://lttumi204.github.io/#experience) |
+| Detailed CV | [lttumi204.github.io/projects/cvweb.html](https://lttumi204.github.io/projects/cvweb.html) |
+| Expert Review | [lttumi204.github.io/projects/danh-gia.html](https://lttumi204.github.io/projects/danh-gia.html) |
 ---
 ## 📋 About
 **English:** Personal CV/Portfolio of **Le Thi Tu Mi** - Software Engineering student, graduating Sep 2026 at Nam Can Tho University.
@@ -56,17 +56,17 @@ lethitumi-ejsh.github.io/
 | End-to-end BA/SA for enterprise HRMS | BA/SA toàn diện cho HRMS doanh nghiệp |
 | 12 documents (~450 pages) ISO/IEC 29148 | 12 tài liệu (~450 trang) chuẩn ISO/IEC 29148 |
 | 29 tables, 66 APIs, 51 test cases | 29 bảng, 66 APIs, 51 test cases |
-🔗 [Details](https://https://lttumi204.github.io/projects/nhan-su.html)
+🔗 [Details](https://lttumi204.github.io/projects/nhan-su.html)
 ### 2. Dental Clinic Management
 **Role:** Full-Stack Developer
 - Patient management, appointments, billing / Quản lý bệnh nhân, lịch hẹn, thanh toán
 - 4 role-based access / 4 vai trò phân quyền
 - ASP.NET Core MVC, SQL Server, EF Core
-🔗 [Details](https://https://lttumi204.github.io/projects/nha-khoa.html)
+🔗 [Details](https://lttumi204.github.io/projects/nha-khoa.html)
 ### 3. E-Commerce Website
 **Role:** Web Developer
 Responsive interface with product management, shopping cart, order processing. / Giao diện responsive với quản lý sản phẩm, giỏ hàng, đơn hàng.
-🔗 [Details](https://https://lttumi204.github.io/projects/ban-hang.html)
+🔗 [Details](https://lttumi204.github.io/projects/ban-hang.html)
 ---
 ## 📊 Key Metrics
 | Metric | Value |
@@ -89,7 +89,7 @@ Responsive interface with product management, shopping cart, order processing. /
 | Client-side validation / Xác thực phía client | Rate limiting (1/30s) / Giới hạn tốc độ |
 | Backend security / Bảo mật backend | Auto-close notification / Thông báo tự động đóng |
 | Multilingual support / Hỗ trợ đa ngôn ngữ | |
-🔗 [Test here](https://https://lttumi204.github.io/#contact)
+🔗 [Test here](https://lttumi204.github.io/#contact)
 ---
 ## 📝 Features
 | Feature | |
