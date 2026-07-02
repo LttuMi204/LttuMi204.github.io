@@ -4,1340 +4,1148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Đánh giá chuyên gia – Lê Thị Tú Mi</title>
+  <title>TỰ ĐÁNH GIÁ NĂNG LỰC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <style>/* ── TOKENS ─────────────────────────────── */
-:root {
-  --accent: #6C8EFF;
-  --accent-v: #A78BFA;
-  --accent-glow: rgba(108, 142, 255, 0.18);
-  --accent-glow2: rgba(167, 139, 250, 0.12);
-
-  --fs-display: clamp(2.8rem, 5vw, 3.8rem);
-  --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
-  --fs-h3: 1.15rem;
-  --fs-body: 1rem;
-  --fs-sm: 0.88rem;
-  --fs-xs: 0.75rem;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 28px;
-
-  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Sora', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-.nav-theme {
-  display: none !important;
-}
-
-[data-theme="dark"] {
-  --bg: #0B0D12;
-  --bg-2: #13171F;
-  --bg-3: #1A1F2E;
-  --bg-4: #232A3D;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-h: rgba(255, 255, 255, 0.12);
-  --text: #EDEFF4;
-  --text-m: #A0A8C4;
-  --text-s: #5A6080;
-  --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
-  --color-background-success: #1A2E1A;
-  --color-text-success: #7BCF5E;
-  --color-background-info: #1A2840;
-  --color-text-info: #6C9FEF;
-  --color-background-warning: #3D2E1A;
-  --color-text-warning: #E8B84A;
-  --color-background-danger: #3D1A1A;
-  --color-text-danger: #EF6C6C;
-  --color-border-success: rgba(72, 210, 140, 0.3);
-  --color-border-secondary: rgba(255, 255, 255, 0.08);
-  --color-border-tertiary: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="light"] {
-  --bg: #F2F4FA;
-  --bg-2: #FFFFFF;
-  --bg-3: #ECEEF6;
-  --bg-4: #E2E6F2;
-  --border: rgba(0, 0, 0, 0.06);
-  --border-h: rgba(0, 0, 0, 0.12);
-  --text: #111827;
-  --text-m: #4B5577;
-  --text-s: #9AA0BC;
-  --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
-  --color-background-success: #EAF3DE;
-  --color-text-success: #3B6D11;
-  --color-background-info: #E6F1FB;
-  --color-text-info: #185FA5;
-  --color-background-warning: #FAEEDA;
-  --color-text-warning: #BA7517;
-  --color-background-danger: #FCEBEB;
-  --color-text-danger: #A32D2D;
-  --color-border-success: rgba(72, 210, 140, 0.3);
-  --color-border-secondary: rgba(0, 0, 0, 0.08);
-  --color-border-tertiary: rgba(0, 0, 0, 0.05);
-}
-
-/* ── FLOATING ACTIONS ────────────────────── */
-.floating-actions {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.fab {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: var(--bg-2);
-  color: var(--text-m);
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition);
-  box-shadow: var(--card-sh);
-  backdrop-filter: blur(8px);
-}
-
-.fab:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 8px 24px rgba(108, 142, 255, 0.2);
-}
-
-.fab-primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-
-.fab-primary:hover {
-  background: var(--accent);
-  color: #fff;
-  opacity: 0.85;
-  box-shadow: 0 8px 24px rgba(108, 142, 255, 0.35);
-}
-
-/* ── CHATBOX ──────────────────────────────── */
-.chatbox {
-  position: fixed;
-  right: 90px;
-  bottom: 30px;
-  width: 300px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  z-index: 9998;
-  display: none;
-}
-
-.chatbox.show {
-  display: block;
-  animation: fadeChat 0.3s ease;
-}
-
-@keyframes fadeChat {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.chat-header {
-  background: var(--bg-3);
-  padding: 14px 18px;
-  font-weight: 600;
-  font-size: var(--fs-sm);
-  color: var(--text);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-}
-
-.chat-header span {
-  cursor: pointer;
-  color: var(--text-m);
-  font-size: 1.2rem;
-  transition: color var(--transition);
-}
-
-.chat-header span:hover {
-  color: var(--text);
-}
-
-.chat-body {
-  padding: 18px;
-}
-
-.chat-body p {
-  font-size: var(--fs-sm);
-  color: var(--text-m);
-  margin-bottom: 12px;
-}
-
-.chat-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  color: var(--text-m);
-  font-size: var(--fs-sm);
-  transition: all var(--transition);
-  margin-bottom: 6px;
-}
-
-.chat-link:hover {
-  background: var(--accent-glow);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.chat-link i {
-  width: 20px;
-  text-align: center;
-  font-size: 1rem;
-}
-
-/* ── RESET ───────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 17px
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-weight: 400;
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-  transition: background var(--transition), color var(--transition);
-  overflow-x: hidden
-}
-
-a {
-  color: inherit;
-  text-decoration: none
-}
-
-ul {
-  list-style: none
-}
-
-img {
-  max-width: 100%;
-  display: block
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit
-}
-
-/* ── NAV ─────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
-  background: rgba(11, 13, 18, 0.78);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
-  transition: background var(--transition);
-}
-
-[data-theme="light"] nav {
-  background: rgba(242, 244, 250, 0.85)
-}
-
-.nav-brand {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-width: 120px;
-}
-
-.nav-brand-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: inline-block;
-  box-shadow: 0 0 12px var(--accent);
-  flex-shrink: 0;
-}
-
-.nav-center {
-  display: flex;
-  align-items: center;
-  gap: 2.8rem
-}
-
-.nav-center a {
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  color: var(--text-m);
-  transition: color var(--transition);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.nav-center a:hover {
-  color: var(--text)
-}
-
-.nav-center a.active {
-  color: var(--text);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-shrink: 0
-}
-
-.nav-lang {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 0.35rem 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: all var(--transition);
-  background: var(--bg-3);
-  min-width: 60px;
-  justify-content: center;
-}
-
-.nav-lang:hover {
-  border-color: var(--accent);
-  color: var(--accent)
-}
-
-.nav-cta {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: #fff;
-  padding: 0.5rem 1.2rem;
-  border-radius: 100px;
-  transition: all var(--transition);
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  min-width: 60px;
-}
-
-.nav-cta:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
-}
-
-.nav-hamburger {
-  display: none;
-  width: 38px;
-  height: 38px;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  font-size: 1.3rem;
-  color: var(--text-m);
-  flex-shrink: 0;
-}
-
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 68px;
-  left: 0;
-  right: 0;
-  z-index: 190;
-  background: var(--bg-2);
-  border-bottom: 1px solid var(--border);
-  padding: 1.5rem 2rem;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.mobile-menu a {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-m)
-}
-
-.mobile-menu a.active {
-  color: var(--accent)
-}
-
-.mobile-menu.open {
-  display: flex
-}
-
-/* ── DROPDOWN CONTACT ────────────────────── */
-.nav-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-toggle {
-  background: var(--accent);
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 100px;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: #fff;
-  height: 38px;
-  min-width: 60px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all var(--transition);
-  letter-spacing: 0.01em;
-}
-
-.dropdown-toggle:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  min-width: 220px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.5rem 0;
-  box-shadow: var(--card-sh);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  transition: all var(--transition);
-  z-index: 300;
-  list-style: none;
-}
-
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown.active .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.55rem 1.25rem;
-  font-size: var(--fs-sm);
-  color: var(--text-m);
-  transition: all var(--transition);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.dropdown-item i {
-  width: 18px;
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--accent);
-}
-
-.dropdown-item:hover {
-  background: var(--accent-glow);
-  color: var(--text);
-}
-
-.dropdown-item:hover i {
-  color: var(--text);
-}
-
-@media (max-width: 768px) {
-  .nav-dropdown .dropdown-menu {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    box-shadow: none;
-    background: transparent;
-    border: none;
-    padding: 0.5rem 0 0 1rem;
-    display: none;
-    width: 100%;
-  }
-
-  .nav-dropdown.open .dropdown-menu {
-    display: block;
-  }
-
-  .nav-dropdown .dropdown-toggle::after {
-    content: ' ▾';
-    font-size: 0.7rem;
-  }
-
-  .nav-dropdown.open .dropdown-toggle::after {
-    content: ' ▴';
-  }
-
-  .dropdown-item {
-    padding: 0.4rem 0.75rem;
-    color: var(--text-m);
-  }
-
-  .dropdown-item i {
-    width: 20px;
-    font-size: 1rem;
-  }
-}
-
-/* ── SECTION BASE ─────────────────────────── */
-.section {
-  padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
-}
-
-.eyebrow {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.eyebrow::before {
-  content: '';
-  width: 24px;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  flex-shrink: 0
-}
-
-h2.section-title {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-  min-height: 1.3em;
-}
-
-h2.section-title em {
-  font-style: italic;
-  color: var(--accent)
-}
-
-.section-sub {
-  font-size: var(--fs-body);
-  color: var(--text-m);
-  max-width: 700px;
-  line-height: 1.8;
-  margin-bottom: 2.5rem
-}
-
-/* ── PROJECT HEADER ───────────────────────── */
-.project-header {
-  background: var(--bg-2);
-  padding: 100px max(2rem, calc((100% - 1200px)/2 + 2rem)) 3rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.project-header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.project-header .project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-}
-
-.project-header .project-tags .tag {
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.25rem 0.8rem;
-  border-radius: 100px;
-  background: var(--accent-glow);
-  color: var(--accent);
-  border: 1px solid rgba(108, 142, 255, 0.2);
-}
-
-.project-header h1 {
-  font-family: var(--font-display);
-  font-size: var(--fs-display);
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
-}
-
-.project-header .project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.project-header .project-meta .meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.project-header .project-meta .meta-item .label {
-  font-size: var(--fs-xs);
-  color: var(--text-s);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-}
-
-.project-header .project-meta .meta-item .value {
-  font-size: var(--fs-sm);
-  color: var(--text);
-  font-weight: 500;
-}
-.project-header .project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.project-header .project-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 100px;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  transition: all var(--transition);
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-  text-decoration: none;
-}
-
-.project-header .project-links a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(108, 142, 255, 0.15);
-}
-
-.project-header .project-links a i {
-  font-size: 0.95rem;
-  color: var(--accent);
-}
-
-.project-header .project-links a:hover i {
-  color: var(--accent);
-}
-
-.project-header .project-links .btn-demo {
-  background: var(--accent);
-  color: #fff;
-}
-
-.project-header .project-links .btn-demo:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
-}
-
-.project-header .project-links .btn-gh {
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-}
-
-.project-header .project-links .btn-gh:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.project-header .project-links .btn-doc {
-  background: var(--bg-3);
-  color: var(--text-m);
-  border: 1px solid var(--border);
-}
-
-.project-header .project-links .btn-doc:hover {
-  border-color: var(--accent-v);
-  color: var(--accent-v);
-}
-
-/* ── PROJECT CONTENT ──────────────────────── */
-.project-content {
-  background: var(--bg);
-  padding: 4rem max(2rem, calc((100% - 1200px)/2 + 2rem));
-}
-
-.project-content .container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* ── REVIEW SPECIFIC STYLES ── */
-.review-header-band {
-  background: var(--bg-3);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.review-candidate-name {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.review-candidate-sub {
-  font-size: 13px;
-  color: var(--text-m);
-  margin-top: 4px;
-}
-
-.review-verdict-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.review-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: var(--radius-md);
-}
-
-.review-badge-success {
-  background: var(--color-background-success);
-  color: var(--color-text-success);
-}
-
-.review-badge-info {
-  background: var(--color-background-info);
-  color: var(--color-text-info);
-}
-
-.review-badge-warning {
-  background: var(--color-background-warning);
-  color: var(--color-text-warning);
-}
-
-.review-section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 0.5px solid var(--border);
-}
-
-/* ── SCORE SUMMARY CẢI TIẾN ── */
-.score-grid-modern {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 1.5rem;
-}
-
-.score-card-modern {
-  background: var(--bg-2);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  transition: all var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.score-card-modern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  border-radius: 0 0 2px 2px;
-}
-
-.score-card-modern:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-color: var(--border-h);
-}
-
-.score-card-modern[data-color="green"]::before { background: var(--color-text-success, #3B6D11); }
-.score-card-modern[data-color="blue"]::before { background: var(--color-text-info, #185FA5); }
-.score-card-modern[data-color="teal"]::before { background: #0F6E56; }
-.score-card-modern[data-color="purple"]::before { background: #534AB7; }
-.score-card-modern[data-color="amber"]::before { background: var(--color-text-warning, #BA7517); }
-.score-card-modern[data-color="coral"]::before { background: #993C1D; }
-
-.score-card-modern .sc-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 6px;
-}
-
-.score-card-modern .sc-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--text-s);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-}
-
-.score-card-modern .sc-value {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1;
-}
-
-.score-card-modern .sc-value small {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: var(--text-s);
-}
-
-.score-card-modern .sc-bar-wrap {
-  height: 4px;
-  border-radius: 4px;
-  background: var(--bg-3);
-  overflow: hidden;
-  margin-top: 4px;
-}
-
-.score-card-modern .sc-bar {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 1s ease;
-  width: 0%;
-}
-
-.score-card-modern .sc-bar.green { background: var(--color-text-success, #3B6D11); }
-.score-card-modern .sc-bar.blue { background: var(--color-text-info, #185FA5); }
-.score-card-modern .sc-bar.teal { background: #0F6E56; }
-.score-card-modern .sc-bar.purple { background: #534AB7; }
-.score-card-modern .sc-bar.amber { background: var(--color-text-warning, #BA7517); }
-.score-card-modern .sc-bar.coral { background: #993C1D; }
-
-/* ── QA INTERVIEW TINH GỌN ── */
-.qa-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.qa-item {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: var(--radius-md);
-  border: 0.5px solid var(--border);
-  background: var(--bg-2);
-  transition: all var(--transition);
-  align-items: start;
-}
-
-.qa-item:hover {
-  border-color: var(--border-h);
-  background: var(--bg-3);
-}
-
-.qa-number {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--text-s);
-  padding-top: 1px;
-  opacity: 0.6;
-}
-
-.qa-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.qa-question {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-.qa-answer {
-  font-size: 0.78rem;
-  color: var(--text-m);
-  line-height: 1.6;
-}
-
-.qa-answer strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.qa-result {
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 100px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.qa-result.pass {
-  background: var(--color-background-success);
-  color: var(--color-text-success);
-}
-
-.qa-result.partial {
-  background: var(--color-background-warning);
-  color: var(--color-text-warning);
-}
-
-.qa-result.gap {
-  background: var(--color-background-danger);
-  color: var(--color-text-danger);
-}
-
-.qa-result i {
-  font-size: 0.55rem;
-  margin-right: 3px;
-}
-
-/* ── PORTFOLIO TABLE ── */
-.review-table-wrap {
-  overflow-x: auto;
-}
-
-.review-table-wrap table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.review-table-wrap th {
-  text-align: left;
-  font-weight: 500;
-  padding: 8px 10px;
-  border-bottom: 0.5px solid var(--border);
-  color: var(--text-s);
-  font-size: 12px;
-}
-
-.review-table-wrap td {
-  padding: 8px 10px;
-  border-bottom: 0.5px solid var(--border);
-  color: var(--text);
-  vertical-align: top;
-}
-
-.review-table-wrap tr:last-child td {
-  border-bottom: none;
-}
-
-.review-chip {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 7px;
-  border-radius: var(--radius-md);
-  margin: 1px;
-}
-
-.review-chip-blue {
-  background: var(--color-background-info);
-  color: var(--color-text-info);
-}
-.review-chip-green {
-  background: var(--color-background-success);
-  color: var(--color-text-success);
-}
-.review-chip-amber {
-  background: var(--color-background-warning);
-  color: var(--color-text-warning);
-}
-
-/* ── SWOT ── */
-.review-swot-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.review-swot-box {
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 12px;
-}
-
-.review-swot-box .swot-title {
-  font-size: 12px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.review-swot-box .swot-title.strong {
-  color: var(--color-text-success);
-}
-.review-swot-box .swot-title.weak {
-  color: var(--color-text-danger);
-}
-.review-swot-box .swot-title.opp {
-  color: var(--color-text-info);
-}
-.review-swot-box .swot-title.risk {
-  color: var(--color-text-warning);
-}
-
-.review-swot-box ul {
-  font-size: 12px;
-  color: var(--text-m);
-  line-height: 1.8;
-  padding-left: 0;
-  list-style: none;
-}
-
-.review-swot-box ul li {
-  padding-left: 0.9rem;
-  position: relative;
-}
-
-.review-swot-box ul li::before {
-  content: '·';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* ── FINAL VERDICT ── */
-.review-final-card {
-  border: 2px solid var(--color-border-success);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  background: var(--bg-2);
-  margin-top: 1rem;
-}
-
-.review-final-score-big {
-  font-size: 42px;
-  font-weight: 500;
-  color: var(--color-text-success);
-}
-
-/* ── RECOMMENDATIONS ── */
-.review-rec-list {
-  list-style: none;
-  padding: 0;
-}
-
-.review-rec-list li {
-  display: flex;
-  gap: 8px;
-  font-size: 13px;
-  padding: 6px 0;
-  border-bottom: 0.5px solid var(--border);
-  color: var(--text);
-  line-height: 1.5;
-}
-
-.review-rec-list li:last-child {
-  border-bottom: none;
-}
-
-.review-rec-num {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-s);
-  min-width: 20px;
-  padding-top: 1px;
-}
-
-/* ── INTRO BOX ── */
-.review-intro-box {
-  background: var(--accent-glow);
-  padding: 12px 16px;
-  border-radius: var(--radius-md);
-  margin-bottom: 16px;
-  border-left: 4px solid var(--accent);
-}
-
-.review-intro-box p {
-  font-size: 13px;
-  color: var(--text-m);
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* ── AI BADGE ── */
-.ai-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.55rem;
-  font-weight: 600;
-  color: var(--accent-v);
-  background: rgba(167, 139, 250, 0.12);
-  padding: 0.1rem 0.6rem;
-  border-radius: 100px;
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
-.ai-badge i {
-  font-size: 0.5rem;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .score-grid-modern {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .review-swot-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  nav {
-    padding: 0 1.25rem
-  }
-  .nav-center {
-    display: none
-  }
-  .nav-hamburger {
-    display: flex
-  }
-  .nav-cta {
-    display: none
-  }
-  .dropdown-toggle {
-    display: none;
-  }
-  
-  .project-header {
-    padding: 80px 1.5rem 2rem;
-  }
-  .project-content {
-    padding: 2rem 1.5rem;
-  }
-  .project-header .project-meta {
-    gap: 1rem;
-  }
-  
-  .floating-actions {
-    right: 16px;
-    bottom: 16px;
-    gap: 10px;
-  }
-  .fab {
-    width: 42px;
-    height: 42px;
-    font-size: 0.95rem;
-  }
-  .chatbox {
-    right: 16px;
-    bottom: 80px;
-    width: 280px;
-  }
-}
-
-@media (max-width: 640px) {
-  .qa-item {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 10px 12px;
-  }
-  
-  .qa-number {
-    opacity: 0.4;
-    font-size: 0.6rem;
-  }
-  
-  .qa-result {
-    align-self: flex-start;
-    font-size: 0.6rem;
-    padding: 1px 8px;
-  }
-}
-
-@media (max-width: 500px) {
-  .score-grid-modern {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ── FOOTER ─────────────────────────────── */
-footer {
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.foot-brand {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  min-width: 140px
-}
-
-.foot-brand span {
-  color: var(--accent)
-}
-
-.foot-links {
-  display: flex;
-  gap: 1.5rem
-}
-
-.foot-links a {
-  font-size: var(--fs-xs);
-  color: var(--text-s);
-  transition: color var(--transition);
-  white-space: nowrap
-}
-
-.foot-links a:hover {
-  color: var(--accent)
-}
-
-.foot-copy {
-  font-size: var(--fs-xs);
-  color: var(--text-s)
-}
-
-/* ── SCROLL REVEAL ────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0)
-}
-/* ── SWOT ENHANCEMENT ── */
-.review-swot-box ul li[data-en] {
-  cursor: default;
-  transition: opacity var(--transition);
-}
-
-.review-swot-box ul li[data-en]:hover {
-  opacity: 0.8;
-}
-
-/* Cải thiện responsive cho SWOT trên mobile */
-@media (max-width: 480px) {
-  .review-swot-box ul li {
-    font-size: 0.7rem !important;
-    padding-left: 0.6rem !important;
-    line-height: 1.5 !important;
-  }
-  
-  .review-swot-box .swot-title {
-    font-size: 0.75rem !important;
-  }
-}
-</style>
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --accent: #6C8EFF;
+      --accent-v: #A78BFA;
+      --accent-glow: rgba(108, 142, 255, 0.18);
+      --accent-glow2: rgba(167, 139, 250, 0.12);
+
+      --fs-display: clamp(2.8rem, 5vw, 3.8rem);
+      --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
+      --fs-h3: 1.15rem;
+      --fs-body: 1rem;
+      --fs-sm: 0.88rem;
+      --fs-xs: 0.75rem;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .nav-theme {
+      display: none !important;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0B0D12;
+      --bg-2: #13171F;
+      --bg-3: #1A1F2E;
+      --bg-4: #232A3D;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-h: rgba(255, 255, 255, 0.12);
+      --text: #EDEFF4;
+      --text-m: #A0A8C4;
+      --text-s: #5A6080;
+      --card-sh: 0 8px 40px rgba(0, 0, 0, 0.5);
+      --color-background-success: #1A2E1A;
+      --color-text-success: #7BCF5E;
+      --color-background-info: #1A2840;
+      --color-text-info: #6C9FEF;
+      --color-background-warning: #3D2E1A;
+      --color-text-warning: #E8B84A;
+      --color-background-danger: #3D1A1A;
+      --color-text-danger: #EF6C6C;
+      --color-border-success: rgba(72, 210, 140, 0.3);
+      --color-border-secondary: rgba(255, 255, 255, 0.08);
+      --color-border-tertiary: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-theme="light"] {
+      --bg: #F2F4FA;
+      --bg-2: #FFFFFF;
+      --bg-3: #ECEEF6;
+      --bg-4: #E2E6F2;
+      --border: rgba(0, 0, 0, 0.06);
+      --border-h: rgba(0, 0, 0, 0.12);
+      --text: #111827;
+      --text-m: #4B5577;
+      --text-s: #9AA0BC;
+      --card-sh: 0 8px 32px rgba(80, 90, 160, 0.08);
+      --color-background-success: #EAF3DE;
+      --color-text-success: #3B6D11;
+      --color-background-info: #E6F1FB;
+      --color-text-info: #185FA5;
+      --color-background-warning: #FAEEDA;
+      --color-text-warning: #BA7517;
+      --color-background-danger: #FCEBEB;
+      --color-text-danger: #A32D2D;
+      --color-border-success: rgba(72, 210, 140, 0.3);
+      --color-border-secondary: rgba(0, 0, 0, 0.08);
+      --color-border-tertiary: rgba(0, 0, 0, 0.05);
+    }
+
+    /* ── FLOATING ACTIONS ────────────────────── */
+    .floating-actions {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-2);
+      color: var(--text-m);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      box-shadow: var(--card-sh);
+      backdrop-filter: blur(8px);
+    }
+
+    .fab:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.2);
+    }
+
+    .fab-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .fab-primary:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 0.85;
+      box-shadow: 0 8px 24px rgba(108, 142, 255, 0.35);
+    }
+
+    /* ── CHATBOX ──────────────────────────────── */
+    .chatbox {
+      position: fixed;
+      right: 90px;
+      bottom: 30px;
+      width: 300px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9998;
+      display: none;
+    }
+
+    .chatbox.show {
+      display: block;
+      animation: fadeChat 0.3s ease;
+    }
+
+    @keyframes fadeChat {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header span {
+      cursor: pointer;
+      color: var(--text-m);
+      font-size: 1.2rem;
+      transition: color var(--transition);
+    }
+
+    .chat-header span:hover {
+      color: var(--text);
+    }
+
+    .chat-body {
+      padding: 18px;
+    }
+
+    .chat-body p {
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      margin-bottom: 12px;
+    }
+
+    .chat-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-m);
+      font-size: var(--fs-sm);
+      transition: all var(--transition);
+      margin-bottom: 6px;
+    }
+
+    .chat-link:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* ── RESET ───────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ul {
+      list-style: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(2rem, calc((100% - 1200px)/2 + 2rem));
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(242, 244, 250, 0.85)
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 120px;
+    }
+
+    .nav-brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .nav-center a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-m);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .nav-center a:hover {
+      color: var(--text)
+    }
+
+    .nav-center a.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0
+    }
+
+    .nav-lang {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .nav-lang:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .nav-cta {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-width: 60px;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 1.3rem;
+      color: var(--text-m);
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-m)
+    }
+
+    .mobile-menu a.active {
+      color: var(--accent)
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    /* ── DROPDOWN CONTACT ────────────────────── */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #fff;
+      height: 38px;
+      min-width: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.01em;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(108, 142, 255, 0.35);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0;
+      box-shadow: var(--card-sh);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all var(--transition);
+      z-index: 300;
+      list-style: none;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--text-m);
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+
+    .dropdown-item:hover i {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0 0 1rem;
+        display: none;
+        width: 100%;
+      }
+
+      .nav-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .nav-dropdown .dropdown-toggle::after {
+        content: ' ▾';
+        font-size: 0.7rem;
+      }
+
+      .nav-dropdown.open .dropdown-toggle::after {
+        content: ' ▴';
+      }
+
+      .dropdown-item {
+        padding: 0.4rem 0.75rem;
+        color: var(--text-m);
+      }
+
+      .dropdown-item i {
+        width: 20px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── SECTION BASE ─────────────────────────── */
+    .section {
+      padding: 6rem max(2rem, calc((100% - 1200px)/2 + 2rem))
+    }
+
+    .eyebrow {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0
+    }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      min-height: 1.3em;
+    }
+
+    h2.section-title em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .section-sub {
+      font-size: var(--fs-body);
+      color: var(--text-m);
+      max-width: 700px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem
+    }
+
+    /* ── PROJECT HEADER ───────────────────────── */
+    .project-header {
+      background: var(--bg-2);
+      padding: 100px max(2rem, calc((100% - 1200px)/2 + 2rem)) 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-header .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-header .project-tags .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+    }
+
+    .project-header h1 {
+      font-family: var(--font-display);
+      font-size: var(--fs-display);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-header .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-header .project-meta .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .project-header .project-meta .meta-item .label {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .project-header .project-meta .meta-item .value {
+      font-size: var(--fs-sm);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .project-header .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-header .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 100px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      transition: all var(--transition);
+      background: var(--bg-3);
+      color: var(--text-m);
+      border: 1px solid var(--border);
+      text-decoration: none;
+    }
+
+    .project-header .project-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(108, 142, 255, 0.15);
+    }
+
+    .project-header .project-links a i {
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .project-header .project-links a:hover i {
+      color: var(--accent);
+    }
+
+    /* ── PROJECT CONTENT ──────────────────────── */
+    .project-content {
+      background: var(--bg);
+      padding: 4rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+    }
+
+    .project-content .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ── REVIEW SPECIFIC STYLES ── */
+    .review-header-band {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-candidate-name {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .review-candidate-sub {
+      font-size: 13px;
+      color: var(--text-m);
+      margin-top: 4px;
+    }
+
+    .review-verdict-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .review-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .review-badge-success {
+      background: var(--color-background-success);
+      color: var(--color-text-success);
+    }
+
+    .review-badge-info {
+      background: var(--color-background-info);
+      color: var(--color-text-info);
+    }
+
+    .review-badge-warning {
+      background: var(--color-background-warning);
+      color: var(--color-text-warning);
+    }
+
+    .review-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* ── SCORE SUMMARY ── */
+    .score-grid-modern {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .score-card-modern {
+      background: var(--bg-2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-card-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 0 0 2px 2px;
+    }
+
+    .score-card-modern:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-h);
+    }
+
+    .score-card-modern[data-color="green"]::before {
+      background: var(--color-text-success, #3B6D11);
+    }
+    .score-card-modern[data-color="blue"]::before {
+      background: var(--color-text-info, #185FA5);
+    }
+    .score-card-modern[data-color="teal"]::before {
+      background: #0F6E56;
+    }
+    .score-card-modern[data-color="purple"]::before {
+      background: #534AB7;
+    }
+
+    .score-card-modern .sc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .score-card-modern .sc-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+
+    .score-card-modern .sc-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .score-card-modern .sc-value small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-s);
+    }
+
+    .score-card-modern .sc-bar-wrap {
+      height: 4px;
+      border-radius: 4px;
+      background: var(--bg-3);
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .score-card-modern .sc-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+      width: 0%;
+    }
+
+    .score-card-modern .sc-bar.green {
+      background: var(--color-text-success, #3B6D11);
+    }
+    .score-card-modern .sc-bar.blue {
+      background: var(--color-text-info, #185FA5);
+    }
+    .score-card-modern .sc-bar.teal {
+      background: #0F6E56;
+    }
+    .score-card-modern .sc-bar.purple {
+      background: #534AB7;
+    }
+
+    /* ── STRENGTHS / IMPROVING ── */
+    .profile-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-card {
+      background: var(--bg-2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+    }
+
+    .profile-card .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profile-card .card-title .icon-strength {
+      color: var(--color-text-success);
+    }
+    .profile-card .card-title .icon-improving {
+      color: var(--color-text-warning);
+    }
+
+    .profile-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .profile-card ul li {
+      font-size: 13px;
+      color: var(--text-m);
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .profile-card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 2px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .profile-card ul li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── DIRECTION ── */
+    .direction-box {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .direction-box .dir-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-s);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .direction-box .dir-text {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── INTRO BOX ── */
+    .review-intro-box {
+      background: var(--accent-glow);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .review-intro-box p {
+      font-size: 13px;
+      color: var(--text-m);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .review-intro-box p strong {
+      color: var(--text);
+    }
+
+    /* ── AI BADGE ── */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: var(--accent-v);
+      background: rgba(167, 139, 250, 0.12);
+      padding: 0.1rem 0.6rem;
+      border-radius: 100px;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .ai-badge i {
+      font-size: 0.5rem;
+    }
+
+    /* ── AI DISCLAIMER ── */
+    .ai-disclaimer {
+      font-size: 0.7rem;
+      color: var(--text-s);
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+      border-top: 0.5px solid var(--border);
+      margin-top: 1.5rem;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    .ai-disclaimer i {
+      margin-right: 4px;
+      color: var(--accent-v);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .score-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .profile-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 1.25rem
+      }
+      .nav-center {
+        display: none
+      }
+      .nav-hamburger {
+        display: flex
+      }
+      .nav-cta {
+        display: none
+      }
+      .dropdown-toggle {
+        display: none;
+      }
+
+      .project-header {
+        padding: 80px 1.5rem 2rem;
+      }
+      .project-content {
+        padding: 2rem 1.5rem;
+      }
+      .project-header .project-meta {
+        gap: 1rem;
+      }
+
+      .floating-actions {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+      }
+      .fab {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+      .chatbox {
+        right: 16px;
+        bottom: 80px;
+        width: 280px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .score-grid-modern {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem max(2rem, calc((100% - 1200px)/2 + 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px
+    }
+
+    .foot-brand span {
+      color: var(--accent)
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem
+    }
+
+    .foot-links a {
+      font-size: var(--fs-xs);
+      color: var(--text-s);
+      transition: color var(--transition);
+      white-space: nowrap
+    }
+
+    .foot-links a:hover {
+      color: var(--accent)
+    }
+
+    .foot-copy {
+      font-size: var(--fs-xs);
+      color: var(--text-s)
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  </style>
 </head>
 
 <body>
@@ -1418,47 +1226,47 @@ footer {
   <section class="project-header">
     <div class="container">
       <div class="project-tags">
-        <span class="tag">★ <span data-en="AI-Powered Assessment" data-vi="Đánh giá bởi AI">Đánh giá bởi AI</span></span>
-        <span class="tag" data-en="Claude 4.6 Sonnet" data-vi="Claude 4.6 Sonnet">Claude 4.6 Sonnet</span>
-        <span class="tag" data-en="Advanced AI Analysis" data-vi="Phân tích AI nâng cao">Phân tích AI nâng cao</span>
-        <span class="tag" data-en="Senior BA/SA Perspective" data-vi="Góc nhìn Senior BA/SA">Góc nhìn Senior BA/SA</span>
+        <span class="tag">★ <span data-en="Self-Assessment" data-vi="Tự đánh giá năng lực">Tự đánh giá năng lực</span></span>
+        <span class="tag" data-en="BA/SA Focus" data-vi="Định hướng BA/SA">Định hướng BA/SA</span>
+        <span class="tag" data-en="Fresher" data-vi="Fresher">Fresher</span>
+        <span class="tag" data-en="Documentation Excellence" data-vi="Tài liệu hóa chuyên sâu">Tài liệu hóa chuyên sâu</span>
       </div>
-      <h1><span data-en="AI-Powered" data-vi="Đánh giá">AI-Powered</span> <span style="color:var(--accent)"><span data-en="Assessment" data-vi="bởi Claude AI">Assessment</span></span></h1>
+      <h1><span data-en="Self-Assessment" data-vi="Tự đánh giá">Tự đánh giá</span> <span style="color:var(--accent)"><span data-en="Capability" data-vi="năng lực">năng lực</span></span></h1>
       <p style="font-size:var(--fs-body);color:var(--text-m);max-width:700px;line-height:1.9;">
-        <span data-en="A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities."
-        data-vi="Đánh giá toàn diện, khách quan về hồ sơ, portfolio và sản phẩm kỹ thuật của tôi — được thực hiện bởi <strong>Claude 4.6 Sonnet</strong>, trợ lý AI tiên tiến với khả năng phân tích cấp chuyên gia.">
-        A comprehensive, objective assessment of my profile, portfolio, and technical artifacts — conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant with expert-level analytical capabilities.
+        <span data-en="An honest, structured self-assessment of my current capabilities, strengths, areas for improvement, and career direction — based on real project experience and documented evidence."
+        data-vi="Một bản tự đánh giá trung thực, có cấu trúc về năng lực hiện tại, điểm mạnh, điểm cần cải thiện và định hướng nghề nghiệp — dựa trên kinh nghiệm dự án thực tế và tài liệu có bằng chứng.">
+        Một bản tự đánh giá trung thực, có cấu trúc về năng lực hiện tại, điểm mạnh, điểm cần cải thiện và định hướng nghề nghiệp — dựa trên kinh nghiệm dự án thực tế và tài liệu có bằng chứng.
       </span>
       </p>
       <div class="project-meta">
         <div class="meta-item">
-          <span class="label" data-en="Reviewer" data-vi="Người đánh giá">Người đánh giá</span>
-          <span class="value" data-en="Claude AI · Anthropic" data-vi="Claude AI · Anthropic">Claude AI · Anthropic</span>
+          <span class="label" data-en="Author" data-vi="Tác giả">Tác giả</span>
+          <span class="value" data-en="Lê Thị Tú Mi" data-vi="Lê Thị Tú Mi">Lê Thị Tú Mi</span>
         </div>
         <div class="meta-item">
-          <span class="label" data-en="Model" data-vi="Mô hình AI">Mô hình AI</span>
-          <span class="value" data-en="Claude 4.6 Sonnet" data-vi="Claude 4.6 Sonnet">Claude 4.6 Sonnet</span>
+          <span class="label" data-en="Role Target" data-vi="Vị trí mục tiêu">Vị trí mục tiêu</span>
+          <span class="value" data-en="Fresher BA / Junior SA" data-vi="Fresher BA / Junior SA">Fresher BA / Junior SA</span>
         </div>
         <div class="meta-item">
-          <span class="label" data-en="Capabilities" data-vi="Năng lực">Năng lực</span>
-          <span class="value" data-en="Code Analysis · Document Review · Technical Assessment" data-vi="Phân tích code · Đánh giá tài liệu · Đánh giá kỹ thuật">Phân tích code · Đánh giá tài liệu · Đánh giá kỹ thuật</span>
+          <span class="label" data-en="Key Project" data-vi="Dự án tiêu biểu">Dự án tiêu biểu</span>
+          <span class="value" data-en="HRMS · 7 microservices · 29 tables · 66 APIs" data-vi="HRMS · 7 microservices · 29 tables · 66 APIs">HRMS · 7 microservices · 29 tables · 66 APIs</span>
         </div>
         <div class="meta-item">
-          <span class="label" data-en="Overall Score" data-vi="Điểm tổng thể">Điểm tổng thể</span>
+          <span class="label" data-en="Self-Assessment Score" data-vi="Điểm tự đánh giá">Điểm tự đánh giá</span>
           <span class="value" style="color:var(--color-text-success);font-weight:700;">8.3 / 10</span>
         </div>
       </div>
       <div class="project-links">
-  <a href="../index.html" class="btn-link">
-    <i class="fas fa-home"></i> <span data-en="Back to Profile" data-vi="Về Profile">Về Profile</span>
-  </a>
-  <a href="../index.html#contact" class="btn-link">
-    <i class="fas fa-envelope"></i> <span data-en="Contact Me" data-vi="Liên hệ">Liên hệ</span>
-  </a>
-  <a href="../projects/cvweb.html" class="btn-link">
-    <i class="fas fa-file-pdf"></i> <span data-en="CV" data-vi="CV">CV</span>
-  </a>        
-</div>
+        <a href="../index.html" class="btn-link">
+          <i class="fas fa-home"></i> <span data-en="Back to Profile" data-vi="Về Profile">Về Profile</span>
+        </a>
+        <a href="../index.html#contact" class="btn-link">
+          <i class="fas fa-envelope"></i> <span data-en="Contact Me" data-vi="Liên hệ">Liên hệ</span>
+        </a>
+        <a href="../projects/cvweb.html" class="btn-link">
+          <i class="fas fa-file-pdf"></i> <span data-en="CV" data-vi="CV">CV</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1469,11 +1277,11 @@ footer {
       <!-- Intro -->
       <div class="review-intro-box reveal">
         <p>
-          <strong data-en="🤖 AI-Powered Assessment by Claude" data-vi="🤖 Đánh giá bởi trí tuệ nhân tạo Claude">🤖 Đánh giá bởi trí tuệ nhân tạo Claude</strong>
+          <strong data-en="📋 Tự đánh giá năng lực" data-vi="📋 Tự đánh giá năng lực">📋 Tự đánh giá năng lực</strong>
           <br>
-          <span data-en="This assessment was conducted by <strong>Claude 4.6 Sonnet</strong>, an advanced AI assistant developed by Anthropic. Claude analyzed the complete project portfolio, technical documentation, and web profile to provide an objective, expert-level evaluation from a Senior BA/SA perspective."
-                data-vi="Đánh giá này được thực hiện bởi <strong>Claude 4.6 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.">
-            Đánh giá này được thực hiện bởi <strong>Claude 4.6 Sonnet</strong> - trợ lý AI tiên tiến từ Anthropic. Claude đã phân tích toàn bộ portfolio dự án, tài liệu kỹ thuật và hồ sơ web để đưa ra đánh giá khách quan, ở cấp độ chuyên gia với góc nhìn Senior BA/SA.
+          <span data-en="Trang này tổng hợp đánh giá của tôi về năng lực bản thân dựa trên các dự án đã thực hiện, tài liệu đã xây dựng và phản hồi từ quá trình học tập & làm việc. Đây là bức tranh trung thực về vị trí hiện tại và định hướng phát triển."
+                data-vi="Trang này tổng hợp đánh giá của tôi về năng lực bản thân dựa trên các dự án đã thực hiện, tài liệu đã xây dựng và phản hồi từ quá trình học tập & làm việc. Đây là bức tranh trung thực về vị trí hiện tại và định hướng phát triển.">
+            Trang này tổng hợp đánh giá của tôi về năng lực bản thân dựa trên các dự án đã thực hiện, tài liệu đã xây dựng và phản hồi từ quá trình học tập & làm việc. Đây là bức tranh trung thực về vị trí hiện tại và định hướng phát triển.
           </span>
         </p>
       </div>
@@ -1483,7 +1291,7 @@ footer {
         <div class="review-candidate-name">
           Lê Thị Tú Mi
           <span class="ai-badge">
-            <i class="fas fa-robot"></i> Claude AI
+            <i class="fas fa-pencil-alt"></i> Tự đánh giá
           </span>
         </div>
         <div class="review-candidate-sub" data-en="Software Engineering Student · Business Analyst · System Analyst · Nam Can Tho University · Graduation Sep 2026"
@@ -1493,7 +1301,7 @@ footer {
         <div class="review-verdict-row">
           <span class="review-badge review-badge-success">
             <i class="fas fa-check-circle" aria-hidden="true"></i> 
-            <span data-en="Fresher — Exceptional" data-vi="Fresher — Xuất sắc">Fresher — Xuất sắc</span>
+            <span data-en="Fresher — Strong Foundation" data-vi="Fresher — Nền tảng vững chắc">Fresher — Nền tảng vững chắc</span>
           </span>
           <span class="review-badge review-badge-info">
             <i class="fas fa-briefcase" aria-hidden="true"></i> 
@@ -1506,13 +1314,12 @@ footer {
         </div>
       </div>
 
-      <!-- Score Grid - Modern -->
-      <div class="review-section-title reveal" data-en="Score Summary by Criteria" data-vi="Bảng điểm theo tiêu chí">
-        Bảng điểm theo tiêu chí
+      <!-- Score Grid -->
+      <div class="review-section-title reveal" data-en="Self-Assessment Score by Criteria" data-vi="Điểm tự đánh giá theo tiêu chí">
+        Điểm tự đánh giá theo tiêu chí
       </div>
 
       <div class="score-grid-modern reveal">
-        
         <div class="score-card-modern" data-color="green">
           <div class="sc-top">
             <span class="sc-label" data-en="BA/SA Skills" data-vi="Kỹ năng BA/SA">Kỹ năng BA/SA</span>
@@ -1552,345 +1359,118 @@ footer {
             <div class="sc-bar purple" style="width:70%"></div>
           </div>
         </div>
-
-        <div class="score-card-modern" data-color="amber">
-          <div class="sc-top">
-            <span class="sc-label" data-en="Portfolio / Branding" data-vi="Hồ sơ năng lực / Xây dựng thương hiệu">Portfolio / Branding</span>
-            <span class="sc-value">8.8<small>/10</small></span>
-          </div>
-          <div class="sc-bar-wrap">
-            <div class="sc-bar amber" style="width:88%"></div>
-          </div>
-        </div>
-
-        <div class="score-card-modern" data-color="coral">
-          <div class="sc-top">
-            <span class="sc-label" data-en="English Proficiency" data-vi="Ngoại ngữ (Eng)">Ngoại ngữ (Eng)</span>
-            <span class="sc-value">5.5<small>/10</small></span>
-          </div>
-          <div class="sc-bar-wrap">
-            <div class="sc-bar coral" style="width:55%"></div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- QA Interview - Tinh gọn -->
-      <div class="review-section-title reveal" data-en="Mock Technical Interview — Q&A & Assessment" data-vi="Phỏng vấn kỹ thuật mô phỏng — Câu hỏi & Đánh giá">
-        Phỏng vấn kỹ thuật mô phỏng — Câu hỏi & Đánh giá
+      <!-- Strengths & Improving -->
+      <div class="review-section-title reveal" data-en="Strengths & Areas for Improvement" data-vi="Điểm mạnh & Điểm cần cải thiện">
+        Điểm mạnh &amp; Điểm cần cải thiện
       </div>
 
-      <div class="qa-list reveal">
-        
-        <!-- Q1 -->
-        <div class="qa-item">
-          <span class="qa-number">Q1</span>
-          <div class="qa-content">
-            <div class="qa-question">Sự khác biệt giữa BRD và SRS? Xử lý chồng lấn nội dung?</div>
-            <div class="qa-answer">Ứng viên độc lập sản xuất BRD (~35 trang) và SRS (~80 trang) theo <strong>ISO/IEC 29148</strong>. BRD tập trung business objectives; SRS định nghĩa functional/non-functional requirements. RTM (~25 trang) dùng để traceability. <strong>Mức hiểu biết rất tốt cho fresher.</strong></div>
+      <div class="profile-card-grid reveal">
+        <!-- Strengths -->
+        <div class="profile-card">
+          <div class="card-title">
+            <span class="icon-strength"><i class="fas fa-plus-circle"></i></span>
+            <span data-en="Strengths" data-vi="Điểm mạnh">Điểm mạnh</span>
           </div>
-          <span class="qa-result pass"><i class="fas fa-check"></i> Đạt</span>
+          <ul>
+            <li>
+              <strong data-en="ISO/IEC/IEEE 29148:2018" data-vi="ISO/IEC/IEEE 29148:2018">ISO/IEC/IEEE 29148:2018</strong>
+              <span data-en=" — đã xây dựng BRD (~35 trang), SRS (~80 trang), SDD, RTM (~25 trang) cho dự án HRMS thực tế." data-vi=" — đã xây dựng BRD (~35 trang), SRS (~80 trang), SDD, RTM (~25 trang) cho dự án HRMS thực tế.">
+                — đã xây dựng BRD (~35 trang), SRS (~80 trang), SDD, RTM (~25 trang) cho dự án HRMS thực tế.
+              </span>
+            </li>
+            <li>
+              <strong data-en="Technical foundation" data-vi="Nền tảng lập trình">Nền tảng lập trình</strong>
+              <span data-en=" — ASP.NET Core MVC, C#, SQL Server — giúp hiểu rõ giới hạn kỹ thuật khi viết đặc tả yêu cầu, lợi thế so với BA thuần." data-vi=" — ASP.NET Core MVC, C#, SQL Server — giúp hiểu rõ giới hạn kỹ thuật khi viết đặc tả yêu cầu, lợi thế so với BA thuần.">
+                — ASP.NET Core MVC, C#, SQL Server — giúp hiểu rõ giới hạn kỹ thuật khi viết đặc tả yêu cầu, lợi thế so với BA thuần.
+              </span>
+            </li>
+            <li>
+              <strong data-en="Public evidence" data-vi="Bằng chứng công khai">Bằng chứng công khai</strong>
+              <span data-en=" — tài liệu, demo và mã nguồn được công khai để nhà tuyển dụng có thể xác minh trực tiếp thay vì chỉ đọc mô tả." data-vi=" — tài liệu, demo và mã nguồn được công khai để nhà tuyển dụng có thể xác minh trực tiếp thay vì chỉ đọc mô tả.">
+                — tài liệu, demo và mã nguồn được công khai để nhà tuyển dụng có thể xác minh trực tiếp thay vì chỉ đọc mô tả.
+              </span>
+            </li>
+            <li>
+              <strong data-en="Full-cycle BA" data-vi="Toàn bộ quy trình BA">Toàn bộ quy trình BA</strong>
+              <span data-en=" — từ BRD → SRS → SDD → DBD → RTM, kết nối yêu cầu business đến thiết kế hệ thống." data-vi=" — từ BRD → SRS → SDD → DBD → RTM, kết nối yêu cầu business đến thiết kế hệ thống.">
+                — từ BRD → SRS → SDD → DBD → RTM, kết nối yêu cầu business đến thiết kế hệ thống.
+              </span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Q2 -->
-        <div class="qa-item">
-          <span class="qa-number">Q2</span>
-          <div class="qa-content">
-            <div class="qa-question">Microservices 7 module — đảm bảo data consistency thế nào?</div>
-            <div class="qa-answer">Distributed consistency — Saga pattern, eventual consistency, outbox pattern. Portfolio chưa có bằng chứng giải quyết ở cấp implementation. <strong>Với BA/SA là hợp lý; Dev sẽ là điểm yếu.</strong></div>
+        <!-- Improving -->
+        <div class="profile-card">
+          <div class="card-title">
+            <span class="icon-improving"><i class="fas fa-clock"></i></span>
+            <span data-en="Areas for improvement" data-vi="Đang hoàn thiện">Đang hoàn thiện</span>
           </div>
-          <span class="qa-result partial"><i class="fas fa-exclamation-triangle"></i> Tạm đạt</span>
+          <ul>
+            <li>
+              <strong data-en="Enterprise experience" data-vi="Kinh nghiệm doanh nghiệp">Kinh nghiệm doanh nghiệp</strong>
+              <span data-en=" — chưa có kinh nghiệm làm việc trực tiếp với khách hàng ở môi trường doanh nghiệp quy mô lớn." data-vi=" — chưa có kinh nghiệm làm việc trực tiếp với khách hàng ở môi trường doanh nghiệp quy mô lớn.">
+                — chưa có kinh nghiệm làm việc trực tiếp với khách hàng ở môi trường doanh nghiệp quy mô lớn.
+              </span>
+            </li>
+            <li>
+              <strong data-en="English B1" data-vi="Tiếng Anh B1">Tiếng Anh B1</strong>
+              <span data-en=" — đang tiếp tục nâng cao để đọc tài liệu kỹ thuật và làm việc với đối tác quốc tế." data-vi=" — đang tiếp tục nâng cao để đọc tài liệu kỹ thuật và làm việc với đối tác quốc tế.">
+                — đang tiếp tục nâng cao để đọc tài liệu kỹ thuật và làm việc với đối tác quốc tế.
+              </span>
+            </li>
+            <li>
+              <strong data-en="Certification" data-vi="Chứng chỉ ngành">Chứng chỉ ngành</strong>
+              <span data-en=" — chưa có CBAP/ECBA, dự kiến bổ sung sau khi tốt nghiệp." data-vi=" — chưa có CBAP/ECBA, dự kiến bổ sung sau khi tốt nghiệp.">
+                — chưa có CBAP/ECBA, dự kiến bổ sung sau khi tốt nghiệp.
+              </span>
+            </li>
+            <li>
+              <strong data-en="Agile/Scrum" data-vi="Agile/Scrum">Agile/Scrum</strong>
+              <span data-en=" — chưa có kinh nghiệm thực tế với Jira/sprint backlog, đang tự học qua các khóa online." data-vi=" — chưa có kinh nghiệm thực tế với Jira/sprint backlog, đang tự học qua các khóa online.">
+                — chưa có kinh nghiệm thực tế với Jira/sprint backlog, đang tự học qua các khóa online.
+              </span>
+            </li>
+          </ul>
         </div>
-
-        <!-- Q3 -->
-        <div class="qa-item">
-          <span class="qa-number">Q3</span>
-          <div class="qa-content">
-            <div class="qa-question">29 bảng, 66 API — đảm bảo contract consistency &amp; backward compatibility?</div>
-            <div class="qa-answer">API Specification (~40 trang) tuân thủ <strong>IEEE 828-2012</strong>. Chưa đề cập versioning strategy, API gateway, contract testing. <strong>Tài liệu đạt chuẩn BA; cần bổ sung cho SA.</strong></div>
-          </div>
-          <span class="qa-result partial"><i class="fas fa-exclamation-triangle"></i> Tạm đạt</span>
-        </div>
-
-        <!-- Q4 -->
-        <div class="qa-item">
-          <span class="qa-number">Q4</span>
-          <div class="qa-content">
-            <div class="qa-question">Chọn ASP.NET Core MVC thay vì Blazor/minimal API — lý do?</div>
-            <div class="qa-answer">MVC phù hợp scope học thuật và khả năng đội nhóm. Chưa có tradeoff analysis. <strong>Quyết định chấp nhận được; cần giải thích rõ hơn.</strong></div>
-          </div>
-          <span class="qa-result partial"><i class="fas fa-check-circle"></i> Chấp nhận</span>
-        </div>
-
-        <!-- Q5 -->
-        <div class="qa-item">
-          <span class="qa-number">Q5</span>
-          <div class="qa-content">
-            <div class="qa-question">51 test cases — phân phối happy path / edge / negative? Coverage?</div>
-            <div class="qa-answer">'100% requirement coverage' qua RTM — là requirement coverage, không phải code coverage. <strong>Với BA/QA fresher, 100% traceability là rất tốt.</strong></div>
-          </div>
-          <span class="qa-result pass"><i class="fas fa-check"></i> Đạt</span>
-        </div>
-
-        <!-- Q6 -->
-        <div class="qa-item">
-          <span class="qa-number">Q6</span>
-          <div class="qa-content">
-            <div class="qa-question">API response &lt;500ms, 100 concurrent users — validate SLA bằng công cụ gì?</div>
-            <div class="qa-answer">NFR định nghĩa rõ trong SRS. Chưa có bằng chứng load testing (JMeter, k6) hay performance baseline. <strong>Với BA là đủ; với SA cần thêm validation.</strong></div>
-          </div>
-          <span class="qa-result gap"><i class="fas fa-times"></i> Thiếu hụt</span>
-        </div>
-
       </div>
 
-      <!-- Portfolio Assessment Table -->
-      <div class="review-section-title reveal" data-en="Portfolio / Product Profile Assessment" data-vi="Đánh giá Portfolio / Profile sản phẩm">
-        Đánh giá Portfolio / Profile sản phẩm
+      <!-- Direction -->
+      <div class="direction-box reveal">
+        <div class="dir-label" data-en="🎯 Career Direction" data-vi="🎯 Định hướng nghề nghiệp">🎯 Định hướng nghề nghiệp</div>
+        <div class="dir-text" data-en="Fresher Business Analyst / Junior System Analyst, ưu tiên các dự án chuyển đổi số và triển khai hệ thống doanh nghiệp (ERP, HRMS)."
+             data-vi="Fresher Business Analyst / Junior System Analyst, ưu tiên các dự án chuyển đổi số và triển khai hệ thống doanh nghiệp (ERP, HRMS).">
+          Fresher Business Analyst / Junior System Analyst, ưu tiên các dự án chuyển đổi số và triển khai hệ thống doanh nghiệp (ERP, HRMS).
+        </div>
       </div>
-
-      <div class="review-table-wrap reveal">
-        <table>
-          <thead>
-            <tr>
-              <th data-en="Criteria" data-vi="Tiêu chí">Tiêu chí</th>
-              <th data-en="Observation" data-vi="Nhận xét">Nhận xét</th>
-              <th data-en="Score" data-vi="Điểm">Điểm</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-en="Web Technical" data-vi="Kỹ thuật Web">Kỹ thuật Web</td>
-              <td data-en="Portfolio website self-built, bilingual EN/VI, dark/light mode, scroll animations, responsive. Not using a template — significant plus."
-                  data-vi="Portfolio website tự build, bilingual EN/VI, dark/light mode, scroll-reveal animations, responsive. Không dùng template — điểm cộng lớn.">
-                Portfolio website tự build, bilingual EN/VI, dark/light mode, scroll-reveal animations, responsive. Không dùng template — điểm cộng lớn.
-              </td>
-              <td><span class="review-chip review-chip-green">9/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Information Architecture" data-vi="Kiến trúc thông tin">Kiến trúc thông tin</td>
-              <td data-en="Clear navigation: About → Skills → Projects → Experience → CV. HRMS case study professionally structured (Overview → Problem → Scope → Architecture → Results → Deliverables)."
-                  data-vi="Navigation rõ ràng: About → Skills → Projects → Experience → CV. Case study HRMS được trình bày theo cấu trúc chuyên nghiệp.">
-                Navigation rõ ràng: About → Skills → Projects → Experience → CV. Case study HRMS được trình bày theo cấu trúc chuyên nghiệp.
-              </td>
-              <td><span class="review-chip review-chip-green">9/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="UX/UI" data-vi="UX/UI">UX/UI</td>
-              <td data-en="Design aesthetic consistent, font pairing good, color palette matches personal brand. Counter animation adds depth. However, counters show '0+' before scroll — needs JS scroll trigger fix."
-                  data-vi="Design aesthetic nhất quán, font pairing tốt, color palette phù hợp brand cá nhân. Counter animation thêm chiều sâu. Tuy nhiên counter hiển thị '0+' trước khi scroll — cần fix JS scroll trigger.">
-                Design aesthetic nhất quán, font pairing tốt, color palette phù hợp brand cá nhân. Counter animation thêm chiều sâu. Tuy nhiên counter hiển thị '0+' trước khi scroll — cần fix JS scroll trigger.
-              </td>
-              <td><span class="review-chip review-chip-blue">8/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Security" data-vi="Bảo mật">Bảo mật</td>
-              <td data-en="Contact form sends via client-side JS — unclear backend/validation. No CAPTCHA. Phone and email public directly — potential spam risk. HTTPS via GitHub Pages: OK."
-                  data-vi="Contact form gửi qua client-side JS — không rõ backend/validation. Không có CAPTCHA. Số điện thoại và email public trực tiếp — potential spam risk. HTTPS qua GitHub Pages: OK.">
-                Contact form gửi qua client-side JS — không rõ backend/validation. Không có CAPTCHA. Số điện thoại và email public trực tiếp — potential spam risk. HTTPS qua GitHub Pages: OK.
-              </td>
-              <td><span class="review-chip review-chip-amber">6/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Performance" data-vi="Hiệu năng">Hiệu năng</td>
-              <td data-en="GitHub Pages CDN good. Images lack visible lazy loading. No service worker. For static portfolio, performance is acceptable."
-                  data-vi="GitHub Pages CDN tốt. Images chưa thấy rõ lazy loading. Không có service worker. Với portfolio tĩnh, performance chấp nhận được.">
-                GitHub Pages CDN tốt. Images chưa thấy rõ lazy loading. Không có service worker. Với portfolio tĩnh, performance chấp nhận được.
-              </td>
-              <td><span class="review-chip review-chip-blue">7.5/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Scalability" data-vi="Khả năng mở rộng">Khả năng mở rộng</td>
-              <td data-en="Static site currently. No CMS. Adding new projects = manual HTML editing. Should migrate to Astro/Next.js with MDX for scaling."
-                  data-vi="Static site hiện tại. Không CMS. Thêm project mới = edit HTML thủ công. Nên migrate sang Astro/Next.js với MDX nếu muốn scale.">
-                Static site hiện tại. Không CMS. Thêm project mới = edit HTML thủ công. Nên migrate sang Astro/Next.js với MDX nếu muốn scale.
-              </td>
-              <td><span class="review-chip review-chip-amber">6.5/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Evidence of Competence" data-vi="Chứng minh năng lực">Chứng minh năng lực</td>
-              <td data-en="12 documents with Google Drive links, GitHub repo with live demo, integrated CV — very persuasive. Measurable outputs (450 pages, 66 APIs, 51 test cases) create strong credibility."
-                  data-vi="12 tài liệu với link Google Drive, GitHub repo có demo live, CV tích hợp — rất thuyết phục. Measurable outputs (450 pages, 66 APIs, 51 test cases) tạo credibility mạnh.">
-                12 tài liệu với link Google Drive, GitHub repo có demo live, CV tích hợp — rất thuyết phục. Measurable outputs (450 pages, 66 APIs, 51 test cases) tạo credibility mạnh.
-              </td>
-              <td><span class="review-chip review-chip-green">9.5/10</span></td>
-            </tr>
-            <tr>
-              <td data-en="Business Potential" data-vi="Tiềm năng kinh doanh">Tiềm năng kinh doanh</td>
-              <td data-en="Portfolio functions as a 'product pitch' for the candidate. Career narrative clear: Fresher BA/SA → Solution Architect → Digital Transformation Consultant. Market positioning in an underserved niche in Can Tho/Mekong Delta."
-                  data-vi="Portfolio này hoạt động như một 'product pitch' cho bản thân. Career narrative rõ: Fresher BA/SA → Solution Architect → Digital Transformation Consultant. Định vị thị trường đúng ngách còn thiếu ứng viên chất lượng tại khu vực Cần Thơ/ĐBSCL.">
-                Portfolio này hoạt động như một 'product pitch' cho bản thân. Career narrative rõ: Fresher BA/SA → Solution Architect → Digital Transformation Consultant. Định vị thị trường đúng ngách còn thiếu ứng viên chất lượng tại khu vực Cần Thơ/ĐBSCL.
-              </td>
-              <td><span class="review-chip review-chip-green">9/10</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- SWOT -->
-      <div class="review-section-title reveal" data-en="SWOT Analysis" data-vi="Ma trận SWOT">Ma trận SWOT</div>
-      
-<div class="review-swot-grid reveal">
-  
-  <!-- Strengths / Điểm mạnh -->
-  <div class="review-swot-box">
-    <div class="swot-title strong"><i class="fas fa-plus-circle"></i> <span data-en="Strengths" data-vi="Điểm mạnh">Điểm mạnh</span></div>
-    <ul>
-      <li data-en="ISO/IEC 29148 mastery — rare for fresher" data-vi="Thành thạo ISO/IEC 29148 — hiếm gặp ở fresher">ISO/IEC 29148 mastery — rare for fresher</li>
-      <li data-en="450+ pages of documented evidence" data-vi="450+ trang tài liệu có bằng chứng">450+ pages of documented evidence</li>
-      <li data-en="Full-cycle BA: BRD→SRS→SDD→DBD→RTM" data-vi="Toàn bộ quy trình BA: BRD→SRS→SDD→DBD→RTM">Full-cycle BA: BRD→SRS→SDD→DBD→RTM</li>
-      <li data-en="Portfolio website high-quality, self-built" data-vi="Portfolio website chất lượng cao, tự xây dựng">Portfolio website high-quality, self-built</li>
-      <li data-en="Dual-track: BA/SA + ASP.NET full-stack" data-vi="Kết hợp BA/SA + full-stack ASP.NET">Dual-track: BA/SA + ASP.NET full-stack</li>
-      <li data-en="Measurable outputs with specific metrics" data-vi="Kết quả đo lường được với chỉ số cụ thể">Measurable outputs with specific metrics</li>
-    </ul>
-  </div>
-  
-  <!-- Weaknesses / Điểm cần cải thiện -->
-  <div class="review-swot-box">
-    <div class="swot-title weak"><i class="fas fa-minus-circle"></i> <span data-en="Points for improvement" data-vi="Điểm cần cải thiện">Điểm cần cải thiện</span></div>
-    <ul>
-      <li data-en="English B1 — limits international roles" data-vi="Tiếng Anh B1 — hạn chế cơ hội quốc tế">English B1 — limits international roles</li>
-      <li data-en="No real-world Agile/Scrum experience" data-vi="Chưa có kinh nghiệm Agile/Scrum thực tế">No real-world Agile/Scrum experience</li>
-      <li data-en="Technical depth in distributed systems thin" data-vi="Chiều sâu kỹ thuật về distributed systems còn mỏng">Technical depth in distributed systems thin</li>
-      <li data-en="No CI/CD, DevOps exposure" data-vi="Chưa tiếp xúc với CI/CD, DevOps">No CI/CD, DevOps exposure</li>
-      <li data-en="Only 1 internship (8 weeks) — limited team exposure" data-vi="Chỉ 1 kỳ thực tập (8 tuần) — ít trải nghiệm làm việc nhóm">Only 1 internship (8 weeks) — limited team exposure</li>
-      <li data-en="Contact form lacks backend validation" data-vi="Contact form thiếu validation backend">Contact form lacks backend validation</li>
-    </ul>
-  </div>
-  
-  <!-- Opportunities / Cơ hội -->
-  <div class="review-swot-box">
-    <div class="swot-title opp"><i class="fas fa-arrow-trend-up"></i> <span data-en="Opportunities" data-vi="Cơ hội">Cơ hội</span></div>
-    <ul>
-      <li data-en="Mekong Delta market lacks quality BA/SA" data-vi="Thị trường ĐBSCL thiếu BA/SA chất lượng">Mekong Delta market lacks quality BA/SA</li>
-      <li data-en="ERP/HIS/Fintech need documentation experts" data-vi="ERP/HIS/Fintech cần chuyên gia tài liệu hóa">ERP/HIS/Fintech need documentation experts</li>
-      <li data-en="BABOK certification will add rapid value" data-vi="Chứng chỉ BABOK sẽ tăng giá trị nhanh chóng">BABOK certification will add rapid value</li>
-      <li data-en="Solution Architect path in 3-5 years feasible" data-vi="Lộ trình Solution Architect trong 3-5 năm khả thi">Solution Architect path in 3-5 years feasible</li>
-      <li data-en="Digital transformation in SMEs booming" data-vi="Chuyển đổi số trong doanh nghiệp vừa và nhỏ đang bùng nổ">Digital transformation in SMEs booming</li>
-    </ul>
-  </div>
-  
-  <!-- Risks / Rủi ro -->
-  <div class="review-swot-box">
-    <div class="swot-title risk"><i class="fas fa-triangle-exclamation"></i> <span data-en="Risks" data-vi="Rủi ro">Rủi ro</span></div>
-    <ul>
-      <li data-en="Misclassified as 'Developer' instead of BA/SA" data-vi="Bị xếp nhầm vào vị trí 'Developer' thay vì BA/SA">Misclassified as 'Developer' instead of BA/SA</li>
-      <li data-en="HRMS metrics need verification — interviewer will test" data-vi="Số liệu HRMS cần được xác minh — interviewer sẽ kiểm tra">HRMS metrics need verification — interviewer will test</li>
-      <li data-en="Branding too dependent on a single portfolio point" data-vi="Xây dựng thương hiệu quá phụ thuộc vào một điểm trong portfolio">Branding too dependent on a single portfolio point</li>
-      <li data-en="Competition with HCMC freshers from better environments" data-vi="Cạnh tranh với fresher TP.HCM từ môi trường tốt hơn">Competition with HCMC freshers from better environments</li>
-    </ul>
-  </div>
-  
-</div>
 
       <!-- Final Verdict -->
-      <div class="review-final-card reveal">
+      <div class="review-final-card" style="border:2px solid var(--color-border-success);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;background:var(--bg-2);margin-top:1rem;">
         <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
           <div>
-            <div style="font-size:12px;color:var(--text-s);margin-bottom:4px;" data-en="Overall Score" data-vi="Điểm tổng thể">Điểm tổng thể</div>
-            <div class="review-final-score-big">8.3</div>
-            <div style="font-size:13px;color:var(--text-s);" data-en="/10 · Fresher Exceptional" data-vi="/10 · Fresher Xuất sắc">/10 · Fresher Xuất sắc</div>
+            <div style="font-size:12px;color:var(--text-s);margin-bottom:4px;" data-en="Self-Assessment Score" data-vi="Điểm tự đánh giá">Điểm tự đánh giá</div>
+            <div style="font-size:42px;font-weight:500;color:var(--color-text-success);">8.3</div>
+            <div style="font-size:13px;color:var(--text-s);" data-en="/10 · Fresher Strong Foundation" data-vi="/10 · Fresher Nền tảng vững chắc">/10 · Fresher Nền tảng vững chắc</div>
           </div>
           <div style="flex:1;min-width:200px;">
-            <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;" data-en="Hiring Recommendation" data-vi="Khuyến nghị tuyển dụng">Khuyến nghị tuyển dụng</div>
+            <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;" data-en="Self-Assessment Summary" data-vi="Tổng kết tự đánh giá">Tổng kết tự đánh giá</div>
             <div style="font-size:13px;color:var(--text-m);line-height:1.7;">
-              <span class="review-badge review-badge-success" style="margin-bottom:6px;display:inline-flex;">
-                <span data-en="Hire — for BA/SA track" data-vi="Tuyển — với định hướng BA/SA">Tuyển — với định hướng BA/SA</span>
-              </span><br>
-              <span data-en="The candidate possesses exceptional documentation and requirements analysis foundations compared to peers. Best suited for: Junior BA, Junior SA, or Software Engineer roles with analysis focus in a team with senior mentorship."
-                    data-vi="Ứng viên sở hữu nền tảng tài liệu hóa và phân tích yêu cầu vượt trội so với cùng cấp độ. Phù hợp nhất cho roles: Junior BA, Junior SA, hoặc Software Engineer thiên về analysis trong team có senior mentor.">
-                Ứng viên sở hữu nền tảng tài liệu hóa và phân tích yêu cầu vượt trội so với cùng cấp độ. Phù hợp nhất cho roles: Junior BA, Junior SA, hoặc Software Engineer thiên về analysis trong team có senior mentor.
+              <span data-en="Tôi đánh giá bản thân có nền tảng vững chắc về phân tích và tài liệu hóa yêu cầu theo chuẩn quốc tế, cùng khả năng lập trình để hiểu sâu hơn về giới hạn kỹ thuật. Điểm cần cải thiện tập trung vào kinh nghiệm doanh nghiệp thực tế và tiếng Anh chuyên ngành." 
+                    data-vi="Tôi đánh giá bản thân có nền tảng vững chắc về phân tích và tài liệu hóa yêu cầu theo chuẩn quốc tế, cùng khả năng lập trình để hiểu sâu hơn về giới hạn kỹ thuật. Điểm cần cải thiện tập trung vào kinh nghiệm doanh nghiệp thực tế và tiếng Anh chuyên ngành.">
+                Tôi đánh giá bản thân có nền tảng vững chắc về phân tích và tài liệu hóa yêu cầu theo chuẩn quốc tế, cùng khả năng lập trình để hiểu sâu hơn về giới hạn kỹ thuật. Điểm cần cải thiện tập trung vào kinh nghiệm doanh nghiệp thực tế và tiếng Anh chuyên ngành.
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div style="border:0.5px solid var(--border);margin:1.5rem 0;"></div>
-
-      <!-- Recommendations -->
-      <div class="review-section-title reveal" data-en="High-Priority Improvement Recommendations" data-vi="Khuyến nghị cải tiến ưu tiên cao">
-        Khuyến nghị cải tiến ưu tiên cao
-      </div>
-      <ul class="review-rec-list reveal">
-        <li>
-          <span class="review-rec-num">01</span>
-          <div>
-            <strong data-en="Add real-world Agile/Scrum exposure" data-vi="Bổ sung Agile/Scrum thực tế">Bổ sung Agile/Scrum thực tế</strong>
-            <span data-en="— at least one project with Jira/sprint backlog. Most companies will ask about sprint planning and story point estimation."
-                  data-vi="— ít nhất một dự án với Jira/sprint backlog. Hầu hết công ty sẽ hỏi về sprint planning và story point estimation.">
-              — ít nhất một dự án với Jira/sprint backlog. Hầu hết công ty sẽ hỏi về sprint planning và story point estimation.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">02</span>
-          <div>
-            <strong data-en="Fix counter animation bug" data-vi="Fix lỗi counter animation">Fix lỗi counter animation</strong>
-            <span data-en="— currently shows '0+' before scroll trigger fires. Affects first impression significantly."
-                  data-vi="— hiện counter hiển thị '0+' thay vì giá trị thật trước khi scroll trigger kích hoạt. Ảnh hưởng first impression nghiêm trọng.">
-              — hiện counter hiển thị '0+' thay vì giá trị thật trước khi scroll trigger kích hoạt. Ảnh hưởng first impression nghiêm trọng.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">03</span>
-          <div>
-            <strong data-en="Add BABOK v3 self-study roadmap" data-vi="Thêm BABOK v3 vào Career Goals">Thêm BABOK v3 vào Career Goals</strong>
-            <span data-en="— in Career Goals section. Signals clearer intent to hiring managers for BA roles. CBAP certification in 2-3 years will add significant value."
-                  data-vi="— trong mục Career Goals, signal rõ ràng hơn cho hiring manager BA roles. CBAP certification trong 2-3 năm tới sẽ tăng giá trị đáng kể.">
-              — trong mục Career Goals, signal rõ ràng hơn cho hiring manager BA roles. CBAP certification trong 2-3 năm tới sẽ tăng giá trị đáng kể.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">04</span>
-          <div>
-            <strong data-en="Contact form: migrate to Formspree/EmailJS" data-vi="Contact form: migrate sang Formspree/EmailJS">Contact form: migrate sang Formspree/EmailJS</strong>
-            <span data-en="— with proper validation and honeypot spam protection instead of raw client-side JS."
-                  data-vi="— với proper validation và honeypot spam protection thay vì raw JS hiện tại.">
-              — với proper validation và honeypot spam protection thay vì raw JS hiện tại.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">05</span>
-          <div>
-            <strong data-en="Add 'Process artifacts' section" data-vi="Thêm section 'Process artifacts'">Thêm section 'Process artifacts'</strong>
-            <span data-en="— upload 1-2 sample pages from SRS/BRD (non-sensitive) as preview. Interviewers will want to see actual document quality before the interview."
-                  data-vi="— upload 1-2 trang sample từ SRS/BRD (không nhạy cảm) làm preview. Interviewer sẽ muốn xem chất lượng document thực tế trước buổi phỏng vấn.">
-              — upload 1-2 trang sample từ SRS/BRD (không nhạy cảm) làm preview. Interviewer sẽ muốn xem chất lượng document thực tế trước buổi phỏng vấn.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">06</span>
-          <div>
-            <strong data-en="Improve English to B2" data-vi="Cải thiện tiếng Anh lên B2">Cải thiện tiếng Anh lên B2</strong>
-            <span data-en="— opens outsourcing, fintech, and expat environments. This is the largest bottleneck for long-term growth."
-                  data-vi="— mở ra các cơ hội outsourcing company, fintech, và môi trường có expat. Đây là bottleneck lớn nhất cho growth dài hạn.">
-              — mở ra các cơ hội outsourcing company, fintech, và môi trường có expat. Đây là bottleneck lớn nhất cho growth dài hạn.
-            </span>
-          </div>
-        </li>
-        <li>
-          <span class="review-rec-num">07</span>
-          <div>
-            <strong data-en="Add LinkedIn case study" data-vi="Thêm LinkedIn case study">Thêm LinkedIn case study</strong>
-            <span data-en="— post HRMS summary as a featured post on LinkedIn. Portfolio website only reaches those who seek it; LinkedIn has recruiter inbound."
-                  data-vi="— đăng HRMS summary dưới dạng featured post trên LinkedIn. Portfolio website chỉ tiếp cận người chủ động tìm; LinkedIn có inbound từ recruiter.">
-              — đăng HRMS summary dưới dạng featured post trên LinkedIn. Portfolio website chỉ tiếp cận người chủ động tìm; LinkedIn có inbound từ recruiter.
-            </span>
-          </div>
-        </li>
-      </ul>
-
-      <!-- AI Credit -->
-      <div style="text-align:center;padding:1.5rem 0 0.5rem;font-size:0.7rem;color:var(--text-s);opacity:0.6;border-top:0.5px solid var(--border);margin-top:1.5rem;">
-        <i class="fas fa-robot" style="margin-right:4px;"></i>
-        <span data-en="This assessment was generated by Claude 4.6 Sonnet · Powered by Anthropic" 
-              data-vi="Đánh giá này được tạo bởi Claude 4.6 Sonnet · Công nghệ từ Anthropic">
-          Đánh giá này được tạo bởi Claude 4.6 Sonnet · Công nghệ từ Anthropic
+      <!-- AI Disclaimer -->
+      <div class="ai-disclaimer">
+        <i class="fas fa-robot"></i>
+        <span data-en="Nội dung trang này có sự hỗ trợ chỉnh sửa văn phong từ AI, đánh giá và lựa chọn thông tin là của tác giả."
+              data-vi="Nội dung trang này có sự hỗ trợ chỉnh sửa văn phong từ AI, đánh giá và lựa chọn thông tin là của tác giả.">
+          Nội dung trang này có sự hỗ trợ chỉnh sửa văn phong từ AI, đánh giá và lựa chọn thông tin là của tác giả.
         </span>
       </div>
 
